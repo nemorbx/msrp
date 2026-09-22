@@ -1059,3 +1059,327 @@ tbody tr:hover { background: rgba(85,191,255,.035); }
   .stats-grid { grid-template-columns: 1fr; }
   .quick-actions { grid-template-columns: 1fr; }
 }
+
+/* =========================================
+   MSRP LANDING PAGE
+   ========================================= */
+
+.landing-shell {
+  width: min(100%, 920px);
+  min-height: calc(100vh - 110px);
+  margin: 0 auto;
+  padding: 4px 10px 40px;
+}
+
+.landing-brandbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 42px;
+}
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing-brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #06111a;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.landing-brand strong,
+.landing-brand span {
+  display: block;
+}
+
+.landing-brand strong {
+  font-size: 12px;
+  letter-spacing: .4px;
+}
+
+.landing-brand span {
+  color: var(--text-muted);
+  font-size: 8px;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.landing-menu {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.landing-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.landing-kicker span {
+  width: 32px;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+}
+
+.landing-meta {
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 23px;
+}
+
+.landing-hero-image {
+  width: min(100%, 430px);
+  height: 315px;
+  margin: 28px auto 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(85,191,255,.22), transparent 38%),
+    radial-gradient(circle at 50% 80%, rgba(85,191,255,.08), transparent 55%);
+  overflow: hidden;
+}
+
+.hero-logo {
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+  border: 1px solid rgba(85,191,255,.22);
+  border-radius: 50%;
+  color: var(--blue-light);
+  background: radial-gradient(circle, rgba(85,191,255,.16), rgba(7,11,17,.05) 70%);
+  box-shadow: 0 0 65px rgba(85,191,255,.12);
+}
+
+.hero-logo strong {
+  display: block;
+  font-size: 42px;
+  line-height: .95;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.hero-logo span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.landing-copy {
+  max-width: 700px;
+  margin-top: 4px;
+}
+
+.landing-copy h2,
+.landing-copy h3,
+.landing-copy h4 {
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -1.5px;
+}
+
+.landing-copy h2 {
+  font-size: clamp(38px, 6vw, 58px);
+}
+
+.landing-copy h3 {
+  color: var(--cyan);
+  font-size: clamp(40px, 6.3vw, 62px);
+  font-weight: 500;
+  letter-spacing: -2.5px;
+  margin-top: 4px;
+}
+
+.landing-copy h4 {
+  font-size: clamp(38px, 6vw, 58px);
+  margin-top: 2px;
+}
+
+.landing-copy p {
+  max-width: 680px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.75;
+  margin-top: 28px;
+}
+
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.landing-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 19px;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(16,25,35,.7);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 750;
+  transition: .18s ease;
+}
+
+.landing-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(85,191,255,.3);
+  background: rgba(85,191,255,.07);
+}
+
+.landing-button.primary {
+  color: #06111a;
+  border-color: transparent;
+  background: #f4f6f8;
+}
+
+.landing-button b {
+  margin-left: 7px;
+  font-size: 14px;
+}
+
+.landing-note {
+  color: var(--text-muted);
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  margin-top: 26px;
+}
+
+@media (max-width: 800px) {
+  .landing-shell {
+    width: 100%;
+    padding: 0 4px 30px;
+  }
+
+  .landing-brandbar {
+    padding-bottom: 30px;
+  }
+
+  .landing-kicker {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .landing-meta {
+    font-size: 8px;
+    margin-top: 18px;
+  }
+
+  .landing-hero-image {
+    height: 270px;
+    margin-top: 20px;
+  }
+
+  .hero-logo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-logo strong {
+    font-size: 34px;
+  }
+
+  .landing-copy h2 {
+    font-size: 39px;
+  }
+
+  .landing-copy h3 {
+    font-size: 42px;
+  }
+
+  .landing-copy h4 {
+    font-size: 39px;
+  }
+
+  .landing-copy p {
+    font-size: 10px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  .landing-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .landing-button {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  .landing-button.primary {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  .landing-shell {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .landing-brand strong {
+    font-size: 10px;
+  }
+
+  .landing-brand span {
+    font-size: 7px;
+  }
+
+  .landing-hero-image {
+    height: 230px;
+  }
+
+  .hero-logo {
+    width: 155px;
+    height: 155px;
+  }
+
+  .hero-logo strong {
+    font-size: 29px;
+  }
+
+  .landing-copy h2 { font-size: 34px; }
+  .landing-copy h3 { font-size: 37px; }
+  .landing-copy h4 { font-size: 34px; }
+
+  .landing-copy p {
+    font-size: 9px;
+  }
+}
+
