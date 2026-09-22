@@ -279,3 +279,42 @@ main{padding-bottom:42px}
     margin-bottom:0;
   }
 }
+
+
+/* Larger LANRP-style typography and controls */
+@media(min-width:901px){
+  .site-brand-copy strong{font-size:13px}
+  .site-brand-copy span{font-size:8px;letter-spacing:1.8px}
+  .site-nav-link{font-size:12px;padding:12px 17px}
+  .discord-button{font-size:12px;padding:13px 21px}
+  .discord-button svg{width:16px;height:16px}
+
+  .hero-kicker{font-size:10px;letter-spacing:2.2px;gap:13px}
+  .hero-kicker span{width:30px;height:2px}
+  .hero-meta{font-size:8px;letter-spacing:2.2px;margin-top:24px}
+  .hero h1{font-size:clamp(64px,6.8vw,94px);letter-spacing:-4px}
+  .hero-description{font-size:13px;line-height:1.7;max-width:650px;margin-top:31px}
+  .hero-actions{gap:10px;margin-top:28px}
+  .action-button{min-height:46px;padding:0 19px;font-size:11px;gap:8px}
+  .action-button svg{width:15px;height:15px}
+  .action-button b svg{width:15px;height:15px}
+
+  .live-stat{min-height:128px;padding:27px 30px}
+  .live-stat>span{font-size:9px;letter-spacing:1.9px}
+  .live-stat strong{font-size:34px;margin-top:11px}
+  .live-stat small{font-size:8px;margin-top:8px}
+  .live-stat small i{width:7px;height:7px}
+}
+
+@media(max-width:900px){
+  .site-brand-copy strong{font-size:11px}
+  .site-brand-copy span{font-size:7px}
+  .site-nav-link{font-size:11px}
+  .hero-kicker{font-size:9px}
+  .hero-meta{font-size:8px}
+  .hero-description{font-size:11px}
+  .action-button{min-height:43px;font-size:10px}
+  .live-stat>span{font-size:8px}
+  .live-stat strong{font-size:25px}
+  .live-stat small{font-size:7px}
+}
