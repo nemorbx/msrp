@@ -111,8 +111,13 @@
     </nav>
 
     <div class="sidebar-bottom">
-      <div class="online-indicator"></div>
-      <span>System Online</span>
+      <div class="sidebar-status">
+        <div class="online-indicator"></div>
+        <div>
+          <strong>System Online</strong>
+          <span>MSRP Staff Portal</span>
+        </div>
+      </div>
     </div>
 
   </aside>
@@ -169,164 +174,181 @@
     <section class="content">
 
 
+
       <!-- ================= DASHBOARD ================= -->
 
-      <div
-        class="page active-page"
-        id="dashboard"
-      >
+      <div class="page active" id="dashboard">
 
         <div class="welcome">
-
           <div>
-            <p class="eyebrow">
-              MISSOURI STATE ROLEPLAY
-            </p>
-
-            <h2>
-              Welcome to the Staff Portal
-            </h2>
-
+            <p class="eyebrow">MISSOURI STATE ROLEPLAY</p>
+            <h2>Welcome to the Staff Portal</h2>
             <p>
-              Manage staff operations, review applications,
-              monitor the ER:LC server, and access important
-              staff resources.
+              Manage staff operations, review applications, monitor the ER:LC server,
+              and access important MSRP staff resources from one place.
             </p>
           </div>
-
-          <div class="welcome-badge">
-            MSRP
-          </div>
-
+          <div class="welcome-badge">MSRP</div>
         </div>
-
 
         <div class="stats-grid">
-
           <div class="stat-card">
             <div class="stat-icon blue">🎮</div>
-
-            <div>
-              <span>Server Status</span>
-              <strong class="green-text">
-                Online
-              </strong>
-            </div>
+            <div><span>Server Status</span><strong class="green-text">Online</strong></div>
           </div>
-
-
           <div class="stat-card">
             <div class="stat-icon purple">👥</div>
-
-            <div>
-              <span>Players</span>
-              <strong>
-                0 / 50
-              </strong>
-            </div>
+            <div><span>Total Staff</span><strong>12</strong></div>
           </div>
-
-
           <div class="stat-card">
             <div class="stat-icon cyan">🛡</div>
-
-            <div>
-              <span>Staff Online</span>
-              <strong>
-                0
-              </strong>
-            </div>
+            <div><span>Staff Online</span><strong>3</strong></div>
           </div>
-
-
           <div class="stat-card">
             <div class="stat-icon orange">📋</div>
-
-            <div>
-              <span>Pending Applications</span>
-              <strong>
-                0
-              </strong>
-            </div>
+            <div><span>Pending Applications</span><strong>2</strong></div>
           </div>
-
         </div>
-
 
         <div class="dashboard-grid">
 
           <div class="panel large-panel">
-
             <div class="panel-header">
-
               <div>
-                <h3>Recent Activity</h3>
-                <p>
-                  Latest staff activity
+                <h3>ER:LC Server Overview</h3>
+                <p>Current server information</p>
+              </div>
+              <span class="online-badge">● ONLINE</span>
+            </div>
+
+            <div class="server-overview">
+              <div class="server-main">
+                <div class="server-main-top">
+                  <div class="server-brand">
+                    <div class="server-icon">🎮</div>
+                    <div>
+                      <div class="server-name">Missouri State Roleplay</div>
+                      <div class="server-details">ER:LC • United States</div>
+                    </div>
+                  </div>
+                </div>
+                <p class="server-note">
+                  Demo/static dashboard data for now. Live ER:LC data will be connected
+                  securely through the MSRP Game Bot/backend in a future update.
                 </p>
               </div>
 
-              <button class="small-button">
-                View All
-              </button>
-
-            </div>
-
-            <div class="empty-state">
-
-              <div class="empty-icon">
-                ✓
+              <div class="server-mini-stat">
+                <span>Players</span>
+                <strong>0 / 50</strong>
               </div>
 
-              <h4>
-                No recent activity
-              </h4>
+              <div class="server-mini-stat">
+                <span>Staff Online</span>
+                <strong>3</strong>
+              </div>
 
-              <p>
-                Staff activity will appear here.
-              </p>
-
+              <div class="server-mini-stat">
+                <span>Server Region</span>
+                <strong>US</strong>
+              </div>
             </div>
-
           </div>
 
-
           <div class="panel">
-
             <div class="panel-header">
-
               <div>
                 <h3>Announcements</h3>
-                <p>
-                  Staff updates
-                </p>
+                <p>Latest staff updates</p>
               </div>
-
             </div>
 
             <div class="announcement">
-
-              <div class="announcement-icon">
-                📢
-              </div>
-
+              <div class="announcement-icon">📢</div>
               <div>
-                <strong>
-                  Welcome to MSRP
-                </strong>
-
-                <p>
-                  Welcome to the Missouri State Roleplay
-                  staff portal.
-                </p>
-
-                <span>
-                  System
-                </span>
+                <strong>Welcome to MSRP</strong>
+                <p>The new staff portal is now available for staff resources and management.</p>
+                <span>System • Today</span>
               </div>
-
             </div>
 
+            <div class="announcement">
+              <div class="announcement-icon">🛠</div>
+              <div>
+                <strong>Portal Development</strong>
+                <p>More staff-management features and live integrations are coming soon.</p>
+                <span>Management • Today</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="dashboard-bottom">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Recent Activity</h3>
+                <p>Latest staff activity</p>
+              </div>
+            </div>
+
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-icon">✓</div>
+                <div class="activity-text">
+                  <strong>Dashboard initialized</strong> — MSRP staff portal is online.
+                  <div class="activity-time">Today</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">📋</div>
+                <div class="activity-text">
+                  <strong>Applications system</strong> — Ready for future application records.
+                  <div class="activity-time">Today</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">🔧</div>
+                <div class="activity-text">
+                  <strong>Navigation updated</strong> — Staff portal navigation is operational.
+                  <div class="activity-time">Recently</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Quick Actions</h3>
+                <p>Jump to common staff tools</p>
+              </div>
+            </div>
+
+            <div class="quick-actions">
+              <button class="quick-action" data-page-link="directory">
+                <span>👥</span>
+                <strong>Staff Directory</strong>
+                <small>View staff team</small>
+              </button>
+              <button class="quick-action" data-page-link="applications">
+                <span>📋</span>
+                <strong>Applications</strong>
+                <small>Review applications</small>
+              </button>
+              <button class="quick-action" data-page-link="infractions">
+                <span>⚠️</span>
+                <strong>Infractions</strong>
+                <small>Staff records</small>
+              </button>
+              <button class="quick-action" data-page-link="modcalls">
+                <span>📞</span>
+                <strong>Mod Calls</strong>
+                <small>Moderation calls</small>
+              </button>
+            </div>
           </div>
 
         </div>
