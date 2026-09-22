@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const pages = document.querySelectorAll(".page");
   const nav = document.querySelectorAll(".site-nav-link");
-  const pageNames = new Set(["home","shop","about","departments","record","staff","server","dashboard"]);
+  const pageNames = new Set(["home","shop","about","record","staff","server","dashboard"]);
 
   function showPage(name, updateHash = true) {
-    if (name === "dashboard") name = "home";\n    if (!pageNames.has(name)) name = "home";
+    if (name === "dashboard") name = "home";
+    if (!pageNames.has(name)) name = "home";
     pages.forEach(p => p.classList.toggle("active", p.id === name));
     nav.forEach(item => item.classList.toggle("active", item.dataset.page === name));
     if (updateHash) history.replaceState(null, "", "#" + name);
