@@ -542,3 +542,11 @@ main{padding-bottom:42px}
 body{
   zoom:0.9;
 }
+
+
+/* Transparent header logo — remove the blue CSS box behind the uploaded logo */
+.site-logo{
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
