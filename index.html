@@ -1,1 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
+  <title>Missouri State Roleplay</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-logo">
+        MO
+      </div>
+
+      <div class="brand-text">
+        <strong>MSRP</strong>
+        <span>Missouri State Roleplay</span>
+      </div>
+    </div>
+
+    <nav class="navigation">
+
+      <p class="nav-title">MAIN</p>
+
+      <button
+        class="nav-item active"
+        data-page="dashboard"
+      >
+        <span>⌂</span>
+        Dashboard
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="guide"
+      >
+        <span>📖</span>
+        Staff Guide
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="directory"
+      >
+        <span>👥</span>
+        Staff Directory
+      </button>
+
+      <p class="nav-title">STAFF MANAGEMENT</p>
+
+      <button
+        class="nav-item"
+        data-page="applications"
+      >
+        <span>📋</span>
+        Applications
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="infractions"
+      >
+        <span>⚠</span>
+        Infractions
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="promotions"
+      >
+        <span>📈</span>
+        Promotions
+      </button>
+
+      <p class="nav-title">SERVER</p>
+
+      <button
+        class="nav-item"
+        data-page="server"
+      >
+        <span>🎮</span>
+        ER:LC Server
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="modcalls"
+      >
+        <span>📞</span>
+        Mod Calls
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="ia"
+      >
+        <span>🔒</span>
+        Internal Affairs
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="online-indicator"></div>
+      <span>System Online</span>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN AREA -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+      <button
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      <div>
+        <h1 id="pageTitle">
+          Dashboard
+        </h1>
+
+        <p id="pageSubtitle">
+          Missouri State Roleplay Staff Portal
+        </p>
+      </div>
+
+      <div class="topbar-right">
+
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          All Systems Operational
+        </div>
+
+        <div class="profile-mini">
+          <div class="profile-avatar">
+            M
+          </div>
+
+          <div>
+            <strong>MSRP Staff</strong>
+            <span>Staff Portal</span>
+          </div>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="content">
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <div
+        class="page active-page"
+        id="dashboard"
+      >
+
+        <div class="welcome">
+
+          <div>
+            <p class="eyebrow">
+              MISSOURI STATE ROLEPLAY
+            </p>
+
+            <h2>
+              Welcome to the Staff Portal
+            </h2>
+
+            <p>
+              Manage staff operations, review applications,
+              monitor the ER:LC server, and access important
+              staff resources.
+            </p>
+          </div>
+
+          <div class="welcome-badge">
+            MSRP
+          </div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon blue">🎮</div>
+
+            <div>
+              <span>Server Status</span>
+              <strong class="green-text">
+                Online
+              </strong>
+            </div>
+          </div>
+
+
+          <div class="stat-card">
+            <div class="stat-icon purple">👥</div>
+
+            <div>
+              <span>Players</span>
+              <strong>
+                0 / 50
+              </strong>
+            </div>
+          </div>
+
+
+          <div class="stat-card">
+            <div class="stat-icon cyan">🛡</div>
+
+            <div>
+              <span>Staff Online</span>
+              <strong>
+                0
+              </strong>
+            </div>
+          </div>
+
+
+          <div class="stat-card">
+            <div class="stat-icon orange">📋</div>
+
+            <div>
+              <span>Pending Applications</span>
+              <strong>
+                0
+              </strong>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <div class="panel large-panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Recent Activity</h3>
+                <p>
+                  Latest staff activity
+                </p>
+              </div>
+
+              <button class="small-button">
+                View All
+              </button>
+
+            </div>
+
+            <div class="empty-state">
+
+              <div class="empty-icon">
+                ✓
+              </div>
+
+              <h4>
+                No recent activity
+              </h4>
+
+              <p>
+                Staff activity will appear here.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Announcements</h3>
+                <p>
+                  Staff updates
+                </p>
+              </div>
+
+            </div>
+
+            <div class="announcement">
+
+              <div class="announcement-icon">
+                📢
+              </div>
+
+              <div>
+                <strong>
+                  Welcome to MSRP
+                </strong>
+
+                <p>
+                  Welcome to the Missouri State Roleplay
+                  staff portal.
+                </p>
+
+                <span>
+                  System
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= STAFF GUIDE ================= -->
+
+      <div
+        class="page"
+        id="guide"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            RESOURCES
+          </p>
+
+          <h2>
+            Staff Guide
+          </h2>
+
+          <p>
+            Everything staff members need to know.
+          </p>
+
+        </div>
+
+
+        <div class="guide-grid">
+
+          <div class="guide-card">
+            <span>📋</span>
+            <h3>Staff Rules</h3>
+            <p>
+              Staff expectations and conduct.
+            </p>
+          </div>
+
+          <div class="guide-card">
+            <span>🎮</span>
+            <h3>ER:LC Moderation</h3>
+            <p>
+              Learn how to handle in-game situations.
+            </p>
+          </div>
+
+          <div class="guide-card">
+            <span>⚖</span>
+            <h3>Punishment Guide</h3>
+            <p>
+              Learn about notices, warnings, strikes,
+              and other disciplinary actions.
+            </p>
+          </div>
+
+          <div class="guide-card">
+            <span>📞</span>
+            <h3>Mod Calls</h3>
+            <p>
+              Learn how to properly respond to calls.
+            </p>
+          </div>
+
+          <div class="guide-card">
+            <span>💬</span>
+            <h3>Staff Commands</h3>
+            <p>
+              Reference for available staff commands.
+            </p>
+          </div>
+
+          <div class="guide-card">
+            <span>🔒</span>
+            <h3>Internal Affairs</h3>
+            <p>
+              Information for staff investigations.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= DIRECTORY ================= -->
+
+      <div
+        class="page"
+        id="directory"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            STAFF
+          </p>
+
+          <h2>
+            Staff Directory
+          </h2>
+
+          <p>
+            View the MSRP staff team.
+          </p>
+
+        </div>
+
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="staffSearch"
+            placeholder="Search staff..."
+          >
+
+        </div>
+
+
+        <div
+          class="staff-grid"
+          id="staffGrid"
+        >
+
+          <div class="staff-card">
+
+            <div class="staff-avatar">
+              M
+            </div>
+
+            <div>
+              <h3>MSRP Staff</h3>
+              <p>
+                Management
+              </p>
+
+              <span class="rank-badge">
+                Management
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= APPLICATIONS ================= -->
+
+      <div
+        class="page"
+        id="applications"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            STAFF MANAGEMENT
+          </p>
+
+          <h2>
+            Applications
+          </h2>
+
+          <p>
+            Review staff applications.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              📋
+            </div>
+
+            <h4>
+              No applications
+            </h4>
+
+            <p>
+              Pending applications will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= INFRACTIONS ================= -->
+
+      <div
+        class="page"
+        id="infractions"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            STAFF MANAGEMENT
+          </p>
+
+          <h2>
+            Infractions
+          </h2>
+
+          <p>
+            View staff disciplinary records.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ⚠
+            </div>
+
+            <h4>
+              No infractions
+            </h4>
+
+            <p>
+              Infraction records will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= PROMOTIONS ================= -->
+
+      <div
+        class="page"
+        id="promotions"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            STAFF MANAGEMENT
+          </p>
+
+          <h2>
+            Promotions
+          </h2>
+
+          <p>
+            View staff promotions.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              📈
+            </div>
+
+            <h4>
+              No recent promotions
+            </h4>
+
+            <p>
+              Promotion records will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= SERVER ================= -->
+
+      <div
+        class="page"
+        id="server"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            ER:LC
+          </p>
+
+          <h2>
+            Server
+          </h2>
+
+          <p>
+            Missouri State Roleplay ER:LC server.
+          </p>
+
+        </div>
+
+
+        <div class="server-card">
+
+          <div class="server-status">
+
+            <span class="large-status-dot"></span>
+
+            <div>
+              <span>SERVER STATUS</span>
+              <strong>
+                Online
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div class="server-info">
+
+            <div>
+              <span>Server Name</span>
+              <strong>
+                Missouri State Roleplay
+              </strong>
+            </div>
+
+            <div>
+              <span>Players</span>
+              <strong>
+                0 / 50
+              </strong>
+            </div>
+
+            <div>
+              <span>Region</span>
+              <strong>
+                United States
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= MOD CALLS ================= -->
+
+      <div
+        class="page"
+        id="modcalls"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            MODERATION
+          </p>
+
+          <h2>
+            Mod Calls
+          </h2>
+
+          <p>
+            Monitor moderation calls.
+          </p>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              📞
+            </div>
+
+            <h4>
+              No active calls
+            </h4>
+
+            <p>
+              Active moderation calls will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= INTERNAL AFFAIRS ================= -->
+
+      <div
+        class="page"
+        id="ia"
+      >
+
+        <div class="page-heading">
+
+          <p class="eyebrow">
+            STAFF OVERSIGHT
+          </p>
+
+          <h2>
+            Internal Affairs
+          </h2>
+
+          <p>
+            Internal Affairs management and investigations.
+          </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              🔎
+            </div>
+
+            <div>
+              <span>Open Investigations</span>
+              <strong>0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange">
+              ⚠
+            </div>
+
+            <div>
+              <span>Staff Reports</span>
+              <strong>0</strong>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              🔒
+            </div>
+
+            <h4>
+              No active investigations
+            </h4>
+
+            <p>
+              Internal Affairs cases will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
