@@ -713,3 +713,24 @@ body{
     height:31px!important;
   }
 }
+
+
+/* Prevent horizontal page scrolling on mobile */
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+@media(max-width:900px){
+  html,body{
+    width:100%!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+  body{
+    width:100%!important;
+  }
+  .site-header,
+  main{
+    max-width:100%!important;
+  }
+}
