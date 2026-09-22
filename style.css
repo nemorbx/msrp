@@ -536,3 +536,9 @@ main{padding-bottom:42px}
     width:111.111111%;
   }
 }
+
+
+/* Slightly zoomed-out overall scale — matches the preferred 90% browser view */
+body{
+  zoom:0.9;
+}
