@@ -582,3 +582,31 @@ body{
     letter-spacing:1.8px;
   }
 }
+
+
+/* LANRP-style transparent rounded header */
+.site-header{
+  width:min(1920px,calc(100% - 64px));
+  height:94px;
+  margin:20px auto 0;
+  padding:0 20px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:48px;
+  background:rgba(8,12,17,.24);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025), 0 14px 45px rgba(0,0,0,.10);
+}
+
+@media(max-width:900px){
+  .site-header{
+    width:calc(100% - 24px)!important;
+    height:86px!important;
+    margin:18px auto 0!important;
+    padding:0 8px 0 0!important;
+    border-radius:44px!important;
+    background:rgba(8,12,17,.24)!important;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+  }
+}
