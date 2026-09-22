@@ -417,3 +417,113 @@ main{padding-bottom:42px}
   .live-stat small{font-size:11px!important}
   .live-stat small i{width:8px!important;height:8px!important}
 }
+
+
+/* Final mobile layout polish */
+@media(max-width:900px){
+  .site-header{
+    width:calc(100% - 24px)!important;
+    height:86px!important;
+    margin:18px auto 0!important;
+    padding:0 8px 0 0!important;
+    grid-template-columns:minmax(0,1fr) auto auto!important;
+    gap:12px!important;
+  }
+  .site-brand{gap:10px!important}
+  .site-logo{width:58px!important;height:58px!important;border-radius:14px!important}
+  .site-brand-copy strong{font-size:12px!important;white-space:nowrap!important}
+  .site-brand-copy span{font-size:8px!important;letter-spacing:2px!important;margin-top:5px!important}
+  .discord-button{
+    display:inline-flex!important;
+    font-size:12px!important;
+    padding:13px 16px!important;
+    gap:7px!important;
+    white-space:nowrap!important;
+  }
+  .discord-button svg{width:16px!important;height:16px!important}
+  .mobile-nav-button{
+    display:flex!important;
+    width:48px!important;
+    height:48px!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  .mobile-nav-button svg{
+    width:34px!important;
+    height:34px!important;
+    stroke-width:2.5!important;
+  }
+  .hero{
+    gap:34px!important;
+    padding-top:58px!important;
+    padding-bottom:42px!important;
+  }
+  .hero-art{
+    order:-1!important;
+  }
+  .hero-image-frame{
+    width:min(390px,84vw)!important;
+  }
+  main{width:calc(100% - 28px)!important}
+}
+
+@media(max-width:560px){
+  .site-header{
+    width:calc(100% - 24px)!important;
+    height:86px!important;
+    margin-top:18px!important;
+  }
+  .site-logo{width:58px!important;height:58px!important}
+  .site-brand-copy strong{font-size:11px!important}
+  .site-brand-copy span{font-size:7px!important}
+  .discord-button{
+    font-size:11px!important;
+    padding:12px 13px!important;
+  }
+  .discord-button svg{width:15px!important;height:15px!important}
+  .mobile-nav-button{width:44px!important;height:44px!important}
+  .mobile-nav-button svg{width:32px!important;height:32px!important}
+  .hero{
+    padding-top:62px!important;
+    gap:38px!important;
+  }
+  .hero-image-frame{width:min(350px,86vw)!important}
+}
+
+/* Proper mobile menu instead of unstyled buttons */
+@media(max-width:900px){
+  .mobile-nav{
+    position:fixed;
+    top:116px;
+    right:12px;
+    z-index:1000;
+    width:min(250px,calc(100vw - 24px));
+    display:grid;
+    gap:7px;
+    padding:12px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    background:rgba(8,12,17,.97);
+    box-shadow:0 18px 55px rgba(0,0,0,.45);
+    backdrop-filter:blur(18px);
+  }
+  .mobile-nav button{
+    width:100%;
+    min-height:48px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
+    color:#dce4ea;
+    text-align:left;
+    padding:0 16px;
+    font-size:15px;
+    font-weight:700;
+  }
+  .mobile-nav button:hover,
+  .mobile-nav button:focus{
+    background:#f4f6f8;
+    color:#10151a;
+  }
+}
