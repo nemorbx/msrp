@@ -627,3 +627,89 @@ body{
     box-shadow:none!important;
   }
 }
+
+
+/* Mobile header: same transparent pill style, with a separate compact layout */
+@media(max-width:900px){
+  .site-header{
+    width:calc(100% - 48px)!important;
+    height:112px!important;
+    margin:28px auto 0!important;
+    padding:0 18px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    gap:16px!important;
+    border:1px solid rgba(255,255,255,.09)!important;
+    border-radius:56px!important;
+    background:rgba(8,12,17,.24)!important;
+    backdrop-filter:blur(18px)!important;
+    -webkit-backdrop-filter:blur(18px)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 14px 45px rgba(0,0,0,.10)!important;
+  }
+  .site-brand{
+    min-width:0!important;
+    gap:14px!important;
+  }
+  .site-logo{
+    width:58px!important;
+    height:58px!important;
+    flex:0 0 58px!important;
+  }
+  .site-brand-copy strong{
+    font-size:14px!important;
+  }
+  .site-brand-copy span{
+    font-size:9px!important;
+    letter-spacing:2px!important;
+    margin-top:6px!important;
+  }
+  .discord-button{
+    display:none!important;
+  }
+  .mobile-nav-button{
+    display:flex!important;
+    width:58px!important;
+    height:58px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.025)!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .mobile-nav-button svg{
+    width:34px!important;
+    height:34px!important;
+    stroke-width:2.2!important;
+  }
+}
+
+@media(max-width:560px){
+  .site-header{
+    width:calc(100% - 32px)!important;
+    height:108px!important;
+    margin-top:20px!important;
+    padding:0 14px!important;
+    border-radius:54px!important;
+  }
+  .site-brand{gap:11px!important}
+  .site-logo{
+    width:54px!important;
+    height:54px!important;
+    flex-basis:54px!important;
+  }
+  .site-brand-copy strong{
+    font-size:12px!important;
+  }
+  .site-brand-copy span{
+    font-size:8px!important;
+  }
+  .mobile-nav-button{
+    width:54px!important;
+    height:54px!important;
+    border-radius:17px!important;
+  }
+  .mobile-nav-button svg{
+    width:31px!important;
+    height:31px!important;
+  }
+}
