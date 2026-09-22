@@ -527,3 +527,12 @@ main{padding-bottom:42px}
     color:#10151a;
   }
 }
+
+
+/* Mobile browser-style 90% zoom */
+@media(max-width:900px){
+  body{
+    zoom:.9;
+    width:111.111111%;
+  }
+}
