@@ -45,15 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const startingHash = location.hash.replace("#","");
   showPage(pageNames.has(startingHash) ? startingHash : "home", false);
 
-  document.querySelectorAll("#discordButton,#heroDiscord,#recordDiscord,#staffDiscord,#serverDiscord").forEach(button => {
+  document.querySelectorAll("#recordDiscord,#staffDiscord").forEach(button => {
     button.addEventListener("click", () => {
       alert("Discord sign-in will be connected here once the secure Discord OAuth backend is added.");
-    });
-  });
-
-  document.querySelectorAll("#heroRoblox,#serverRoblox").forEach(button => {
-    button.addEventListener("click", () => {
-      alert("The official MSRP Roblox Group link will be connected here.");
     });
   });
 
