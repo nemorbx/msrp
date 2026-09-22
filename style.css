@@ -260,3 +260,22 @@ main{padding-bottom:42px}
     padding-bottom:46px;
   }
 }
+
+
+/* Correct desktop composition: compact top gap, full stats visible, bottom breathing room */
+@media(min-width:901px){
+  main{padding-bottom:52px}
+  .hero{
+    min-height:0 !important;
+    height:auto !important;
+    padding:28px 0 26px !important;
+    align-items:center;
+  }
+  .hero-image-frame{width:min(430px,100%)}
+  .hero-art{transform:translateX(8px)}
+  .hero-content{transform:translateY(-4px)}
+  .live-stats{
+    margin-top:0;
+    margin-bottom:0;
+  }
+}
