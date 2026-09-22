@@ -347,3 +347,25 @@ main{padding-bottom:42px}
   .live-stat>span{font-size:8px}
   .live-stat small{font-size:7px}
 }
+
+
+/* Strong final size increase for supporting UI — hero title intentionally unchanged */
+@media(min-width:901px){
+  .site-brand-copy strong{font-size:13px!important}
+  .site-brand-copy span{font-size:9px!important}
+  .site-nav-link{font-size:13px!important;padding:12px 17px!important}
+  .discord-button{font-size:13px!important;padding:13px 21px!important}
+  .hero-kicker{font-size:11px!important;letter-spacing:2.2px!important}
+  .hero-kicker span{width:34px!important}
+  .hero-meta{font-size:9px!important;letter-spacing:2.3px!important}
+  .hero-description{font-size:15px!important;line-height:1.7!important;max-width:690px!important}
+  .hero-actions{gap:10px!important;margin-top:28px!important}
+  .action-button{min-height:50px!important;padding:0 21px!important;font-size:13px!important;gap:9px!important}
+  .action-button svg{width:16px!important;height:16px!important}
+  .action-button b svg{width:17px!important;height:17px!important}
+  .live-stat{min-height:128px!important;padding:27px 30px!important}
+  .live-stat>span{font-size:10px!important;letter-spacing:1.9px!important}
+  .live-stat strong{font-size:30px!important}
+  .live-stat small{font-size:9px!important}
+  .live-stat small i{width:7px!important;height:7px!important}
+}
