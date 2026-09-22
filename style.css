@@ -391,3 +391,25 @@ main{padding-bottom:42px}
   .live-stat small{font-size:11px!important;margin-top:8px!important}
   .live-stat small i{width:8px!important;height:8px!important}
 }
+
+
+/* EXTRA-EXTRA LARGE supporting UI — main Welcome headline stays unchanged */
+@media(min-width:901px){
+  .site-brand-copy strong{font-size:15px!important}
+  .site-brand-copy span{font-size:10px!important}
+  .site-nav-link{font-size:16px!important;padding:14px 19px!important}
+  .discord-button{font-size:16px!important;padding:15px 24px!important}
+  .hero-kicker{font-size:14px!important;letter-spacing:2.5px!important;gap:13px!important}
+  .hero-kicker span{width:40px!important;height:2px!important}
+  .hero-meta{font-size:12px!important;letter-spacing:2.5px!important;margin-top:24px!important}
+  .hero-description{font-size:19px!important;line-height:1.65!important;max-width:760px!important}
+  .hero-actions{gap:12px!important;margin-top:30px!important}
+  .action-button{min-height:58px!important;padding:0 25px!important;font-size:16px!important;gap:10px!important}
+  .action-button svg{width:19px!important;height:19px!important}
+  .action-button b svg{width:20px!important;height:20px!important}
+  .live-stat{min-height:145px!important;padding:30px 34px!important}
+  .live-stat>span{font-size:12px!important;letter-spacing:2px!important}
+  .live-stat strong{font-size:34px!important}
+  .live-stat small{font-size:11px!important}
+  .live-stat small i{width:8px!important;height:8px!important}
+}
