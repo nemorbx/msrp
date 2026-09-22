@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const pages = document.querySelectorAll(".page");
   const nav = document.querySelectorAll(".site-nav-link");
-  const pageNames = new Set(["home","shop","about","record","staff","server","dashboard"]);
+  const pageNames = new Set(["home","shop","about","record","staff","dashboard"]);
 
   function showPage(name, updateHash = true) {
     if (name === "dashboard") name = "home";
@@ -17,13 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!item.classList.contains("site-nav-link")) {
       item.addEventListener("click", () => showPage(item.dataset.page));
     }
-  });
-
-  document.querySelectorAll('a[href="#server"]').forEach(link => {
-    link.addEventListener("click", event => {
-      event.preventDefault();
-      showPage("server");
-    });
   });
 
   const mobileButton = document.getElementById("mobileNavButton");
