@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = document.getElementById("dashboardUsername");
   const rank = document.getElementById("dashboardRank");
   const name = document.getElementById("dashboardName");
+  const rankPill = document.getElementById("dashboardRankPill");
 
   const roleRanks = [
     ["1551704056991318191", "Senior High Rank"],
@@ -210,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
       avatar.alt = user.username + " Discord avatar";
       username.textContent = user.global_name || user.username;
       rank.textContent = staffRank;
+      if (rankPill) rankPill.textContent = staffRank;
       name.textContent = user.global_name || user.username;
 
       loginCard.hidden = true;
