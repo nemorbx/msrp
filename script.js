@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function error(message) {
-    [err, derr].forEach((el) => {
+    [derr].forEach((el) => {
       if (!el) return;
       el.textContent = message || "";
       el.hidden = !message;
