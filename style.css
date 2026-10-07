@@ -1585,3 +1585,23 @@ html,body{
 .member-sidebar-label{font-size:11px!important}
 .sidebar-dashboard-title strong{font-size:16px!important}
 .sidebar-dashboard-title small{font-size:9px!important}
+
+
+/* Member sidebar: section-matched indicator colors + wider dashboard */
+.member-nav-item[data-dashboard-view="overview"].active:before{background:#2ea8ff;box-shadow:0 0 12px rgba(46,168,255,.65)}
+.member-nav-item[data-dashboard-view="community"].active:before{background:#9b5cff;box-shadow:0 0 12px rgba(155,92,255,.65)}
+.member-nav-item[data-dashboard-view="leaderboard"].active:before{background:#e7b93f;box-shadow:0 0 12px rgba(231,185,63,.65)}
+.member-nav-item[data-dashboard-view="inventory"].active:before{background:#35c991;box-shadow:0 0 12px rgba(53,201,145,.65)}
+
+.member-nav-item[data-dashboard-view="overview"].active{border-color:rgba(46,168,255,.32);background:rgba(46,168,255,.075)}
+.member-nav-item[data-dashboard-view="community"].active{border-color:rgba(155,92,255,.30);background:rgba(155,92,255,.07)}
+.member-nav-item[data-dashboard-view="leaderboard"].active{border-color:rgba(231,185,63,.30);background:rgba(231,185,63,.065)}
+.member-nav-item[data-dashboard-view="inventory"].active{border-color:rgba(53,201,145,.30);background:rgba(53,201,145,.065)}
+
+@media(min-width:901px){
+  .member-dashboard{width:min(1420px,calc(100% - 48px))!important}
+  .member-dashboard-layout{grid-template-columns:285px minmax(0,1fr)!important;gap:20px!important}
+}
+@media(max-width:900px){
+  .member-dashboard{width:calc(100% - 28px)!important}
+}
