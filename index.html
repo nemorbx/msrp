@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070b11">
   <title>Missouri State Roleplay — Premier ER:LC Community</title>
-  <link rel="stylesheet" href="style.css?v=20260922-29">
+  <link rel="stylesheet" href="style.css?v=20261007-1">
 </head>
 
 <body>
@@ -120,15 +120,80 @@
       <button class="action-button primary" id="recordDiscord">Sign in with Discord</button>
     </section>
 
-    <section class="page simple-page" id="staff">
-      <p class="hero-kicker"><span></span> STAFF</p>
-      <h2>Staff Portal</h2>
-      <p>Staff tools are available to authorized MSRP staff members after secure Discord role verification.</p>
-      <button class="action-button primary" id="staffDiscord">Sign in with Discord</button>
+    <section class="page staff-page" id="staff">
+      <div class="staff-shell">
+        <div class="staff-login-card" id="staffLoginCard">
+          <div class="staff-card-glow"></div>
+          <div class="staff-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.3c0 4.7 3.1 8 7.5 9.7 4.4-1.7 7.5-5 7.5-9.7V6L12 3Zm0 4.1 4.3 1.7v2.5c0 3-1.8 5.2-4.3 6.5-2.5-1.3-4.3-3.5-4.3-6.5V8.8L12 7.1Z"/></svg>
+          </div>
+          <p class="hero-kicker"><span></span> STAFF PORTAL</p>
+          <h2>Welcome back, <em>staff.</em></h2>
+          <p class="staff-lead">Sign in with Discord to securely verify your MSRP membership and staff role.</p>
+          <button class="discord-login-button" id="staffDiscord" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 5.2A16.4 16.4 0 0 0 15 4l-.5 1a14.3 14.3 0 0 0-5 0L9 4a16.4 16.4 0 0 0-3.9 1.2C2.7 8.8 2 12.3 2.2 15.8A16 16 0 0 0 7 18.2l1.2-1.6c-.7-.3-1.3-.7-1.9-1.1l.5-.4c3.7 1.7 8.7 1.7 12.4 0l.5.4c-.6.4-1.2.8-1.9 1.1l1.2 1.6a16 16 0 0 0 4.8-2.4c.3-4.1-.5-7.6-2.9-10.6ZM8.5 14.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 .9 2 2.2-.9 2.2-2 2.2Zm7 0c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2-2 2.2Z"/></svg>
+            <span>Continue with Discord</span>
+          </button>
+          <p class="staff-security"><span></span> Discord OAuth2 &middot; Role verification enabled</p>
+          <p class="staff-error" id="staffError" role="alert" hidden></p>
+        </div>
+
+        <div class="staff-dashboard" id="staffDashboard" hidden>
+          <div class="dashboard-topbar">
+            <div>
+              <p class="hero-kicker"><span></span> STAFF DASHBOARD</p>
+              <h2>Welcome, <em id="dashboardName">Staff</em>.</h2>
+              <p>Authorized MSRP staff workspace.</p>
+            </div>
+            <button class="dashboard-logout" id="staffLogout" type="button">Sign out</button>
+          </div>
+
+          <div class="staff-profile-card">
+            <img id="dashboardAvatar" src="" alt="" class="staff-avatar">
+            <div class="staff-profile-copy">
+              <strong id="dashboardUsername">Discord Member</strong>
+              <span id="dashboardRank">MSRP Staff</span>
+            </div>
+            <span class="verified-badge">VERIFIED STAFF</span>
+          </div>
+
+          <div class="dashboard-grid">
+            <a class="dashboard-card" href="#record">
+              <span class="dashboard-card-icon">01</span>
+              <strong>My Record</strong>
+              <small>View your member and staff information.</small>
+            </a>
+            <div class="dashboard-card">
+              <span class="dashboard-card-icon">02</span>
+              <strong>Staff Management</strong>
+              <small>Management tools will appear here based on your role.</small>
+              <span class="coming-soon">READY FOR BACKEND</span>
+            </div>
+            <div class="dashboard-card">
+              <span class="dashboard-card-icon">03</span>
+              <strong>Applications</strong>
+              <small>Review and manage staff applications when connected.</small>
+              <span class="coming-soon">READY FOR BACKEND</span>
+            </div>
+            <div class="dashboard-card">
+              <span class="dashboard-card-icon">04</span>
+              <strong>Infractions & Promotions</strong>
+              <small>Role-gated staff actions will use the established MSRP hierarchy.</small>
+              <span class="coming-soon">READY FOR BACKEND</span>
+            </div>
+          </div>
+
+          <div class="dashboard-notice">
+            <strong>Secure access</strong>
+            <span>Your staff access is determined from your current Discord roles. Frontend permissions are only for the dashboard display; sensitive staff actions will require a server-side API before they are enabled.</span>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <script src="script.js?v=20260922-14"></script>
+  <script src="auth-config.js?v=20261007-1"></script>
+  <script src="script.js?v=20261007-1"></script>
 </body>
 </html>
