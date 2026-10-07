@@ -1281,3 +1281,53 @@ html,body{
 .member-sidebar-user strong{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .member-sidebar-user span{display:block;color:#65747f;font-size:8px;margin-top:3px}
 .staff-dashboard-view{display:none!important}
+/* MSRP blue dashboard refinement — reference-inspired Overview */
+:root{--msrp-blue:#2ea8ff;--msrp-blue-bright:#55c5ff;--msrp-blue-soft:rgba(46,168,255,.10);--msrp-blue-border:rgba(46,168,255,.24)}
+.member-dashboard{--cyan:var(--msrp-blue-bright)}
+.dashboard-brand-mark{background:linear-gradient(145deg,#55c5ff,#1688df);color:#04111c;box-shadow:0 0 28px rgba(46,168,255,.22)}
+.dashboard-page-title>span{border-color:var(--msrp-blue-border);background:var(--msrp-blue-soft);color:var(--msrp-blue-bright)}
+.dashboard-page-title>span i{background:var(--msrp-blue-bright);box-shadow:0 0 10px rgba(46,168,255,.75)}
+.account-bar{background:rgba(17,24,32,.82);border-color:rgba(255,255,255,.11)}
+.account-icon{width:47px;padding:0;display:grid;place-items:center;color:var(--msrp-blue-bright);font-size:15px}
+.account-divider{width:1px;height:23px;background:rgba(255,255,255,.08)}
+.account-action-text:hover{color:#fff}
+.member-sidebar{background:linear-gradient(180deg,rgba(18,25,33,.96),rgba(11,17,24,.94));border-color:rgba(255,255,255,.10)}
+.member-nav-item.active{background:rgba(46,168,255,.08);border-color:rgba(46,168,255,.22);box-shadow:inset 3px 0 0 var(--msrp-blue-bright)}
+.member-nav-item.active>span{color:var(--msrp-blue-bright)}
+.member-nav-item:hover{border-color:rgba(46,168,255,.16);background:rgba(46,168,255,.045)}
+.member-welcome{background:radial-gradient(circle at 78% 40%,rgba(46,168,255,.18),transparent 32%),linear-gradient(120deg,#122b42,#0d1b28 65%,#0b151f);border-color:rgba(46,168,255,.28);box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.member-welcome-copy>span,.dashboard-panel-heading>div>span{color:var(--msrp-blue-bright)}
+.member-welcome h1 em{color:var(--msrp-blue-bright)}
+.player-ring{border-color:var(--msrp-blue-bright);box-shadow:0 0 30px rgba(46,168,255,.13)}
+.member-stat-card{background:rgba(16,22,29,.86);border-color:rgba(255,255,255,.09)}
+.member-stat-card span,.member-stat-card strong{color:var(--msrp-blue-bright)}
+.member-stat-card.stat-queue,.member-stat-card.stat-vehicles{border-top-color:rgba(46,168,255,.45)}
+.dashboard-panel{background:rgba(14,20,27,.88);border-color:rgba(255,255,255,.10)}
+.server-statistics{display:grid;grid-template-columns:repeat(4,1fr)}
+.server-statistics>div{padding:19px 21px 21px;border-right:1px solid rgba(255,255,255,.06)}
+.server-statistics>div:last-child{border-right:0}
+.server-statistics span{display:block;color:#647784;font-size:7px;font-weight:900;letter-spacing:1.1px}
+.server-statistics strong{display:block;color:#eaf6fb;font-size:12px;margin-top:10px}
+.server-statistics small{display:block;color:#62727d;font-size:8px;margin-top:5px}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#52df9a;box-shadow:0 0 10px rgba(82,223,154,.6);margin-right:5px}
+.duty-list,.top-player-list,.recent-activity-list{max-height:320px;overflow:auto}
+.duty-row,.top-player-row,.activity-row{display:grid;align-items:center;gap:11px;min-height:61px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.055)}
+.duty-row{grid-template-columns:38px 1fr auto}
+.duty-row:last-child,.top-player-row:last-child,.activity-row:last-child{border-bottom:0}
+.duty-avatar,.top-player-avatar,.activity-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(46,168,255,.09);border:1px solid rgba(46,168,255,.22);color:var(--msrp-blue-bright);font-size:7px;font-weight:900}
+.duty-row strong,.top-player-row strong,.activity-row strong{display:block;font-size:10px}
+.duty-row small,.top-player-row small,.activity-row small{display:block;color:#657681;font-size:7px;margin-top:4px}
+.duty-row>span{color:#62dba2;font-size:6px;font-weight:900;letter-spacing:1px}
+.overview-bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.overview-bottom-grid .dashboard-panel{margin-top:0}
+.top-player-row{grid-template-columns:25px 36px 1fr auto}
+.top-player-row>b{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;color:#758591;border:1px solid rgba(255,255,255,.08);font-size:8px}
+.top-player-row.featured{background:rgba(46,168,255,.055);border-left:2px solid var(--msrp-blue-bright)}
+.top-player-row.featured>b{color:var(--msrp-blue-bright);border-color:rgba(46,168,255,.3)}
+.top-player-row>span{color:var(--msrp-blue-bright);font-size:8px;font-weight:800}
+.activity-row{grid-template-columns:34px 1fr auto}
+.activity-row>span{color:#6a7a85;font-size:7px;white-space:nowrap}
+.member-sidebar-user{background:rgba(255,255,255,.018)}
+.member-sidebar-user span{color:var(--msrp-blue-bright)}
+@media(max-width:850px){.server-statistics{grid-template-columns:1fr 1fr}.server-statistics>div:nth-child(2){border-right:0}.server-statistics>div{border-bottom:1px solid rgba(255,255,255,.06)}.overview-bottom-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.account-actions{gap:5px}.account-action-text{font-size:8px}.account-icon{width:38px}.account-divider{display:none}.server-statistics{grid-template-columns:1fr}.server-statistics>div{border-right:0}.overview-bottom-grid{gap:9px}}
