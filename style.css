@@ -1557,3 +1557,12 @@ html,body{
 .sidebar-nav-icon.leaderboard-icon svg{width:20px;height:20px}
 .sidebar-nav-icon.inventory-icon svg{width:20px;height:20px}
 .sidebar-home-button svg{width:17px;height:17px;stroke-width:1.8}
+
+/* Reference-matched sidebar icon sizing */
+.sidebar-nav-icon{width:38px!important;height:38px;flex-basis:38px;border-radius:11px}
+.sidebar-nav-icon svg{width:20px;height:20px;stroke-width:1.8}
+.overview-icon svg{width:19px;height:19px}
+.community-icon svg{width:21px;height:21px}
+.leaderboard-icon svg{width:21px;height:21px}
+.inventory-icon svg{width:21px;height:21px}
+.sidebar-home-button svg{width:18px;height:18px}
