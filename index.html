@@ -133,7 +133,7 @@
           </aside>
 
           <section class="member-main">
-            <div class="member-welcome">
+            <div class="member-welcome" data-dashboard-overview>
               <div class="member-welcome-copy">
                 <span>WELCOME BACK</span>
                 <h1>Good <strong id="greetingPeriod">afternoon</strong>, <em id="welcomeName">member.</em></h1>
@@ -142,13 +142,13 @@
               <div class="player-ring"><strong data-dashboard-players>0</strong><span>/ 50<br>PLAYERS</span></div>
             </div>
 
-            <div class="member-stat-grid">
+            <div class="member-stat-grid" data-dashboard-overview>
               <div class="member-stat-card stat-staff"><span>♧ STAFF ONLINE</span><strong data-dashboard-staff>0</strong></div>
               <div class="member-stat-card stat-queue"><span>≡ IN QUEUE</span><strong data-dashboard-queue>0</strong></div>
               <div class="member-stat-card stat-vehicles"><span>▰ VEHICLES</span><strong data-dashboard-vehicles>0</strong></div>
             </div>
 
-            <div class="dashboard-panel">
+            <div class="dashboard-panel" data-dashboard-overview>
               <div class="dashboard-panel-heading"><div><span>MSRP COMMUNITY</span><h2>Community overview</h2></div><span class="panel-chevron">⌄</span></div>
               <div class="community-overview-grid">
                 <div><span>YOUR STATUS</span><strong id="memberStatus">Verified Member</strong><small id="memberStatusDetail">Discord account connected</small></div>
@@ -157,7 +157,7 @@
               </div>
             </div>
 
-            <div class="dashboard-panel">
+            <div class="dashboard-panel" data-dashboard-overview>
               <div class="dashboard-panel-heading"><div><span>QUICK ACCESS</span><h2>Resources</h2></div></div>
               <div class="resource-grid">
                 <a href="https://discord.gg/msrp1" target="_blank" rel="noopener"><strong>Discord</strong><small>Join the official MSRP community.</small><b>→</b></a>
@@ -166,7 +166,49 @@
               </div>
             </div>
 
-            <div class="dashboard-secure-note"><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord. Staff tools appear automatically when your MSRP Discord account has an eligible staff role.</small></div></div>
+            <div class="dashboard-secure-note" data-dashboard-overview><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord. Staff tools appear automatically when your MSRP Discord account has an eligible staff role.</small></div></div>
+
+            <section class="dashboard-view" id="dashboardProfileView" hidden>
+              <div class="dashboard-view-header"><div><span>YOUR ACCOUNT</span><h2>My Profile</h2><p>Manage the public information people see on your MSRP community profile.</p></div><div class="profile-preview"><img id="profilePreviewAvatar" src="" alt=""><span>PROFILE</span></div></div>
+              <div class="profile-layout">
+                <div class="profile-card">
+                  <div class="profile-card-cover"></div>
+                  <img id="profileCardAvatar" class="profile-card-avatar" src="" alt="">
+                  <div class="profile-card-body"><span id="profileCardRank" class="profile-rank">MEMBER</span><h3 id="profileCardName">Discord Member</h3><p id="profileCardBio">No bio has been added yet.</p><div class="profile-stats"><div><strong id="profileFollowerCount">0</strong><small>Followers</small></div><div><strong>0</strong><small>Following</small></div><div><strong>0</strong><small>Achievements</small></div></div></div>
+                </div>
+                <form class="dashboard-form" id="profileForm">
+                  <label>Display name<input id="profileDisplayName" maxlength="32" placeholder="Your display name"></label>
+                  <label>Bio<textarea id="profileBio" maxlength="160" rows="4" placeholder="Tell the community about yourself"></textarea></label>
+                  <label>Profile accent<input id="profileAccent" type="text" maxlength="20" placeholder="MSRP"></label>
+                  <div class="form-note"><span>ⓘ</span><small>Your Discord identity remains the source of truth for authentication. Profile customization will become account-wide once the MSRP backend is connected.</small></div>
+                  <button class="form-save" type="submit">Save profile</button>
+                  <p class="form-result" id="profileFormResult" role="status"></p>
+                </form>
+              </div>
+            </section>
+
+            <section class="dashboard-view" id="dashboardCommunityView" hidden>
+              <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Community</h2><p>Discover members, rankings, and community activity.</p></div></div>
+              <div class="community-feature-grid">
+                <div class="feature-card"><span>LEADERBOARD</span><strong>Community rankings</strong><p>Player and community rankings will live here, powered by MSRP data.</p><b>Coming soon</b></div>
+                <div class="feature-card"><span>MEMBERS</span><strong>Member directory</strong><p>Search public MSRP profiles, view their pages, and follow community members.</p><b>Coming soon</b></div>
+                <div class="feature-card"><span>ACHIEVEMENTS</span><strong>Badges & achievements</strong><p>Earn community achievements that appear on your profile.</p><b>Coming soon</b></div>
+              </div>
+            </section>
+
+            <section class="dashboard-view" id="dashboardNotificationsView" hidden>
+              <div class="dashboard-view-header"><div><span>ACCOUNT</span><h2>Notifications</h2><p>Stay up to date with follows, community activity, and staff updates.</p></div></div>
+              <div class="empty-dashboard-state"><span>◌</span><h3>No notifications yet</h3><p>When your account receives notifications, they'll appear here.</p></div>
+            </section>
+
+            <section class="dashboard-view" id="dashboardSettingsView" hidden>
+              <div class="dashboard-view-header"><div><span>ACCOUNT</span><h2>Settings</h2><p>Control your MSRP account experience.</p></div></div>
+              <div class="settings-list">
+                <div class="setting-row"><div><strong>Discord connection</strong><small>Your Discord account is used to verify your MSRP membership.</small></div><span class="setting-status">CONNECTED</span></div>
+                <div class="setting-row"><div><strong>Public profile</strong><small>Your community profile can be discovered by other MSRP members.</small></div><span class="setting-status">ON</span></div>
+                <div class="setting-row"><div><strong>Notifications</strong><small>Account notifications will be configurable once the backend is connected.</small></div><span class="setting-status muted">SOON</span></div>
+              </div>
+            </section>
           </section>
         </div>
       </div>
