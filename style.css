@@ -1605,3 +1605,10 @@ html,body{
 @media(max-width:900px){
   .member-dashboard{width:calc(100% - 28px)!important}
 }
+
+
+/* Member dashboard: use almost the full website width */
+@media(min-width:901px){
+  .member-dashboard{width:calc(100% - 24px)!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
+  .member-dashboard-layout{grid-template-columns:300px minmax(0,1fr)!important;gap:22px!important}
+}
