@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({top:0, behavior:"smooth"});
   }
 
-  nav.forEach(item => item.addEventListener("click", () => showPage(item.dataset.page)));
+  nav.forEach(item => item.addEventListener("click", () => {
+    showPage(item.dataset.page);
+    if (item.dataset.page === "staff") loadStaffSession();
+  }));
   document.querySelectorAll("[data-page]").forEach(item => {
     if (!item.classList.contains("site-nav-link")) {
       item.addEventListener("click", (event) => {
@@ -101,7 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage("staff");
   }
 
+  function hasUsableStoredSession() {
+    const token = sessionStorage.getItem("msrp_discord_token");
+    const expiry = Number(sessionStorage.getItem("msrp_discord_expires") || 0);
+    return Boolean(token && expiry && Date.now() < expiry);
+  }
+
+  function updateLoginButton() {
+    if (!loginButton) return;
+    loginButton.querySelector("span").textContent = hasUsableStoredSession()
+      ? "Continue to Dashboard"
+      : "Continue with Discord";
+  }
+
   function startLogin() {
+
     if (!OAUTH.clientId || OAUTH.clientId === "REPLACE_WITH_DISCORD_CLIENT_ID") {
       setError("Discord sign-in is not configured yet. Add the Discord application Client ID to auth-config.js.");
       return;
@@ -159,6 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function loadStaffSession() {
+    const oauthCallback = location.hash.includes("access_token=");
+    if (oauthCallback) showPage("staff", false);
+
     const token = parseOAuthToken() || sessionStorage.getItem("msrp_discord_token");
     const expiry = Number(sessionStorage.getItem("msrp_discord_expires") || 0);
     if (!token || !expiry || Date.now() >= expiry) {
@@ -194,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       loginCard.hidden = true;
       dashboard.hidden = false;
+      updateLoginButton();
       showPage("staff");
     } catch (error) {
       console.error(error);
@@ -202,10 +223,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (loginButton) loginButton.addEventListener("click", startLogin);
+  if (loginButton) loginButton.addEventListener("click", () => {
+    if (hasUsableStoredSession()) {
+      showPage("staff");
+      loadStaffSession();
+      return;
+    }
+    startLogin();
+  });
   if (logoutButton) logoutButton.addEventListener("click", logout);
 
+  updateLoginButton();
+
+  const oauthCallback = location.hash.includes("access_token=");
   const startingHash = location.hash.replace("#","");
-  showPage(pageNames.has(startingHash) ? startingHash : "home", false);
+  const initialPage = oauthCallback ? "staff" : (pageNames.has(startingHash) ? startingHash : "home");
+  showPage(initialPage, false);
   loadStaffSession();
 });
