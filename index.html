@@ -22,7 +22,7 @@
       <button class="site-nav-link active" data-page="home" aria-current="page">Home</button>
       <button class="site-nav-link" data-page="shop">Shop</button>
       <button class="site-nav-link" data-page="about">About</button>
-      <button class="site-nav-link" data-page="record">My Record</button>
+      <button class="site-nav-link" data-page="dashboard">Dashboard</button>
       <button class="site-nav-link" data-page="staff">Staff</button>
     </nav>
 
@@ -79,6 +79,101 @@
 
     <section class="page simple-page" id="shop"><p class="hero-kicker"><span></span> MSRP SHOP</p><h2>Shop</h2><p>Official Missouri State Roleplay merchandise and community items will appear here.</p></section>
     <section class="page simple-page" id="about"><p class="hero-kicker"><span></span> ABOUT MSRP</p><h2>About Missouri State Roleplay</h2><p>Learn about the community, its standards, leadership, and roleplay experience.</p></section>
+    <section class="page dashboard-page" id="dashboard">
+      <div class="member-dashboard" id="memberDashboard">
+        <div class="member-dashboard-top">
+          <div class="dashboard-brand">
+            <div class="dashboard-brand-mark">MSRP</div>
+            <div><strong>Dashboard</strong><span>MISSOURI STATE ROLEPLAY</span></div>
+          </div>
+          <a class="dashboard-back" href="#home">Back to site</a>
+        </div>
+
+        <div class="account-bar">
+          <div class="account-identity">
+            <img id="memberAvatar" class="account-avatar" src="" alt="">
+            <div><span>SIGNED IN AS</span><strong id="memberUsername">Discord Member</strong><em id="memberType">Member</em></div>
+          </div>
+          <div class="account-actions">
+            <button type="button" class="account-action" id="dashboardNotifications" aria-label="Notifications">◌</button>
+            <button type="button" class="account-action account-action-text" id="dashboardAccount">My Account</button>
+            <button type="button" class="account-action account-action-text" id="dashboardLogout">Log out</button>
+          </div>
+        </div>
+
+        <div class="dashboard-body">
+          <aside class="member-sidebar">
+            <div class="sidebar-dashboard-title"><span class="sidebar-mark">MS</span><div><strong>Dashboard</strong><small>MSRP Member Hub</small></div></div>
+            <div class="sidebar-divider"></div>
+            <span class="sidebar-section-title">GENERAL</span>
+            <a class="member-nav-item active" href="#dashboard"><span>▦</span>Overview</a>
+            <a class="member-nav-item" href="#record"><span>◈</span>My Record</a>
+            <a class="member-nav-item" href="#about"><span>◎</span>Community</a>
+            <a class="member-nav-item" href="#shop"><span>◇</span>Shop</a>
+
+            <div id="staffToolsNav" hidden>
+              <span class="sidebar-section-title">STAFF</span>
+              <button class="member-nav-item staff-nav-item" type="button"><span>◆</span>Staff Overview</button>
+              <button class="member-nav-item staff-nav-item" type="button"><span>▣</span>Applications</button>
+              <button class="member-nav-item staff-nav-item" type="button"><span>◆</span>Infractions</button>
+              <button class="member-nav-item staff-nav-item" type="button"><span>↑</span>Promotions</button>
+            </div>
+
+            <div class="sidebar-user">
+              <img id="sidebarAvatar" src="" alt="">
+              <div><strong id="sidebarUsername">Member</strong><small id="sidebarRank">Member</small></div>
+              <span>⌂</span>
+            </div>
+          </aside>
+
+          <section class="member-main">
+            <div class="member-welcome">
+              <div class="member-welcome-copy">
+                <span>WELCOME BACK</span>
+                <h1>Good <strong id="greetingPeriod">afternoon</strong>, <em id="welcomeName">member.</em></h1>
+                <p id="welcomeSubtext">Here’s what’s happening across Missouri State Roleplay right now.</p>
+              </div>
+              <div class="player-ring"><strong data-dashboard-players>0</strong><span>/ 50<br>PLAYERS</span></div>
+            </div>
+
+            <div class="member-stat-grid">
+              <div class="member-stat-card stat-staff"><span>♧ STAFF ONLINE</span><strong data-dashboard-staff>0</strong></div>
+              <div class="member-stat-card stat-queue"><span>≡ IN QUEUE</span><strong data-dashboard-queue>0</strong></div>
+              <div class="member-stat-card stat-vehicles"><span>▰ VEHICLES</span><strong data-dashboard-vehicles>0</strong></div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-heading"><div><span>MSRP COMMUNITY</span><h2>Community overview</h2></div><span class="panel-chevron">⌄</span></div>
+              <div class="community-overview-grid">
+                <div><span>YOUR STATUS</span><strong id="memberStatus">Verified Member</strong><small id="memberStatusDetail">Discord account connected</small></div>
+                <div><span>MSRP RANK</span><strong id="memberDashboardRank">Member</strong><small>Based on your Discord role</small></div>
+                <div><span>SERVER</span><strong>Missouri State</strong><small>ER:LC roleplay community</small></div>
+              </div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-heading"><div><span>QUICK ACCESS</span><h2>Resources</h2></div></div>
+              <div class="resource-grid">
+                <a href="https://discord.gg/msrp1" target="_blank" rel="noopener"><strong>Discord</strong><small>Join the official MSRP community.</small><b>→</b></a>
+                <a href="roblox://placeId=2534724415&launchData=%7B%22psCode%22%3A%22MSRPST%22%7D"><strong>Join Server</strong><small>Launch the MSRP ER:LC server.</small><b>→</b></a>
+                <a href="#record"><strong>My Record</strong><small>View your member information.</small><b>→</b></a>
+              </div>
+            </div>
+
+            <div class="dashboard-secure-note"><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord. Staff tools appear automatically when your MSRP Discord account has an eligible staff role.</small></div></div>
+          </section>
+        </div>
+      </div>
+
+      <div class="dashboard-login-card" id="dashboardLoginCard">
+        <p class="hero-kicker"><span></span> MEMBER DASHBOARD</p>
+        <h2>Sign in to your <em>dashboard.</em></h2>
+        <p>Connect your Discord account to access your MSRP member dashboard.</p>
+        <button class="discord-login-button" id="dashboardDiscord" type="button"><span>Continue with Discord</span></button>
+        <p class="staff-error" id="dashboardError" role="alert" hidden></p>
+      </div>
+    </section>
+
     <section class="page simple-page" id="record"><p class="hero-kicker"><span></span> MEMBER PORTAL</p><h2>My Record</h2><p>Sign in with Discord to access your member record and personalized community information.</p><button class="action-button primary" id="recordDiscord">Sign in with Discord</button></section>
 
     <section class="page staff-page" id="staff">
