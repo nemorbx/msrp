@@ -1336,3 +1336,206 @@ html,body{
 /* Dashboard top bar removed — keep the member dashboard compact */
 .dashboard-page{padding-top:24px}
 .dashboard-page-title{margin-top:4px}
+
+
+/* MSRP member sidebar — closely matched to the reference layout */
+.member-sidebar{
+  min-height:690px;
+  padding:13px 12px 12px;
+  border-radius:17px;
+  background:linear-gradient(180deg,rgba(22,28,35,.96),rgba(12,18,25,.96));
+  border:1px solid rgba(255,255,255,.13);
+}
+.sidebar-dashboard-title{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:7px 7px 16px;
+}
+.sidebar-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,rgba(46,168,255,.22),rgba(46,168,255,.07));
+  border:1px solid rgba(46,168,255,.3);
+  color:#55c5ff;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.7px;
+  box-shadow:0 8px 24px rgba(46,168,255,.08);
+}
+.sidebar-dashboard-title strong{
+  display:block;
+  color:#f1f5f7;
+  font-size:15px;
+  line-height:1.1;
+}
+.sidebar-dashboard-title small{
+  display:block;
+  margin-top:5px;
+  color:#82909b;
+  font-size:8px;
+}
+.sidebar-divider{
+  height:1px;
+  background:rgba(255,255,255,.08);
+  margin:0 0 14px;
+}
+.member-sidebar-section{
+  display:grid;
+  gap:4px;
+}
+.member-sidebar-label{
+  padding:9px 10px 8px;
+  color:#8a98a3;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+.member-nav-item{
+  position:relative;
+  min-height:58px;
+  margin:0;
+  padding:5px 9px;
+  border:1px solid transparent;
+  border-radius:12px;
+  gap:11px;
+  color:#b4bec6;
+}
+.member-nav-item:before{
+  content:"";
+  position:absolute;
+  left:-13px;
+  top:10px;
+  bottom:10px;
+  width:4px;
+  border-radius:0 5px 5px 0;
+  background:transparent;
+}
+.member-nav-item:hover{
+  background:rgba(255,255,255,.025);
+  border-color:rgba(255,255,255,.08);
+}
+.member-nav-item.active{
+  background:rgba(46,168,255,.075);
+  border-color:rgba(82,179,255,.32);
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
+  color:#f2f6f8;
+}
+.member-nav-item.active:before{
+  background:#2ea8ff;
+  box-shadow:0 0 12px rgba(46,168,255,.65);
+}
+.member-nav-item>div{
+  min-width:0;
+}
+.member-nav-item strong{
+  display:block;
+  font-size:11px;
+  line-height:1.1;
+  color:inherit;
+}
+.member-nav-item small{
+  display:block;
+  margin-top:5px;
+  color:#7f8d98;
+  font-size:8px;
+  line-height:1.1;
+}
+.sidebar-nav-icon{
+  width:36px!important;
+  height:36px;
+  flex:0 0 36px;
+  display:grid!important;
+  place-items:center;
+  border-radius:10px;
+  font-size:15px!important;
+  font-weight:800;
+  border:1px solid transparent;
+}
+.overview-icon{
+  color:#eaf8ff!important;
+  background:#2ea8ff;
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 7px 18px rgba(46,168,255,.22);
+}
+.community-icon{
+  color:#b987ff!important;
+  background:rgba(153,79,255,.10);
+  border-color:rgba(153,79,255,.32);
+}
+.leaderboard-icon{
+  color:#f1c95b!important;
+  background:rgba(241,201,91,.09);
+  border-color:rgba(241,201,91,.32);
+}
+.inventory-icon{
+  color:#4fe1aa!important;
+  background:rgba(79,225,170,.08);
+  border-color:rgba(79,225,170,.34);
+}
+.member-nav-item:not(.active) .overview-icon{
+  background:rgba(46,168,255,.10);
+  color:#55c5ff!important;
+  border-color:rgba(46,168,255,.3);
+}
+.member-sidebar-user{
+  margin-top:auto;
+  min-height:62px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 9px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:13px;
+  background:rgba(255,255,255,.025);
+}
+.member-sidebar-user img{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#141d26;
+}
+.member-sidebar-user div{
+  min-width:0;
+  flex:1;
+}
+.member-sidebar-user strong{
+  display:block;
+  font-size:10px;
+  color:#edf2f5;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.member-sidebar-user span{
+  display:block;
+  margin-top:4px;
+  color:#55c5ff;
+  font-size:8px;
+}
+.sidebar-home-button{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  background:rgba(255,255,255,.025);
+  color:#91a0aa;
+  font-size:15px;
+}
+.sidebar-home-button:hover{
+  color:#55c5ff;
+  border-color:rgba(46,168,255,.32);
+  background:rgba(46,168,255,.06);
+}
+@media(max-width:850px){
+  .member-sidebar{min-height:auto}
+  .member-sidebar-user{margin-top:18px}
+}
