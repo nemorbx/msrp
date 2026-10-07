@@ -1539,3 +1539,21 @@ html,body{
   .member-sidebar{min-height:auto}
   .member-sidebar-user{margin-top:18px}
 }
+
+/* Sidebar icon system — inline SVG icons */
+.sidebar-nav-icon svg,
+.sidebar-home-button svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.sidebar-nav-icon.overview-icon svg{width:19px;height:19px;stroke-width:1.9}
+.sidebar-nav-icon.community-icon svg{width:20px;height:20px}
+.sidebar-nav-icon.leaderboard-icon svg{width:20px;height:20px}
+.sidebar-nav-icon.inventory-icon svg{width:20px;height:20px}
+.sidebar-home-button svg{width:17px;height:17px;stroke-width:1.8}
