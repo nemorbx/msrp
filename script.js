@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const $ = (id) => document.getElementById(id);
   const pages = [...document.querySelectorAll(".page")];
   const nav = [...document.querySelectorAll(".site-nav-link")];
-  const names = new Set(["home","shop","about","record","dashboard","staff"]);
+  const names = new Set(["home","shop","about","record","dashboard"]);
   const A = window.MSRP_AUTH || {};
 
   const roles = [
@@ -19,23 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const memberDash = $("memberDashboard");
   const loginDash = $("dashboardLoginCard");
-  const staffTools = $("staffToolsNav");
-  const err = $("staffError");
   const derr = $("dashboardError");
 
   const dashboardViews = {
     overview: [...document.querySelectorAll("[data-dashboard-overview]")],
-    profile: [$("dashboardProfileView")],
     community: [$("dashboardCommunityView")],
     leaderboard: [$("dashboardLeaderboardView")],
-    inventory: [$("dashboardInventoryView")],
-    notifications: [$("dashboardNotificationsView")],
-    settings: [$("dashboardSettingsView")],
-    staffOverview: [$("dashboardStaffOverviewView")],
-    applications: [$("dashboardApplicationsView")],
-    appeals: [$("dashboardAppealsView")],
-    infractions: [$("dashboardInfractionsView")],
-    promotions: [$("dashboardPromotionsView")]
+    inventory: [$("dashboardInventoryView")]
   };
 
   function error(message) {
@@ -47,12 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function page(name, updateHash = true) {
-    const requested = name === "staff" ? "dashboard" : name;
-    const target = names.has(requested) ? requested : "home";
+    const target = names.has(name) ? name : "home";
 
     pages.forEach((p) => p.classList.toggle("active", p.id === target));
     nav.forEach((item) => {
-      const active = item.dataset.page === target || (target === "dashboard" && item.dataset.page === "staff");
+      const active = item.dataset.page === target;
       item.classList.toggle("active", active);
       if (active) item.setAttribute("aria-current", "page");
       else item.removeAttribute("aria-current");
@@ -86,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", (event) => {
       event.preventDefault();
       page(item.dataset.page);
-      if (item.dataset.page === "dashboard" || item.dataset.page === "staff") load();
+      if (item.dataset.page === "dashboard") load();
     });
   });
 
@@ -229,21 +218,16 @@ document.addEventListener("DOMContentLoaded", () => {
       $("greetingPeriod").textContent = hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
     }
 
-    if (staffTools) staffTools.hidden = !isStaff;
 
     sessionStorage.setItem("msrp_discord_user", user.id);
     sessionStorage.setItem("msrp_is_staff", String(isStaff));
     if (isStaff) sessionStorage.setItem("msrp_staff_rank", memberRank);
     else sessionStorage.removeItem("msrp_staff_rank");
 
-    loadProfileCustomization(user.id, name);
 
     if (memberDash) memberDash.hidden = false;
     if (loginDash) loginDash.hidden = true;
 
-    document.querySelectorAll(".staff-dashboard-view").forEach((view) => {
-      view.hidden = !isStaff;
-    });
   }
 
   async function load() {
@@ -291,20 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
     page("dashboard");
   }
 
-  function loadProfileCustomization(userId, fallbackName) {
-    try {
-      const profile = JSON.parse(localStorage.getItem("msrp_profile_" + userId) || "{}");
-      const displayName = profile.displayName || fallbackName;
-
-      if ($("profileDisplayName")) $("profileDisplayName").value = displayName;
-      if ($("profileBio")) $("profileBio").value = profile.bio || "";
-      if ($("profileAccent")) $("profileAccent").value = profile.accent || "MSRP";
-      if ($("profileCardName")) $("profileCardName").textContent = displayName;
-      if ($("profileCardBio")) $("profileCardBio").textContent = profile.bio || "No bio has been added yet.";
-      if ($("profileCardRank")) $("profileCardRank").textContent = (sessionStorage.getItem("msrp_staff_rank") || "Member").toUpperCase();
-    } catch {}
-  }
-
   nav.forEach((item) => item.addEventListener("click", () => {
     const target = item.dataset.page;
     if (target === "record") {
@@ -317,55 +287,15 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", (event) => {
       event.preventDefault();
       const view = item.dataset.dashboardView;
-      const staffOnly = ["staffOverview","applications","appeals","infractions","promotions"].includes(view);
-
-      if (staffOnly && sessionStorage.getItem("msrp_is_staff") !== "true") {
-        setDashboardView("overview");
-        return;
-      }
-
       setDashboardView(view);
     });
   });
 
-  const account = $("dashboardAccount");
-  if (account) account.onclick = () => setDashboardView("profile");
 
-  const notifications = $("dashboardNotifications");
-  if (notifications) notifications.onclick = () => setDashboardView("notifications");
-
-  const profileForm = $("profileForm");
-  if (profileForm) {
-    profileForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const userId = sessionStorage.getItem("msrp_discord_user");
-      const displayName = $("profileDisplayName")?.value.trim();
-      const bio = $("profileBio")?.value.trim() || "";
-      const accent = $("profileAccent")?.value.trim() || "MSRP";
-
-      if (!userId || !displayName || displayName.length > 32 || bio.length > 160) return;
-
-      localStorage.setItem("msrp_profile_" + userId, JSON.stringify({ displayName, bio, accent }));
-
-      if ($("profileCardName")) $("profileCardName").textContent = displayName;
-      if ($("profileCardBio")) $("profileCardBio").textContent = bio || "No bio has been added yet.";
-      if ($("welcomeName")) $("welcomeName").textContent = displayName + ".";
-      if ($("memberUsername")) $("memberUsername").textContent = displayName;
-      if ($("sidebarUsername")) $("sidebarUsername").textContent = displayName;
-
-      const result = $("profileFormResult");
-      if (result) {
-        result.textContent = "Profile saved on this device.";
-        setTimeout(() => { result.textContent = ""; }, 2500);
-      }
-    });
-  }
-
-  const logoutButtons = [$("staffLogout"), $("dashboardLogout")];
+  const logoutButtons = [$("dashboardLogout")];
   logoutButtons.forEach((button) => { if (button) button.onclick = logout; });
 
-  [$("staffDiscord"), $("dashboardDiscord"), $("recordDiscord")].forEach((button) => {
+  [$("dashboardDiscord"), $("recordDiscord")].forEach((button) => {
     if (button) button.onclick = loginStart;
   });
 
@@ -374,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const initialHash = location.hash.slice(1);
   page(location.hash.includes("access_token=") ? "dashboard" : (names.has(initialHash) ? initialHash : "home"), false);
 
-  if (location.hash.includes("access_token=") || initialHash === "dashboard" || initialHash === "staff" || initialHash === "record") {
+  if (location.hash.includes("access_token=") || initialHash === "dashboard" || initialHash === "record") {
     load();
   } else {
     if (memberDash) memberDash.hidden = true;
