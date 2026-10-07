@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070b11">
   <title>Missouri State Roleplay — Premier ER:LC Community</title>
-  <link rel="stylesheet" href="style.css?v=20261007-3">
+  <link rel="stylesheet" href="style.css?v=20261007-4">
 </head>
 
 <body>
@@ -77,8 +77,28 @@
       </div>
     </section>
 
-    <section class="page simple-page" id="shop"><p class="hero-kicker"><span></span> MSRP SHOP</p><h2>Shop</h2><p>Official Missouri State Roleplay merchandise and community items will appear here.</p></section>
-    <section class="page simple-page" id="about"><p class="hero-kicker"><span></span> ABOUT MSRP</p><h2>About Missouri State Roleplay</h2><p>Learn about the community, its standards, leadership, and roleplay experience.</p></section>
+    <section class="page platform-page" id="shop">
+      <div class="platform-shell">
+        <div class="platform-hero"><div><span>MSRP STORE</span><h1>Shop.</h1><p>Community items, profile customization, and official MSRP purchases will live here.</p></div><div class="platform-hero-badge">STORE<br><strong>MSRP</strong></div></div>
+        <div class="platform-tabs"><button class="platform-tab active">Featured</button><button class="platform-tab">Profile Items</button><button class="platform-tab">Community</button></div>
+        <div class="product-grid">
+          <article class="product-card"><div class="product-art">MSRP</div><span>FEATURED</span><h3>MSRP Member Badge</h3><p>Show your verified community membership on your profile.</p><strong class="product-price">FREE</strong><button class="platform-button">Add to inventory</button></article>
+          <article class="product-card"><div class="product-art">MSRP</div><span>PROFILE</span><h3>Member Profile Frame</h3><p>A premium profile frame for your community identity.</p><strong class="product-price">SOON</strong><button class="platform-button muted">Coming soon</button></article>
+          <article class="product-card"><div class="product-art">★</div><span>ACHIEVEMENT</span><h3>Community Supporter</h3><p>An achievement item displayed on your public profile.</p><strong class="product-price">SOON</strong><button class="platform-button muted">Coming soon</button></article>
+        </div>
+      </div>
+    </section>
+    <section class="page platform-page" id="about">
+      <div class="platform-shell">
+        <div class="platform-hero"><div><span>MISSOURI STATE ROLEPLAY</span><h1>About.</h1><p>A professional ER:LC community focused on organized roleplay, active leadership, and a strong member experience.</p></div><div class="platform-hero-badge">EST.<br><strong>2026</strong></div></div>
+        <div class="about-grid">
+          <article class="about-card"><span>THE COMMUNITY</span><h2>Built around the players.</h2><p>MSRP brings members, departments, leadership, and staff together through one connected community platform.</p></article>
+          <article class="about-card"><span>THE PLATFORM</span><h2>One account. One hub.</h2><p>Your Discord-connected account becomes your home for your profile, community activity, records, achievements, and future services.</p></article>
+          <article class="about-card"><span>THE EXPERIENCE</span><h2>Professional by design.</h2><p>Every part of MSRP is designed to make joining, participating, and managing your community experience simple.</p></article>
+        </div>
+        <div class="about-timeline"><div><strong>01</strong><span>Join Discord</span><small>Connect your community account.</small></div><div><strong>02</strong><span>Create your profile</span><small>Customize how members see you.</small></div><div><strong>03</strong><span>Play & participate</span><small>Build your record and achievements.</small></div><div><strong>04</strong><span>Grow with MSRP</span><small>Unlock more community features.</small></div></div>
+      </div>
+    </section>
     <section class="page dashboard-page" id="dashboard">
       <div class="member-dashboard" id="memberDashboard">
         <div class="member-dashboard-top">
@@ -119,15 +139,15 @@
             <span class="sidebar-section-title">GENERAL</span>
             <a class="member-nav-item active" href="#dashboard"><span>▦</span><div><strong>Overview</strong><small>Live server & stats</small></div></a>
             <a class="member-nav-item" href="#dashboard" data-dashboard-view="community"><span>♧</span><div><strong>Community Profiles</strong><small>Everyone's profile pages</small></div></a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="community"><span>♛</span><div><strong>Leaderboard</strong><small>Playtime, activity & stats</small></div></a>
-            <a class="member-nav-item" href="#dashboard"><span>▣</span><div><strong>Inventory</strong><small>Store purchases</small></div></a>
+            <a class="member-nav-item" href="#dashboard" data-dashboard-view="leaderboard"><span>♛</span><div><strong>Leaderboard</strong><small>Playtime, activity & stats</small></div></a>
+            <a class="member-nav-item" href="#dashboard" data-dashboard-view="inventory"><span>▣</span><div><strong>Inventory</strong><small>Store purchases</small></div></a>
 
             <div id="staffToolsNav" hidden>
               <span class="sidebar-section-title">STAFF</span>
-              <button class="member-nav-item staff-nav-item" type="button"><span>◆</span>Staff Overview</button>
-              <button class="member-nav-item staff-nav-item" type="button"><span>▣</span>Applications</button>
-              <button class="member-nav-item staff-nav-item" type="button"><span>◆</span>Infractions</button>
-              <button class="member-nav-item staff-nav-item" type="button"><span>↑</span>Promotions</button>
+              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="staffOverview"><span>◆</span>Staff Overview</button>
+              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="applications"><span>▣</span>Applications</button>
+              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="infractions"><span>◆</span>Infractions</button>
+              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="promotions"><span>↑</span>Promotions</button>
             </div>
 
             <div class="sidebar-user">
@@ -167,7 +187,7 @@
               <div class="resource-grid">
                 <a href="https://discord.gg/msrp1" target="_blank" rel="noopener"><strong>Discord</strong><small>Join the official MSRP community.</small><b>→</b></a>
                 <a href="roblox://placeId=2534724415&launchData=%7B%22psCode%22%3A%22MSRPST%22%7D"><strong>Join Server</strong><small>Launch the MSRP ER:LC server.</small><b>→</b></a>
-                <a href="#record"><strong>My Record</strong><small>View your member information.</small><b>→</b></a>
+                <a href="#record" onclick="event.stopPropagation()"><strong>My Record</strong><small>View your member information.</small><b>→</b></a>
               </div>
             </div>
 
@@ -206,6 +226,40 @@
               <div class="empty-dashboard-state"><span>◌</span><h3>No notifications yet</h3><p>When your account receives notifications, they'll appear here.</p></div>
             </section>
 
+            <section class="dashboard-view" id="dashboardLeaderboardView" hidden>
+              <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Leaderboard</h2><p>See how members are contributing across the MSRP community.</p></div><span class="view-chip">ALL TIME</span></div>
+              <div class="leaderboard-list">
+                <div class="leaderboard-row featured"><b>01</b><div class="leaderboard-avatar">MS</div><div><strong>Top Community Member</strong><small>Community activity</small></div><span>—</span></div>
+                <div class="leaderboard-row"><b>02</b><div class="leaderboard-avatar">MS</div><div><strong>More members will appear here</strong><small>Leaderboard data</small></div><span>—</span></div>
+                <div class="leaderboard-row"><b>03</b><div class="leaderboard-avatar">MS</div><div><strong>Connect the MSRP backend</strong><small>Live rankings</small></div><span>—</span></div>
+              </div>
+            </section>
+            <section class="dashboard-view" id="dashboardInventoryView" hidden>
+              <div class="dashboard-view-header"><div><span>YOUR ACCOUNT</span><h2>Inventory</h2><p>Everything you have earned or purchased for your MSRP profile.</p></div><span class="view-chip">0 ITEMS</span></div>
+              <div class="inventory-grid"><div class="inventory-item"><div>MSRP</div><strong>Member Badge</strong><small>Verified community identity</small><span>EQUIPPED</span></div><div class="inventory-item locked"><div>+</div><strong>More items</strong><small>Store and achievement items will appear here.</small><span>SOON</span></div></div>
+            </section>
+            <section class="dashboard-view" id="dashboardCommunityView" hidden>
+              <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Community Profiles</h2><p>Discover public member profiles and community activity.</p></div><button class="platform-button">Find members</button></div>
+              <div class="directory-toolbar"><input type="search" placeholder="Search community members"><select><option>All members</option><option>Staff</option><option>Members</option></select></div>
+              <div class="community-directory"><div class="directory-card"><div class="directory-avatar">MS</div><div><strong>Community profiles</strong><small>Public member pages will appear here.</small></div><span>SOON</span></div><div class="directory-card"><div class="directory-avatar">★</div><div><strong>Follow members</strong><small>Follow and keep up with people in MSRP.</small></div><span>SOON</span></div></div>
+            </section>
+            <section class="dashboard-view staff-dashboard-view" id="dashboardStaffOverviewView" hidden>
+              <div class="dashboard-view-header"><div><span>STAFF WORKSPACE</span><h2>Staff Overview</h2><p>Your role-based command center for MSRP operations.</p></div><span class="view-chip staff-chip">STAFF</span></div>
+              <div class="staff-metric-grid"><div><span>STAFF ONLINE</span><strong>0</strong><small>Live roster</small></div><div><span>OPEN APPLICATIONS</span><strong>0</strong><small>Awaiting review</small></div><div><span>OPEN APPEALS</span><strong>0</strong><small>Awaiting review</small></div><div><span>REPORTS</span><strong>0</strong><small>Needs attention</small></div></div>
+              <div class="staff-tool-grid"><button class="staff-tool-card"><span>APPLICATIONS</span><strong>Review applications</strong><small>Manage staff applications and decisions.</small></button><button class="staff-tool-card"><span>BAN APPEALS</span><strong>Review appeals</strong><small>Process member ban appeal submissions.</small></button><button class="staff-tool-card"><span>INFRACTIONS</span><strong>Member records</strong><small>View and manage documented infractions.</small></button><button class="staff-tool-card"><span>PROMOTIONS</span><strong>Staff promotions</strong><small>Review and record staff rank changes.</small></button></div>
+            </section>
+            <section class="dashboard-view staff-dashboard-view" id="dashboardApplicationsView" hidden>
+              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Applications</h2><p>Central workspace for reviewing MSRP staff applications.</p></div><span class="view-chip">0 OPEN</span></div><div class="staff-empty"><strong>No applications waiting</strong><p>Application records will load here when the MSRP backend is connected.</p></div>
+            </section>
+            <section class="dashboard-view staff-dashboard-view" id="dashboardAppealsView" hidden>
+              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Ban Appeals</h2><p>Review and track member appeal requests.</p></div><span class="view-chip">0 OPEN</span></div><div class="staff-empty"><strong>No appeals waiting</strong><p>Appeal records will load here from the MSRP operations system.</p></div>
+            </section>
+            <section class="dashboard-view staff-dashboard-view" id="dashboardInfractionsView" hidden>
+              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Infractions</h2><p>Search member records and review disciplinary history.</p></div></div><div class="directory-toolbar"><input type="search" placeholder="Search a Discord username or ID"><button class="platform-button">Search</button></div><div class="staff-empty"><strong>No record selected</strong><p>Search results and secure member records will appear here.</p></div></section>
+            </section>
+            <section class="dashboard-view staff-dashboard-view" id="dashboardPromotionsView" hidden>
+              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Promotions</h2><p>Track staff rank changes and promotion history.</p></div></div><div class="staff-empty"><strong>No promotion records</strong><p>Promotion history will be supplied by the MSRP operations backend.</p></div>
+            </section>
             <section class="dashboard-view" id="dashboardSettingsView" hidden>
               <div class="dashboard-view-header"><div><span>ACCOUNT</span><h2>Settings</h2><p>Control your MSRP account experience.</p></div></div>
               <div class="settings-list">
@@ -227,7 +281,18 @@
       </div>
     </section>
 
-    <section class="page simple-page" id="record"><p class="hero-kicker"><span></span> MEMBER PORTAL</p><h2>My Record</h2><p>Sign in with Discord to access your member record and personalized community information.</p><button class="action-button primary" id="recordDiscord">Sign in with Discord</button></section>
+    <section class="page platform-page" id="record">
+      <div class="platform-shell record-shell">
+        <div class="platform-hero"><div><span>MEMBER PORTAL</span><h1>My Record.</h1><p>Your personal MSRP community record, activity, rank, achievements, and account history.</p></div><div class="platform-hero-badge">MEMBER<br><strong>RECORD</strong></div></div>
+        <div class="record-grid">
+          <div class="record-identity"><img id="recordAvatar" src="" alt=""><div><span>YOUR MSRP ACCOUNT</span><h2 id="recordName">Discord Member</h2><em id="recordRank">Member</em></div></div>
+          <div class="record-stat"><span>STATUS</span><strong id="recordStatus">Verified</strong><small>Discord connected</small></div>
+          <div class="record-stat"><span>ACHIEVEMENTS</span><strong>0</strong><small>Earned</small></div>
+          <div class="record-stat"><span>FOLLOWERS</span><strong>0</strong><small>Community</small></div>
+        </div>
+        <div class="record-panels"><article><span>COMMUNITY HISTORY</span><h2>Your MSRP journey</h2><p>Your participation history will appear here as the platform backend is connected.</p><div class="record-line"><i></i><div><strong>Account created</strong><small>Verified through Discord</small></div></div></article><article><span>ACHIEVEMENTS</span><h2>Your badges</h2><div class="empty-inline">No achievements yet</div></article></div>
+      </div>
+    </section>
 
     <section class="page staff-page" id="staff">
       <div class="staff-shell">
