@@ -1566,3 +1566,14 @@ html,body{
 .leaderboard-icon svg{width:21px;height:21px}
 .inventory-icon svg{width:21px;height:21px}
 .sidebar-home-button svg{width:18px;height:18px}
+
+/* Sidebar selection states — each section gets its own solid icon color */
+.member-nav-item[data-dashboard-view="overview"].active .sidebar-nav-icon{background:#2ea8ff;color:#fff!important;border-color:#2ea8ff;box-shadow:0 7px 18px rgba(46,168,255,.25)}
+.member-nav-item[data-dashboard-view="community"].active .sidebar-nav-icon{background:#9b5cff;color:#fff!important;border-color:#9b5cff;box-shadow:0 7px 18px rgba(155,92,255,.24)}
+.member-nav-item[data-dashboard-view="leaderboard"].active .sidebar-nav-icon{background:#e7b93f;color:#fff!important;border-color:#e7b93f;box-shadow:0 7px 18px rgba(231,185,63,.22)}
+.member-nav-item[data-dashboard-view="inventory"].active .sidebar-nav-icon{background:#35c991;color:#fff!important;border-color:#35c991;box-shadow:0 7px 18px rgba(53,201,145,.22)}
+.member-nav-item.active strong{color:#f5f8fa}
+.member-nav-item.active small{color:#9eabb4}
+.member-nav-item strong{font-size:12px}
+.member-nav-item small{font-size:9px;line-height:1.2;margin-top:5px}
+.member-nav-item{min-height:61px}
