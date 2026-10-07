@@ -26,7 +26,7 @@
       <button class="site-nav-link" data-page="staff">Staff</button>
     </nav>
 
-    <a class="discord-button" id="discordButton" href="https://discord.gg/yD7TxEUSAz" target="_blank" rel="noopener noreferrer">
+    <a class="discord-button" id="discordButton" href="https://discord.gg/msrp1" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 5.2A16.4 16.4 0 0 0 15 4l-.5 1a14.3 14.3 0 0 0-5 0L9 4a16.4 16.4 0 0 0-3.9 1.2C2.7 8.8 2 12.3 2.2 15.8A16 16 0 0 0 7 18.2l1.2-1.6c-.7-.3-1.3-.7-1.9-1.1l.5-.4c3.7 1.7 8.7 1.7 12.4 0l.5.4c-.6.4-1.2.8-1.9 1.1l1.2 1.6a16 16 0 0 0 4.8-2.4c.3-4.1-.5-7.6-2.9-10.6ZM8.5 14.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2Zm7 0c-1.1 0-2-1-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2Z"/></svg><span>Join Discord</span>
     </a>
 
@@ -54,7 +54,7 @@
             <a class="action-button primary" href="roblox://placeId=2534724415&launchData=%7B%22psCode%22%3A%22MSRPST%22%7D">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13L18 12 8 5.5Z"/></svg><span>Join Server</span>
             </a>
-            <a class="action-button" id="heroDiscord" href="https://discord.gg/yD7TxEUSAz" target="_blank" rel="noopener noreferrer">
+            <a class="action-button" id="heroDiscord" href="https://discord.gg/msrp1" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 5.2A16.4 16.4 0 0 0 15 4l-.5 1a14.3 14.3 0 0 0-5 0L9 4a16.4 16.4 0 0 0-3.9 1.2C2.7 8.8 2 12.3 2.2 15.8A16 16 0 0 0 7 18.2l1.2-1.6c-.7-.3-1.3-.7-1.9-1.1l.5-.4c3.7 1.7 8.7 1.7 12.4 0l.5.4c-.6.4-1.2.8-1.9 1.1l1.2 1.6a16 16 0 0 0 4.8-2.4c.3-4.1-.5-7.6-2.9-10.6ZM8.5 14.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2Zm7 0c-1.1 0-2-1-2.2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2Z"/></svg><span>Discord</span>
             </a>
           </div>
@@ -95,15 +95,87 @@
         </div>
 
         <div class="staff-dashboard" id="staffDashboard" hidden>
-          <div class="dashboard-topbar"><div><p class="hero-kicker"><span></span> STAFF DASHBOARD</p><h2>Welcome, <em id="dashboardName">Staff</em>.</h2><p>Authorized MSRP staff workspace.</p></div><button class="dashboard-logout" id="staffLogout" type="button">Sign out</button></div>
-          <div class="staff-profile-card"><img id="dashboardAvatar" src="" alt="" class="staff-avatar"><div class="staff-profile-copy"><strong id="dashboardUsername">Discord Member</strong><span id="dashboardRank">MSRP Staff</span></div><span class="verified-badge">VERIFIED STAFF</span></div>
-          <div class="dashboard-grid">
-            <a class="dashboard-card" href="#record"><span class="dashboard-card-icon">01</span><strong>My Record</strong><small>View your member and staff information.</small></a>
-            <div class="dashboard-card"><span class="dashboard-card-icon">02</span><strong>Staff Management</strong><small>Management tools will appear here based on your role.</small><span class="coming-soon">READY FOR BACKEND</span></div>
-            <div class="dashboard-card"><span class="dashboard-card-icon">03</span><strong>Applications</strong><small>Review and manage staff applications when connected.</small><span class="coming-soon">READY FOR BACKEND</span></div>
-            <div class="dashboard-card"><span class="dashboard-card-icon">04</span><strong>Infractions & Promotions</strong><small>Role-gated staff actions will use the established MSRP hierarchy.</small><span class="coming-soon">READY FOR BACKEND</span></div>
+          <div class="dashboard-heading">
+            <div>
+              <p class="hero-kicker"><span></span> STAFF CONTROL CENTER</p>
+              <h2>Good to see you, <em id="dashboardName">Staff</em>.</h2>
+              <p>Welcome to the private MSRP staff workspace.</p>
+            </div>
+            <button class="dashboard-logout" id="staffLogout" type="button">Sign out</button>
           </div>
-          <div class="dashboard-notice"><strong>Secure access</strong><span>Your staff access is determined from your current Discord roles. Frontend permissions are only for the dashboard display; sensitive staff actions will require a server-side API before they are enabled.</span></div>
+
+          <div class="dashboard-layout">
+            <aside class="dashboard-sidebar">
+              <div class="sidebar-profile">
+                <img id="dashboardAvatar" src="" alt="" class="staff-avatar">
+                <div class="staff-profile-copy">
+                  <strong id="dashboardUsername">Discord Member</strong>
+                  <span id="dashboardRank">MSRP Staff</span>
+                </div>
+                <span class="verified-badge">VERIFIED</span>
+              </div>
+              <nav class="dashboard-nav" aria-label="Staff dashboard">
+                <span class="dashboard-nav-label">WORKSPACE</span>
+                <a class="dashboard-nav-item active" href="#staff"><span>⌂</span>Overview</a>
+                <a class="dashboard-nav-item" href="#record"><span>◈</span>My Record</a>
+                <span class="dashboard-nav-label">STAFF TOOLS</span>
+                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Applications <small>SOON</small></button>
+                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Infractions <small>SOON</small></button>
+                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Promotions <small>SOON</small></button>
+              </nav>
+            </aside>
+
+            <section class="dashboard-main">
+              <div class="dashboard-status-row">
+                <div class="dashboard-status">
+                  <span class="status-dot"></span>
+                  <div><strong>Staff access active</strong><small>Your Discord role has been verified.</small></div>
+                </div>
+                <div class="dashboard-rank-pill"><span>RANK</span><strong id="dashboardRankPill">Staff</strong></div>
+              </div>
+
+              <div class="dashboard-overview">
+                <div class="dashboard-overview-copy">
+                  <span class="dashboard-eyebrow">MSRP STAFF PORTAL</span>
+                  <h3>Your workspace is ready.</h3>
+                  <p>Use the navigation to access your record. Additional staff tools will unlock as the secure backend is connected.</p>
+                </div>
+                <div class="dashboard-overview-mark">MSRP</div>
+              </div>
+
+              <div class="dashboard-section-heading">
+                <div><span>QUICK ACCESS</span><h3>Staff resources</h3></div>
+              </div>
+
+              <div class="dashboard-actions">
+                <a class="dashboard-action primary-action" href="#record">
+                  <span class="action-number">01</span>
+                  <div><strong>My Record</strong><small>View your member and staff information.</small></div>
+                  <b>→</b>
+                </a>
+                <div class="dashboard-action">
+                  <span class="action-number">02</span>
+                  <div><strong>Applications</strong><small>Review staff applications and applicant status.</small></div>
+                  <b>SOON</b>
+                </div>
+                <div class="dashboard-action">
+                  <span class="action-number">03</span>
+                  <div><strong>Infractions</strong><small>Manage staff disciplinary records.</small></div>
+                  <b>SOON</b>
+                </div>
+                <div class="dashboard-action">
+                  <span class="action-number">04</span>
+                  <div><strong>Promotions</strong><small>Handle role changes using the MSRP hierarchy.</small></div>
+                  <b>SOON</b>
+                </div>
+              </div>
+
+              <div class="dashboard-security">
+                <span class="security-shield">✓</span>
+                <div><strong>Secure staff session</strong><small>Access is verified against your current Discord roles. Sensitive actions will remain disabled until they are protected by the MSRP server-side API.</small></div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </section>
