@@ -1061,3 +1061,46 @@ html,body{
     font-size:9px!important;
   }
 }
+
+
+/* Staff portal */
+.staff-page{min-height:calc(100vh - 150px);padding:72px 0 110px}
+.staff-shell{max-width:1120px;margin:0 auto}
+.staff-login-card{position:relative;overflow:hidden;max-width:650px;margin:20px auto 0;padding:58px 54px 50px;border:1px solid rgba(255,255,255,.11);border-radius:30px;background:linear-gradient(145deg,rgba(18,27,37,.94),rgba(8,13,19,.92));box-shadow:0 35px 100px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.035);text-align:center}
+.staff-card-glow{position:absolute;width:330px;height:330px;top:-180px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(73,220,255,.16),transparent 68%);pointer-events:none}
+.staff-icon{position:relative;width:64px;height:64px;margin:0 auto 26px;border:1px solid rgba(73,220,255,.22);border-radius:19px;display:grid;place-items:center;background:rgba(73,220,255,.055);box-shadow:0 0 55px rgba(73,220,255,.08)}
+.staff-icon svg{width:30px;height:30px;fill:none;stroke:var(--cyan);stroke-width:1.5}
+.staff-login-card .hero-kicker{justify-content:center;font-size:10px;letter-spacing:2.4px}
+.staff-login-card .hero-kicker span{width:25px}
+.staff-login-card h2,.dashboard-topbar h2{margin-top:19px;font-size:clamp(40px,5vw,64px);line-height:.98;letter-spacing:-3px}
+.staff-login-card h2 em,.dashboard-topbar h2 em{color:var(--cyan);font-family:"Playfair Display",Georgia,serif;font-weight:500}
+.staff-lead{max-width:500px;margin:23px auto 28px;color:var(--muted);font-size:14px;line-height:1.7}
+.discord-login-button{min-height:58px;width:100%;max-width:390px;border:0;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#5865f2;color:#fff;font-size:14px;font-weight:800;box-shadow:0 14px 35px rgba(88,101,242,.22);transition:.18s}
+.discord-login-button:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 18px 45px rgba(88,101,242,.28)}
+.discord-login-button svg{width:20px;height:20px;fill:currentColor}
+.staff-security{display:flex;justify-content:center;align-items:center;gap:7px;margin-top:22px;color:#687581;font-size:9px;letter-spacing:.4px}
+.staff-security span{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(75,224,140,.4)}
+.staff-error{margin:20px auto 0;padding:12px 14px;max-width:500px;border:1px solid rgba(255,105,105,.18);border-radius:12px;background:rgba(255,70,70,.055);color:#ffb5b5;font-size:10px;line-height:1.5}
+.staff-dashboard[hidden],.staff-login-card[hidden]{display:none}
+.dashboard-topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin-bottom:34px}
+.dashboard-topbar>div>p:not(.hero-kicker){color:var(--muted);font-size:13px;margin-top:12px}
+.dashboard-logout{flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);color:#dbe3e9;border-radius:12px;padding:12px 17px;font-size:11px;font-weight:800}
+.dashboard-logout:hover{border-color:rgba(73,220,255,.32);color:#fff}
+.staff-profile-card{display:flex;align-items:center;gap:16px;padding:18px 20px;margin-bottom:14px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:rgba(13,20,28,.68)}
+.staff-avatar{width:58px;height:58px;border-radius:16px;object-fit:cover;background:#151e28}
+.staff-profile-copy{display:grid;gap:5px;min-width:0}
+.staff-profile-copy strong{font-size:14px}
+.staff-profile-copy span{font-size:10px;color:var(--cyan);font-weight:700}
+.verified-badge{margin-left:auto;border:1px solid rgba(75,224,140,.18);background:rgba(75,224,140,.055);color:#8ee8b3;border-radius:999px;padding:8px 11px;font-size:8px;font-weight:800;letter-spacing:1px}
+.dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dashboard-card{position:relative;min-height:180px;padding:24px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:linear-gradient(145deg,rgba(14,22,30,.82),rgba(10,15,21,.72));display:flex;flex-direction:column;color:inherit;transition:.18s;overflow:hidden}
+.dashboard-card:hover{transform:translateY(-2px);border-color:rgba(73,220,255,.22)}
+.dashboard-card-icon{font-size:9px;letter-spacing:1.5px;color:var(--cyan);font-weight:800}
+.dashboard-card strong{font-size:17px;margin-top:auto}
+.dashboard-card small{max-width:430px;color:#8996a2;font-size:10px;line-height:1.55;margin-top:8px}
+.coming-soon{margin-top:14px;color:#667582;font-size:7px;font-weight:800;letter-spacing:1.5px}
+.dashboard-notice{display:grid;gap:6px;margin-top:14px;padding:18px 20px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025)}
+.dashboard-notice strong{font-size:10px;color:#dfe7ec}
+.dashboard-notice span{color:#687581;font-size:9px;line-height:1.6}
+@media(max-width:700px){.staff-page{padding:105px 20px 70px}.staff-login-card{padding:45px 24px 38px;border-radius:24px}.staff-login-card h2,.dashboard-topbar h2{letter-spacing:-2px}.dashboard-topbar{align-items:flex-start;flex-direction:column}.dashboard-grid{grid-template-columns:1fr}.staff-profile-card{padding:15px}.verified-badge{font-size:7px;padding:7px 8px}}
+@media(max-width:480px){.staff-page{padding-left:14px;padding-right:14px}.staff-login-card{padding:38px 18px 32px}.staff-login-card h2{font-size:39px}.staff-lead{font-size:12px}.discord-login-button{min-height:55px;font-size:13px}.dashboard-topbar h2{font-size:40px}.staff-profile-card{gap:11px}.staff-avatar{width:50px;height:50px;border-radius:14px}.staff-profile-copy strong{font-size:12px}.verified-badge{display:none}}
