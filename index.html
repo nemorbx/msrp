@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070b11">
   <title>Missouri State Roleplay — Premier ER:LC Community</title>
-  <link rel="stylesheet" href="style.css?v=20261007-7">
+  <link rel="stylesheet" href="style.css?v=20261007-8">
 </head>
 
 <body>
@@ -119,8 +119,6 @@
             <div><span>SIGNED IN AS</span><strong id="memberUsername">Discord Member</strong><em id="memberType">Member</em></div>
           </div>
           <div class="account-actions">
-            <button type="button" class="account-action" id="dashboardNotifications" aria-label="Notifications">◌</button>
-            <button type="button" class="account-action account-action-text" id="dashboardAccount">My Account</button>
             <button type="button" class="account-action account-action-text" id="dashboardLogout">Log out</button>
           </div>
         </div>
@@ -174,12 +172,26 @@
               </div>
             </div>
 
-            <div class="dashboard-secure-note" data-dashboard-overview><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord. Staff tools appear automatically when your MSRP Discord account has an eligible staff role.</small></div></div>
+            <div class="dashboard-secure-note" data-dashboard-overview><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord and your MSRP membership is active.</small></div></div>
 
             <section class="dashboard-view" id="dashboardCommunityView" hidden>
               <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Community Profiles</h2><p>Discover public member profiles and community activity.</p></div><button class="platform-button">Find members</button></div>
               <div class="directory-toolbar"><input type="search" placeholder="Search community members"><select><option>All members</option><option>Staff</option><option>Members</option></select></div>
               <div class="community-directory"><div class="directory-card"><div class="directory-avatar">MS</div><div><strong>Community profiles</strong><small>Public member pages will appear here.</small></div><span>SOON</span></div><div class="directory-card"><div class="directory-avatar">★</div><div><strong>Follow members</strong><small>Follow and keep up with people in MSRP.</small></div><span>SOON</span></div></div>
+            <section class="dashboard-view" id="dashboardLeaderboardView" hidden>
+              <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Leaderboard</h2><p>See how members are contributing across the MSRP community.</p></div><span class="view-chip">ALL TIME</span></div>
+              <div class="leaderboard-list">
+                <div class="leaderboard-row featured"><b>01</b><div class="leaderboard-avatar">MS</div><div><strong>Top Community Member</strong><small>Community activity</small></div><span>—</span></div>
+                <div class="leaderboard-row"><b>02</b><div class="leaderboard-avatar">MS</div><div><strong>More members will appear here</strong><small>Leaderboard data</small></div><span>—</span></div>
+                <div class="leaderboard-row"><b>03</b><div class="leaderboard-avatar">MS</div><div><strong>Connect the MSRP backend</strong><small>Live rankings</small></div><span>—</span></div>
+              </div>
+            </section>
+            <section class="dashboard-view" id="dashboardInventoryView" hidden>
+              <div class="dashboard-view-header"><div><span>YOUR INVENTORY</span><h2>Inventory</h2><p>Everything you have earned or purchased for your MSRP profile.</p></div><span class="view-chip">0 ITEMS</span></div>
+              <div class="inventory-grid">
+                <div class="inventory-item"><div>MSRP</div><strong>Member Badge</strong><small>Verified community identity</small><span>EQUIPPED</span></div>
+                <div class="inventory-item locked"><div>+</div><strong>More items</strong><small>Store and achievement items will appear here.</small><span>SOON</span></div>
+              </div>
             </section>
           </section>
         </div>
