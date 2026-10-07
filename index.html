@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070b11">
   <title>Missouri State Roleplay — Premier ER:LC Community</title>
-  <link rel="stylesheet" href="style.css?v=20261007-5">
+  <link rel="stylesheet" href="style.css?v=20261007-6">
 </head>
 
 <body>
@@ -128,34 +128,18 @@
 
         <div class="dashboard-body">
           <aside class="member-sidebar">
-            <div class="sidebar-dashboard-title"><span class="sidebar-mark">MS</span><div><strong>Dashboard</strong><small>MSRP Member Hub</small></div></div>
-            <div class="sidebar-divider"></div>
-            <span class="sidebar-section-title">ACCOUNT</span>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="profile"><span>◎</span>My Profile</a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="community"><span>◉</span>Community</a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="notifications"><span>◌</span>Notifications</a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="settings"><span>⚙</span>Settings</a>
-
-            <span class="sidebar-section-title">GENERAL</span>
-            <a class="member-nav-item active" href="#dashboard"><span>▦</span><div><strong>Overview</strong><small>Live server & stats</small></div></a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="community"><span>♧</span><div><strong>Community Profiles</strong><small>Everyone's profile pages</small></div></a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="leaderboard"><span>♛</span><div><strong>Leaderboard</strong><small>Playtime, activity & stats</small></div></a>
-            <a class="member-nav-item" href="#dashboard" data-dashboard-view="inventory"><span>▣</span><div><strong>Inventory</strong><small>Store purchases</small></div></a>
-
-            <div id="staffToolsNav" hidden>
-              <span class="sidebar-section-title">STAFF</span>
-              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="staffOverview"><span>◆</span>Staff Overview</button>
-              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="applications"><span>▣</span>Applications</button>
-              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="infractions"><span>◆</span>Infractions</button>
-              <button class="member-nav-item staff-nav-item" type="button" data-dashboard-view="promotions"><span>↑</span>Promotions</button>
-            </div>
-
-            <div class="sidebar-user">
-              <img id="sidebarAvatar" src="" alt="">
-              <div><strong id="sidebarUsername">Member</strong><small id="sidebarRank">Member</small></div>
-              <span>⌂</span>
-            </div>
-          </aside>
+  <div class="member-sidebar-section">
+    <span class="member-sidebar-label">MSRP MEMBERS</span>
+    <a class="member-nav-item active" href="#dashboard" data-dashboard-view="overview"><span>⌂</span><div><strong>Overview</strong><small>Your member dashboard</small></div></a>
+    <a class="member-nav-item" href="#dashboard" data-dashboard-view="community"><span>♧</span><div><strong>Community Profiles</strong><small>Discover MSRP members</small></div></a>
+    <a class="member-nav-item" href="#dashboard" data-dashboard-view="leaderboard"><span>♛</span><div><strong>Leaderboard</strong><small>Community rankings</small></div></a>
+    <a class="member-nav-item" href="#dashboard" data-dashboard-view="inventory"><span>▣</span><div><strong>Inventory</strong><small>Your items and badges</small></div></a>
+  </div>
+  <div class="member-sidebar-user">
+    <img id="sidebarAvatar" src="" alt="">
+    <div><strong id="sidebarUsername">Discord Member</strong><span id="sidebarRank">Member</span></div>
+  </div>
+</aside>
 
           <section class="member-main">
             <div class="member-welcome" data-dashboard-overview>
@@ -193,71 +177,10 @@
 
             <div class="dashboard-secure-note" data-dashboard-overview><span>✓</span><div><strong>Account verified</strong><small>Your identity is verified through Discord. Staff tools appear automatically when your MSRP Discord account has an eligible staff role.</small></div></div>
 
-            <section class="dashboard-view" id="dashboardProfileView" hidden>
-              <div class="dashboard-view-header"><div><span>YOUR ACCOUNT</span><h2>My Profile</h2><p>Manage the public information people see on your MSRP community profile.</p></div><div class="profile-preview"><img id="profilePreviewAvatar" src="" alt=""><span>PROFILE</span></div></div>
-              <div class="profile-layout">
-                <div class="profile-card">
-                  <div class="profile-card-cover"></div>
-                  <img id="profileCardAvatar" class="profile-card-avatar" src="" alt="">
-                  <div class="profile-card-body"><span id="profileCardRank" class="profile-rank">MEMBER</span><h3 id="profileCardName">Discord Member</h3><p id="profileCardBio">No bio has been added yet.</p><div class="profile-stats"><div><strong id="profileFollowerCount">0</strong><small>Followers</small></div><div><strong>0</strong><small>Following</small></div><div><strong>0</strong><small>Achievements</small></div></div></div>
-                </div>
-                <form class="dashboard-form" id="profileForm">
-                  <label>Display name<input id="profileDisplayName" maxlength="32" placeholder="Your display name"></label>
-                  <label>Bio<textarea id="profileBio" maxlength="160" rows="4" placeholder="Tell the community about yourself"></textarea></label>
-                  <label>Profile accent<input id="profileAccent" type="text" maxlength="20" placeholder="MSRP"></label>
-                  <div class="form-note"><span>ⓘ</span><small>Your Discord identity remains the source of truth for authentication. Profile customization will become account-wide once the MSRP backend is connected.</small></div>
-                  <button class="form-save" type="submit">Save profile</button>
-                  <p class="form-result" id="profileFormResult" role="status"></p>
-                </form>
-              </div>
-            </section>
-
-            <section class="dashboard-view" id="dashboardNotificationsView" hidden>
-              <div class="dashboard-view-header"><div><span>ACCOUNT</span><h2>Notifications</h2><p>Stay up to date with follows, community activity, and staff updates.</p></div></div>
-              <div class="empty-dashboard-state"><span>◌</span><h3>No notifications yet</h3><p>When your account receives notifications, they'll appear here.</p></div>
-            </section>
-
-            <section class="dashboard-view" id="dashboardLeaderboardView" hidden>
-              <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Leaderboard</h2><p>See how members are contributing across the MSRP community.</p></div><span class="view-chip">ALL TIME</span></div>
-              <div class="leaderboard-list">
-                <div class="leaderboard-row featured"><b>01</b><div class="leaderboard-avatar">MS</div><div><strong>Top Community Member</strong><small>Community activity</small></div><span>—</span></div>
-                <div class="leaderboard-row"><b>02</b><div class="leaderboard-avatar">MS</div><div><strong>More members will appear here</strong><small>Leaderboard data</small></div><span>—</span></div>
-                <div class="leaderboard-row"><b>03</b><div class="leaderboard-avatar">MS</div><div><strong>Connect the MSRP backend</strong><small>Live rankings</small></div><span>—</span></div>
-              </div>
-            </section>
-            <section class="dashboard-view" id="dashboardInventoryView" hidden>
-              <div class="dashboard-view-header"><div><span>YOUR ACCOUNT</span><h2>Inventory</h2><p>Everything you have earned or purchased for your MSRP profile.</p></div><span class="view-chip">0 ITEMS</span></div>
-              <div class="inventory-grid"><div class="inventory-item"><div>MSRP</div><strong>Member Badge</strong><small>Verified community identity</small><span>EQUIPPED</span></div><div class="inventory-item locked"><div>+</div><strong>More items</strong><small>Store and achievement items will appear here.</small><span>SOON</span></div></div>
-            </section>
             <section class="dashboard-view" id="dashboardCommunityView" hidden>
               <div class="dashboard-view-header"><div><span>MSRP COMMUNITY</span><h2>Community Profiles</h2><p>Discover public member profiles and community activity.</p></div><button class="platform-button">Find members</button></div>
               <div class="directory-toolbar"><input type="search" placeholder="Search community members"><select><option>All members</option><option>Staff</option><option>Members</option></select></div>
               <div class="community-directory"><div class="directory-card"><div class="directory-avatar">MS</div><div><strong>Community profiles</strong><small>Public member pages will appear here.</small></div><span>SOON</span></div><div class="directory-card"><div class="directory-avatar">★</div><div><strong>Follow members</strong><small>Follow and keep up with people in MSRP.</small></div><span>SOON</span></div></div>
-            </section>
-            <section class="dashboard-view staff-dashboard-view" id="dashboardStaffOverviewView" hidden>
-              <div class="dashboard-view-header"><div><span>STAFF WORKSPACE</span><h2>Staff Overview</h2><p>Your role-based command center for MSRP operations.</p></div><span class="view-chip staff-chip">STAFF</span></div>
-              <div class="staff-metric-grid"><div><span>STAFF ONLINE</span><strong>0</strong><small>Live roster</small></div><div><span>OPEN APPLICATIONS</span><strong>0</strong><small>Awaiting review</small></div><div><span>OPEN APPEALS</span><strong>0</strong><small>Awaiting review</small></div><div><span>REPORTS</span><strong>0</strong><small>Needs attention</small></div></div>
-              <div class="staff-tool-grid"><button class="staff-tool-card"><span>APPLICATIONS</span><strong>Review applications</strong><small>Manage staff applications and decisions.</small></button><button class="staff-tool-card"><span>BAN APPEALS</span><strong>Review appeals</strong><small>Process member ban appeal submissions.</small></button><button class="staff-tool-card"><span>INFRACTIONS</span><strong>Member records</strong><small>View and manage documented infractions.</small></button><button class="staff-tool-card"><span>PROMOTIONS</span><strong>Staff promotions</strong><small>Review and record staff rank changes.</small></button></div>
-            </section>
-            <section class="dashboard-view staff-dashboard-view" id="dashboardApplicationsView" hidden>
-              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Applications</h2><p>Central workspace for reviewing MSRP staff applications.</p></div><span class="view-chip">0 OPEN</span></div><div class="staff-empty"><strong>No applications waiting</strong><p>Application records will load here when the MSRP backend is connected.</p></div>
-            </section>
-            <section class="dashboard-view staff-dashboard-view" id="dashboardAppealsView" hidden>
-              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Ban Appeals</h2><p>Review and track member appeal requests.</p></div><span class="view-chip">0 OPEN</span></div><div class="staff-empty"><strong>No appeals waiting</strong><p>Appeal records will load here from the MSRP operations system.</p></div>
-            </section>
-            <section class="dashboard-view staff-dashboard-view" id="dashboardInfractionsView" hidden>
-              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Infractions</h2><p>Search member records and review disciplinary history.</p></div></div><div class="directory-toolbar"><input type="search" placeholder="Search a Discord username or ID"><button class="platform-button">Search</button></div><div class="staff-empty"><strong>No record selected</strong><p>Search results and secure member records will appear here.</p></div>
-            </section>
-            <section class="dashboard-view staff-dashboard-view" id="dashboardPromotionsView" hidden>
-              <div class="dashboard-view-header"><div><span>STAFF TOOLS</span><h2>Promotions</h2><p>Track staff rank changes and promotion history.</p></div></div><div class="staff-empty"><strong>No promotion records</strong><p>Promotion history will be supplied by the MSRP operations backend.</p></div>
-            </section>
-            <section class="dashboard-view" id="dashboardSettingsView" hidden>
-              <div class="dashboard-view-header"><div><span>ACCOUNT</span><h2>Settings</h2><p>Control your MSRP account experience.</p></div></div>
-              <div class="settings-list">
-                <div class="setting-row"><div><strong>Discord connection</strong><small>Your Discord account is used to verify your MSRP membership.</small></div><span class="setting-status">CONNECTED</span></div>
-                <div class="setting-row"><div><strong>Public profile</strong><small>Your community profile can be discovered by other MSRP members.</small></div><span class="setting-status">ON</span></div>
-                <div class="setting-row"><div><strong>Notifications</strong><small>Account notifications will be configurable once the backend is connected.</small></div><span class="setting-status muted">SOON</span></div>
-              </div>
             </section>
           </section>
         </div>
@@ -285,105 +208,7 @@
       </div>
     </section>
 
-    <section class="page staff-page" id="staff">
-      <div class="staff-shell">
-        <div class="staff-login-card" id="staffLoginCard">
-          <div class="staff-card-glow"></div>
-          <div class="staff-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.3c0 4.7 3.1 8 7.5 9.7 4.4-1.7 7.5-5 7.5-9.7V6L12 3Zm0 4.1 4.3 1.7v2.5c0 3-1.8 5.2-4.3 6.5-2.5-1.3-4.3-3.5-4.3-6.5V8.8L12 7.1Z"/></svg></div>
-          <p class="hero-kicker"><span></span> STAFF PORTAL</p>
-          <h2>Welcome back, <em>staff.</em></h2>
-          <p class="staff-lead">Sign in with Discord to securely verify your MSRP membership and staff role.</p>
-          <button class="discord-login-button" id="staffDiscord" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 5.2A16.4 16.4 0 0 0 15 4l-.5 1a14.3 14.3 0 0 0-5 0L9 4a16.4 16.4 0 0 0-3.9 1.2C2.7 8.8 2 12.3 2.2 15.8A16 16 0 0 0 7 18.2l1.2-1.6c-.7-.3-1.3-.7-1.9-1.1l.5-.4c3.7 1.7 8.7 1.7 12.4 0l.5.4c-.6.4-1.2.8-1.9 1.1l1.2 1.6a16 16 0 0 0 4.8-2.4c.3-4.1-.5-7.6-2.9-10.6ZM8.5 14.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 .9 2 2.2-.9 2.2-2 2.2Zm7 0c-1.1 0-2-1-2.2-2.2s.9-2.2 2-2.2 2 .9 2 2.2-.9 2.2-2 2.2Z"/></svg><span>Continue with Discord</span></button>
-          <p class="staff-security"><span></span> Discord OAuth2 &middot; Role verification enabled</p>
-          <p class="staff-error" id="staffError" role="alert" hidden></p>
-        </div>
-
-        <div class="staff-dashboard" id="staffDashboard" hidden>
-          <div class="dashboard-heading">
-            <div>
-              <p class="hero-kicker"><span></span> STAFF CONTROL CENTER</p>
-              <h2>Good to see you, <em id="dashboardName">Staff</em>.</h2>
-              <p>Welcome to the private MSRP staff workspace.</p>
-            </div>
-            <button class="dashboard-logout" id="staffLogout" type="button">Sign out</button>
-          </div>
-
-          <div class="dashboard-layout">
-            <aside class="dashboard-sidebar">
-              <div class="sidebar-profile">
-                <img id="dashboardAvatar" src="" alt="" class="staff-avatar">
-                <div class="staff-profile-copy">
-                  <strong id="dashboardUsername">Discord Member</strong>
-                  <span id="dashboardRank">MSRP Staff</span>
-                </div>
-                <span class="verified-badge">VERIFIED</span>
-              </div>
-              <nav class="dashboard-nav" aria-label="Staff dashboard">
-                <span class="dashboard-nav-label">WORKSPACE</span>
-                <a class="dashboard-nav-item active" href="#staff"><span>⌂</span>Overview</a>
-                <a class="dashboard-nav-item" href="#record"><span>◈</span>My Record</a>
-                <span class="dashboard-nav-label">STAFF TOOLS</span>
-                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Applications <small>SOON</small></button>
-                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Infractions <small>SOON</small></button>
-                <button class="dashboard-nav-item" type="button" disabled><span>◆</span>Promotions <small>SOON</small></button>
-              </nav>
-            </aside>
-
-            <section class="dashboard-main">
-              <div class="dashboard-status-row">
-                <div class="dashboard-status">
-                  <span class="status-dot"></span>
-                  <div><strong>Staff access active</strong><small>Your Discord role has been verified.</small></div>
-                </div>
-                <div class="dashboard-rank-pill"><span>RANK</span><strong id="dashboardRankPill">Staff</strong></div>
-              </div>
-
-              <div class="dashboard-overview">
-                <div class="dashboard-overview-copy">
-                  <span class="dashboard-eyebrow">MSRP STAFF PORTAL</span>
-                  <h3>Your workspace is ready.</h3>
-                  <p>Use the navigation to access your record. Additional staff tools will unlock as the secure backend is connected.</p>
-                </div>
-                <div class="dashboard-overview-mark">MSRP</div>
-              </div>
-
-              <div class="dashboard-section-heading">
-                <div><span>QUICK ACCESS</span><h3>Staff resources</h3></div>
-              </div>
-
-              <div class="dashboard-actions">
-                <a class="dashboard-action primary-action" href="#record">
-                  <span class="action-number">01</span>
-                  <div><strong>My Record</strong><small>View your member and staff information.</small></div>
-                  <b>→</b>
-                </a>
-                <div class="dashboard-action">
-                  <span class="action-number">02</span>
-                  <div><strong>Applications</strong><small>Review staff applications and applicant status.</small></div>
-                  <b>SOON</b>
-                </div>
-                <div class="dashboard-action">
-                  <span class="action-number">03</span>
-                  <div><strong>Infractions</strong><small>Manage staff disciplinary records.</small></div>
-                  <b>SOON</b>
-                </div>
-                <div class="dashboard-action">
-                  <span class="action-number">04</span>
-                  <div><strong>Promotions</strong><small>Handle role changes using the MSRP hierarchy.</small></div>
-                  <b>SOON</b>
-                </div>
-              </div>
-
-              <div class="dashboard-security">
-                <span class="security-shield">✓</span>
-                <div><strong>Secure staff session</strong><small>Access is verified against your current Discord roles. Sensitive actions will remain disabled until they are protected by the MSRP server-side API.</small></div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+     </main>
 
   <script src="auth-config.js?v=20261007-3"></script>
   <script src="script.js?v=20261007-3"></script>
