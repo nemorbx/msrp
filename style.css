@@ -1577,3 +1577,11 @@ html,body{
 .member-nav-item strong{font-size:12px}
 .member-nav-item small{font-size:9px;line-height:1.2;margin-top:5px}
 .member-nav-item{min-height:61px}
+
+
+/* Final member sidebar typography increase */
+.member-nav-item strong{font-size:14px!important;line-height:1.15!important}
+.member-nav-item small{font-size:11px!important;line-height:1.25!important;margin-top:5px!important}
+.member-sidebar-label{font-size:11px!important}
+.sidebar-dashboard-title strong{font-size:16px!important}
+.sidebar-dashboard-title small{font-size:9px!important}
