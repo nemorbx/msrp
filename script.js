@@ -332,22 +332,31 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* Temporary dashboard visual editor: select panels and resize them with edge/corner handles. */
+  /* Temporary dashboard layout editor: panels, child components, movement, resizing and typography. */
   function setupDashboardEditor(){
     const toggle = $("dashboardEditToggle");
     if (!toggle || !memberDash) return;
 
-    const editorTargets = [
-      ".dashboard-page-title",".dashboard-page-title > span",".dashboard-page-title > h1",
-      ".account-bar",".account-identity",".account-actions",".member-sidebar",".member-sidebar-section",
-      ".member-nav-item",".member-sidebar-user",".member-welcome",".member-welcome-copy",
-      ".member-welcome-copy .welcome-heading-row > div > span",".member-welcome h1",".member-welcome p",
-      ".player-ring",".member-stat-grid",".member-stat-card",".member-stat-card span",".member-stat-card strong",
+    const panelSelectors = [
+      ".dashboard-page-title",".account-bar",".account-identity",".account-actions",
+      ".member-sidebar",".member-sidebar-section",".member-sidebar-user",".member-main",
+      ".member-welcome",".member-welcome-copy",".welcome-heading-row",
+      ".player-ring",".member-stat-grid",".member-stat-card",
       "#dashboardCommunityView","#dashboardLeaderboardView","#dashboardInventoryView",
       ".dashboard-community-banner",".leaderboard-panel",".inventory-banner"
     ];
 
-    const targets = [...new Set(editorTargets.flatMap(sel => [...memberDash.querySelectorAll(sel)]))];
+    const panels = [...new Set(panelSelectors.flatMap(sel => [...memberDash.querySelectorAll(sel)]))];
+
+    /* Every visible dashboard component can be selected when its parent panel is unlocked. */
+    const allElements = [...memberDash.querySelectorAll("*")].filter(el => {
+      if (!(el instanceof HTMLElement)) return false;
+      if (el.closest(".dashboard-editor-ui,.dashboard-editor-note,.dashboard-editor-handle")) return false;
+      const r=el.getBoundingClientRect();
+      return r.width>0 && r.height>0;
+    });
+
+    const targets = [...new Set([...panels,...allElements])];
 
     targets.forEach((el,i)=>{
       el.dataset.editorTarget = String(i);
@@ -355,41 +364,69 @@ document.addEventListener("DOMContentLoaded", () => {
       if(saved){
         try{
           const v=JSON.parse(saved);
+          if(v.x!=null) el.style.setProperty("--editor-x",v.x+"px");
+          if(v.y!=null) el.style.setProperty("--editor-y",v.y+"px");
           if(v.width) el.style.width=v.width+"px";
           if(v.height) el.style.height=v.height+"px";
           if(v.fontSize) el.style.fontSize=v.fontSize+"px";
+          if(v.lineHeight) el.style.lineHeight=v.lineHeight;
+          if(v.letterSpacing) el.style.letterSpacing=v.letterSpacing+"px";
+          if(v.radius!=null) el.style.borderRadius=v.radius+"px";
+          if(v.padding) el.style.padding=v.padding;
         }catch{}
       }
     });
 
     const ui=document.createElement("div");
     ui.className="dashboard-editor-ui";
-    ui.innerHTML='<label>W <input id="editorWidth" type="number" min="1" step="1"></label><label>H <input id="editorHeight" type="number" min="1" step="1"></label><label>Text <input id="editorFont" type="number" min="1" step=".5"></label><button type="button" id="editorReset">Reset</button><button type="button" id="editorDone">Done</button>';
+    ui.innerHTML=
+      '<span class="editor-tool-title">SELECTED</span>'+
+      '<label>W <input id="editorWidth" type="number" min="1" step="1"></label>'+
+      '<label>H <input id="editorHeight" type="number" min="1" step="1"></label>'+
+      '<label>Text <input id="editorFont" type="number" min="1" step=".5"></label>'+
+      '<label>Line <input id="editorLine" type="number" min=".1" step=".1"></label>'+
+      '<label>Spacing <input id="editorSpacing" type="number" step=".1"></label>'+
+      '<label>Radius <input id="editorRadius" type="number" min="0" step="1"></label>'+
+      '<button type="button" id="editorMoveUp">↑</button>'+
+      '<button type="button" id="editorMoveDown">↓</button>'+
+      '<button type="button" id="editorMoveLeft">←</button>'+
+      '<button type="button" id="editorMoveRight">→</button>'+
+      '<button type="button" id="editorEditInside">Edit Inside</button>'+
+      '<button type="button" id="editorReset">Reset</button>'+
+      '<button type="button" id="editorDone">Done</button>';
     document.body.appendChild(ui);
 
     const note=document.createElement("div");
     note.className="dashboard-editor-note";
-    note.textContent="EDIT MODE — select an element, then drag its blue edge or corner handles to resize";
+    note.textContent="EDIT MODE — select a panel, resize its edges/corners, or use the arrow controls to move it";
     document.body.appendChild(note);
 
     let selected=null;
     let resizeState=null;
+    let insideMode=false;
 
     function box(el){ return el.getBoundingClientRect(); }
 
     function save(el){
       if(!el) return;
       const id=el.dataset.editorTarget;
+      const cs=getComputedStyle(el);
+      const x=parseFloat(cs.getPropertyValue("--editor-x"))||0;
+      const y=parseFloat(cs.getPropertyValue("--editor-y"))||0;
       localStorage.setItem("msrp_dashboard_editor_"+id,JSON.stringify({
-        width:el.offsetWidth,
-        height:el.offsetHeight,
-        fontSize:parseFloat(getComputedStyle(el).fontSize)
+        x,y,width:el.offsetWidth,height:el.offsetHeight,
+        fontSize:parseFloat(cs.fontSize),lineHeight:cs.lineHeight,
+        letterSpacing:parseFloat(cs.letterSpacing)||0,
+        radius:parseFloat(cs.borderTopLeftRadius)||0,
+        padding:cs.padding
       }));
     }
 
     function clearHandles(){
       document.querySelectorAll(".dashboard-editor-handle").forEach(x=>x.remove());
     }
+
+    function isPanel(el){ return panels.includes(el); }
 
     function select(el){
       if(!el) return;
@@ -398,34 +435,36 @@ document.addEventListener("DOMContentLoaded", () => {
       selected=el;
       selected.dataset.editorSelected="true";
 
-      const r=box(selected);
+      const r=box(selected), cs=getComputedStyle(selected);
       $("editorWidth").value=Math.round(r.width);
       $("editorHeight").value=Math.round(r.height);
-      $("editorFont").value=parseFloat(getComputedStyle(selected).fontSize).toFixed(1).replace(/\\.0$/,"");
+      $("editorFont").value=parseFloat(cs.fontSize).toFixed(1).replace(/\\.0$/,"");
+      $("editorLine").value=cs.lineHeight==="normal" ? "1.2" : parseFloat(cs.lineHeight);
+      $("editorSpacing").value=parseFloat(cs.letterSpacing)||0;
+      $("editorRadius").value=parseFloat(cs.borderTopLeftRadius)||0;
+      $("editorEditInside").textContent = insideMode ? "Lock Inside" : "Edit Inside";
 
       ["n","s","e","w","nw","ne","sw","se"].forEach(dir=>{
         const handle=document.createElement("div");
         handle.className="dashboard-editor-handle dashboard-editor-handle-"+dir;
         handle.dataset.resize=dir;
-        handle.title="Resize "+dir;
         selected.appendChild(handle);
-
         handle.addEventListener("pointerdown",e=>{
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault(); e.stopPropagation();
           const rect=box(selected);
-          resizeState={
-            dir,
-            startX:e.clientX,
-            startY:e.clientY,
-            startW:rect.width,
-            startH:rect.height,
-            startLeft:rect.left,
-            startTop:rect.top
-          };
-          handle.setPointerCapture?.(e.pointerId);
+          resizeState={dir,startX:e.clientX,startY:e.clientY,startW:rect.width,startH:rect.height};
         });
       });
+    }
+
+    function move(dx,dy){
+      if(!selected) return;
+      const cs=getComputedStyle(selected);
+      const x=(parseFloat(cs.getPropertyValue("--editor-x"))||0)+dx;
+      const y=(parseFloat(cs.getPropertyValue("--editor-y"))||0)+dy;
+      selected.style.setProperty("--editor-x",x+"px");
+      selected.style.setProperty("--editor-y",y+"px");
+      save(selected);
     }
 
     function finishResize(){
@@ -437,6 +476,14 @@ document.addEventListener("DOMContentLoaded", () => {
       el.addEventListener("click",e=>{
         if(!document.body.classList.contains("dashboard-editing")) return;
         if(e.target.closest(".dashboard-editor-handle")) return;
+
+        /* Selecting a panel locks everything inside it until Edit Inside is pressed. */
+        if(selected && isPanel(selected) && !insideMode && selected.contains(el) && el!==selected){
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
         e.preventDefault();
         e.stopPropagation();
         select(el);
@@ -445,57 +492,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("pointermove",e=>{
       if(!resizeState || !selected) return;
-
-      const d=resizeState;
-      const dx=e.clientX-d.startX;
-      const dy=e.clientY-d.startY;
-      const minW=40;
-      const minH=24;
-
-      let w=d.startW;
-      let h=d.startH;
-
+      const d=resizeState,dx=e.clientX-d.startX,dy=e.clientY-d.startY;
+      const minW=40,minH=24;
+      let w=d.startW,h=d.startH;
       if(d.dir.includes("e")) w=Math.max(minW,d.startW+dx);
       if(d.dir.includes("w")) w=Math.max(minW,d.startW-dx);
       if(d.dir.includes("s")) h=Math.max(minH,d.startH+dy);
       if(d.dir.includes("n")) h=Math.max(minH,d.startH-dy);
-
       selected.style.width=Math.round(w)+"px";
       selected.style.height=Math.round(h)+"px";
-
-      if(d.dir.includes("w")){
-        const leftShift=d.startW-w;
-        selected.style.marginLeft=Math.round(leftShift)+"px";
-      }
-      if(d.dir.includes("n")){
-        const topShift=d.startH-h;
-        selected.style.marginTop=Math.round(topShift)+"px";
-      }
-
       $("editorWidth").value=Math.round(w);
       $("editorHeight").value=Math.round(h);
     });
 
     document.addEventListener("pointerup",finishResize);
 
-    $("editorWidth").addEventListener("input",e=>{
-      if(selected && e.target.value){
-        selected.style.width=Number(e.target.value)+"px";
-        save(selected);
-      }
+    document.addEventListener("keydown",e=>{
+      if(!document.body.classList.contains("dashboard-editing") || !selected) return;
+      if(e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const step=e.shiftKey ? 10 : 1;
+      if(e.key==="ArrowUp"){e.preventDefault();move(0,-step)}
+      if(e.key==="ArrowDown"){e.preventDefault();move(0,step)}
+      if(e.key==="ArrowLeft"){e.preventDefault();move(-step,0)}
+      if(e.key==="ArrowRight"){e.preventDefault();move(step,0)}
     });
-    $("editorHeight").addEventListener("input",e=>{
-      if(selected && e.target.value){
-        selected.style.height=Number(e.target.value)+"px";
-        save(selected);
-      }
-    });
-    $("editorFont").addEventListener("input",e=>{
-      if(selected && e.target.value){
-        selected.style.fontSize=Number(e.target.value)+"px";
-        save(selected);
-      }
-    });
+
+    $("editorWidth").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.width=Number(e.target.value)+"px";save(selected)}});
+    $("editorHeight").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.height=Number(e.target.value)+"px";save(selected)}});
+    $("editorFont").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.fontSize=Number(e.target.value)+"px";save(selected)}});
+    $("editorLine").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.lineHeight=e.target.value;save(selected)}});
+    $("editorSpacing").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.letterSpacing=Number(e.target.value)+"px";save(selected)}});
+    $("editorRadius").addEventListener("input",e=>{if(selected&&e.target.value!==""){selected.style.borderRadius=Number(e.target.value)+"px";save(selected)}});
+
+    $("editorMoveUp").onclick=()=>move(0,-1);
+    $("editorMoveDown").onclick=()=>move(0,1);
+    $("editorMoveLeft").onclick=()=>move(-1,0);
+    $("editorMoveRight").onclick=()=>move(1,0);
+
+    $("editorEditInside").onclick=()=>{
+      insideMode=!insideMode;
+      $("editorEditInside").textContent=insideMode ? "Lock Inside" : "Edit Inside";
+      if(!insideMode && selected) select(selected);
+    };
 
     $("editorReset").onclick=()=>{
       targets.forEach(el=>localStorage.removeItem("msrp_dashboard_editor_"+el.dataset.editorTarget));
@@ -509,10 +547,10 @@ document.addEventListener("DOMContentLoaded", () => {
       clearHandles();
       selected=null;
       resizeState=null;
+      insideMode=false;
     }
 
     $("editorDone").onclick=exitEdit;
-
     toggle.hidden=false;
     toggle.onclick=()=>{
       if(document.body.classList.contains("dashboard-editing")) exitEdit();
