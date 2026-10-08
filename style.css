@@ -1610,7 +1610,8 @@ html,body{
 
 /* =========================================================
    MSRP MEMBER DASHBOARD — AUTHORITATIVE DESKTOP LAYOUT
-   Dashboard-only. Homepage, shop, and about are untouched.
+   Dashboard-only. Match the LANCRP reference proportions and hierarchy
+   while keeping MSRP's existing blue branding and existing site header.
    ========================================================= */
 @media (min-width:901px){
   body:has(.dashboard-page.active) .dashboard-page{
@@ -1629,13 +1630,46 @@ html,body{
     zoom:1!important;
   }
 
+  /* Small centered page label + title, matching the reference hierarchy. */
   body:has(.dashboard-page.active) .dashboard-page-title{
     width:1059px!important;
     max-width:1059px!important;
-    margin:30px 0 31px!important;
+    margin:30px 0 27px!important;
+    text-align:center!important;
     box-sizing:border-box!important;
   }
+  body:has(.dashboard-page.active) .dashboard-page-title>span{
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    padding:6px 10px!important;
+    min-height:23px!important;
+    border:1px solid rgba(46,168,255,.30)!important;
+    border-radius:999px!important;
+    background:rgba(46,168,255,.08)!important;
+    color:#55c5ff!important;
+    font-size:7px!important;
+    line-height:1!important;
+    font-weight:900!important;
+    letter-spacing:1.2px!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title>span i{
+    width:5px!important;
+    height:5px!important;
+    border-radius:50%!important;
+    background:#55c5ff!important;
+    box-shadow:0 0 9px rgba(46,168,255,.7)!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title h1{
+    margin-top:8px!important;
+    font-size:32px!important;
+    line-height:1!important;
+    letter-spacing:-1.4px!important;
+    font-weight:800!important;
+    color:#f3f6f8!important;
+  }
 
+  /* Reference account bar: one clean full-width control row. */
   body:has(.dashboard-page.active) .account-bar{
     width:1107px!important;
     max-width:1107px!important;
@@ -1643,185 +1677,69 @@ html,body{
     min-height:76px!important;
     margin:0 0 24px -24px!important;
     padding:10px 16px!important;
+    border:1px solid rgba(255,255,255,.11)!important;
+    border-radius:15px!important;
     box-sizing:border-box!important;
   }
-
-  body:has(.dashboard-page.active) .dashboard-body{
-    width:1059px!important;
-    max-width:1059px!important;
-    display:grid!important;
-    grid-template-columns:240px 787px!important;
-    gap:0 32px!important;
-    margin:0!important;
-    box-sizing:border-box!important;
-    align-items:start!important;
+  body:has(.dashboard-page.active) .account-avatar{
+    width:52px!important;
+    height:52px!important;
+    border-radius:50%!important;
   }
-
-  body:has(.dashboard-page.active) .member-sidebar{
-    width:240px!important;
-    min-width:240px!important;
-    max-width:240px!important;
-    height:1134px!important;
-    min-height:1134px!important;
-    padding:12px!important;
-    box-sizing:border-box!important;
-  }
-
-  body:has(.dashboard-page.active) .member-main{
-    width:787px!important;
-    min-width:787px!important;
-    max-width:787px!important;
-    box-sizing:border-box!important;
-  }
-
-  body:has(.dashboard-page.active) .member-welcome{
-    width:787px!important;
-    max-width:787px!important;
-    height:150px!important;
-    min-height:150px!important;
-    max-height:150px!important;
-    padding:24px 28px!important;
-    border-radius:16px!important;
-    box-sizing:border-box!important;
-  }
-
-  body:has(.dashboard-page.active) .member-welcome-copy{
-    width:auto!important;
-    max-width:calc(100% - 145px)!important;
-  }
-
-  body:has(.dashboard-page.active) .welcome-heading-row{gap:14px!important}
-
-  body:has(.dashboard-page.active) .welcome-avatar{
-    width:57px!important;
-    height:57px!important;
-    flex:0 0 57px!important;
-  }
-
-  body:has(.dashboard-page.active) .member-welcome h1{
-    font-size:29px!important;
-    line-height:1!important;
-    margin-top:8px!important;
-  }
-
-  body:has(.dashboard-page.active) .member-welcome p{
-    margin-top:8px!important;
-    font-size:10px!important;
-    line-height:1.3!important;
-  }
-
-  body:has(.dashboard-page.active) .player-ring{
-    width:100px!important;
-    height:100px!important;
-    flex:0 0 100px!important;
-  }
-
-  body:has(.dashboard-page.active) .member-stat-grid{
-    width:787px!important;
-    max-width:787px!important;
-    box-sizing:border-box!important;
-  }
-
-  body:has(.dashboard-page.active) .member-sidebar-label-row{
-    padding:0 11px 8px!important;
-  }
-
-  body:has(.dashboard-page.active) .member-sidebar-label{
-    font-size:10px!important;
-  }
-
-  body:has(.dashboard-page.active) .member-nav-item{
-    height:56px!important;
-    min-height:56px!important;
-    padding:0 11px!important;
+  body:has(.dashboard-page.active) .account-identity{
     gap:11px!important;
-    border-radius:12px!important;
-    margin:0!important;
-    box-sizing:border-box!important;
   }
-
-  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:12px!important}
-  body:has(.dashboard-page.active) .member-nav-item>div small{font-size:8px!important}
-
-  body:has(.dashboard-page.active) .sidebar-nav-icon{
-    width:39px!important;
-    height:39px!important;
-    min-width:39px!important;
-    flex:0 0 39px!important;
-    border-radius:11px!important;
+  body:has(.dashboard-page.active) .account-identity span{
+    font-size:7px!important;
   }
-
-  body:has(.dashboard-page.active) .sidebar-nav-icon svg{
-    width:19px!important;
-    height:19px!important;
+  body:has(.dashboard-page.active) .account-identity strong{
+    font-size:12px!important;
   }
-
-  body:has(.dashboard-page.active) .site-header{
-    width:1107px!important;
-    max-width:calc(100vw - 32px)!important;
+  body:has(.dashboard-page.active) .account-identity em{
+    font-size:8px!important;
+    padding:5px 8px!important;
+    border-radius:999px!important;
+    background:rgba(46,168,255,.12)!important;
+    border:1px solid rgba(46,168,255,.38)!important;
+    color:#55c5ff!important;
+  }
+  body:has(.dashboard-page.active) .account-actions{
     height:58px!important;
     min-height:58px!important;
-    margin:10px auto 0!important;
+    min-width:330px!important;
+    padding:4px!important;
+    gap:4px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:12px!important;
+    background:rgba(255,255,255,.025)!important;
     box-sizing:border-box!important;
   }
-}
-
-@media (max-width:900px){
-  body:has(.dashboard-page.active) .dashboard-page{
-    width:100%!important;
-    max-width:100%!important;
-    margin:0!important;
+  body:has(.dashboard-page.active) .account-action{
+    height:48px!important;
+    min-width:45px!important;
+    border-radius:9px!important;
+    font-size:9px!important;
   }
-}
-/* Global edge-padding cleanup removed: dashboard-only rules below. */
-
-
-/* =========================================================
-   DASHBOARD EDGE + LANCRP PROPORTION LOCK
-   Dashboard only. Do not affect the homepage or other pages.
-   ========================================================= */
-@media (min-width:901px){
-  /* The stylesheet previously applied body zoom: .9. Cancel that only
-     while the member dashboard is the active page so measurements are
-     rendered at their actual CSS dimensions. */
-  body:has(.dashboard-page.active){
-    zoom:1!important;
+  body:has(.dashboard-page.active) .account-notification{
+    width:48px!important;
+    min-width:48px!important;
+    padding:0!important;
   }
-
-  body:has(.dashboard-page.active) .dashboard-page{
-    width:100%!important;
-    max-width:none!important;
-    margin:0!important;
-    padding:0 0 70px!important;
-    box-sizing:border-box!important;
+  body:has(.dashboard-page.active) .account-divider{
+    width:1px!important;
+    height:28px!important;
+    margin:0 3px!important;
+    background:rgba(255,255,255,.10)!important;
+  }
+  body:has(.dashboard-page.active) .account-action-text{
+    min-width:108px!important;
+    padding:0 14px!important;
+  }
+  body:has(.dashboard-page.active) .account-logout{
+    min-width:94px!important;
   }
 
-  body:has(.dashboard-page.active) .member-dashboard{
-    width:1059px!important;
-    max-width:1059px!important;
-    margin:0 auto!important;
-    box-sizing:border-box!important;
-  }
-
-  body:has(.dashboard-page.active) .dashboard-page-title{
-    width:1059px!important;
-    max-width:1059px!important;
-    margin:0 0 32px!important;
-    box-sizing:border-box!important;
-  }
-
-  /* Reference account/admin bar: 1107px wide, 76px tall,
-     extending 24px past the 1059px dashboard shell on each side. */
-  body:has(.dashboard-page.active) .account-bar{
-    width:1107px!important;
-    max-width:1107px!important;
-    height:76px!important;
-    min-height:76px!important;
-    margin:0 0 24px -24px!important;
-    padding:10px 16px!important;
-    box-sizing:border-box!important;
-  }
-
+  /* Reference content geometry: 240px sidebar + 32px gap + 787px main. */
   body:has(.dashboard-page.active) .dashboard-body{
     width:1059px!important;
     max-width:1059px!important;
@@ -1837,10 +1755,65 @@ html,body{
     width:240px!important;
     min-width:240px!important;
     max-width:240px!important;
-    min-height:1134px!important;
     height:1134px!important;
-    box-sizing:border-box!important;
+    min-height:1134px!important;
     padding:12px!important;
+    border-radius:17px!important;
+    box-sizing:border-box!important;
+  }
+
+  body:has(.dashboard-page.active) .sidebar-dashboard-title{
+    padding:8px 8px 16px!important;
+    gap:10px!important;
+  }
+  body:has(.dashboard-page.active) .sidebar-dashboard-title strong{font-size:14px!important}
+  body:has(.dashboard-page.active) .sidebar-dashboard-title small{font-size:8px!important;margin-top:4px!important}
+  body:has(.dashboard-page.active) .sidebar-divider{margin:0 0 16px!important}
+
+  body:has(.dashboard-page.active) .member-sidebar-label-row{
+    padding:0 11px 8px!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar-label{
+    font-size:9px!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar-section{
+    display:grid!important;
+    gap:4px!important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item{
+    width:100%!important;
+    height:56px!important;
+    min-height:56px!important;
+    margin:0!important;
+    padding:0 11px!important;
+    gap:11px!important;
+    border-radius:12px!important;
+    box-sizing:border-box!important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:11px!important}
+  body:has(.dashboard-page.active) .member-nav-item>div small{font-size:8px!important}
+  body:has(.dashboard-page.active) .sidebar-nav-icon{
+    width:39px!important;
+    height:39px!important;
+    min-width:39px!important;
+    flex:0 0 39px!important;
+    border-radius:11px!important;
+  }
+  body:has(.dashboard-page.active) .sidebar-nav-icon svg{
+    width:19px!important;
+    height:19px!important;
+  }
+
+  /* Clean MSRP-blue active state, without oversized visual blocks. */
+  body:has(.dashboard-page.active) .member-nav-item.active{
+    background:rgba(46,168,255,.08)!important;
+    border-color:rgba(46,168,255,.24)!important;
+    box-shadow:inset 3px 0 0 #2ea8ff!important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item.active .sidebar-nav-icon{
+    background:#2ea8ff!important;
+    border-color:#2ea8ff!important;
+    color:#06111a!important;
   }
 
   body:has(.dashboard-page.active) .member-main{
@@ -1850,6 +1823,7 @@ html,body{
     box-sizing:border-box!important;
   }
 
+  /* Reference welcome panel: compact, clean, and proportionate. */
   body:has(.dashboard-page.active) .member-welcome{
     width:787px!important;
     max-width:787px!important;
@@ -1857,20 +1831,60 @@ html,body{
     min-height:150px!important;
     max-height:150px!important;
     padding:24px 28px!important;
-    box-sizing:border-box!important;
     border-radius:16px!important;
+    box-sizing:border-box!important;
   }
+  body:has(.dashboard-page.active) .member-welcome-copy{
+    width:auto!important;
+    max-width:calc(100% - 145px)!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome-copy>span{
+    font-size:7px!important;
+    letter-spacing:1.6px!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome h1{
+    font-size:25px!important;
+    line-height:1!important;
+    letter-spacing:-.8px!important;
+    margin-top:8px!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome p{
+    margin-top:7px!important;
+    font-size:9px!important;
+    line-height:1.45!important;
+  }
+  body:has(.dashboard-page.active) .player-ring{
+    width:100px!important;
+    height:100px!important;
+    flex:0 0 100px!important;
+    border-width:7px!important;
+  }
+  body:has(.dashboard-page.active) .player-ring strong{font-size:19px!important}
+  body:has(.dashboard-page.active) .player-ring span{font-size:6px!important}
 
   body:has(.dashboard-page.active) .member-stat-grid{
     width:787px!important;
     max-width:787px!important;
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:10px!important;
+    margin-top:11px!important;
     box-sizing:border-box!important;
   }
+  body:has(.dashboard-page.active) .member-stat-card{
+    min-height:100px!important;
+    border-radius:13px!important;
+    padding:17px 18px!important;
+  }
+  body:has(.dashboard-page.active) .member-stat-card span{
+    font-size:7px!important;
+  }
+  body:has(.dashboard-page.active) .member-stat-card strong{
+    font-size:27px!important;
+    margin-top:12px!important;
+  }
 
-  /* Keep the existing MSRP site header, but align it to the same
-     1107px reference width. */
+  /* Keep the existing MSRP site header. No second dashboard header. */
   body:has(.dashboard-page.active) .site-header{
-    display:flex!important;
     width:1107px!important;
     max-width:calc(100vw - 32px)!important;
     height:58px!important;
@@ -1881,7 +1895,6 @@ html,body{
 }
 
 @media (max-width:900px){
-  /* Dashboard mobile remains independent of the desktop reference lock. */
   body:has(.dashboard-page.active) .dashboard-page{
     width:100%!important;
     max-width:100%!important;
