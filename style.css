@@ -1836,10 +1836,21 @@ html,body{
     letter-spacing:2px!important;
   }
   body:has(.dashboard-page.active) .member-welcome h1{
-    font-size:34px!important;
-    line-height:1.05!important;
-    letter-spacing:-1.2px!important;
+    font-size:25px!important;
+    line-height:31.25px!important;
+    letter-spacing:-.35px!important;
     margin-top:9px!important;
+    font-weight:700!important;
+    color:#f5f8fb!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome h1 strong{
+    color:#f5f8fb!important;
+    font-weight:700!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome h1 em{
+    color:#2ea8ff!important;
+    font-style:normal!important;
+    font-weight:700!important;
   }
   body:has(.dashboard-page.active) .member-welcome p{
     margin-top:9px!important;
