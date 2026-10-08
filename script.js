@@ -79,6 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const sidebarHomeButton = $("sidebarHomeButton");
+  if (sidebarHomeButton) {
+    sidebarHomeButton.addEventListener("click", () => page("home"));
+  }
+
   const mobileButton = $("mobileNavButton");
   if (mobileButton) {
     mobileButton.onclick = () => {
@@ -208,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ["recordName", name],["recordRank", memberRank],["recordStatus", isStaff ? "Verified Staff" : "Verified"]]
       .forEach(([id, value]) => { if ($(id)) $(id).textContent = value; });
 
-    if ($("sidebarRank")) $("sidebarRank").textContent = memberRank;
+    if ($("sidebarRank")) $("sidebarRank").textContent = isStaff ? memberRank : "Citizen";
     if ($("memberType")) $("memberType").textContent = isStaff ? "Staff" : "Member";
     if ($("memberStatus")) $("memberStatus").textContent = isStaff ? "Verified Staff" : "Verified Member";
     if ($("memberStatusDetail")) $("memberStatusDetail").textContent = isStaff ? "Staff role detected on Discord" : "Discord account connected";
