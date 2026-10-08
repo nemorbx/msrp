@@ -1621,9 +1621,10 @@ html,body{
     box-sizing:border-box!important;
   }
 
+  /* The reference uses one continuous dashboard shell; content bars share its full width. */
   body:has(.dashboard-page.active) .member-dashboard{
-    width:min(1526px,calc(100vw - 64px))!important;
-    max-width:1526px!important;
+    width:calc(100vw - 32px)!important;
+    max-width:none!important;
     margin:0 auto!important;
     box-sizing:border-box!important;
     zoom:1!important;
@@ -1657,11 +1658,11 @@ html,body{
   /* Full-width account strip, matching the reference. */
   /* LANCRP reference: admin-bar is exactly 1059 × 76. */
   body:has(.dashboard-page.active) .account-bar{
-    width:1059px!important;
-    max-width:1059px!important;
+    width:100%!important;
+    max-width:none!important;
     height:76px!important;
     min-height:76px!important;
-    margin:8px auto 24px!important;
+    margin:8px 0 24px!important;
     padding:12px 14px 12px 16px!important;
     border-radius:15px!important;
     box-sizing:border-box!important;
@@ -1729,20 +1730,20 @@ html,body{
     width:100%!important;
     max-width:none!important;
     display:grid!important;
-    grid-template-columns:308px minmax(0,1fr)!important;
-    column-gap:40px!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:32px!important;
     margin:0!important;
     box-sizing:border-box!important;
     align-items:start!important;
   }
   body:has(.dashboard-page.active) .member-sidebar{
-    width:308px!important;
-    min-width:308px!important;
-    max-width:308px!important;
+    width:240px!important;
+    min-width:240px!important;
+    max-width:240px!important;
     height:720px!important;
     min-height:720px!important;
-    padding:15px!important;
-    border-radius:19px!important;
+    padding:12px!important;
+    border-radius:17px!important;
     box-sizing:border-box!important;
   }
   body:has(.dashboard-page.active) .sidebar-dashboard-title{
@@ -1750,10 +1751,10 @@ html,body{
     gap:12px!important;
   }
   body:has(.dashboard-page.active) .sidebar-mark{
-    width:47px!important;height:47px!important;
-    border-radius:13px!important;
+    width:39px!important;height:39px!important;
+    border-radius:11px!important;
     overflow:hidden!important;
-    flex:0 0 47px!important;
+    flex:0 0 39px!important;
   }
   body:has(.dashboard-page.active) .sidebar-mark img{
     width:100%!important;height:100%!important;
@@ -1761,26 +1762,26 @@ html,body{
     object-fit:contain!important;
     display:block!important;
   }
-  body:has(.dashboard-page.active) .sidebar-dashboard-title strong{font-size:17px!important}
-  body:has(.dashboard-page.active) .sidebar-dashboard-title small{font-size:9px!important;margin-top:4px!important}
+  body:has(.dashboard-page.active) .sidebar-dashboard-title strong{font-size:15px!important}
+  body:has(.dashboard-page.active) .sidebar-dashboard-title small{font-size:8px!important;margin-top:4px!important}
   body:has(.dashboard-page.active) .sidebar-divider{margin:0 0 18px!important}
   body:has(.dashboard-page.active) .member-sidebar-label-row{padding:0 14px 9px!important}
   body:has(.dashboard-page.active) .member-sidebar-label{font-size:10px!important}
   body:has(.dashboard-page.active) .member-sidebar-section{gap:4px!important}
   body:has(.dashboard-page.active) .member-nav-item{
-    height:62px!important;
-    min-height:62px!important;
+    height:56px!important;
+    min-height:56px!important;
     margin:0!important;
-    padding:0 13px!important;
-    gap:12px!important;
-    border-radius:13px!important;
-  }
-  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:13px!important}
-  body:has(.dashboard-page.active) .member-nav-item>div small{font-size:9px!important}
-  body:has(.dashboard-page.active) .sidebar-nav-icon{
-    width:42px!important;height:42px!important;
-    min-width:42px!important;flex:0 0 42px!important;
+    padding:0 11px!important;
+    gap:11px!important;
     border-radius:12px!important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:12px!important}
+  body:has(.dashboard-page.active) .member-nav-item>div small{font-size:8px!important}
+  body:has(.dashboard-page.active) .sidebar-nav-icon{
+    width:39px!important;height:39px!important;
+    min-width:39px!important;flex:0 0 39px!important;
+    border-radius:11px!important;
   }
   body:has(.dashboard-page.active) .sidebar-nav-icon svg{
     width:20px!important;height:20px!important;
