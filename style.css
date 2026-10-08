@@ -3348,3 +3348,29 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
 @media(max-width:760px){
   .dashboard-page .member-welcome h1{font-size:25px!important;line-height:31.25px!important;}
 }
+
+
+/* Final visual scale correction for the welcome card. */
+.dashboard-page .member-welcome h1{
+  font-family:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-size:30px!important;
+  line-height:37.5px!important;
+  font-weight:600!important;
+}
+.dashboard-page .welcome-heading-row>div>span{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace!important;
+  font-size:12px!important;
+  line-height:16px!important;
+  font-weight:700!important;
+  letter-spacing:1.7px!important;
+  color:#2EA8FF!important;
+}
+.dashboard-page .member-welcome p{
+  font-family:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-size:12px!important;
+  line-height:18px!important;
+}
+@media(max-width:760px){
+  .dashboard-page .member-welcome h1{font-size:26px!important;line-height:32.5px!important;}
+  .dashboard-page .welcome-heading-row>div>span{font-size:10px!important;}
+}
