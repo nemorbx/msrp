@@ -3453,3 +3453,50 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     display:block!important;
   }
 }
+
+
+/* HARD OVERRIDE — compact desktop navigation header. */
+@media(min-width:901px){
+  .site-header{
+    height:58px!important;
+    min-height:58px!important;
+    margin-top:10px!important;
+    padding:0 16px!important;
+    border-radius:29px!important;
+  }
+  .site-brand{gap:9px!important;}
+  .site-logo{width:32px!important;height:32px!important;border-radius:8px!important;}
+  .site-brand-copy strong{font-size:11px!important;}
+  .site-brand-copy span{font-size:7px!important;margin-top:3px!important;}
+  .site-nav{
+    height:58px!important;
+    gap:22px!important;
+  }
+  .site-nav-link{
+    height:32px!important;
+    min-height:32px!important;
+    padding:4px 8px!important;
+    font-size:13px!important;
+    line-height:18px!important;
+    font-weight:700!important;
+  }
+  .discord-button{
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 17px!important;
+    gap:8px!important;
+    border:1.5px solid rgba(255,255,255,.48)!important;
+    border-radius:999px!important;
+    background:transparent!important;
+    color:#f5f7f9!important;
+    font-size:13px!important;
+    line-height:18px!important;
+    font-weight:700!important;
+    box-shadow:none!important;
+  }
+  .discord-button svg{
+    width:18px!important;
+    height:18px!important;
+    flex:0 0 18px!important;
+  }
+}
