@@ -2017,3 +2017,27 @@ html::-webkit-scrollbar-thumb:hover{
     background:rgba(130,144,159,.22)!important;
   }
 }
+
+/* Welcome eyebrow — match the LANCRP reference size/spacing. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-welcome-copy>span{
+    display:inline-flex!important;
+    width:143.6px!important;
+    height:28px!important;
+    box-sizing:border-box!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0 0 10px!important;
+    padding:5px 12px!important;
+    border-radius:999px!important;
+    background:rgba(46,168,255,.14)!important;
+    border:1px solid rgba(46,168,255,.30)!important;
+    color:#2ea8ff!important;
+    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace!important;
+    font-size:10px!important;
+    line-height:18px!important;
+    letter-spacing:1.6px!important;
+    font-weight:700!important;
+    white-space:nowrap!important;
+  }
+}
