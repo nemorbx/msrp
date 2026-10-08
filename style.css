@@ -1634,3 +1634,36 @@ html,body{
     gap:22px!important;
   }
 }
+
+
+/* Member dashboard data placeholders + reference stat colors */
+.member-welcome h1 em{
+  font-family:inherit!important;
+  font-style:normal!important;
+  font-weight:700!important;
+  color:#f0f4f6!important;
+}
+.member-stat-card.stat-players{
+  border-top-color:#4be08c!important;
+}
+.member-stat-card.stat-players span,
+.member-stat-card.stat-players strong{
+  color:#4be08c!important;
+}
+.member-stat-card.stat-queue{
+  border-top-color:#f1c84b!important;
+}
+.member-stat-card.stat-queue span,
+.member-stat-card.stat-queue strong{
+  color:#f1c84b!important;
+}
+.member-stat-card.stat-vehicles{
+  border-top-color:#ef625d!important;
+}
+.member-stat-card.stat-vehicles span,
+.member-stat-card.stat-vehicles strong{
+  color:#ef625d!important;
+}
+.member-stat-card strong{
+  font-variant-numeric:tabular-nums;
+}
