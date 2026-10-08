@@ -4154,3 +4154,92 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     box-sizing:border-box!important;
   }
 }
+
+
+/* DESKTOP REFERENCE FIX — use this at normal laptop widths too.
+   The previous rules started at 1101px, so a scaled browser viewport could
+   bypass them completely. */
+@media (min-width:901px){
+  .dashboard-page .member-dashboard{
+    width:min(1059px,calc(100% - 32px))!important;
+    max-width:none!important;
+    margin:0 auto!important;
+  }
+
+  .dashboard-page .account-bar{
+    width:min(1107px,calc(100vw - 32px))!important;
+    max-width:none!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:0 auto 24px!important;
+    padding:10px 16px!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .dashboard-body{
+    width:100%!important;
+    max-width:none!important;
+    display:grid!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:32px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .member-sidebar{
+    width:240px!important;
+    min-width:240px!important;
+    height:1134px!important;
+    min-height:1134px!important;
+    padding:12px!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .member-main{
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+
+  .dashboard-page .member-welcome,
+  .dashboard-page .member-stat-grid{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  .dashboard-page .member-sidebar-label{
+    font-size:9px!important;
+  }
+
+  .dashboard-page .member-nav-item{
+    height:56px!important;
+    min-height:56px!important;
+    padding:0 11px!important;
+  }
+
+  .dashboard-page .member-nav-item>div strong{
+    font-size:11px!important;
+  }
+
+  .dashboard-page .member-nav-item>div small{
+    font-size:8px!important;
+  }
+
+  .dashboard-page .sidebar-nav-icon{
+    width:39px!important;
+    height:39px!important;
+    flex:0 0 39px!important;
+  }
+
+  .dashboard-page .sidebar-nav-icon svg{
+    width:19px!important;
+    height:19px!important;
+  }
+
+  .site-header{
+    width:min(1107px,calc(100vw - 32px))!important;
+    max-width:none!important;
+    margin:10px auto 0!important;
+    box-sizing:border-box!important;
+  }
+}
