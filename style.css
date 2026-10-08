@@ -2186,3 +2186,11 @@ html::-webkit-scrollbar-thumb:hover{
     max-width:920px!important;
   }
 }
+
+
+/* Dashboard-only: 110% presentation scale, matching the user's reference view. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    zoom:1.1!important;
+  }
+}
