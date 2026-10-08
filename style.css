@@ -1809,3 +1809,53 @@ html,body{
   .account-action-text span{display:none}
   .account-account-link,.account-logout{width:42px!important;padding:0!important}
 }
+
+
+/* Final sidebar refinements */
+.sidebar-dashboard-title{
+  gap:10px!important;
+  padding-bottom:13px!important;
+}
+.sidebar-dashboard-title>div:last-child{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:1px!important;
+}
+.sidebar-dashboard-title small{
+  margin-top:0!important;
+}
+.member-nav-item>div{
+  gap:1px!important;
+}
+.member-nav-item small{
+  margin-top:0!important;
+  line-height:1.15!important;
+}
+.member-sidebar-user{
+  gap:9px!important;
+}
+.member-sidebar-user div{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:1px!important;
+}
+.member-sidebar-user span{
+  margin-top:0!important;
+}
+.member-sidebar-user strong{
+  line-height:1.05!important;
+}
+.sidebar-home-button{
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+}
+.account-notification{
+  color:#a9b4bc!important;
+}
+.account-notification:hover{
+  color:#f5f8fa!important;
+}
+.account-notification:before{
+  border-color:rgba(255,255,255,.09)!important;
+}
