@@ -79,6 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const dashboardBack = document.querySelector(".dashboard-back");
+  if (dashboardBack) {
+    dashboardBack.addEventListener("click", (event) => {
+      event.preventDefault();
+      page("home");
+    });
+  }
+
+  const accountLink = document.querySelector(".account-account-link");
+  if (accountLink) {
+    accountLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      page("record");
+    });
+  }
+
   const sidebarHomeButton = $("sidebarHomeButton");
   if (sidebarHomeButton) {
     sidebarHomeButton.addEventListener("click", () => page("home"));
@@ -306,6 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   stats();
+
+  window.addEventListener("hashchange", () => {
+    const target = location.hash.slice(1);
+    if (names.has(target)) {
+      page(target, false);
+      if (target === "dashboard" || target === "record") load();
+    }
+  });
 
   const initialHash = location.hash.slice(1);
   page(location.hash.includes("access_token=") ? "dashboard" : (names.has(initialHash) ? initialHash : "home"), false);
