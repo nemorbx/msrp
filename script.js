@@ -107,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function stats() {
-    document.querySelectorAll("[data-player-count],[data-dashboard-players]").forEach((el) => el.textContent = "0");
-    document.querySelectorAll("[data-staff-count],[data-dashboard-staff]").forEach((el) => el.textContent = "0");
-    document.querySelectorAll("[data-queue-count],[data-dashboard-queue]").forEach((el) => el.textContent = "0");
-    document.querySelectorAll("[data-community-count],[data-dashboard-vehicles]").forEach((el) => el.textContent = "0");
+    document.querySelectorAll("[data-player-count],[data-dashboard-players]").forEach((el) => el.textContent = "—");
+    document.querySelectorAll("[data-staff-count],[data-dashboard-staff]").forEach((el) => el.textContent = "—");
+    document.querySelectorAll("[data-queue-count],[data-dashboard-queue]").forEach((el) => el.textContent = "—");
+    document.querySelectorAll("[data-community-count],[data-dashboard-vehicles]").forEach((el) => el.textContent = "—");
   }
 
   function rank(roleIds) {
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function render(user, member) {
     const isStaff = Array.isArray(member.roles) && member.roles.some((id) => roles.some((r) => r[0] === id));
     const memberRank = isStaff ? rank(member.roles) : "Member";
-    const name = user.global_name || user.username || "Member";
+    const name = member.nick || user.global_name || user.username || "Member";
     const avatar = avatarUrl(user);
 
     ["memberAvatar","sidebarAvatar","profileCardAvatar","profilePreviewAvatar","recordAvatar"].forEach((id) => {
@@ -209,9 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if ($("memberType")) $("memberType").textContent = isStaff ? "Staff" : "Member";
     if ($("memberStatus")) $("memberStatus").textContent = isStaff ? "Verified Staff" : "Verified Member";
     if ($("memberStatusDetail")) $("memberStatusDetail").textContent = isStaff ? "Staff role detected on Discord" : "Discord account connected";
-    if ($("welcomeSubtext")) $("welcomeSubtext").textContent = isStaff
-      ? "Your staff access is active. Staff tools are available in your workspace."
-      : "Here’s what’s happening across Missouri State Roleplay right now.";
+    if ($("welcomeSubtext")) $("welcomeSubtext").textContent = "Here’s what’s happening across Missouri State Roleplay right now.";
 
     if ($("greetingPeriod")) {
       const hour = new Date().getHours();
