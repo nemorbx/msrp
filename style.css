@@ -2300,9 +2300,13 @@ body.dashboard-editing [data-editor-selected="true"] > .dashboard-editor-handle{
 
 
 /* Dashboard editor v2: resize-only selection overlay. */
+.member-dashboard{position:relative}
 .dashboard-editor-overlay{
-  position:fixed;
-  inset:0;
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   z-index:100001;
   pointer-events:none;
 }
