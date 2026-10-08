@@ -3820,3 +3820,48 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     box-sizing:border-box!important;
   }
 }
+
+
+/* FINAL SIDE-TO-SIDE SPREAD — reduce the outer empty margins and tighten
+   the sidebar/main separation to match the reference composition. */
+@media (min-width:1101px){
+  .dashboard-page .member-dashboard{
+    width:1180px!important;
+    max-width:calc(100% - 40px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  .dashboard-page .account-bar{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  .dashboard-page .dashboard-body{
+    width:100%!important;
+    max-width:none!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:20px!important;
+  }
+
+  .dashboard-page .member-main{
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+
+  .dashboard-page .member-welcome,
+  .dashboard-page .member-stat-grid{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  .site-header{
+    width:1180px!important;
+    max-width:calc(100% - 40px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
