@@ -2043,3 +2043,266 @@ html,body{
   }
   .member-stat-grid{gap:10px!important}
 }
+
+
+/* =========================================================
+   MSRP MEMBER DASHBOARD — exact reference proportions
+   ========================================================= */
+@media(min-width:901px){
+  .dashboard-page{
+    padding:24px 24px 70px!important;
+  }
+
+  .member-dashboard{
+    width:calc(100% - 48px)!important;
+    max-width:1492px!important;
+    zoom:1!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  .dashboard-page-title{
+    margin:0 0 32px!important;
+  }
+  .dashboard-page-title>span{
+    padding:8px 13px!important;
+    font-size:8px!important;
+  }
+  .dashboard-page-title h1{
+    font-size:42px!important;
+    line-height:1!important;
+    margin-top:12px!important;
+    letter-spacing:-2px!important;
+  }
+
+  .account-bar{
+    height:100px!important;
+    min-height:100px!important;
+    padding:10px 16px 10px 22px!important;
+    border-radius:16px!important;
+  }
+  .account-avatar{
+    width:50px!important;
+    height:50px!important;
+    flex-basis:50px!important;
+  }
+  .account-user-copy>span{
+    font-size:7px!important;
+  }
+  .account-user-line strong{
+    font-size:14px!important;
+  }
+  .account-user-line em{
+    font-size:8px!important;
+    padding:6px 9px!important;
+  }
+  .account-actions{
+    min-height:58px!important;
+    height:58px!important;
+    padding:5px!important;
+    border-radius:14px!important;
+  }
+  .account-action{
+    height:46px!important;
+  }
+
+  .dashboard-body{
+    grid-template-columns:366px minmax(0,1fr)!important;
+    gap:27px!important;
+    margin-top:20px!important;
+    align-items:start!important;
+  }
+
+  .member-sidebar{
+    width:366px!important;
+    min-height:645px!important;
+    padding:16px!important;
+    border-radius:18px!important;
+  }
+
+  .sidebar-dashboard-title{
+    padding:7px 7px 16px!important;
+    gap:12px!important;
+  }
+  .sidebar-mark{
+    width:44px!important;
+    height:44px!important;
+    border-radius:11px!important;
+  }
+  .sidebar-dashboard-title strong{
+    font-size:18px!important;
+    line-height:1!important;
+  }
+  .sidebar-dashboard-title small{
+    font-size:10px!important;
+    line-height:1!important;
+  }
+  .sidebar-divider{
+    margin-bottom:14px!important;
+  }
+  .member-sidebar-label{
+    padding:9px 12px 10px!important;
+    font-size:11px!important;
+  }
+  .member-nav-item{
+    min-height:61px!important;
+    border-radius:12px!important;
+    gap:12px!important;
+    padding:0 12px!important;
+    margin-bottom:4px!important;
+  }
+  .sidebar-nav-icon{
+    width:46px!important;
+    height:46px!important;
+    flex:0 0 46px!important;
+  }
+  .member-nav-item strong{
+    font-size:16px!important;
+    line-height:1.05!important;
+  }
+  .member-nav-item small{
+    font-size:11px!important;
+    line-height:1.1!important;
+    margin-top:3px!important;
+  }
+
+  .member-sidebar-user{
+    padding:11px!important;
+    border-radius:13px!important;
+  }
+  .member-sidebar-user img{
+    width:40px!important;
+    height:40px!important;
+  }
+
+  .member-main{
+    min-width:0!important;
+  }
+
+  .member-welcome{
+    height:154px!important;
+    min-height:154px!important;
+    padding:24px 28px!important;
+    border-radius:17px!important;
+  }
+
+  .member-welcome-copy{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    align-items:center!important;
+    column-gap:15px!important;
+    flex:1!important;
+    min-width:0!important;
+  }
+
+  .welcome-heading-row{
+    grid-column:1!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:13px!important;
+  }
+
+  .welcome-heading-row>div{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+  }
+
+  .welcome-avatar{
+    width:54px!important;
+    height:54px!important;
+    flex-basis:54px!important;
+    padding:3px!important;
+  }
+
+  .welcome-heading-row span{
+    font-size:8px!important;
+    line-height:1!important;
+    letter-spacing:1.5px!important;
+  }
+
+  .member-welcome h1{
+    font-size:32px!important;
+    line-height:1.05!important;
+    letter-spacing:-1.25px!important;
+    margin-top:7px!important;
+    white-space:nowrap!important;
+  }
+
+  .member-welcome h1 strong{
+    color:#f2f6f8!important;
+  }
+
+  .member-welcome h1 em{
+    color:var(--msrp-blue-bright,#2ea8ff)!important;
+  }
+
+  .member-welcome p{
+    grid-column:2!important;
+    margin:0!important;
+    align-self:center!important;
+    max-width:360px!important;
+    font-size:9px!important;
+    line-height:1.35!important;
+    color:#71808c!important;
+  }
+
+  .player-ring{
+    width:84px!important;
+    height:84px!important;
+    flex-basis:84px!important;
+    border-width:6px!important;
+  }
+
+  .player-ring strong{
+    font-size:18px!important;
+  }
+
+  .player-ring span{
+    font-size:6px!important;
+  }
+
+  .member-stat-grid{
+    gap:14px!important;
+    margin-top:25px!important;
+  }
+
+  .member-stat-card{
+    height:112px!important;
+    min-height:112px!important;
+    padding:17px 19px!important;
+    border-radius:14px!important;
+  }
+
+  .member-stat-card span{
+    font-size:8px!important;
+  }
+
+  .member-stat-card strong{
+    font-size:29px!important;
+    margin-top:13px!important;
+  }
+}
+
+/* Reference stat colors */
+.member-stat-card.stat-players{
+  border-top-color:#35df7d!important;
+}
+.member-stat-card.stat-players span,
+.member-stat-card.stat-players strong{
+  color:#35df7d!important;
+}
+.member-stat-card.stat-queue{
+  border-top-color:#f0c83d!important;
+}
+.member-stat-card.stat-queue span,
+.member-stat-card.stat-queue strong{
+  color:#f0c83d!important;
+}
+.member-stat-card.stat-vehicles{
+  border-top-color:#ff5b5b!important;
+}
+.member-stat-card.stat-vehicles span,
+.member-stat-card.stat-vehicles strong{
+  color:#ff5b5b!important;
+}
