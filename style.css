@@ -4002,3 +4002,155 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     height:17px!important;
   }
 }
+
+
+/* DEFINITIVE LANCRP-SCALE LAYOUT
+   Revert the accidental full-width expansion. The reference is a compact
+   1059px content shell with a 240px sidebar + 32px gap + 787px main panel.
+   The top account/admin bar and site header extend 24px beyond that shell. */
+@media (min-width:1101px){
+  .dashboard-page .member-dashboard{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin:0 auto!important;
+  }
+
+  .dashboard-page .account-bar{
+    width:1107px!important;
+    max-width:1107px!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:0 0 24px -24px!important;
+    padding:10px 16px!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .dashboard-body{
+    width:1059px!important;
+    max-width:1059px!important;
+    display:grid!important;
+    grid-template-columns:240px 787px!important;
+    column-gap:32px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .member-sidebar{
+    width:240px!important;
+    min-width:240px!important;
+    height:1134px!important;
+    min-height:1134px!important;
+    padding:12px!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .sidebar-dashboard-title{
+    padding:8px 8px 16px!important;
+    gap:11px!important;
+  }
+  .dashboard-page .sidebar-dashboard-title strong{
+    font-size:15px!important;
+    line-height:1.05!important;
+  }
+  .dashboard-page .sidebar-dashboard-title small{
+    font-size:9px!important;
+    margin-top:5px!important;
+  }
+
+  .dashboard-page .member-sidebar-label-row{
+    padding:0 11px 8px!important;
+  }
+  .dashboard-page .member-sidebar-label{
+    font-size:9px!important;
+  }
+
+  .dashboard-page .member-sidebar-section{
+    gap:4px!important;
+  }
+
+  .dashboard-page .member-nav-item{
+    width:100%!important;
+    height:56px!important;
+    min-height:56px!important;
+    padding:0 11px!important;
+    gap:11px!important;
+    border-radius:12px!important;
+    box-sizing:border-box!important;
+  }
+  .dashboard-page .member-nav-item>div strong{
+    font-size:11px!important;
+    line-height:1!important;
+  }
+  .dashboard-page .member-nav-item>div small{
+    font-size:8px!important;
+    line-height:1!important;
+  }
+  .dashboard-page .sidebar-nav-icon{
+    width:39px!important;
+    height:39px!important;
+    flex:0 0 39px!important;
+    border-radius:11px!important;
+  }
+  .dashboard-page .sidebar-nav-icon svg{
+    width:19px!important;
+    height:19px!important;
+  }
+
+  /* Preserve the reference's color-coded selected navigation states. */
+  .dashboard-page .member-nav-item.active{
+    background:rgba(46,168,255,.10)!important;
+    border-color:rgba(46,168,255,.30)!important;
+  }
+  .dashboard-page .member-nav-item.active .sidebar-nav-icon{
+    background:#2ea8ff!important;
+    border-color:#2ea8ff!important;
+    color:#06111a!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(2){
+    background:rgba(155,92,255,.10)!important;
+    border-color:rgba(155,92,255,.30)!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(2) .sidebar-nav-icon{
+    background:#9b5cff!important;
+    border-color:#9b5cff!important;
+    color:#fff!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(3){
+    background:rgba(232,189,62,.10)!important;
+    border-color:rgba(232,189,62,.30)!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(3) .sidebar-nav-icon{
+    background:#e8bd3e!important;
+    border-color:#e8bd3e!important;
+    color:#111!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(4){
+    background:rgba(53,212,142,.10)!important;
+    border-color:rgba(53,212,142,.30)!important;
+  }
+  .dashboard-page .member-nav-item.active:nth-of-type(4) .sidebar-nav-icon{
+    background:#35d48e!important;
+    border-color:#35d48e!important;
+    color:#062016!important;
+  }
+
+  .dashboard-page .member-main{
+    width:787px!important;
+    min-width:787px!important;
+    max-width:787px!important;
+    box-sizing:border-box!important;
+  }
+  .dashboard-page .member-welcome,
+  .dashboard-page .member-stat-grid{
+    width:787px!important;
+    max-width:787px!important;
+    box-sizing:border-box!important;
+  }
+
+  .site-header{
+    width:1107px!important;
+    max-width:calc(100% - 32px)!important;
+    margin:10px auto 0!important;
+    box-sizing:border-box!important;
+  }
+}
