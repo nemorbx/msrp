@@ -332,10 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* Dashboard editor: resize-only panel shaping with a separate inside-edit mode. */
+  /* Dashboard editor: grid-based move/resize controls with panel locking. */
   function setupDashboardEditor(){
     const toggle = $("dashboardEditToggle");
-    if (!toggle || !memberDash) return;
+    if(!toggle || !memberDash) return;
 
     const panelSelectors = [
       ".dashboard-page-title",".account-bar",".account-identity",".account-actions",
@@ -346,290 +346,256 @@ document.addEventListener("DOMContentLoaded", () => {
       ".dashboard-community-banner",".leaderboard-panel",".inventory-banner"
     ];
 
-    const panels = [...new Set(panelSelectors.flatMap(sel => [...memberDash.querySelectorAll(sel)]))];
-    const panelSet = new Set(panels);
-    const editorStore = "msrp_dashboard_editor_v3_";
+    const panels=[...new Set(panelSelectors.flatMap(sel=>[...memberDash.querySelectorAll(sel)]))];
+    const panelSet=new Set(panels);
+    const store="msrp_dashboard_editor_v4_";
 
-    function visible(el){
-      if (!(el instanceof HTMLElement)) return false;
-      if (el.closest(".dashboard-editor-ui,.dashboard-editor-note,.dashboard-editor-overlay")) return false;
-      const r = el.getBoundingClientRect();
-      return r.width > 0 && r.height > 0;
-    }
+    const allElements=[...memberDash.querySelectorAll("*")].filter(el=>{
+      if(!(el instanceof HTMLElement)) return false;
+      if(el.closest(".dashboard-editor-ui,.dashboard-editor-note,.dashboard-editor-overlay")) return false;
+      const r=el.getBoundingClientRect();
+      return r.width>0 && r.height>0;
+    });
 
-    const children = [...memberDash.querySelectorAll("*")].filter(visible);
+    const targets=[...new Set([...panels,...allElements])];
 
-    function key(el){
-      if (el.dataset.editorId) return el.dataset.editorId;
-      const base = el.id || el.className || el.tagName;
-      let hash = 0;
-      const text = String(base) + "|" + [...memberDash.querySelectorAll(el.tagName)].indexOf(el);
-      for(let i=0;i<text.length;i++) hash = ((hash << 5) - hash) + text.charCodeAt(i) | 0;
-      el.dataset.editorId = Math.abs(hash).toString(36);
+    function id(el){
+      if(el.dataset.editorId) return el.dataset.editorId;
+      const index=targets.indexOf(el);
+      el.dataset.editorId=String(index<0?Math.random().toString(36).slice(2):index);
       return el.dataset.editorId;
     }
 
-    function loadSaved(el){
-      const raw = localStorage.getItem(editorStore + key(el));
+    targets.forEach(el=>{ id(el); load(el); });
+
+    function load(el){
+      const raw=localStorage.getItem(store+id(el));
       if(!raw) return;
       try{
-        const v = JSON.parse(raw);
-        if(v.width) el.style.setProperty("width", v.width + "px", "important");
-        if(v.height) el.style.setProperty("height", v.height + "px", "important");
-        if(v.fontSize) el.style.fontSize = v.fontSize + "px";
-        if(v.lineHeight) el.style.lineHeight = v.lineHeight;
-        if(v.letterSpacing != null) el.style.letterSpacing = v.letterSpacing + "px";
-        if(v.radius != null) el.style.borderRadius = v.radius + "px";
-        if(v.padding) el.style.padding = v.padding;
+        const v=JSON.parse(raw);
+        if(v.x!=null) el.style.setProperty("--editor-x",v.x+"px");
+        if(v.y!=null) el.style.setProperty("--editor-y",v.y+"px");
+        if(v.width!=null) el.style.setProperty("width",v.width+"px","important");
+        if(v.height!=null) el.style.setProperty("height",v.height+"px","important");
+        if(v.fontSize!=null) el.style.fontSize=v.fontSize+"px";
+        if(v.lineHeight!=null) el.style.lineHeight=v.lineHeight;
+        if(v.letterSpacing!=null) el.style.letterSpacing=v.letterSpacing+"px";
+        if(v.radius!=null) el.style.borderRadius=v.radius+"px";
       }catch{}
     }
 
-    [...new Set([...panels, ...children])].forEach(loadSaved);
+    targets.forEach(el=>{
+      el.style.translate="var(--editor-x, 0px) var(--editor-y, 0px)";
+    });
 
-    const ui = document.createElement("div");
-    ui.className = "dashboard-editor-ui";
-    ui.innerHTML =
-      '<span class="editor-tool-title">RESIZE</span>' +
-      '<label>W <input id="editorWidth" type="number" min="1" step="1"></label>' +
-      '<label>H <input id="editorHeight" type="number" min="1" step="1"></label>' +
-      '<label>Text <input id="editorFont" type="number" min="1" step=".5"></label>' +
-      '<label>Line <input id="editorLine" type="number" min=".1" step=".1"></label>' +
-      '<label>Spacing <input id="editorSpacing" type="number" step=".1"></label>' +
-      '<label>Radius <input id="editorRadius" type="number" min="0" step="1"></label>' +
-      '<button type="button" id="editorEditInside">Edit Inside</button>' +
-      '<button type="button" id="editorReset">Reset</button>' +
+    const ui=document.createElement("div");
+    ui.className="dashboard-editor-ui";
+    ui.innerHTML=
+      '<span class="editor-tool-title">GRID EDITOR</span>'+
+      '<label>X <input id="editorX" type="number" step="1"></label>'+
+      '<label>Y <input id="editorY" type="number" step="1"></label>'+
+      '<label>W <input id="editorWidth" type="number" min="1" step="1"></label>'+
+      '<label>H <input id="editorHeight" type="number" min="1" step="1"></label>'+
+      '<label>Text <input id="editorFont" type="number" min="1" step=".5"></label>'+
+      '<label>Line <input id="editorLine" type="number" min=".1" step=".1"></label>'+
+      '<label>Spacing <input id="editorSpacing" type="number" step=".1"></label>'+
+      '<label>Radius <input id="editorRadius" type="number" min="0" step="1"></label>'+
+      '<label>Grid <input id="editorGrid" type="number" min="1" step="1" value="8"></label>'+
+      '<button type="button" id="editorUp">↑</button>'+
+      '<button type="button" id="editorDown">↓</button>'+
+      '<button type="button" id="editorLeft">←</button>'+
+      '<button type="button" id="editorRight">→</button>'+
+      '<button type="button" id="editorWMinus">W−</button>'+
+      '<button type="button" id="editorWPlus">W+</button>'+
+      '<button type="button" id="editorHMinus">H−</button>'+
+      '<button type="button" id="editorHPlus">H+</button>'+
+      '<button type="button" id="editorEditInside">Edit Inside</button>'+
+      '<button type="button" id="editorReset">Reset</button>'+
       '<button type="button" id="editorDone">Done</button>';
     document.body.appendChild(ui);
 
-    const note = document.createElement("div");
-    note.className = "dashboard-editor-note";
-    note.textContent = "EDIT MODE — select a panel, drag an edge or corner to reshape it. Nothing moves.";
+    const note=document.createElement("div");
+    note.className="dashboard-editor-note";
+    note.textContent="GRID EDITOR — click a panel, then use the bottom controls. Edit Inside unlocks everything inside.";
     document.body.appendChild(note);
 
-    const overlay = document.createElement("div");
-    overlay.className = "dashboard-editor-overlay";
-    overlay.innerHTML =
-      '<div class="dashboard-editor-box">' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-n" data-resize="n"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-s" data-resize="s"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-e" data-resize="e"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-w" data-resize="w"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-nw" data-resize="nw"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-ne" data-resize="ne"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-sw" data-resize="sw"></span>' +
-        '<span class="dashboard-editor-handle dashboard-editor-handle-se" data-resize="se"></span>' +
-      '</div>';
-    memberDash.appendChild(overlay);
-    const overlayBox = overlay.querySelector(".dashboard-editor-box");
+    let selected=null;
+    let insideMode=false;
+    let insideRoot=null;
 
-    let selected = null;
-    let insideMode = false;
-    let resizeState = null;
+    function grid(){
+      const n=Number($( "editorGrid").value);
+      return Number.isFinite(n)&&n>0?n:8;
+    }
 
-    let insideRoot = null;
-
-    function targets(){
-      return insideMode && insideRoot
-        ? children.filter(el => insideRoot.contains(el) && el !== insideRoot)
-        : panels;
+    function currentXY(el){
+      const cs=getComputedStyle(el);
+      return {
+        x:parseFloat(cs.getPropertyValue("--editor-x"))||0,
+        y:parseFloat(cs.getPropertyValue("--editor-y"))||0
+      };
     }
 
     function save(el){
       if(!el) return;
-      const cs = getComputedStyle(el);
-      localStorage.setItem(editorStore + key(el), JSON.stringify({
-        width: parseFloat(getComputedStyle(el).width) || el.offsetWidth,
-        height: parseFloat(getComputedStyle(el).height) || el.offsetHeight,
-        fontSize: parseFloat(cs.fontSize) || 0,
-        lineHeight: cs.lineHeight,
-        letterSpacing: parseFloat(cs.letterSpacing) || 0,
-        radius: parseFloat(cs.borderTopLeftRadius) || 0,
-        padding: cs.padding
+      const cs=getComputedStyle(el);
+      const p=currentXY(el);
+      localStorage.setItem(store+id(el),JSON.stringify({
+        x:p.x,y:p.y,
+        width:parseFloat(cs.width)||el.offsetWidth,
+        height:parseFloat(cs.height)||el.offsetHeight,
+        fontSize:parseFloat(cs.fontSize)||0,
+        lineHeight:cs.lineHeight,
+        letterSpacing:parseFloat(cs.letterSpacing)||0,
+        radius:parseFloat(cs.borderTopLeftRadius)||0
       }));
     }
 
-    function scaleFor(el){
-      const r = el.getBoundingClientRect();
-      const w = el.offsetWidth || r.width;
-      const h = el.offsetHeight || r.height;
-      return {x: w ? r.width / w : 1, y: h ? r.height / h : 1};
+    function inScope(el){
+      return insideMode && insideRoot ? insideRoot.contains(el) && el!==insideRoot : panelSet.has(el);
     }
 
-    function positionOverlay(){
-      if(!selected || !document.body.classList.contains("dashboard-editing")){
-        overlay.hidden = true;
-        return;
+    function nearestPanel(el){
+      let node=el;
+      while(node && node!==memberDash){
+        if(panelSet.has(node)) return node;
+        node=node.parentElement;
       }
-      const targetRect = selected.getBoundingClientRect();
-      const parentRect = memberDash.getBoundingClientRect();
-      const parentWidth = memberDash.offsetWidth || parentRect.width;
-      const parentHeight = memberDash.offsetHeight || parentRect.height;
-      const scaleX = parentWidth ? parentRect.width / parentWidth : 1;
-      const scaleY = parentHeight ? parentRect.height / parentHeight : 1;
-      overlay.hidden = false;
-      overlayBox.style.left = ((targetRect.left - parentRect.left) / scaleX) + "px";
-      overlayBox.style.top = ((targetRect.top - parentRect.top) / scaleY) + "px";
-      overlayBox.style.width = (targetRect.width / scaleX) + "px";
-      overlayBox.style.height = (targetRect.height / scaleY) + "px";
+      return null;
     }
 
-    function clearSelection(){
-      if(selected) selected.removeAttribute("data-editor-selected");
-      selected = null;
-      overlay.hidden = true;
+    function selectableFromEvent(target){
+      if(!(target instanceof Element)) return null;
+      const candidate=target.closest("[data-editor-id]");
+      if(!candidate || !memberDash.contains(candidate)) return null;
+      if(insideMode) return inScope(candidate)?candidate:null;
+      return nearestPanel(candidate);
     }
 
     function select(el){
-      if(!el || !targets().includes(el)) return;
-      if(selected) selected.removeAttribute("data-editor-selected");
-      selected = el;
-      selected.dataset.editorSelected = "true";
-      const r = selected.getBoundingClientRect();
-      const cs = getComputedStyle(selected);
-      $("editorWidth").value = Math.round(r.width);
-      $("editorHeight").value = Math.round(r.height);
-      $("editorFont").value = parseFloat(cs.fontSize).toFixed(1).replace(/\\.0$/, "");
-      $("editorLine").value = cs.lineHeight === "normal" ? "1.2" : parseFloat(cs.lineHeight);
-      $("editorSpacing").value = parseFloat(cs.letterSpacing) || 0;
-      $("editorRadius").value = parseFloat(cs.borderTopLeftRadius) || 0;
-      $("editorEditInside").textContent = insideMode ? "Lock Panel" : "Edit Inside";
-      positionOverlay();
-    }
-
-    function setSize(el, width, height){
       if(!el) return;
-      el.style.boxSizing = "border-box";
-      el.style.minWidth = "0";
-      el.style.maxWidth = "none";
-      if(width != null) el.style.setProperty("width", Math.max(40, Math.round(width)) + "px", "important");
-      if(height != null) el.style.setProperty("height", Math.max(24, Math.round(height)) + "px", "important");
-      save(el);
-      select(el);
+      if(selected) selected.removeAttribute("data-editor-selected");
+      selected=el;
+      selected.dataset.editorSelected="true";
+      const p=currentXY(el), r=el.getBoundingClientRect(), cs=getComputedStyle(el);
+      $( "editorX").value=Math.round(p.x);
+      $( "editorY").value=Math.round(p.y);
+      $( "editorWidth").value=Math.round(r.width);
+      $( "editorHeight").value=Math.round(r.height);
+      $( "editorFont").value=(parseFloat(cs.fontSize)||0).toFixed(1).replace(/\\.0$/,"");
+      $( "editorLine").value=cs.lineHeight==="normal"?"1.2":parseFloat(cs.lineHeight);
+      $( "editorSpacing").value=parseFloat(cs.letterSpacing)||0;
+      $( "editorRadius").value=parseFloat(cs.borderTopLeftRadius)||0;
+      $( "editorEditInside").textContent=insideMode?"Lock Panel":"Edit Inside";
     }
 
-    function beginResize(event){
+    function setXY(x,y){
       if(!selected) return;
-      const dir = event.currentTarget.dataset.resize;
-      const r = selected.getBoundingClientRect();
-      const s = scaleFor(selected);
-      resizeState = {
-        dir,
-        startX: event.clientX,
-        startY: event.clientY,
-        startW: r.width,
-        startH: r.height,
-        scaleX: s.x || 1,
-        scaleY: s.y || 1
-      };
-      event.preventDefault();
-      event.stopPropagation();
-      try{ event.currentTarget.setPointerCapture(event.pointerId); }catch{}
+      const g=grid();
+      const nx=Math.round(x/g)*g;
+      const ny=Math.round(y/g)*g;
+      selected.style.setProperty("--editor-x",nx+"px");
+      selected.style.setProperty("--editor-y",ny+"px");
+      select(selected); save(selected);
     }
 
-    overlay.querySelectorAll("[data-resize]").forEach(handle => {
-      handle.addEventListener("pointerdown", beginResize);
-    });
+    function move(dx,dy){
+      if(!selected) return;
+      const p=currentXY(selected);
+      setXY(p.x+dx,p.y+dy);
+    }
 
-    document.addEventListener("pointermove", event => {
-      if(!resizeState || !selected) return;
-      const d = resizeState;
-      const dx = (event.clientX - d.startX) / d.scaleX;
-      const dy = (event.clientY - d.startY) / d.scaleY;
-      let w = d.startW;
-      let h = d.startH;
-      if(d.dir.includes("e")) w = d.startW + dx;
-      if(d.dir.includes("w")) w = d.startW - dx;
-      if(d.dir.includes("s")) h = d.startH + dy;
-      if(d.dir.includes("n")) h = d.startH - dy;
-      setSize(selected, w, h);
-    });
+    function resize(dw,dh){
+      if(!selected) return;
+      const g=grid();
+      const r=selected.getBoundingClientRect();
+      const nx=Math.max(40,Math.round((r.width+dw)/g)*g);
+      const ny=Math.max(24,Math.round((r.height+dh)/g)*g);
+      selected.style.setProperty("width",nx+"px","important");
+      selected.style.setProperty("height",ny+"px","important");
+      select(selected); save(selected);
+    }
 
-    document.addEventListener("pointerup", () => {
-      if(resizeState && selected) save(selected);
-      resizeState = null;
-    });
+    function setField(prop,value){
+      if(!selected || value==="") return;
+      selected.style[prop]=value;
+      select(selected); save(selected);
+    }
 
-    memberDash.addEventListener("click", event => {
+    memberDash.addEventListener("click",event=>{
       if(!document.body.classList.contains("dashboard-editing")) return;
-      const target = event.target instanceof Element ? event.target.closest("[data-editor-id]") : null;
-      if(!target || !memberDash.contains(target)) return;
-      if(!targets().includes(target)) return;
+      const el=selectableFromEvent(event.target);
+      if(!el) return;
       event.preventDefault();
       event.stopPropagation();
-      select(target);
-    }, true);
+      select(el);
+    },true);
 
-    function updateSelected(prop, value){
-      if(!selected || value === "") return;
-      selected.style[prop] = value;
-      save(selected);
-      positionOverlay();
-    }
+    $( "editorX").addEventListener("input",e=>{if(selected&&e.target.value!=="") setXY(Number(e.target.value),currentXY(selected).y)});
+    $( "editorY").addEventListener("input",e=>{if(selected&&e.target.value!=="") setXY(currentXY(selected).x,Number(e.target.value))});
+    $( "editorWidth").addEventListener("input",e=>{if(selected&&e.target.value!==""){selected.style.setProperty("width",Math.max(40,Number(e.target.value))+"px","important");select(selected);save(selected)}});
+    $( "editorHeight").addEventListener("input",e=>{if(selected&&e.target.value!==""){selected.style.setProperty("height",Math.max(24,Number(e.target.value))+"px","important");select(selected);save(selected)}});
+    $( "editorFont").addEventListener("input",e=>setField("fontSize",Number(e.target.value)+"px"));
+    $( "editorLine").addEventListener("input",e=>setField("lineHeight",e.target.value));
+    $( "editorSpacing").addEventListener("input",e=>setField("letterSpacing",Number(e.target.value)+"px"));
+    $( "editorRadius").addEventListener("input",e=>setField("borderRadius",Number(e.target.value)+"px"));
 
-    $("editorWidth").addEventListener("input", e => {
-      if(selected && e.target.value){
-        selected.style.setProperty("width", Math.max(40, Number(e.target.value)) + "px", "important");
-        save(selected); positionOverlay();
-      }
-    });
-    $("editorHeight").addEventListener("input", e => {
-      if(selected && e.target.value){
-        selected.style.setProperty("height", Math.max(24, Number(e.target.value)) + "px", "important");
-        save(selected); positionOverlay();
-      }
-    });
-    $("editorFont").addEventListener("input", e => updateSelected("fontSize", Number(e.target.value) + "px"));
-    $("editorLine").addEventListener("input", e => updateSelected("lineHeight", e.target.value));
-    $("editorSpacing").addEventListener("input", e => updateSelected("letterSpacing", Number(e.target.value) + "px"));
-    $("editorRadius").addEventListener("input", e => updateSelected("borderRadius", Number(e.target.value) + "px"));
+    $( "editorUp").onclick=()=>move(0,-grid());
+    $( "editorDown").onclick=()=>move(0,grid());
+    $( "editorLeft").onclick=()=>move(-grid(),0);
+    $( "editorRight").onclick=()=>move(grid(),0);
+    $( "editorWMinus").onclick=()=>resize(-grid(),0);
+    $( "editorWPlus").onclick=()=>resize(grid(),0);
+    $( "editorHMinus").onclick=()=>resize(0,-grid());
+    $( "editorHPlus").onclick=()=>resize(0,grid());
 
-    $("editorEditInside").onclick = () => {
+    $( "editorEditInside").onclick=()=>{
       if(!selected) return;
       if(!insideMode){
-        insideMode = true;
-        insideRoot = selected;
-        $("editorEditInside").textContent = "Lock Panel";
-        document.body.classList.add("dashboard-editor-inside");
+        insideMode=true;
+        insideRoot=selected;
+        $( "editorEditInside").textContent="Lock Panel";
       }else{
-        insideMode = false;
-        insideRoot = null;
-        $("editorEditInside").textContent = "Edit Inside";
-        document.body.classList.remove("dashboard-editor-inside");
-        if(!panelSet.has(selected)){
-          const parentPanel = panels.find(panel => panel.contains(selected));
-          if(parentPanel) select(parentPanel);
-          else clearSelection();
-        }
+        insideMode=false;
+        const parent=insideRoot;
+        insideRoot=null;
+        $( "editorEditInside").textContent="Edit Inside";
+        if(parent) select(panelSet.has(parent)?parent:nearestPanel(parent));
       }
-      positionOverlay();
     };
 
-    $("editorReset").onclick = () => {
-      [...new Set([...panels, ...children])].forEach(el => localStorage.removeItem(editorStore + key(el)));
+    document.addEventListener("keydown",event=>{
+      if(!document.body.classList.contains("dashboard-editing")||!selected) return;
+      if(event.target instanceof HTMLInputElement||event.target instanceof HTMLTextAreaElement) return;
+      const g=grid();
+      if(event.key==="ArrowUp"){event.preventDefault();move(0,-g)}
+      if(event.key==="ArrowDown"){event.preventDefault();move(0,g)}
+      if(event.key==="ArrowLeft"){event.preventDefault();move(-g,0)}
+      if(event.key==="ArrowRight"){event.preventDefault();move(g,0)}
+    });
+
+    $( "editorReset").onclick=()=>{
+      targets.forEach(el=>localStorage.removeItem(store+id(el)));
       location.reload();
     };
 
     function exitEdit(){
-      document.body.classList.remove("dashboard-editing","dashboard-editor-inside");
-      toggle.textContent = "Edit Dashboard";
-      clearSelection();
-      insideMode = false;
-      insideRoot = null;
-      resizeState = null;
+      document.body.classList.remove("dashboard-editing");
+      toggle.textContent="Edit Dashboard";
+      if(selected) selected.removeAttribute("data-editor-selected");
+      selected=null;
+      insideMode=false;
+      insideRoot=null;
     }
 
-    $("editorDone").onclick = exitEdit;
+    $( "editorDone").onclick=exitEdit;
 
-    window.addEventListener("resize", positionOverlay);
-    window.addEventListener("scroll", positionOverlay);
-
-    toggle.hidden = false;
-    toggle.onclick = () => {
+    toggle.hidden=false;
+    toggle.onclick=()=>{
       if(document.body.classList.contains("dashboard-editing")) exitEdit();
-      else {
+      else{
         document.body.classList.add("dashboard-editing");
-        toggle.textContent = "Exit Edit Mode";
-        positionOverlay();
+        toggle.textContent="Exit Edit Mode";
       }
     };
   }
