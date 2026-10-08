@@ -1873,13 +1873,61 @@ html,body{
     margin-top:16px!important;
   }
 
+  /* Thin global site header — links remain centered and readable. */
   body:has(.dashboard-page.active) .site-header{
     width:min(1240px,calc(100vw - 64px))!important;
     max-width:none!important;
-    height:76px!important;
-    min-height:76px!important;
+    height:58px!important;
+    min-height:58px!important;
     margin:10px auto 0!important;
     box-sizing:border-box!important;
+    grid-template-columns:1fr auto 1fr!important;
+  }
+  body:has(.dashboard-page.active) .site-logo{
+    width:32px!important;
+    height:32px!important;
+    border-radius:8px!important;
+  }
+  body:has(.dashboard-page.active) .site-brand{
+    gap:9px!important;
+  }
+  body:has(.dashboard-page.active) .site-brand-copy strong{
+    font-size:11px!important;
+  }
+  body:has(.dashboard-page.active) .site-brand-copy span{
+    font-size:7px!important;
+    margin-top:3px!important;
+  }
+  body:has(.dashboard-page.active) .site-nav{
+    height:58px!important;
+    gap:22px!important;
+  }
+  body:has(.dashboard-page.active) .site-nav-link{
+    height:32px!important;
+    min-height:32px!important;
+    padding:4px 8px!important;
+    font-size:13px!important;
+    line-height:18px!important;
+    font-weight:700!important;
+  }
+  body:has(.dashboard-page.active) .discord-button{
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 17px!important;
+    gap:8px!important;
+    border:1.5px solid rgba(255,255,255,.48)!important;
+    border-radius:999px!important;
+    background:transparent!important;
+    color:#f5f7f9!important;
+    font-size:13px!important;
+    line-height:18px!important;
+    font-weight:700!important;
+    box-shadow:none!important;
+  }
+  body:has(.dashboard-page.active) .discord-button svg{
+    width:18px!important;
+    height:18px!important;
+    flex:0 0 18px!important;
   }
 }
 
