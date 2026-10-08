@@ -2202,3 +2202,11 @@ html::-webkit-scrollbar-thumb:hover{
     font-size:42px!important;
   }
 }
+
+
+/* Dashboard-only: exact requested Dashboard title size. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .dashboard-page-title h1{
+    font-size:36.72px!important;
+  }
+}
