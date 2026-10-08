@@ -3318,3 +3318,17 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
 @media(max-width:760px){
   .dashboard-page .member-welcome h1{font-size:21.138px!important;}
 }
+
+
+/* Exact reference treatment for the WELCOME BACK eyebrow. */
+.dashboard-page .welcome-heading-row>div>span{
+  display:block!important;
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace!important;
+  font-size:10px!important;
+  line-height:16px!important;
+  font-weight:700!important;
+  letter-spacing:1.7px!important;
+  text-transform:uppercase!important;
+  color:#F5A524!important;
+  margin:0!important;
+}
