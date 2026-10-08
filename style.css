@@ -1655,14 +1655,16 @@ html,body{
   }
 
   /* Full-width account strip, matching the reference. */
+  /* LANCRP reference: admin-bar is exactly 1059 × 76. */
   body:has(.dashboard-page.active) .account-bar{
-    width:100%!important;
-    max-width:none!important;
-    height:97px!important;
-    min-height:97px!important;
-    margin:0 0 31px!important;
-    padding:12px 20px!important;
-    border-radius:17px!important;
+    width:1059px!important;
+    max-width:1059px!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:8px auto 24px!important;
+    padding:12px 14px 12px 16px!important;
+    border-radius:15px!important;
+    box-sizing:border-box!important;
   }
   body:has(.dashboard-page.active) .account-avatar{
     width:58px!important;height:58px!important;
