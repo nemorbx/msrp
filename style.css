@@ -3332,3 +3332,19 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
   color:#F5A524!important;
   margin:0!important;
 }
+
+
+/* Reference correction — dashboard welcome greeting matches the 25px Geist title. */
+.dashboard-page .member-welcome h1{
+  font-family:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-size:25px!important;
+  line-height:31.25px!important;
+  letter-spacing:0!important;
+}
+/* The WELCOME BACK eyebrow is blue on the MSRP dashboard. */
+.dashboard-page .welcome-heading-row>div>span{
+  color:#2EA8FF!important;
+}
+@media(max-width:760px){
+  .dashboard-page .member-welcome h1{font-size:25px!important;line-height:31.25px!important;}
+}
