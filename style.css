@@ -1995,3 +1995,51 @@ html,body{
     border-radius:13px!important;
   }
 }
+
+
+/* Welcome card refinements */
+.member-welcome{
+  min-height:142px!important;
+}
+.member-welcome-copy{
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+}
+.welcome-heading-row{
+  gap:11px!important;
+}
+.welcome-heading-row>div{
+  gap:0!important;
+}
+.welcome-heading-row span{
+  color:var(--msrp-blue-bright,#2ea8ff)!important;
+}
+.member-welcome h1 em,
+.member-welcome h1 strong{
+  color:var(--msrp-blue-bright,#2ea8ff)!important;
+}
+.member-welcome h1 strong{
+  color:#f0f4f6!important;
+}
+.member-welcome p{
+  margin-top:6px!important;
+  margin-left:53px!important;
+  max-width:430px!important;
+  color:#788691!important;
+}
+.member-stat-grid{
+  gap:14px!important;
+  margin-top:13px!important;
+}
+.member-stat-card{
+  min-height:96px!important;
+}
+@media(max-width:600px){
+  .member-welcome{min-height:150px!important}
+  .member-welcome p{
+    margin-left:0!important;
+    margin-top:5px!important;
+  }
+  .member-stat-grid{gap:10px!important}
+}
