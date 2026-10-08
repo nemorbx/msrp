@@ -3374,3 +3374,20 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
   .dashboard-page .member-welcome h1{font-size:26px!important;line-height:32.5px!important;}
   .dashboard-page .welcome-heading-row>div>span{font-size:10px!important;}
 }
+
+
+/* Final reference scale correction for the dashboard welcome greeting. */
+.dashboard-page .member-welcome h1{
+  font-family:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-size:34px!important;
+  line-height:1.18!important;
+  letter-spacing:-1.2px!important;
+}
+.dashboard-page .welcome-heading-row>div>span{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace!important;
+  font-size:10px!important;
+  line-height:16px!important;
+  font-weight:700!important;
+  letter-spacing:1.7px!important;
+  color:#2EA8FF!important;
+}
