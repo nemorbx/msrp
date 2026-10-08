@@ -353,8 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const allElements=[...memberDash.querySelectorAll("*")].filter(el=>{
       if(!(el instanceof HTMLElement)) return false;
       if(el.closest(".dashboard-editor-ui,.dashboard-editor-note,.dashboard-editor-overlay")) return false;
-      const r=el.getBoundingClientRect();
-      return r.width>0 && r.height>0;
+      return true;
     });
 
     const targets=[...new Set([...panels,...allElements])];
