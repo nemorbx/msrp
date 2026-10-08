@@ -4245,30 +4245,118 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
 }
 
 
-/* REMOVE EXCESSIVE OUTER WEBSITE EDGE PADDING */
+/* Global edge-padding cleanup removed: dashboard-only rules below. */
+
+
+/* =========================================================
+   DASHBOARD EDGE + LANCRP PROPORTION LOCK
+   Dashboard only. Do not affect the homepage or other pages.
+   ========================================================= */
 @media (min-width:901px){
-  html,body{
-    padding-left:0!important;
-    padding-right:0!important;
+  /* The stylesheet previously applied body zoom: .9. Cancel that only
+     while the member dashboard is the active page so measurements are
+     rendered at their actual CSS dimensions. */
+  body:has(.dashboard-page.active){
+    zoom:1!important;
   }
 
-  main{
+  body:has(.dashboard-page.active) .dashboard-page{
     width:100%!important;
     max-width:none!important;
+    margin:0!important;
+    padding:0 0 70px!important;
+    box-sizing:border-box!important;
   }
 
-  .dashboard-page{
-    padding-left:0!important;
-    padding-right:0!important;
+  body:has(.dashboard-page.active) .member-dashboard{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin:0 auto!important;
+    box-sizing:border-box!important;
   }
 
-  .platform-page{
-    padding-left:0!important;
-    padding-right:0!important;
+  body:has(.dashboard-page.active) .dashboard-page-title{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin:0 0 32px!important;
+    box-sizing:border-box!important;
   }
 
-  .dashboard-page .member-dashboard{
-    margin-left:auto!important;
-    margin-right:auto!important;
+  /* Reference account/admin bar: 1107px wide, 76px tall,
+     extending 24px past the 1059px dashboard shell on each side. */
+  body:has(.dashboard-page.active) .account-bar{
+    width:1107px!important;
+    max-width:1107px!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:0 0 24px -24px!important;
+    padding:10px 16px!important;
+    box-sizing:border-box!important;
+  }
+
+  body:has(.dashboard-page.active) .dashboard-body{
+    width:1059px!important;
+    max-width:1059px!important;
+    display:grid!important;
+    grid-template-columns:240px 787px!important;
+    column-gap:32px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+    align-items:start!important;
+  }
+
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:240px!important;
+    min-width:240px!important;
+    max-width:240px!important;
+    min-height:1134px!important;
+    height:1134px!important;
+    box-sizing:border-box!important;
+    padding:12px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-main{
+    width:787px!important;
+    min-width:787px!important;
+    max-width:787px!important;
+    box-sizing:border-box!important;
+  }
+
+  body:has(.dashboard-page.active) .member-welcome{
+    width:787px!important;
+    max-width:787px!important;
+    height:150px!important;
+    min-height:150px!important;
+    max-height:150px!important;
+    padding:24px 28px!important;
+    box-sizing:border-box!important;
+    border-radius:16px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-stat-grid{
+    width:787px!important;
+    max-width:787px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Keep the existing MSRP site header, but align it to the same
+     1107px reference width. */
+  body:has(.dashboard-page.active) .site-header{
+    display:flex!important;
+    width:1107px!important;
+    max-width:calc(100vw - 32px)!important;
+    height:58px!important;
+    min-height:58px!important;
+    margin:10px auto 0!important;
+    box-sizing:border-box!important;
+  }
+}
+
+@media (max-width:900px){
+  /* Dashboard mobile remains independent of the desktop reference lock. */
+  body:has(.dashboard-page.active) .dashboard-page{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
   }
 }
