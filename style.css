@@ -1622,10 +1622,11 @@ html,body{
   }
 
   /* The reference uses one continuous dashboard shell; content bars share its full width. */
+  /* Slightly wider than the current 1071px shell, with equal 12px side margins. */
   body:has(.dashboard-page.active) .member-dashboard{
-    width:100%!important;
-    max-width:none!important;
-    margin:0!important;
+    width:calc(100% - 24px)!important;
+    max-width:1083px!important;
+    margin:0 auto!important;
     box-sizing:border-box!important;
     zoom:1!important;
   }
@@ -1661,7 +1662,7 @@ html,body{
   /* LANCRP reference: admin-bar is exactly 1059 × 76. */
   body:has(.dashboard-page.active) .account-bar{
     width:100%!important;
-    max-width:none!important;
+    max-width:1083px!important;
     height:76px!important;
     min-height:76px!important;
     margin:8px 0 24px!important;
@@ -1730,7 +1731,7 @@ html,body{
   /* Reference content proportions: wide sidebar + wide main panel. */
   body:has(.dashboard-page.active) .dashboard-body{
     width:100%!important;
-    max-width:none!important;
+    max-width:1083px!important;
     margin-left:0!important;
     margin-right:0!important;
     display:grid!important;
