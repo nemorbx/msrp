@@ -2043,19 +2043,19 @@ html::-webkit-scrollbar-thumb:hover{
 }
 
 
-/* Dashboard welcome eyebrow — exact LANCRP reference size and font. */
+/* Dashboard welcome eyebrow — compensate only for the existing 1.1x parent dashboard zoom. */
 @media (min-width:901px){
   body:has(.dashboard-page.active) .member-welcome-copy .welcome-heading-row > div > span{
-    width:143.6px!important;
-    height:28px!important;
+    width:130.5454545px!important;
+    height:25.4545455px!important;
     box-sizing:border-box!important;
-    padding:5px 12px!important;
+    padding:4.5454545px 10.9090909px!important;
     font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace!important;
-    font-size:10px!important;
-    line-height:18px!important;
-    letter-spacing:1.6px!important;
+    font-size:9.0909091px!important;
+    line-height:16.3636364px!important;
+    letter-spacing:1.4545455px!important;
     font-weight:700!important;
-    zoom:.9090909091!important;
+    zoom:1!important;
   }
 }
 
