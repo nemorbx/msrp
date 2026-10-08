@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = member.nick || user.global_name || username;
     const avatar = avatarUrl(user);
 
-    ["memberAvatar","sidebarAvatar","profileCardAvatar","profilePreviewAvatar","recordAvatar"].forEach((id) => {
+    ["memberAvatar","sidebarAvatar","welcomeAvatar","profileCardAvatar","profilePreviewAvatar","recordAvatar"].forEach((id) => {
       const image = $(id);
       if (image) {
         image.src = avatar;
