@@ -1623,9 +1623,9 @@ html,body{
 
   /* The reference uses one continuous dashboard shell; content bars share its full width. */
   body:has(.dashboard-page.active) .member-dashboard{
-    width:calc(100vw - 32px)!important;
+    width:100%!important;
     max-width:none!important;
-    margin:0 auto!important;
+    margin:0!important;
     box-sizing:border-box!important;
     zoom:1!important;
   }
@@ -1633,6 +1633,8 @@ html,body{
   body:has(.dashboard-page.active) .dashboard-page-title{
     width:100%!important;
     margin:30px 0 31px!important;
+    padding-left:0!important;
+    padding-right:0!important;
     text-align:center!important;
   }
   body:has(.dashboard-page.active) .dashboard-page-title>span{
@@ -1729,6 +1731,8 @@ html,body{
   body:has(.dashboard-page.active) .dashboard-body{
     width:100%!important;
     max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
     display:grid!important;
     grid-template-columns:240px minmax(0,1fr)!important;
     column-gap:32px!important;
