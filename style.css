@@ -3683,3 +3683,58 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     max-width:none!important;
   }
 }
+
+
+/* LEFT SIDEBAR FIX — keep the sidebar contents flowing from the top.
+   The previous space-between layout was creating the huge empty gap
+   between the Dashboard heading and the General navigation. */
+@media (min-width:1101px){
+  .dashboard-page .member-sidebar{
+    width:240px!important;
+    min-width:240px!important;
+    min-height:1134px!important;
+    height:1134px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    align-items:stretch!important;
+    padding:12px!important;
+  }
+
+  .dashboard-page .sidebar-dashboard-title{
+    flex:0 0 auto!important;
+    padding:8px 8px 16px!important;
+    margin:0!important;
+  }
+
+  .dashboard-page .sidebar-divider{
+    flex:0 0 1px!important;
+    margin:0 0 14px!important;
+  }
+
+  .dashboard-page .member-sidebar-section{
+    flex:0 0 auto!important;
+    display:grid!important;
+    gap:4px!important;
+    margin:0!important;
+  }
+
+  .dashboard-page .member-sidebar-label-row{
+    margin:0!important;
+    padding:0 11px 8px!important;
+  }
+
+  .dashboard-page .member-nav-item{
+    flex:0 0 auto!important;
+    min-height:56px!important;
+    height:56px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .member-sidebar-user{
+    margin-top:auto!important;
+    flex:0 0 auto!important;
+  }
+}
