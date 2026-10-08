@@ -3391,3 +3391,65 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
   letter-spacing:1.7px!important;
   color:#2EA8FF!important;
 }
+
+
+/* FINAL HEADER REFINEMENT — slimmer header, outlined Discord CTA, real Discord mark. */
+@media(min-width:901px){
+  .site-header{
+    height:62px!important;
+    min-height:62px!important;
+    width:min(1240px,calc(100% - 40px))!important;
+    gap:24px!important;
+  }
+  .site-nav{
+    height:100%!important;
+    gap:26px!important;
+    align-items:center!important;
+  }
+  .site-nav-link{
+    height:36px!important;
+    padding:7px 11px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-family:Inter,Arial,sans-serif!important;
+    font-size:14px!important;
+    line-height:20px!important;
+    font-weight:700!important;
+    color:#d5dbe0!important;
+  }
+  .site-nav-link:hover,
+  .site-nav-link.active{
+    color:#fff!important;
+  }
+  .discord-button{
+    height:44px!important;
+    min-height:44px!important;
+    padding:0 19px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    border:1px solid rgba(255,255,255,.38)!important;
+    border-radius:999px!important;
+    background:transparent!important;
+    color:#f4f6f8!important;
+    font-family:Inter,Arial,sans-serif!important;
+    font-size:14px!important;
+    line-height:20px!important;
+    font-weight:700!important;
+    box-shadow:none!important;
+  }
+  .discord-button:hover{
+    border-color:rgba(73,220,255,.65)!important;
+    background:rgba(73,220,255,.06)!important;
+  }
+  .discord-button svg{
+    width:20px!important;
+    height:20px!important;
+    flex:0 0 20px!important;
+    fill:currentColor!important;
+    stroke:none!important;
+    display:block!important;
+  }
+}
