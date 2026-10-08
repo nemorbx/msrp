@@ -1859,3 +1859,61 @@ html,body{
 .account-notification:before{
   border-color:rgba(255,255,255,.09)!important;
 }
+
+
+/* Welcome card — match the reference layout with the Discord avatar beside the greeting */
+.member-welcome-copy{
+  display:flex;
+  align-items:center;
+}
+.welcome-heading-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.welcome-heading-row>div{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.welcome-avatar{
+  width:52px!important;
+  height:52px!important;
+  flex:0 0 52px;
+  border-radius:50%!important;
+  object-fit:cover;
+  padding:3px;
+  background:#101923;
+  border:2px solid var(--msrp-blue-bright,#2ea8ff);
+  box-shadow:0 0 0 2px rgba(46,168,255,.10),0 0 20px rgba(46,168,255,.14);
+}
+.member-welcome-copy>span{
+  font-family:Inter,Arial,sans-serif!important;
+  font-size:8px!important;
+  line-height:1!important;
+  letter-spacing:1.5px!important;
+  margin:0!important;
+}
+.member-welcome h1{
+  font-family:Inter,Arial,sans-serif!important;
+  font-size:31px!important;
+  line-height:1.05!important;
+  letter-spacing:-1.1px!important;
+  margin-top:7px!important;
+  font-weight:800!important;
+}
+.member-welcome h1 strong,
+.member-welcome h1 em{
+  font-family:Inter,Arial,sans-serif!important;
+  font-style:normal!important;
+  font-weight:800!important;
+}
+.member-welcome p{
+  font-family:Inter,Arial,sans-serif!important;
+  margin-top:6px!important;
+}
+@media(max-width:600px){
+  .welcome-heading-row{gap:10px}
+  .welcome-avatar{width:44px!important;height:44px!important;flex-basis:44px}
+  .member-welcome h1{font-size:23px!important}
+}
