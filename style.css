@@ -2297,3 +2297,59 @@ body.dashboard-editing [data-editor-selected="true"]{
 body.dashboard-editing [data-editor-selected="true"] > .dashboard-editor-handle{
   pointer-events:auto;
 }
+
+
+/* Dashboard editor v2: resize-only selection overlay. */
+.dashboard-editor-overlay{
+  position:fixed;
+  inset:0;
+  z-index:100001;
+  pointer-events:none;
+}
+.dashboard-editor-overlay[hidden]{display:none!important}
+.dashboard-editor-box{
+  position:fixed;
+  box-sizing:border-box;
+  border:2px solid #2ea8ff;
+  border-radius:3px;
+  pointer-events:none;
+  box-shadow:0 0 0 1px rgba(46,168,255,.14),0 0 18px rgba(46,168,255,.10);
+}
+.dashboard-editor-overlay .dashboard-editor-handle{
+  position:absolute;
+  width:12px;
+  height:12px;
+  margin:0;
+  padding:0;
+  border:2px solid #071019;
+  border-radius:3px;
+  background:#2ea8ff;
+  box-sizing:border-box;
+  pointer-events:auto;
+}
+.dashboard-editor-overlay .dashboard-editor-handle-n{left:50%;top:-7px;transform:translateX(-50%);cursor:ns-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-s{left:50%;bottom:-7px;transform:translateX(-50%);cursor:ns-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-e{right:-7px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-w{left:-7px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-nw{left:-7px;top:-7px;cursor:nwse-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-ne{right:-7px;top:-7px;cursor:nesw-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-sw{left:-7px;bottom:-7px;cursor:nesw-resize}
+.dashboard-editor-overlay .dashboard-editor-handle-se{right:-7px;bottom:-7px;cursor:nwse-resize}
+body.dashboard-editing [data-editor-id]{
+  outline:1px dashed rgba(46,168,255,.13);
+  outline-offset:2px;
+  cursor:pointer;
+}
+body.dashboard-editing [data-editor-selected="true"]{
+  outline:2px solid rgba(46,168,255,.9)!important;
+  outline-offset:3px;
+}
+body.dashboard-editor-inside .member-dashboard > *{
+  cursor:pointer;
+}
+.dashboard-editor-ui .editor-tool-title{color:#2ea8ff;font:800 10px/1 Inter,Arial,sans-serif;letter-spacing:.08em}
+.dashboard-editor-ui button{min-width:30px}
+.dashboard-editor-ui label{font-size:10px}
+.dashboard-editor-ui input{width:54px}
+.dashboard-editor-note{position:fixed;z-index:99998;left:50%;top:68px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(46,168,255,.25);border-radius:999px;background:rgba(8,12,17,.92);color:#b9c7d3;font:700 10px/1 Inter,Arial,sans-serif;letter-spacing:.02em;pointer-events:none;white-space:nowrap}
+body:not(.dashboard-editing) .dashboard-editor-note{display:none}
