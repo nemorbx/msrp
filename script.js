@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const panels = [...new Set(panelSelectors.flatMap(sel => [...memberDash.querySelectorAll(sel)]))];
     const panelSet = new Set(panels);
-    const editorStore = "msrp_dashboard_editor_v2_";
+    const editorStore = "msrp_dashboard_editor_v3_";
 
     function visible(el){
       if (!(el instanceof HTMLElement)) return false;
@@ -426,8 +426,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let insideMode = false;
     let resizeState = null;
 
+    let insideRoot = null;
+
     function targets(){
-      return insideMode ? children : panels;
+      return insideMode && insideRoot
+        ? children.filter(el => insideRoot.contains(el) && el !== insideRoot)
+        : panels;
     }
 
     function save(el){
@@ -583,10 +587,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!selected) return;
       if(!insideMode){
         insideMode = true;
+        insideRoot = selected;
         $("editorEditInside").textContent = "Lock Panel";
         document.body.classList.add("dashboard-editor-inside");
       }else{
         insideMode = false;
+        insideRoot = null;
         $("editorEditInside").textContent = "Edit Inside";
         document.body.classList.remove("dashboard-editor-inside");
         if(!panelSet.has(selected)){
@@ -608,6 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.textContent = "Edit Dashboard";
       clearSelection();
       insideMode = false;
+      insideRoot = null;
       resizeState = null;
     }
 
