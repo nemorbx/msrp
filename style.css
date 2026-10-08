@@ -4243,3 +4243,32 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     box-sizing:border-box!important;
   }
 }
+
+
+/* REMOVE EXCESSIVE OUTER WEBSITE EDGE PADDING */
+@media (min-width:901px){
+  html,body{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+
+  main{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  .dashboard-page{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+
+  .platform-page{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+
+  .dashboard-page .member-dashboard{
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
