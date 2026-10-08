@@ -3289,3 +3289,11 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
   bottom:auto!important;
   border-radius:0 3px 3px 0!important;
 }
+
+
+/* Reference measurement: LANCRP welcome greeting title is 21.138px. */
+@media(min-width:901px){
+  .dashboard-page .member-welcome h1{
+    font-size:21.138px!important;
+  }
+}
