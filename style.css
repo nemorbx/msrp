@@ -1942,3 +1942,23 @@ html,body{
     object-fit:cover!important;
   }
 }
+
+
+/* Slim MSRP-blue page scrollbar */
+html{
+  scrollbar-width:thin;
+  scrollbar-color:#2ea8ff transparent;
+}
+html::-webkit-scrollbar{
+  width:6px;
+}
+html::-webkit-scrollbar-track{
+  background:transparent;
+}
+html::-webkit-scrollbar-thumb{
+  background:#2ea8ff;
+  border-radius:999px;
+}
+html::-webkit-scrollbar-thumb:hover{
+  background:#55c5ff;
+}
