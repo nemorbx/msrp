@@ -2238,9 +2238,25 @@ body.dashboard-editing .dashboard-editor-ui{display:flex}
 .dashboard-editor-ui input{width:58px;height:30px;padding:0 7px;border:1px solid rgba(255,255,255,.12);border-radius:7px;background:#111922;color:#fff;outline:none;font:600 11px Inter,Arial,sans-serif}
 .dashboard-editor-ui button{height:30px;padding:0 10px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:#111922;color:#eaf3f8;font:700 11px Inter,Arial,sans-serif}
 .dashboard-editor-ui button:hover{border-color:rgba(46,168,255,.45);color:#2ea8ff}
-body.dashboard-editing [data-editor-target]{outline:1px dashed rgba(46,168,255,.34);outline-offset:3px;cursor:move}
+body.dashboard-editing [data-editor-target]{outline:1px dashed rgba(46,168,255,.28);outline-offset:3px;cursor:pointer}
 body.dashboard-editing [data-editor-selected="true"]{outline:2px solid #2ea8ff!important;outline-offset:4px}
-.dashboard-editor-handle{position:absolute;right:-7px;bottom:-7px;width:14px;height:14px;border:2px solid #071019;border-radius:4px;background:#2ea8ff;cursor:nwse-resize;z-index:100000}
+.dashboard-editor-handle{
+  position:absolute;
+  width:10px;height:10px;
+  border:2px solid #071019;
+  border-radius:3px;
+  background:#2ea8ff;
+  z-index:100000;
+  box-sizing:border-box;
+}
+.dashboard-editor-handle-n{left:50%;top:-6px;transform:translateX(-50%);cursor:ns-resize}
+.dashboard-editor-handle-s{left:50%;bottom:-6px;transform:translateX(-50%);cursor:ns-resize}
+.dashboard-editor-handle-e{right:-6px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.dashboard-editor-handle-w{left:-6px;top:50%;transform:translateY(-50%);cursor:ew-resize}
+.dashboard-editor-handle-nw{left:-6px;top:-6px;cursor:nwse-resize}
+.dashboard-editor-handle-ne{right:-6px;top:-6px;cursor:nesw-resize}
+.dashboard-editor-handle-sw{left:-6px;bottom:-6px;cursor:nesw-resize}
+.dashboard-editor-handle-se{right:-6px;bottom:-6px;cursor:nwse-resize}
 .dashboard-editor-note{position:fixed;z-index:99999;top:18px;left:50%;transform:translateX(-50%);display:none;padding:8px 12px;border:1px solid rgba(46,168,255,.3);border-radius:999px;background:rgba(8,12,17,.92);color:#bfeaff;font:600 10px Inter,Arial,sans-serif;pointer-events:none}
 body.dashboard-editing .dashboard-editor-note{display:block}
 @media(max-width:900px){
