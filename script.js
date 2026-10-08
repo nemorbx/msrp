@@ -458,8 +458,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const r = selected.getBoundingClientRect();
       overlay.hidden = false;
-      overlayBox.style.left = r.left + "px";
-      overlayBox.style.top = r.top + "px";
+      overlayBox.style.left = (r.left + window.scrollX) + "px";
+      overlayBox.style.top = (r.top + window.scrollY) + "px";
       overlayBox.style.width = r.width + "px";
       overlayBox.style.height = r.height + "px";
     }
