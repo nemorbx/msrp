@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Dashboard editor: grid-based move/resize controls with panel locking. */
   function setupDashboardEditor(){
-    const toggle = $("dashboardEditToggle");
+    const toggle = $("dashboardEditorButton") || $("dashboardEditToggle");
     if(!toggle || !memberDash) return;
 
     const panelSelectors = [
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const panels=[...new Set(panelSelectors.flatMap(sel=>[...memberDash.querySelectorAll(sel)]))];
     const panelSet=new Set(panels);
-    const store="msrp_dashboard_editor_v4_";
+    const store="msrp_dashboard_editor_v5_";
 
     const allElements=[...memberDash.querySelectorAll("*")].filter(el=>{
       if(!(el instanceof HTMLElement)) return false;
@@ -479,8 +479,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const p=currentXY(el), r=el.getBoundingClientRect(), cs=getComputedStyle(el);
       $( "editorX").value=Math.round(p.x);
       $( "editorY").value=Math.round(p.y);
-      $( "editorWidth").value=Math.round(r.width);
-      $( "editorHeight").value=Math.round(r.height);
+      const size=layoutSize(el);
+      $( "editorWidth").value=Math.round(size.width);
+      $( "editorHeight").value=Math.round(size.height);
       $( "editorFont").value=(parseFloat(cs.fontSize)||0).toFixed(1).replace(/\\.0$/,"");
       $( "editorLine").value=cs.lineHeight==="normal"?"1.2":parseFloat(cs.lineHeight);
       $( "editorSpacing").value=parseFloat(cs.letterSpacing)||0;
@@ -491,8 +492,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function setXY(x,y){
       if(!selected) return;
       const g=grid();
-      const nx=Math.round(x/g)*g;
-      const ny=Math.round(y/g)*g;
+      const nx=clamp(Math.round(x/g)*g,-LIMITS.maxX,LIMITS.maxX);
+      const ny=clamp(Math.round(y/g)*g,-LIMITS.maxY,LIMITS.maxY);
       selected.style.setProperty("--editor-x",nx+"px");
       selected.style.setProperty("--editor-y",ny+"px");
       select(selected); save(selected);
@@ -504,12 +505,17 @@ document.addEventListener("DOMContentLoaded", () => {
       setXY(p.x+dx,p.y+dy);
     }
 
+    const LIMITS = Object.freeze({minWidth:40,maxWidth:1600,minHeight:24,maxHeight:1200,maxX:4000,maxY:4000});
+    function clamp(n,min,max){ return Math.min(max,Math.max(min,n)); }
+    function layoutSize(el){
+      const cs=getComputedStyle(el);
+      return {width:parseFloat(cs.width)||el.offsetWidth||0,height:parseFloat(cs.height)||el.offsetHeight||0};
+    }
     function resize(dw,dh){
       if(!selected) return;
-      const g=grid();
-      const r=selected.getBoundingClientRect();
-      const nx=Math.max(40,Math.round((r.width+dw)/g)*g);
-      const ny=Math.max(24,Math.round((r.height+dh)/g)*g);
+      const g=grid(), size=layoutSize(selected);
+      const nx=clamp(Math.round((size.width+dw)/g)*g,LIMITS.minWidth,LIMITS.maxWidth);
+      const ny=clamp(Math.round((size.height+dh)/g)*g,LIMITS.minHeight,LIMITS.maxHeight);
       selected.style.setProperty("width",nx+"px","important");
       selected.style.setProperty("height",ny+"px","important");
       select(selected); save(selected);
@@ -532,8 +538,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $( "editorX").addEventListener("input",e=>{if(selected&&e.target.value!=="") setXY(Number(e.target.value),currentXY(selected).y)});
     $( "editorY").addEventListener("input",e=>{if(selected&&e.target.value!=="") setXY(currentXY(selected).x,Number(e.target.value))});
-    $( "editorWidth").addEventListener("input",e=>{if(selected&&e.target.value!==""){selected.style.setProperty("width",Math.max(40,Number(e.target.value))+"px","important");select(selected);save(selected)}});
-    $( "editorHeight").addEventListener("input",e=>{if(selected&&e.target.value!==""){selected.style.setProperty("height",Math.max(24,Number(e.target.value))+"px","important");select(selected);save(selected)}});
+    $( "editorWidth").addEventListener("input",e=>{if(selected&&e.target.value!==""){const g=grid(),v=clamp(Math.round(Number(e.target.value)/g)*g,LIMITS.minWidth,LIMITS.maxWidth);selected.style.setProperty("width",v+"px","important");select(selected);save(selected)}});
+    $( "editorHeight").addEventListener("input",e=>{if(selected&&e.target.value!==""){const g=grid(),v=clamp(Math.round(Number(e.target.value)/g)*g,LIMITS.minHeight,LIMITS.maxHeight);selected.style.setProperty("height",v+"px","important");select(selected);save(selected)}});
     $( "editorFont").addEventListener("input",e=>setField("fontSize",Number(e.target.value)+"px"));
     $( "editorLine").addEventListener("input",e=>setField("lineHeight",e.target.value));
     $( "editorSpacing").addEventListener("input",e=>setField("letterSpacing",Number(e.target.value)+"px"));
