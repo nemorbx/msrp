@@ -3865,3 +3865,44 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     margin-right:auto!important;
   }
 }
+
+
+/* DEFINITIVE OUTER WIDTH — the dashboard should nearly fill the available
+   desktop content area, leaving only a small equal margin on each side. */
+@media (min-width:1101px){
+  .dashboard-page .member-dashboard{
+    width:calc(100% - 80px)!important;
+    max-width:none!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  .dashboard-page .account-bar{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  .dashboard-page .dashboard-body{
+    width:100%!important;
+    max-width:none!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:20px!important;
+  }
+
+  .dashboard-page .member-main,
+  .dashboard-page .member-welcome,
+  .dashboard-page .member-stat-grid{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+  }
+
+  .site-header{
+    width:calc(100% - 40px)!important;
+    max-width:none!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
