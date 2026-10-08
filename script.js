@@ -331,6 +331,137 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+
+  /* Temporary dashboard visual editor: drag, resize, and adjust text without editing code. */
+  function setupDashboardEditor(){
+    const toggle = $("dashboardEditToggle");
+    if (!toggle || !memberDash) return;
+
+    const editorTargets = [
+      ".dashboard-page-title",".dashboard-page-title > span",".dashboard-page-title > h1",
+      ".account-bar",".account-identity",".account-actions",".member-sidebar",".member-sidebar-section",
+      ".member-nav-item",".member-sidebar-user",".member-welcome",".member-welcome-copy",
+      ".member-welcome-copy .welcome-heading-row > div > span",".member-welcome h1",".member-welcome p",
+      ".player-ring",".member-stat-grid",".member-stat-card",".member-stat-card span",".member-stat-card strong",
+      "#dashboardCommunityView","#dashboardLeaderboardView","#dashboardInventoryView",
+      ".dashboard-community-banner",".leaderboard-panel",".inventory-banner"
+    ];
+
+    const targets = [...new Set(editorTargets.flatMap(sel => [...memberDash.querySelectorAll(sel)]))];
+    targets.forEach((el,i)=>{
+      el.dataset.editorTarget = String(i);
+      el.style.translate = "var(--editor-x, 0px) var(--editor-y, 0px)";
+      const saved = localStorage.getItem("msrp_dashboard_editor_"+i);
+      if(saved){
+        try{
+          const v=JSON.parse(saved);
+          if(v.x!=null) el.style.setProperty("--editor-x",v.x+"px");
+          if(v.y!=null) el.style.setProperty("--editor-y",v.y+"px");
+          if(v.width) el.style.width=v.width+"px";
+          if(v.height) el.style.height=v.height+"px";
+          if(v.fontSize) el.style.fontSize=v.fontSize+"px";
+        }catch{}
+      }
+    });
+
+    const ui=document.createElement("div");
+    ui.className="dashboard-editor-ui";
+    ui.innerHTML='<label>W <input id="editorWidth" type="number" min="1" step="1"></label><label>H <input id="editorHeight" type="number" min="1" step="1"></label><label>Text <input id="editorFont" type="number" min="1" step=".5"></label><button type="button" id="editorReset">Reset</button><button type="button" id="editorDone">Done</button>';
+    document.body.appendChild(ui);
+
+    const note=document.createElement("div");
+    note.className="dashboard-editor-note";
+    note.textContent="EDIT MODE — drag panels/text, use the bottom controls to resize";
+    document.body.appendChild(note);
+
+    let selected=null,drag=null,resize=null;
+
+    function box(el){ return el.getBoundingClientRect(); }
+    function save(el){
+      const id=el.dataset.editorTarget, cs=getComputedStyle(el);
+      const x=parseFloat(cs.getPropertyValue("--editor-x"))||0;
+      const y=parseFloat(cs.getPropertyValue("--editor-y"))||0;
+      localStorage.setItem("msrp_dashboard_editor_"+id,JSON.stringify({
+        x,y,width:el.offsetWidth,height:el.offsetHeight,fontSize:parseFloat(getComputedStyle(el).fontSize)
+      }));
+    }
+    function select(el){
+      if(!el) return;
+      if(selected) selected.removeAttribute("data-editor-selected");
+      selected=el;
+      selected.dataset.editorSelected="true";
+      const r=box(selected);
+      $("editorWidth").value=Math.round(r.width);
+      $("editorHeight").value=Math.round(r.height);
+      $("editorFont").value=parseFloat(getComputedStyle(selected).fontSize).toFixed(1).replace(/\\.0$/,"");
+      document.querySelectorAll(".dashboard-editor-handle").forEach(x=>x.remove());
+      const handle=document.createElement("div");
+      handle.className="dashboard-editor-handle";
+      selected.appendChild(handle);
+      handle.addEventListener("pointerdown",e=>{
+        e.preventDefault();e.stopPropagation();
+        const start=box(selected);
+        resize={startW:start.width,startH:start.height,startX:e.clientX,startY:e.clientY};
+      });
+    }
+    function finish(){ if(selected) save(selected); drag=null; resize=null; }
+
+    targets.forEach(el=>{
+      el.addEventListener("pointerdown",e=>{
+        if(!document.body.classList.contains("dashboard-editing") || e.target.closest(".dashboard-editor-handle")) return;
+        e.preventDefault();e.stopPropagation();
+        select(el);
+        const cs=getComputedStyle(el);
+        drag={el,startX:e.clientX,startY:e.clientY,x:parseFloat(cs.getPropertyValue("--editor-x"))||0,y:parseFloat(cs.getPropertyValue("--editor-y"))||0};
+      });
+      el.addEventListener("click",e=>{
+        if(!document.body.classList.contains("dashboard-editing")) return;
+        e.preventDefault();e.stopPropagation();select(el);
+      },true);
+    });
+
+    document.addEventListener("pointermove",e=>{
+      if(drag){
+        const dx=e.clientX-drag.startX,dy=e.clientY-drag.startY;
+        drag.el.style.setProperty("--editor-x",(drag.x+dx)+"px");
+        drag.el.style.setProperty("--editor-y",(drag.y+dy)+"px");
+      }
+      if(resize && selected){
+        const w=Math.max(1,resize.startW+(e.clientX-resize.startX));
+        const h=Math.max(1,resize.startH+(e.clientY-resize.startY));
+        selected.style.width=w+"px"; selected.style.height=h+"px";
+        $("editorWidth").value=Math.round(w); $("editorHeight").value=Math.round(h);
+      }
+    });
+    document.addEventListener("pointerup",finish);
+
+    $("editorWidth").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.width=Number(e.target.value)+"px";save(selected)}});
+    $("editorHeight").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.height=Number(e.target.value)+"px";save(selected)}});
+    $("editorFont").addEventListener("input",e=>{if(selected&&e.target.value){selected.style.fontSize=Number(e.target.value)+"px";save(selected)}});
+
+    $("editorReset").onclick=()=>{
+      targets.forEach(el=>localStorage.removeItem("msrp_dashboard_editor_"+el.dataset.editorTarget));
+      location.reload();
+    };
+    $("editorDone").onclick=()=>{
+      document.body.classList.remove("dashboard-editing");
+      toggle.textContent="Edit Dashboard";
+      if(selected) selected.removeAttribute("data-editor-selected");
+      document.querySelectorAll(".dashboard-editor-handle").forEach(x=>x.remove());
+    };
+    toggle.hidden=false;
+    toggle.onclick=()=>{
+      const editing=document.body.classList.toggle("dashboard-editing");
+      toggle.textContent=editing ? "Exit Edit Mode" : "Edit Dashboard";
+      if(!editing){
+        if(selected) selected.removeAttribute("data-editor-selected");
+        document.querySelectorAll(".dashboard-editor-handle").forEach(x=>x.remove());
+      }
+    };
+  }
+
+  setupDashboardEditor();
+
   const initialHash = location.hash.slice(1);
   page(location.hash.includes("access_token=") ? "dashboard" : (names.has(initialHash) ? initialHash : "home"), false);
 
