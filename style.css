@@ -2152,3 +2152,37 @@ html::-webkit-scrollbar-thumb:hover{
     box-sizing:border-box!important;
   }
 }
+
+
+/* Dashboard-only: match the newly measured LANCRP content geometry exactly. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .dashboard-body{
+    width:1192px!important;
+    max-width:1192px!important;
+    grid-template-columns:240px 920px!important;
+    column-gap:32px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-main{
+    width:920px!important;
+    min-width:920px!important;
+    max-width:920px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-welcome{
+    width:920px!important;
+    min-width:920px!important;
+    max-width:920px!important;
+    height:150px!important;
+    min-height:150px!important;
+    max-height:150px!important;
+    box-sizing:border-box!important;
+    padding:24px 28px!important;
+    border-width:1px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-stat-grid{
+    width:920px!important;
+    max-width:920px!important;
+  }
+}
