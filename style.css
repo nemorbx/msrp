@@ -2054,3 +2054,24 @@ html::-webkit-scrollbar-thumb:hover{
     letter-spacing:1.45px!important;
   }
 }
+
+
+/* Dashboard-only reference sizing: match the LANCRP dashboard footprint. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin:0 auto!important;
+    zoom:1!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{
+    width:100%!important;
+    max-width:none!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:32px!important;
+  }
+  body:has(.dashboard-page.active) .account-bar{
+    width:100%!important;
+    max-width:none!important;
+  }
+}
