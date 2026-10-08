@@ -2958,3 +2958,9 @@ body:has(.dashboard-page.active) .site-header{display:none}
   .dashboard-page .player-ring strong{font-size:16px!important}.dashboard-page .player-ring span{font-size:5px!important}
   .profile-suggestions{grid-template-columns:1fr 1fr}.dashboard-yellow-button{padding:12px 16px!important}
 }
+
+
+/* Dashboard uses the existing MSRP site header — never add a second header. */
+body:has(.dashboard-page.active) .site-header{display:flex!important}
+.dashboard-page .dashboard-sitebar{display:none!important}
+.dashboard-page .notification-count{display:none!important}
