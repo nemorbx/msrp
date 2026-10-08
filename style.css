@@ -3775,3 +3775,48 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     box-sizing:border-box!important;
   }
 }
+
+
+/* FINAL SHELL ALIGNMENT — outer header/title shell is wider; all dashboard
+   content panels share the exact same 1059px inner edge. */
+@media (min-width:1101px){
+  .dashboard-page .member-dashboard{
+    width:1107px!important;
+    max-width:1107px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  .dashboard-page .account-bar{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .dashboard-body{
+    width:1059px!important;
+    max-width:1059px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    grid-template-columns:240px 787px!important;
+    column-gap:32px!important;
+    box-sizing:border-box!important;
+  }
+
+  .dashboard-page .member-main,
+  .dashboard-page .member-welcome,
+  .dashboard-page .member-stat-grid{
+    width:787px!important;
+    max-width:787px!important;
+  }
+
+  .site-header{
+    width:1107px!important;
+    max-width:calc(100% - 32px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    box-sizing:border-box!important;
+  }
+}
