@@ -360,6 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     targets.forEach((el,i)=>{
       el.dataset.editorTarget = String(i);
+      el.style.translate = "var(--editor-x, 0px) var(--editor-y, 0px)";
       const saved = localStorage.getItem("msrp_dashboard_editor_"+i);
       if(saved){
         try{
@@ -434,6 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearHandles();
       selected=el;
       selected.dataset.editorSelected="true";
+      if(getComputedStyle(selected).position==="static") selected.style.position="relative";
 
       const r=box(selected), cs=getComputedStyle(selected);
       $("editorWidth").value=Math.round(r.width);
@@ -501,6 +503,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if(d.dir.includes("n")) h=Math.max(minH,d.startH-dy);
       selected.style.width=Math.round(w)+"px";
       selected.style.height=Math.round(h)+"px";
+      if(d.dir.includes("w")) selected.style.setProperty("--editor-x",((parseFloat(getComputedStyle(selected).getPropertyValue("--editor-x"))||0)+(d.startW-w))+"px");
+      if(d.dir.includes("n")) selected.style.setProperty("--editor-y",((parseFloat(getComputedStyle(selected).getPropertyValue("--editor-y"))||0)+(d.startH-h))+"px");
       $("editorWidth").value=Math.round(w);
       $("editorHeight").value=Math.round(h);
     });
