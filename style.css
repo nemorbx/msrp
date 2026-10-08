@@ -2075,3 +2075,11 @@ html::-webkit-scrollbar-thumb:hover{
     max-width:none!important;
   }
 }
+
+
+/* Dashboard-only: remove the solid page panel behind the dashboard content. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .dashboard-page{
+    background:transparent!important;
+  }
+}
