@@ -189,8 +189,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function render(user, member) {
     const isStaff = Array.isArray(member.roles) && member.roles.some((id) => roles.some((r) => r[0] === id));
-    const memberRank = isStaff ? rank(member.roles) : "Member";
-    const name = member.nick || user.global_name || user.username || "Member";
+    const hasSeniorHighRank = Array.isArray(member.roles) && member.roles.includes("1551704056991318191");
+    const hasHighRank = Array.isArray(member.roles) && member.roles.includes("1551704115350999143");
+    const memberRank = hasSeniorHighRank ? "Senior High Rank" : hasHighRank ? "High Rank" : isStaff ? "Staff" : "Member";
+    const username = user.username || "Member";
+    const name = member.nick || user.global_name || username;
     const avatar = avatarUrl(user);
 
     ["memberAvatar","sidebarAvatar","profileCardAvatar","profilePreviewAvatar","recordAvatar"].forEach((id) => {
@@ -201,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    [["memberUsername", name],["sidebarUsername", name],["welcomeName", name + "."],["memberDashboardRank", memberRank],
+    [["memberUsername", username],["sidebarUsername", username],["welcomeName", name + "."],["memberDashboardRank", memberRank],
      ["recordName", name],["recordRank", memberRank],["recordStatus", isStaff ? "Verified Staff" : "Verified"]]
       .forEach(([id, value]) => { if ($(id)) $(id).textContent = value; });
 
