@@ -374,8 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!raw) return;
       try{
         const v = JSON.parse(raw);
-        if(v.width) el.style.width = v.width + "px";
-        if(v.height) el.style.height = v.height + "px";
+        if(v.width) el.style.setProperty("width", v.width + "px", "important");
+        if(v.height) el.style.setProperty("height", v.height + "px", "important");
         if(v.fontSize) el.style.fontSize = v.fontSize + "px";
         if(v.lineHeight) el.style.lineHeight = v.lineHeight;
         if(v.letterSpacing != null) el.style.letterSpacing = v.letterSpacing + "px";
@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<span class="dashboard-editor-handle dashboard-editor-handle-sw" data-resize="sw"></span>' +
         '<span class="dashboard-editor-handle dashboard-editor-handle-se" data-resize="se"></span>' +
       '</div>';
-    document.body.appendChild(overlay);
+    memberDash.appendChild(overlay);
     const overlayBox = overlay.querySelector(".dashboard-editor-box");
 
     let selected = null;
@@ -434,8 +434,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!el) return;
       const cs = getComputedStyle(el);
       localStorage.setItem(editorStore + key(el), JSON.stringify({
-        width: el.offsetWidth,
-        height: el.offsetHeight,
+        width: parseFloat(getComputedStyle(el).width) || el.offsetWidth,
+        height: parseFloat(getComputedStyle(el).height) || el.offsetHeight,
         fontSize: parseFloat(cs.fontSize) || 0,
         lineHeight: cs.lineHeight,
         letterSpacing: parseFloat(cs.letterSpacing) || 0,
@@ -456,12 +456,17 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.hidden = true;
         return;
       }
-      const r = selected.getBoundingClientRect();
+      const targetRect = selected.getBoundingClientRect();
+      const parentRect = memberDash.getBoundingClientRect();
+      const parentWidth = memberDash.offsetWidth || parentRect.width;
+      const parentHeight = memberDash.offsetHeight || parentRect.height;
+      const scaleX = parentWidth ? parentRect.width / parentWidth : 1;
+      const scaleY = parentHeight ? parentRect.height / parentHeight : 1;
       overlay.hidden = false;
-      overlayBox.style.left = (r.left + window.scrollX) + "px";
-      overlayBox.style.top = (r.top + window.scrollY) + "px";
-      overlayBox.style.width = r.width + "px";
-      overlayBox.style.height = r.height + "px";
+      overlayBox.style.left = ((targetRect.left - parentRect.left) / scaleX) + "px";
+      overlayBox.style.top = ((targetRect.top - parentRect.top) / scaleY) + "px";
+      overlayBox.style.width = (targetRect.width / scaleX) + "px";
+      overlayBox.style.height = (targetRect.height / scaleY) + "px";
     }
 
     function clearSelection(){
@@ -492,8 +497,8 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.boxSizing = "border-box";
       el.style.minWidth = "0";
       el.style.maxWidth = "none";
-      if(width != null) el.style.width = Math.max(40, Math.round(width)) + "px";
-      if(height != null) el.style.height = Math.max(24, Math.round(height)) + "px";
+      if(width != null) el.style.setProperty("width", Math.max(40, Math.round(width)) + "px", "important");
+      if(height != null) el.style.setProperty("height", Math.max(24, Math.round(height)) + "px", "important");
       save(el);
       select(el);
     }
@@ -557,8 +562,18 @@ document.addEventListener("DOMContentLoaded", () => {
       positionOverlay();
     }
 
-    $("editorWidth").addEventListener("input", e => updateSelected("width", Number(e.target.value) + "px"));
-    $("editorHeight").addEventListener("input", e => updateSelected("height", Number(e.target.value) + "px"));
+    $("editorWidth").addEventListener("input", e => {
+      if(selected && e.target.value){
+        selected.style.setProperty("width", Math.max(40, Number(e.target.value)) + "px", "important");
+        save(selected); positionOverlay();
+      }
+    });
+    $("editorHeight").addEventListener("input", e => {
+      if(selected && e.target.value){
+        selected.style.setProperty("height", Math.max(24, Number(e.target.value)) + "px", "important");
+        save(selected); positionOverlay();
+      }
+    });
     $("editorFont").addEventListener("input", e => updateSelected("fontSize", Number(e.target.value) + "px"));
     $("editorLine").addEventListener("input", e => updateSelected("lineHeight", e.target.value));
     $("editorSpacing").addEventListener("input", e => updateSelected("letterSpacing", Number(e.target.value) + "px"));
