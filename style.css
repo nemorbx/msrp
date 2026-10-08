@@ -2522,3 +2522,25 @@ html,body{
     border-radius:14px!important;
   }
 }
+
+
+/* Welcome copy: description sits directly beneath the greeting */
+@media(min-width:901px){
+  .member-welcome-copy{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    gap:0!important;
+  }
+  .welcome-heading-row{
+    display:flex!important;
+    align-items:center!important;
+    gap:13px!important;
+  }
+  .member-welcome p{
+    margin:6px 0 0 67px!important;
+    max-width:360px!important;
+    align-self:flex-start!important;
+  }
+}
