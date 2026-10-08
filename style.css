@@ -2041,3 +2041,16 @@ html::-webkit-scrollbar-thumb:hover{
     white-space:nowrap!important;
   }
 }
+
+
+/* Dashboard-only visual compensation for the existing 1.1x dashboard zoom. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-welcome-copy .welcome-heading-row > div > span{
+    width:130.55px!important;
+    height:25.45px!important;
+    padding:4.55px 10.91px!important;
+    font-size:9.09px!important;
+    line-height:16.36px!important;
+    letter-spacing:1.45px!important;
+  }
+}
