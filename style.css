@@ -2117,3 +2117,38 @@ html::-webkit-scrollbar-thumb:hover{
     column-gap:32px!important;
   }
 }
+
+
+/* Dashboard-only: use the exact LANCRP outer measurements captured in DevTools. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    width:1240px!important;
+    max-width:1240px!important;
+    margin:0 auto!important;
+    zoom:1!important;
+  }
+
+  body:has(.dashboard-page.active) .account-bar{
+    width:1192px!important;
+    max-width:1192px!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:8px auto 24px!important;
+    padding:12px 14px 12px 16px!important;
+    box-sizing:border-box!important;
+  }
+
+  body:has(.dashboard-page.active) .dashboard-body{
+    width:1192px!important;
+    max-width:1192px!important;
+    margin:0 auto!important;
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:32px!important;
+  }
+
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:240px!important;
+    min-width:240px!important;
+    box-sizing:border-box!important;
+  }
+}
