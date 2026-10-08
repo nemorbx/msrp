@@ -3236,3 +3236,56 @@ body:has(.dashboard-page.active) .site-header{display:flex!important}
     font-size:6px!important;
   }
 }
+
+
+/* FINAL CLEANUP — prevent dashboard leakage and match the requested single-box controls. */
+#home:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+#home:not(.active) .hero,
+#home:not(.active) .hero-art,
+#home:not(.active) .hero-image-frame,
+#home:not(.active) .hero-image-frame img,
+#home:not(.active) .live-stats{
+  display:none!important;
+}
+.dashboard-page{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.dashboard-page .account-actions{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.dashboard-page .account-notification{
+  border:1px solid rgba(255,255,255,.10)!important;
+  background:rgba(255,255,255,.025)!important;
+  box-shadow:none!important;
+}
+.dashboard-page .account-notification:before{
+  display:none!important;
+}
+.dashboard-page .account-divider{
+  display:block!important;
+}
+.dashboard-page .sidebar-mark{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.dashboard-page .sidebar-mark img{
+  width:36px!important;
+  height:36px!important;
+  object-fit:contain!important;
+}
+.dashboard-page .member-nav-item.active:before{
+  width:3px!important;
+  height:30px!important;
+  left:-1px!important;
+  top:13px!important;
+  bottom:auto!important;
+  border-radius:0 3px 3px 0!important;
+}
