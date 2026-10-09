@@ -3230,3 +3230,55 @@ body:has(.dashboard-page.active) .account-actions .account-notification:hover{
   body:has(.dashboard-page.active) .account-actions .account-notification{width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important;margin-right:4px!important}
   body:has(.dashboard-page.active) .account-actions .account-divider{height:22px!important}
 }
+
+
+/* Final account action alignment: remove duplicate separators and nested bell outline */
+body:has(.dashboard-page.active) .account-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+  padding:4px!important;
+  border:1px solid rgba(245,248,251,.42)!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.025)!important;
+  overflow:visible!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-divider{
+  display:none!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-notification{
+  box-sizing:border-box!important;
+  width:50px!important;
+  min-width:50px!important;
+  height:50px!important;
+  min-height:50px!important;
+  margin:0 8px 0 0!important;
+  padding:0!important;
+  border:1px solid rgba(245,248,251,.42)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.025)!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-account-link{
+  height:50px!important;
+  min-height:50px!important;
+  padding:0 18px!important;
+  border:0!important;
+  border-right:1px solid rgba(245,248,251,.28)!important;
+  border-radius:0!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-logout{
+  height:50px!important;
+  min-height:50px!important;
+  padding:0 18px!important;
+  border:0!important;
+  border-radius:0 9px 9px 0!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-action:not(.account-notification):hover{
+  background:rgba(255,255,255,.04)!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-notification:hover{
+  background:rgba(255,255,255,.04)!important;
+  border-color:rgba(245,248,251,.62)!important;
+}
