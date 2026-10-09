@@ -2728,6 +2728,7 @@ html::-webkit-scrollbar-thumb:hover{
 
 /* Working user-facing dashboard size editor */
 .dashboard-customize-trigger{
+  display:none;
   position:fixed;right:18px;top:50%;transform:translateY(-50%);
   z-index:100100;width:44px;height:44px;display:flex;align-items:center;justify-content:center;
   border:1px solid rgba(46,168,255,.5);border-radius:12px;background:rgba(8,14,22,.96);
@@ -2761,3 +2762,5 @@ body.dashboard-size-editing .member-dashboard{cursor:crosshair}
  .dashboard-size-editor{bottom:64px;padding:10px}
  .dashboard-editor-fields input{width:72px}
 }
+
+body:has(.dashboard-page.active) .dashboard-customize-trigger{display:flex}
