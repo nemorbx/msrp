@@ -2661,8 +2661,8 @@ html::-webkit-scrollbar-thumb:hover{
 @media (min-width:901px){
   body:has(.dashboard-page.active) .member-dashboard{
     zoom:1!important;
-    width:min(1180px,calc(100vw - 96px))!important;
-    max-width:1180px!important;
+    width:min(1400px,calc(100vw - 64px))!important;
+    max-width:1400px!important;
     margin-left:auto!important;
     margin-right:auto!important;
   }
