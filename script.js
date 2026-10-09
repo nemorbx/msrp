@@ -386,8 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ui.innerHTML=
       '<div class="dashboard-editor-heading"><strong>Customize dashboard</strong><span id="sizeEditorSelected">Select a panel</span></div>'+
       '<div class="dashboard-editor-fields">'+
-      '<label>Width (px)<input id="sizeEditorWidth" type="number" min="40" max="1800" step="8"></label>'+
-      '<label>Height (px)<input id="sizeEditorHeight" type="number" min="24" max="1400" step="8"></label>'+
+      '<label>Width (px)<input id="sizeEditorWidth" type="number" min="40" max="2600" step="8"></label>'+
+      '<label>Height (px)<input id="sizeEditorHeight" type="number" min="24" max="1800" step="8"></label>'+
       '<label>Text (px)<input id="sizeEditorFont" type="number" min="8" max="64" step="1"></label>'+
       '<label>Corner (px)<input id="sizeEditorRadius" type="number" min="0" max="48" step="1"></label>'+
       '<label>Grid (px)<input id="sizeEditorGrid" type="number" min="1" max="64" step="1" value="8"></label>'+
@@ -436,9 +436,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function applySize(width,height){
       if(!selected)return;
       const g=grid(),old=currentSize(selected);
-      const w=clamp(Math.round((width??old.w)/g)*g,40,1800);
-      const h=clamp(Math.round((height??old.h)/g)*g,24,1400);
-      selected.style.setProperty("box-sizing","border-box");
+      const w=clamp(Math.round((width??old.w)/g)*g,40,2600);
+      const h=clamp(Math.round((height??old.h)/g)*g,24,1800);
+      selected.style.setProperty("box-sizing","border-box","important");
+      selected.style.setProperty("min-width",w+"px","important");
+      selected.style.setProperty("max-width","none","important");
+      selected.style.setProperty("min-height",h+"px","important");
+      selected.style.setProperty("max-height","none","important");
+      selected.style.setProperty("flex-shrink","0","important");
       selected.style.setProperty("width",w+"px","important");
       selected.style.setProperty("height",h+"px","important");
       select(selected);save(selected);
@@ -495,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $e("sizeEditorReset").onclick=()=>{
       if(!selected)return;
       localStorage.removeItem(storageKey(selected));
-      ["width","height","font-size","border-radius","box-sizing"].forEach(p=>selected.style.removeProperty(p));
+      ["width","height","min-width","max-width","min-height","max-height","font-size","border-radius","box-sizing","flex-shrink"].forEach(p=>selected.style.removeProperty(p));
       select(selected);
     };
     $e("sizeEditorClose").onclick=()=>{ui.hidden=true;document.body.classList.remove("dashboard-size-editing");toggle.classList.remove("is-active");if(selected)selected.removeAttribute("data-size-editor-selected");selected=null;inside=false;insideRoot=null;};
