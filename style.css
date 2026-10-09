@@ -2655,3 +2655,72 @@ html::-webkit-scrollbar-thumb:hover{
   body:has(.dashboard-page.active) .welcome-heading-row p{font-size:12px!important}
   body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:12px!important}
 }
+
+
+/* Wider, closer-to-reference dashboard proportions */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    zoom:1!important;
+    width:min(1180px,calc(100vw - 96px))!important;
+    max-width:1180px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title{
+    width:100%!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    text-align:center!important;
+  }
+  body:has(.dashboard-page.active) .account-bar{
+    width:100%!important;
+    max-width:100%!important;
+    min-height:68px!important;
+    height:68px!important;
+    margin:8px auto 20px!important;
+    padding:10px 16px!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{
+    width:100%!important;
+    max-width:100%!important;
+    grid-template-columns:220px minmax(0,1fr)!important;
+    column-gap:24px!important;
+    align-items:stretch!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:220px!important;
+    min-width:220px!important;
+    max-width:220px!important;
+  }
+  body:has(.dashboard-page.active) .member-main{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+  body:has(.dashboard-page.active) .member-welcome{
+    width:100%!important;
+    height:145px!important;
+    min-height:145px!important;
+    max-height:145px!important;
+    padding:24px 28px!important;
+  }
+  body:has(.dashboard-page.active) .member-stat-grid{
+    width:100%!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-overview-extra{
+    width:100%!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-lower-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:14px!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title h1{
+    font-size:42px!important;
+  }
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .member-dashboard{zoom:1!important;width:100%!important}
+  body:has(.dashboard-page.active) .dashboard-body{width:100%!important;max-width:100%!important}
+}
