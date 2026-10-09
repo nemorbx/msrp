@@ -2754,3 +2754,26 @@ html::-webkit-scrollbar-thumb:hover{
     font-size:15px!important;
   }
 }
+
+
+/* Fix unintended site-wide 90% zoom so inspector measurements are real CSS pixels */
+body{
+  zoom:1!important;
+  width:100%!important;
+}
+@media(max-width:900px){
+  body{
+    zoom:1!important;
+    width:100%!important;
+  }
+}
+@media(min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    zoom:1!important;
+  }
+  body:has(.dashboard-page.active) .account-bar{
+    width:min(1192px,100%)!important;
+    height:76px!important;
+    min-height:76px!important;
+  }
+}
