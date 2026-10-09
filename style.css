@@ -2877,3 +2877,205 @@ body:has(.dashboard-page.active) .account-actions .account-action svg{
   body:has(.dashboard-page.active) .account-user-line strong{font-size:13px!important}
   body:has(.dashboard-page.active) .account-actions .account-action-text{display:none!important}
 }
+
+
+/* Sidebar sizing based on the supplied LANCRP inspector measurements */
+@media(min-width:901px){
+  body:has(.dashboard-page.active) .dashboard-body{
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:24px!important;
+    align-items:stretch!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    box-sizing:border-box!important;
+    width:240px!important;
+    min-width:240px!important;
+    max-width:240px!important;
+    min-height:1123px!important;
+    height:100%!important;
+    padding:12px!important;
+    gap:0!important;
+    border-radius:16px!important;
+  }
+}
+body:has(.dashboard-page.active) .sidebar-dashboard-title{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-height:60px!important;
+  padding:0 4px 12px!important;
+}
+body:has(.dashboard-page.active) .sidebar-mark{
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  padding:4px!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+}
+body:has(.dashboard-page.active) .sidebar-mark img{
+  display:block!important;
+  width:36px!important;
+  height:36px!important;
+  object-fit:contain!important;
+  border-radius:8px!important;
+}
+body:has(.dashboard-page.active) .sidebar-dashboard-title strong{
+  display:block!important;
+  color:#f5f8fb!important;
+  font-size:15px!important;
+  line-height:24px!important;
+  font-weight:700!important;
+}
+body:has(.dashboard-page.active) .sidebar-dashboard-title small{
+  display:block!important;
+  margin-top:1px!important;
+  color:#82909f!important;
+  font-size:11px!important;
+  line-height:17.6px!important;
+}
+body:has(.dashboard-page.active) .sidebar-divider{
+  margin:0 0 8px!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-section{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:0!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-label-row{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:34.4px!important;
+  margin:8px 0 0!important;
+  padding:10px 10px 6px!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-label{
+  padding:0!important;
+  color:#82909f!important;
+  font-size:11.5px!important;
+  line-height:18px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  white-space:nowrap!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-label-line{
+  flex:1!important;
+  height:1px!important;
+  background:rgba(255,255,255,.12)!important;
+}
+body:has(.dashboard-page.active) .member-nav-item{
+  display:flex!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  height:50px!important;
+  min-height:50px!important;
+  margin:1px 0!important;
+  padding:8px 10px!important;
+  gap:12px!important;
+  border-radius:14px!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+}
+body:has(.dashboard-page.active) .sidebar-nav-icon{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  flex:0 0 36px!important;
+  padding:4px!important;
+  border-radius:11px!important;
+}
+body:has(.dashboard-page.active) .sidebar-nav-icon svg{
+  width:20px!important;
+  height:20px!important;
+}
+body:has(.dashboard-page.active) .member-nav-item>div{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  gap:1px!important;
+}
+body:has(.dashboard-page.active) .member-nav-item strong{
+  display:block!important;
+  color:#f5f8fb!important;
+  font-size:13px!important;
+  line-height:17px!important;
+  font-weight:650!important;
+}
+body:has(.dashboard-page.active) .member-nav-item small{
+  display:block!important;
+  color:#82909f!important;
+  font-size:10.5px!important;
+  line-height:13.5px!important;
+  margin:0!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-user{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:68px!important;
+  margin-top:auto!important;
+  padding:10px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:15px!important;
+  background:rgba(255,255,255,.025)!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-user img{
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  min-height:36px!important;
+  flex:0 0 36px!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+  padding:0!important;
+  border:1px solid rgba(245,165,36,.5)!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-user strong{
+  color:#f5f8fb!important;
+  font-size:12px!important;
+  line-height:16px!important;
+  font-weight:700!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-user span{
+  display:block!important;
+  color:#82909f!important;
+  font-size:10px!important;
+  line-height:14px!important;
+  margin-top:1px!important;
+}
+body:has(.dashboard-page.active) .sidebar-home-button{
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  flex:0 0 38px!important;
+  border-radius:10px!important;
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:12px!important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item{height:50px!important;min-height:50px!important}
+}
