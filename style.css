@@ -2253,3 +2253,96 @@ html::-webkit-scrollbar-thumb:hover{
     border-radius:50%!important;
   }
 }
+
+
+/* Full MSRP dashboard overview: statistics, duty roster, top members and command feed. */
+.dashboard-overview-extra{
+  display:grid;
+  gap:16px;
+  margin-top:16px;
+  min-width:0;
+}
+.dashboard-data-panel{
+  min-width:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:15px;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  box-shadow:0 8px 22px rgba(0,0,0,.10);
+}
+.dashboard-statistics-panel summary{
+  min-height:62px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  cursor:pointer;
+  list-style:none;
+}
+.dashboard-statistics-panel summary::-webkit-details-marker{display:none}
+.dashboard-panel-icon{color:#2ea8ff;font-size:19px;font-weight:800}
+.dashboard-statistics-panel summary strong,.dashboard-data-panel-header>strong{font-size:13px;font-weight:750;color:#f4f7fa}
+.dashboard-panel-chevron{margin-left:auto;color:#92a0ae;font-size:17px}
+.dashboard-statistics-panel[open] .dashboard-panel-chevron{transform:rotate(180deg)}
+.dashboard-statistics-content{
+  padding:14px 18px 18px;
+  border-top:1px solid rgba(255,255,255,.09);
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.dashboard-statistics-content>div{display:grid;gap:5px;padding:12px;border-radius:10px;background:rgba(255,255,255,.025)}
+.dashboard-statistics-content>div span,.dashboard-statistics-content p{font-size:11px;color:#91a0af}
+.dashboard-statistics-content>div strong{font-size:12px;color:#e8eef4}
+.dashboard-statistics-content p{grid-column:1/-1;margin:0;line-height:1.6}
+.dashboard-data-panel-header{
+  min-height:48px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.dashboard-count-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:#95a4b4;
+  font-size:10px;
+  white-space:nowrap;
+}
+.dashboard-empty-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:68px;
+  padding:12px 15px;
+}
+.dashboard-empty-row+ .dashboard-empty-row{border-top:1px solid rgba(255,255,255,.07)}
+.dashboard-empty-row>div{display:grid;gap:5px;min-width:0}
+.dashboard-empty-row>div strong{font-size:12px;color:#edf3f8}
+.dashboard-empty-row>div small{font-size:10px;color:#91a0af;line-height:1.5}
+.dashboard-empty-avatar,.dashboard-command-badge,.dashboard-rank-badge{
+  display:grid;
+  place-items:center;
+  flex:0 0 30px;
+  width:30px;
+  height:30px;
+  border:1px solid rgba(46,168,255,.28);
+  border-radius:50%;
+  background:rgba(46,168,255,.10);
+  color:#69c5ff;
+  font-size:10px;
+  font-weight:800;
+}
+.dashboard-lower-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.dashboard-top-members,.dashboard-recent-commands{min-height:160px}
+.dashboard-rank-badge{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#9aa9b8}
+@media(max-width:900px){
+  .dashboard-overview-extra{gap:12px;margin-top:12px}
+  .dashboard-lower-grid{grid-template-columns:minmax(0,1fr)}
+  .dashboard-statistics-content{grid-template-columns:minmax(0,1fr)}
+}
