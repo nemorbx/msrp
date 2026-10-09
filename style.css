@@ -28,7 +28,7 @@ button{cursor:pointer}
 a{text-decoration:none;color:inherit}
 
 .site-header{
-  width:min(1240px,calc(100% - 40px));
+  width:min(2000px,calc(100% - 40px));
   margin:0 auto;
   height:76px;
   display:grid;
