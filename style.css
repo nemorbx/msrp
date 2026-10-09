@@ -2614,3 +2614,44 @@ html::-webkit-scrollbar-thumb:hover{
     font:inherit!important;
   }
 }
+
+
+/* Dashboard presentation zoom: enlarge the full interface while keeping its layout aligned. */
+@media (min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    zoom:1.12!important;
+    width:min(1000px,calc((100vw - 80px)/1.12))!important;
+    max-width:none!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title h1{
+    font-size:40px!important;
+    line-height:1.12!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title>span{
+    font-size:11px!important;
+  }
+  body:has(.dashboard-page.active) .site-header{
+    height:64px!important;
+    min-height:64px!important;
+    padding-left:20px!important;
+    padding-right:20px!important;
+  }
+  body:has(.dashboard-page.active) .site-brand-copy strong{font-size:12px!important}
+  body:has(.dashboard-page.active) .site-nav-link{font-size:14px!important}
+  body:has(.dashboard-page.active) .discord-button{font-size:14px!important;height:42px!important}
+  body:has(.dashboard-page.active) .account-user-line strong{font-size:13px!important}
+  body:has(.dashboard-page.active) .account-user-copy>span{font-size:9px!important}
+  body:has(.dashboard-page.active) .account-action{font-size:12px!important}
+  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:13px!important}
+  body:has(.dashboard-page.active) .member-nav-item>div small{font-size:10px!important}
+  body:has(.dashboard-page.active) .welcome-heading-row h1{font-size:27px!important}
+  body:has(.dashboard-page.active) .welcome-heading-row p{font-size:12px!important}
+  body:has(.dashboard-page.active) .dashboard-data-panel-header>strong,
+  body:has(.dashboard-page.active) .dashboard-statistics-panel summary strong{font-size:14px!important}
+}
+@media (max-width:900px){
+  body:has(.dashboard-page.active) .dashboard-page-title h1{font-size:34px!important}
+  body:has(.dashboard-page.active) .welcome-heading-row h1{font-size:23px!important}
+  body:has(.dashboard-page.active) .welcome-heading-row p{font-size:12px!important}
+  body:has(.dashboard-page.active) .member-nav-item>div strong{font-size:12px!important}
+}
