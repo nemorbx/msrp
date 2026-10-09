@@ -3079,3 +3079,84 @@ body:has(.dashboard-page.active) .sidebar-home-button{
   }
   body:has(.dashboard-page.active) .member-nav-item{height:50px!important;min-height:50px!important}
 }
+
+
+/* Account action group: match the reference's single outlined control rail */
+body:has(.dashboard-page.active) .account-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+  padding:4px!important;
+  border:1px solid rgba(245,248,251,.42)!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.035)!important;
+  box-sizing:border-box!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-action{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  box-sizing:border-box!important;
+  height:50px!important;
+  min-height:50px!important;
+  margin:0!important;
+  padding:0 15px!important;
+  border:1px solid transparent!important;
+  border-radius:10px!important;
+  background:transparent!important;
+  color:#f5f8fb!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-notification{
+  width:50px!important;
+  min-width:50px!important;
+  padding:0!important;
+  border:1px solid rgba(245,248,251,.62)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.045)!important;
+  margin-right:8px!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-account-link{
+  padding-left:14px!important;
+  padding-right:18px!important;
+  border-right:1px solid rgba(245,248,251,.28)!important;
+  border-radius:0!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-logout{
+  padding-left:17px!important;
+  padding-right:17px!important;
+  border-radius:0 9px 9px 0!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-action:hover{
+  color:#fff!important;
+  background:rgba(255,255,255,.055)!important;
+  border-color:transparent!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-notification:hover{
+  border-color:rgba(245,248,251,.75)!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-action svg{
+  width:17px!important;
+  height:17px!important;
+  flex:0 0 17px!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:1.8!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .account-actions .account-action{font-size:12px!important;padding-left:10px!important;padding-right:10px!important}
+  body:has(.dashboard-page.active) .account-actions .account-notification{width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important}
+}
+@media(max-width:500px){
+  body:has(.dashboard-page.active) .account-actions .account-action-text{display:inline-flex!important}
+  body:has(.dashboard-page.active) .account-actions .account-action{font-size:10px!important;gap:5px!important;padding:0 7px!important;height:40px!important;min-height:40px!important}
+  body:has(.dashboard-page.active) .account-actions .account-notification{width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important;margin-right:4px!important}
+  body:has(.dashboard-page.active) .account-actions .account-action svg{width:14px!important;height:14px!important;flex-basis:14px!important}
+}
