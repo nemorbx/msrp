@@ -2764,3 +2764,11 @@ body.dashboard-size-editing .member-dashboard{cursor:crosshair}
 }
 
 body:has(.dashboard-page.active) .dashboard-customize-trigger{display:flex}
+
+/* Let editor-selected elements honor their chosen dimensions instead of being squeezed by flex/grid. */
+body.dashboard-size-editing [data-size-editor-selected="true"]{
+  flex-shrink:0!important;
+  box-sizing:border-box!important;
+  max-width:none!important;
+  max-height:none!important;
+}
