@@ -464,7 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const own = !member;
       if (own) member = {id:0,profileId:"MSRP-OWN",name:savedProfile.name || "nemorbx",role:"Staff",status:"Online",bio:savedProfile.bio || "Proud member of Missouri State Roleplay.",accent:savedProfile.accent || "cyan",likes:0,views:0,active:0,joined:"Sep 2026"};
       const modal = byId("communityModal");
-      
+      const dashboardMain = document.querySelector(".member-main");
+      if (dashboardMain && modal.parentElement !== dashboardMain) dashboardMain.appendChild(modal);
       const panel = modal.querySelector(".community-modal");
       const fullProfile = byId("communityFullProfile");
       byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "MSRP COMMUNITY PROFILE";
