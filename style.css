@@ -4115,3 +4115,9 @@ body:has(.dashboard-page.active) .member-main > [data-dashboard-overview][hidden
 .msrp-leader-row.gold .msrp-leader-rank svg{width:19px;height:19px;fill:currentColor;stroke:currentColor}
 .msrp-leader-row.silver .msrp-leader-rank svg,.msrp-leader-row.bronze .msrp-leader-rank svg{width:18px;height:18px}
 .msrp-leader-rank .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+
+/* Use vector artwork for the leaderboard header icon and a cleaner crown silhouette. */
+.msrp-leaderboard-icon{font-size:0!important}
+.msrp-leaderboard-icon svg{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.msrp-leader-row.gold .msrp-leader-rank svg{fill:currentColor;stroke:currentColor}
