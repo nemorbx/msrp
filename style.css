@@ -3988,3 +3988,13 @@ body:has(.dashboard-page.active) .member-main > .member-welcome.dashboard-view-o
 
 /* Only the selected dashboard view is visible. Keep Overview's existing layout unchanged. */
 body:has(.dashboard-page.active) .member-main > [hidden] { display: none !important; }
+
+
+/* Shared dashboard account bar stays pinned across every dashboard view. */
+body:has(.dashboard-page.active) .account-bar {
+  position: sticky !important;
+  top: 12px !important;
+  z-index: 100 !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
