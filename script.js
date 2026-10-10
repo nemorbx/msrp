@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function profileRouteId() {
+    const match = location.hash.match(/^#profile-([A-Za-z0-9-]+)$/i);
+    return match ? match[1].toUpperCase() : null;
+  }
+
   function page(name, updateHash = true) {
     const target = names.has(name) ? name : "home";
 
@@ -369,6 +374,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("hashchange", () => {
     const target = location.hash.slice(1);
+    if (profileRouteId()) {
+      page("dashboard", false);
+      load();
+      return;
+    }
     if (names.has(target)) {
       page(target, false);
       if (target === "dashboard" || target === "record") load();
@@ -380,9 +390,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   const initialHash = location.hash.slice(1);
-  page(location.hash.includes("access_token=") ? "dashboard" : (names.has(initialHash) ? initialHash : "home"), false);
+  const initialProfileRoute = profileRouteId();
+  page(location.hash.includes("access_token=") || initialProfileRoute ? "dashboard" : (names.has(initialHash) ? initialHash : "home"), false);
 
-  if (location.hash.includes("access_token=") || initialHash === "dashboard" || initialHash === "record") {
+  if (location.hash.includes("access_token=") || initialProfileRoute || initialHash === "dashboard" || initialHash === "record") {
     load();
   } else {
     if (memberDash) memberDash.hidden = true;
@@ -394,18 +405,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const communityRoot = $("dashboardCommunityView");
   if (communityRoot) {
     const sampleMembers = [
-      {id:1,name:"RiverCarter",role:"Member",bio:"Enjoying realistic roleplay around Missouri.",status:"On patrol",active:3,likes:28,joined:1,accent:"cyan",initials:"RC"},
-      {id:2,name:"MasonJett",role:"Staff",bio:"Helping keep the community welcoming and organized.",status:"Available",active:8,likes:42,joined:2,accent:"blue",initials:"MJ"},
-      {id:3,name:"TaylorStone",role:"Member",bio:"Fire and rescue roleplay enthusiast.",status:"In game",active:14,likes:19,joined:3,accent:"gold",initials:"TS"},
-      {id:4,name:"AlexWest",role:"Staff",bio:"Moderation team sample profile.",status:"Working",active:20,likes:37,joined:4,accent:"violet",initials:"AW"},
-      {id:5,name:"JordanLake",role:"Member",bio:"Here for good scenes and great teammates.",status:"Chilling",active:33,likes:16,joined:5,accent:"cyan",initials:"JL"},
-      {id:6,name:"KaiMorgan",role:"Member",bio:"Learning new departments and meeting people.",status:"Available",active:45,likes:12,joined:6,accent:"blue",initials:"KM"},
-      {id:7,name:"ParkerReed",role:"High Rank",bio:"Supporting training and department standards.",status:"On duty",active:62,likes:55,joined:7,accent:"gold",initials:"PR"},
-      {id:8,name:"JamieBrooks",role:"Member",bio:"I enjoy driving, dispatch, and teamwork.",status:"In game",active:90,likes:21,joined:8,accent:"violet",initials:"JB"},
-      {id:9,name:"CameronPrice",role:"Staff",bio:"Community support and member assistance.",status:"Available",active:130,likes:31,joined:9,accent:"blue",initials:"CP"},
-      {id:10,name:"DrewBennett",role:"Member",bio:"Building memorable roleplay moments.",status:"Away",active:190,likes:9,joined:10,accent:"cyan",initials:"DB"},
-      {id:11,name:"MorganEllis",role:"Senior High Rank",bio:"Helping the staff team improve every day.",status:"On duty",active:260,likes:64,joined:11,accent:"gold",initials:"ME"},
-      {id:12,name:"ReeseParker",role:"Member",bio:"New around here—say hello!",status:"Available",active:360,likes:7,joined:12,accent:"violet",initials:"RP"}
+      {id:1,profileId:"MSRP-000101",name:"RiverCarter",role:"Member",bio:"Enjoying realistic roleplay around Missouri.",status:"On patrol",active:3,likes:28,joined:1,accent:"cyan",initials:"RC"},
+{id:2,profileId:"MSRP-000102",name:"MasonJett",role:"Staff",bio:"Helping keep the community welcoming and organized.",status:"Available",active:8,likes:42,joined:2,accent:"blue",initials:"MJ"},
+{id:3,profileId:"MSRP-000103",name:"TaylorStone",role:"Member",bio:"Fire and rescue roleplay enthusiast.",status:"In game",active:14,likes:19,joined:3,accent:"gold",initials:"TS"},
+{id:4,profileId:"MSRP-000104",name:"AlexWest",role:"Staff",bio:"Moderation team sample profile.",status:"Working",active:20,likes:37,joined:4,accent:"violet",initials:"AW"},
+{id:5,profileId:"MSRP-000105",name:"JordanLake",role:"Member",bio:"Here for good scenes and great teammates.",status:"Chilling",active:33,likes:16,joined:5,accent:"cyan",initials:"JL"},
+{id:6,profileId:"MSRP-000106",name:"KaiMorgan",role:"Member",bio:"Learning new departments and meeting people.",status:"Available",active:45,likes:12,joined:6,accent:"blue",initials:"KM"},
+{id:7,profileId:"MSRP-000107",name:"ParkerReed",role:"High Rank",bio:"Supporting training and department standards.",status:"On duty",active:62,likes:55,joined:7,accent:"gold",initials:"PR"},
+{id:8,profileId:"MSRP-000108",name:"JamieBrooks",role:"Member",bio:"I enjoy driving, dispatch, and teamwork.",status:"In game",active:90,likes:21,joined:8,accent:"violet",initials:"JB"},
+{id:9,profileId:"MSRP-000109",name:"CameronPrice",role:"Staff",bio:"Community support and member assistance.",status:"Available",active:130,likes:31,joined:9,accent:"blue",initials:"CP"},
+{id:10,profileId:"MSRP-000110",name:"DrewBennett",role:"Member",bio:"Building memorable roleplay moments.",status:"Away",active:190,likes:9,joined:10,accent:"cyan",initials:"DB"},
+{id:11,profileId:"MSRP-000111",name:"MorganEllis",role:"Senior High Rank",bio:"Helping the staff team improve every day.",status:"On duty",active:260,likes:64,joined:11,accent:"gold",initials:"ME"},
+{id:12,profileId:"MSRP-000112",name:"ReeseParker",role:"Member",bio:"New around here—say hello!",status:"Available",active:360,likes:7,joined:12,accent:"violet",initials:"RP"}
     ];
     const communityState = {filter:"active", query:"", shown:6, following:new Set(), liked:new Set(), selected:null};
     const byId = (id) => $(id);
@@ -443,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
       byId("communityShowMore").hidden = communityState.shown>=all.length || all.length===0;
       byId("communityShowMore").textContent = "Show more profiles ("+(all.length-communityState.shown)+")";
     }
-    function openCommunityModal(member=null) {
+    function openCommunityModal(member=null, updateRoute=true) {
       communityState.selected = member;
       const own = !member;
       const modal = byId("communityModal");
@@ -451,6 +462,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const fullProfile = byId("communityFullProfile");
       byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "MSRP COMMUNITY PROFILE";
       byId("communityModalTitle").textContent = own ? "Edit your profile" : member.name;
+      if (!own) {
+        byId("communityModalTitle").textContent = member.name;
+      }
       byId("communityModalDescription").hidden = !own;
       byId("communityModalDescription").textContent = own ? "Customize how your placeholder profile appears." : "";
       byId("communityProfileForm").hidden = !own;
@@ -467,12 +481,16 @@ document.addEventListener("DOMContentLoaded", () => {
         fullProfile.innerHTML = '<div class="community-full-banner accent-'+accentClass(member.accent)+'"><div class="community-full-topline"><span>MSRP MEMBER PROFILE</span><span class="community-online-indicator">● '+safeText(member.status)+'</span></div><div class="community-full-identity"><span class="community-avatar community-full-avatar">'+initials(member.name)+'</span><div class="community-full-name"><h2>'+safeText(member.name)+'</h2><span class="community-role-pill">'+safeText(member.role)+'</span><p>Member of Missouri State Roleplay</p></div><div class="community-full-actions"><button type="button" class="community-primary-button" data-full-follow="'+member.id+'">'+(following?'Following':'Follow')+'</button><button type="button" class="community-secondary-button" data-full-like="'+member.id+'">'+(liked?'♥ Liked':'♡ Like')+'</button></div></div></div><div class="community-full-content"><div class="community-full-stats"><div><strong>'+member.joined+'</strong><span>Profile ID</span></div><div><strong>'+member.likes+(liked?1:0)+'</strong><span>Likes</span></div><div><strong>'+communityState.following.size+'</strong><span>Following</span></div><div><strong>'+(member.active<60?member.active+'m':Math.floor(member.active/60)+'h')+'</strong><span>Last active</span></div></div><div class="community-full-columns"><div class="community-full-main-column"><section class="community-full-panel"><span class="community-eyebrow">ABOUT</span><p>'+safeText(member.bio)+'</p></section><section class="community-full-panel"><span class="community-eyebrow">SHOWCASE</span><p class="community-placeholder-copy">Nothing on show yet.</p></section><section class="community-full-panel"><span class="community-eyebrow">RECENT ACTIVITY</span><div class="community-activity-placeholder"><span class="community-activity-dot"></span><div><strong>Community profile viewed</strong><small>This is sample activity for the layout preview.</small></div></div></section></div><aside class="community-full-side-column"><section class="community-full-panel"><span class="community-eyebrow">MEMBER BADGES</span><div class="community-badge-list"><span>✦ Community Member</span><span>✦ MSRP Welcome</span><span>✦ Profile Preview</span></div></section><section class="community-full-panel"><span class="community-eyebrow">PROFILE DETAILS</span><div class="community-detail-row"><span>Rank</span><strong>'+safeText(member.role)+'</strong></div><div class="community-detail-row"><span>Status</span><strong>'+safeText(member.status)+'</strong></div><div class="community-detail-row"><span>Joined</span><strong>Sample data</strong></div></section></aside></div><p class="community-full-disclaimer">Placeholder profile — member information, badges, and activity are sample data until connected to the MSRP backend.</p></div>';
       }
       modal.hidden = false;
+      if (!own && updateRoute) {
+        history.pushState({msrpProfileId: member.profileId}, "", "#profile-" + member.profileId);
+      }
       byId("communityModalClose").focus();
     }
     function closeCommunityModal() {
       const modal = byId("communityModal");
       modal.hidden = true;
       modal.classList.remove("profile-open");
+      if (profileRouteId()) history.replaceState({msrpDashboardView:"community"}, "", "#dashboard");
       modal.querySelector(".community-modal").classList.remove("community-modal-fullscreen");
     }
     byId("communitySearch").addEventListener("input", (event) => { communityState.query=event.target.value; communityState.shown=6; renderCommunity(); });
@@ -514,6 +532,15 @@ document.addEventListener("DOMContentLoaded", () => {
       closeCommunityModal();
     });
     renderCommunity();
+    const routedProfileId = profileRouteId();
+    if (routedProfileId) {
+      const routedMember = sampleMembers.find((member) => member.profileId === routedProfileId);
+      if (routedMember) openCommunityModal(routedMember, false);
+      else {
+        history.replaceState({msrpDashboardView:"community"}, "", "#dashboard");
+        setDashboardView("community");
+      }
+    }
   }
 
 });
