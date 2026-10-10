@@ -4262,3 +4262,30 @@ body:has(.dashboard-page.active) .sidebar-home-button:active {
 .community-full-columns{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(250px,.85fr);gap:15px}.community-full-main-column,.community-full-side-column{display:grid;align-content:start;gap:13px}.community-full-panel{padding:18px;border:1px solid rgba(169,194,216,.23);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));min-width:0}.community-full-panel>.community-eyebrow{margin-bottom:13px}.community-full-panel>p{color:#c0ceda;font-size:12px;line-height:1.7;overflow-wrap:anywhere}.community-full-panel .community-placeholder-copy{color:#8fa2b3}.community-activity-placeholder{display:flex;align-items:flex-start;gap:11px;padding:12px;border-radius:10px;background:rgba(255,255,255,.025)}.community-activity-dot{width:9px;height:9px;margin-top:4px;border-radius:50%;background:#49dcff;box-shadow:0 0 12px rgba(73,220,255,.5)}.community-activity-placeholder strong,.community-activity-placeholder small{display:block}.community-activity-placeholder strong{font-size:11px}.community-activity-placeholder small{margin-top:5px;color:#91a4b4;font-size:10px;line-height:1.5}.community-badge-list{display:flex;flex-wrap:wrap;gap:8px}.community-badge-list span{padding:7px 10px;border:1px solid rgba(73,220,255,.22);border-radius:999px;background:rgba(73,220,255,.07);color:#a6eaff;font-size:10px}.community-detail-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:11px}.community-detail-row:last-child{border-bottom:0}.community-detail-row span{color:#94a8ba}.community-detail-row strong{text-align:right}.community-full-disclaimer{margin-top:15px;color:#73889a;font-size:10px;line-height:1.6}
 @media(max-width:650px){.community-full-banner{min-height:245px;padding:22px 20px}.community-full-identity{gap:13px;margin-top:45px;align-items:center}.community-full-avatar{width:76px;height:76px;font-size:21px}.community-full-name{min-width:140px}.community-full-name h2{font-size:27px}.community-full-name p{font-size:10px}.community-full-actions{width:100%;margin-top:5px}.community-full-actions button{flex:1}.community-full-content{width:calc(100% - 24px);padding-top:13px}.community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.community-full-stats>div{padding:13px}.community-full-columns{grid-template-columns:1fr;gap:10px}.community-full-panel{padding:15px}.community-modal-fullscreen #communityModalClose{top:10px;right:10px}}
 @media(prefers-reduced-motion:reduce){.community-modal.community-modal-fullscreen{animation:none!important}}
+
+
+/* One shared top header size across every MSRP site page. */
+.site-header{
+  position:relative!important;
+  top:auto!important;left:auto!important;transform:none!important;
+  width:min(1240px,calc(100% - 40px))!important;
+  max-width:1240px!important;
+  height:64px!important;min-height:64px!important;
+  margin:10px auto 0!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+  gap:18px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:32px!important;
+  background:rgba(8,12,17,.72)!important;
+  backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;
+  box-shadow:0 10px 35px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.site-brand{min-width:0}.site-nav{justify-self:center;gap:clamp(12px,2vw,27px)}.discord-button{justify-self:end;white-space:nowrap}
+@media(max-width:760px){
+  .site-header{width:calc(100% - 24px)!important;height:58px!important;min-height:58px!important;margin:8px auto 0!important;padding:0 10px!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;border-radius:30px!important}
+  .site-header .site-nav{display:none!important}
+  .site-header .discord-button{display:none!important}
+  .site-header .mobile-nav-button{display:grid!important;place-items:center;justify-self:end}
+}
