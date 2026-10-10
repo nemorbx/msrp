@@ -225,7 +225,46 @@
               </div>
             </section>
 
-            <section class="dashboard-view" id="dashboardCommunityView" hidden>
+            <section class="dashboard-view msrp-community-view" id="dashboardCommunityView" hidden>
+              <div class="community-heading-row">
+                <div><span class="community-eyebrow">MSRP MEMBERS</span><h2>Community Profiles</h2><p>Meet members of Missouri State Roleplay and explore their community cards.</p></div>
+                <button type="button" class="community-primary-button" id="communityEditProfile">My profile</button>
+              </div>
+              <div class="community-placeholder-note"><span class="community-note-mark">i</span><div><strong>Profile system preview</strong><p>These are sample profiles and placeholder activity. Following, sorting, and profile editing are front-end previews; live member data and cross-device saving are not connected yet.</p></div></div>
+              <section class="community-suggested-section">
+                <div class="community-section-title"><h3>People you may know</h3><span>Sample members</span></div>
+                <div class="community-suggested-strip" id="communitySuggested"></div>
+              </section>
+              <div class="community-directory-toolbar">
+                <label class="community-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" id="communitySearch" placeholder="Search by name, status or about..." autocomplete="off"></label>
+                <div class="community-filter-tabs" id="communityFilters" role="group" aria-label="Sort profiles">
+                  <button type="button" class="active" data-community-filter="active">Recently active</button>
+                  <button type="button" data-community-filter="friends">Following</button>
+                  <button type="button" data-community-filter="liked">Most liked</button>
+                  <button type="button" data-community-filter="newest">Newest</button>
+                  <button type="button" data-community-filter="az">A–Z</button>
+                  <button type="button" data-community-filter="staff">Staff</button>
+                </div>
+              </div>
+              <div class="community-results-meta"><span id="communityResultCount">12 sample profiles</span><span>MSRP Community</span></div>
+              <div class="community-profile-grid" id="communityProfileGrid"></div>
+              <div class="community-empty-state" id="communityEmpty" hidden><strong>No profiles found</strong><span>Try another name or select a different filter.</span></div>
+              <div class="community-show-more-wrap"><button type="button" class="community-secondary-button" id="communityShowMore">Show more profiles</button></div>
+              <div class="community-modal-backdrop" id="communityModal" hidden>
+                <section class="community-modal" role="dialog" aria-modal="true" aria-labelledby="communityModalTitle">
+                  <button type="button" class="community-modal-close" id="communityModalClose" aria-label="Close dialog">×</button>
+                  <span class="community-eyebrow" id="communityModalEyebrow">MEMBER PROFILE</span>
+                  <h2 id="communityModalTitle">Your profile</h2>
+                  <p id="communityModalDescription">Preview your public community profile.</p>
+                  <form id="communityProfileForm">
+                    <label>Display name<input id="communityDisplayName" maxlength="32" placeholder="Your display name"></label>
+                    <label>About you<textarea id="communityBio" maxlength="180" rows="3" placeholder="Tell the community a little about yourself"></textarea></label>
+                    <label>Profile accent<select id="communityAccent"><option value="cyan">MSRP Cyan</option><option value="blue">Missouri Blue</option><option value="violet">Violet</option><option value="gold">Gold</option></select></label>
+                    <div class="community-modal-actions"><button type="button" class="community-secondary-button" id="communityModalCancel">Cancel</button><button type="submit" class="community-primary-button">Save preview</button></div>
+                  </form>
+                  <p class="community-modal-footnote">Preview saves in this browser only. Discord sync and permanent profiles are not connected.</p>
+                </section>
+              </div>
             </section>
 
             <section class="dashboard-view msrp-leaderboard-view" id="dashboardLeaderboardView" hidden>
