@@ -4340,3 +4340,17 @@ body:has(.dashboard-page.active) .sidebar-home-button:active {
 .community-full-columns{grid-template-columns:minmax(0,1.55fr) minmax(290px,.9fr)!important}
 .community-full-panel{min-width:0!important}
 @media(max-width:760px){.community-full-banner{padding:18px 16px!important;min-height:330px!important}.community-full-identity{padding-top:130px!important;align-items:flex-start!important}.community-full-actions{flex:1 0 100%!important;align-self:flex-start!important}.community-full-content{width:calc(100% - 24px)!important}.community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.community-full-stats>div:last-child{grid-column:span 2}.community-full-columns{grid-template-columns:1fr!important}}
+
+/* Critical fix: the profile dialog is moved to body so parent transforms cannot trap fixed positioning. */
+body:has(.community-modal-backdrop.profile-open){overflow:hidden!important}
+.community-modal-backdrop.profile-open{position:fixed!important;inset:0!important;z-index:2147483000!important;display:block!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;overflow-x:hidden!important;overflow-y:auto!important;box-sizing:border-box!important;background:#20242b!important}
+.community-modal-backdrop.profile-open[hidden]{display:none!important}
+.community-modal.community-modal-fullscreen{position:relative!important;display:block!important;inset:auto!important;transform:none!important;width:100vw!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:100vh!important;min-height:100dvh!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;overflow:visible!important;box-sizing:border-box!important;background:#20242b!important}
+.community-modal-fullscreen #communityModalClose{position:fixed!important;top:12px!important;right:16px!important;z-index:2147483001!important;display:grid!important;place-items:center!important;width:38px!important;height:38px!important;padding:8px!important;background:#111820!important;border:1px solid #71869b!important;border-radius:10px!important;color:#fff!important}
+.community-modal-fullscreen #communityModalClose svg{width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.2!important;stroke-linecap:round!important}
+.community-modal-fullscreen #communityModalEyebrow,.community-modal-fullscreen #communityModalTitle,.community-modal-fullscreen #communityModalDescription{display:none!important}
+.community-full-profile{width:100vw!important;max-width:none!important;margin:0!important;padding:0!important}
+.community-profile-back-row{height:42px!important}
+.community-full-banner{min-height:285px!important}
+.community-full-identity{padding-top:95px!important}
+@media(max-width:760px){.community-full-banner{min-height:300px!important}.community-full-identity{padding-top:100px!important}}
