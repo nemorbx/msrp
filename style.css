@@ -2799,7 +2799,7 @@ body:has(.dashboard-page.active) .account-bar .account-avatar{
 body:has(.dashboard-page.active) .account-user-copy{
   display:grid!important;
   grid-template-columns:auto!important;
-  gap:4px!important;
+  gap:1px!important;
   align-content:center!important;
 }
 body:has(.dashboard-page.active) .account-user-copy>span{
