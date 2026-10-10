@@ -3568,3 +3568,41 @@ body:has(.dashboard-page.active) .account-bar{
     max-width:100%!important;
   }
 }
+
+
+/* Match the two additional LANCRP reference panels */
+body:has(.dashboard-page.active) .member-sidebar{
+  box-sizing:border-box!important;
+  width:240px!important;
+  min-width:240px!important;
+  max-width:240px!important;
+  min-height:1212.59px!important;
+  padding:12px!important;
+}
+body:has(.dashboard-page.active) .dashboard-body{
+  grid-template-columns:240px minmax(0,1fr)!important;
+}
+body:has(.dashboard-page.active) .member-stat-card{
+  box-sizing:border-box!important;
+  min-height:109.59px!important;
+  padding:20px 22px!important;
+}
+body:has(.dashboard-page.active) .member-stat-grid{
+  grid-template-columns:repeat(2,minmax(0,298.66px))!important;
+  gap:16px!important;
+  align-items:stretch!important;
+}
+body:has(.dashboard-page.active) .member-stat-card.stat-vehicles{
+  grid-column:auto!important;
+}
+@media(max-width:850px){
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:100%!important;min-width:0!important;max-width:100%!important;min-height:auto!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{grid-template-columns:1fr!important}
+  body:has(.dashboard-page.active) .member-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body:has(.dashboard-page.active) .member-stat-card{min-height:109.59px!important;padding:15px 16px!important}
+}
+@media(max-width:500px){
+  body:has(.dashboard-page.active) .member-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
