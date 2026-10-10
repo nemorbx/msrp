@@ -67,6 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const overviewLink = document.querySelector('.member-nav-item[href="#dashboard"]:not([data-dashboard-view])');
     if (overviewLink) overviewLink.classList.toggle("active", key === "overview");
 
+    const mainPanel = document.querySelector(".member-main");
+    if (mainPanel) {
+      mainPanel.classList.remove("msrp-view-enter");
+      void mainPanel.offsetWidth;
+      mainPanel.classList.add("msrp-view-enter");
+    }
+
     if (location.hash !== "#dashboard") history.replaceState(null, "", "#dashboard");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
