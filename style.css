@@ -3986,13 +3986,5 @@ body:has(.dashboard-page.active) .member-main > .member-welcome.dashboard-view-o
 }
 
 
-/* Dashboard sub-pages: hidden views must never be forced visible by layout rules. */
-body:has(.dashboard-page.active) .member-main > [hidden]{
-  display:none!important;
-}
-body:has(.dashboard-page.active) .member-main > .dashboard-view:not([hidden]){
-  display:block!important;
-}
-body:has(.dashboard-page.active) .member-main > .dashboard-view-overview:not([hidden]){
-  display:block!important;
-}
+/* Only the selected dashboard view is visible. Keep Overview's existing layout unchanged. */
+body:has(.dashboard-page.active) .member-main > [hidden] { display: none !important; }
