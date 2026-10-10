@@ -4395,3 +4395,98 @@ body:has(.dashboard-page.active) .sidebar-home-button:active {
 .dashboard-body>.member-main>.community-modal-backdrop.profile-open .community-full-banner{border-radius:0!important}
 .dashboard-body>.member-main>.community-modal-backdrop.profile-open .community-full-panel{border-radius:0!important;background:transparent!important;box-shadow:none!important}
 @media(max-width:900px){.dashboard-body{grid-template-columns:1fr!important}.dashboard-body>.member-sidebar{grid-column:1!important;grid-row:1!important}.dashboard-body>.member-main{grid-column:1!important;grid-row:2!important}}
+
+
+/* Community member profile must be a true standalone full-screen page, never inline at the end of the directory */
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open{
+  position:fixed!important;
+  inset:0!important;
+  z-index:99999!important;
+  display:block!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  max-height:100vh!important;
+  margin:0!important;
+  padding:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#10141b!important;
+  border:0!important;
+  border-radius:0!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open[hidden]{display:none!important}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-modal.community-modal-fullscreen{
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  min-height:100vh!important;
+  height:auto!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#10141b!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-profile{
+  display:block!important;
+  width:min(1180px,calc(100% - 40px))!important;
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:0 0 36px!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-profile-back-row{
+  height:54px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  padding:0!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-banner{
+  min-height:300px!important;
+  border:1px solid rgba(190,205,221,.2)!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-stats>div,
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-panel,
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-item-card{
+  border-radius:16px!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-panel{
+  background:#20262e!important;
+  border:1px solid rgba(178,198,218,.3)!important;
+  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-columns{
+  grid-template-columns:minmax(0,1.55fr) minmax(260px,.9fr)!important;
+  gap:14px!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-actions .community-square-action[data-profile-copy],
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-actions button[aria-label="Flag profile"]{
+  display:none!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-actions .community-primary-button,
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-actions .community-square-action{
+  border-radius:12px!important;
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-profile{width:calc(100% - 24px)!important}
+  body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-columns{grid-template-columns:1fr!important}
+  body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
