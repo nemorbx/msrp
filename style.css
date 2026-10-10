@@ -4337,3 +4337,49 @@ body:has(.dashboard-page.active) .sidebar-home-button:active {
 .community-full-columns{display:grid!important;grid-template-columns:minmax(0,1.55fr) minmax(240px,.9fr)!important;gap:12px!important}
 .community-full-panel{min-width:0!important}
 @media(max-width:900px){.community-full-identity{flex-wrap:wrap!important;align-items:flex-start!important}.community-full-actions{margin-left:0!important;flex:1 0 100%!important}.community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.community-full-columns{grid-template-columns:1fr!important}}
+
+/* Keep the dashboard navigation as a permanent sibling of each dashboard page, including member profiles. */
+.dashboard-body{
+  display:grid!important;
+  grid-template-columns:240px minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:24px!important;
+  width:100%!important;
+}
+.dashboard-body>.member-sidebar{
+  grid-column:1!important;
+  grid-row:1!important;
+  position:sticky!important;
+  top:18px!important;
+  width:240px!important;
+  min-width:240px!important;
+  max-width:240px!important;
+  align-self:start!important;
+  z-index:2!important;
+}
+.dashboard-body>.member-main{
+  grid-column:2!important;
+  grid-row:1!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+}
+.dashboard-body .msrp-community-view{min-width:0!important;width:100%!important;grid-column:1!important}
+.dashboard-body .community-modal-backdrop.profile-open{
+  display:block!important;position:static!important;inset:auto!important;
+  width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:visible!important;
+  background:transparent!important;z-index:auto!important;
+}
+.dashboard-body .community-modal.community-modal-fullscreen{
+  display:block!important;position:relative!important;inset:auto!important;transform:none!important;
+  width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;
+  min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;
+  border:0!important;border-radius:0!important;overflow:visible!important;box-shadow:none!important;
+  background:transparent!important;
+}
+@media(max-width:900px){
+  .dashboard-body{grid-template-columns:1fr!important;gap:16px!important}
+  .dashboard-body>.member-sidebar{grid-column:1!important;grid-row:1!important;position:relative!important;width:100%!important;min-width:0!important;max-width:none!important}
+  .dashboard-body>.member-main{grid-column:1!important;grid-row:2!important}
+}
