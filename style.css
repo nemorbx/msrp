@@ -3304,3 +3304,24 @@ body:has(.dashboard-page.active) .account-actions .account-notification:hover{
   body:has(.dashboard-page.active) .account-actions .account-notification{flex-basis:38px!important;width:38px!important;min-width:38px!important;height:38px!important;min-height:38px!important;margin-right:4px!important}
   body:has(.dashboard-page.active) .account-actions .account-action svg{width:14px!important;height:14px!important;flex-basis:14px!important}
 }
+
+
+/* Final measured adjustment: bring the account label directly toward the username */
+body:has(.dashboard-page.active) .account-bar .account-user-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:0!important;
+  row-gap:0!important;
+}
+body:has(.dashboard-page.active) .account-bar .account-user-copy>span{
+  display:block!important;
+  margin:0 0 -2px 0!important;
+  padding:0!important;
+  line-height:1!important;
+}
+body:has(.dashboard-page.active) .account-bar .account-user-line{
+  margin:0!important;
+  padding:0!important;
+  line-height:1.2!important;
+}
