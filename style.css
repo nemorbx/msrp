@@ -3509,3 +3509,62 @@ body:has(.dashboard-page.active) .account-bar{
     padding:8px!important;
   }
 }
+
+
+/* Final dashboard shell proportions: match the 1192px reference admin shell */
+@media(min-width:901px){
+  body:has(.dashboard-page.active) .member-dashboard{
+    box-sizing:border-box!important;
+    width:min(1192px,calc(100vw - 48px))!important;
+    max-width:1192px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title{
+    box-sizing:border-box!important;
+    width:min(1192px,calc(100vw - 48px))!important;
+    max-width:1192px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body:has(.dashboard-page.active) .account-bar{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:206px minmax(0,1fr)!important;
+    column-gap:24px!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:206px!important;
+    min-width:206px!important;
+    max-width:206px!important;
+  }
+  body:has(.dashboard-page.active) .member-main{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .member-dashboard,
+  body:has(.dashboard-page.active) .dashboard-page-title{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+  }
+}
