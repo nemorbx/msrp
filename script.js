@@ -446,19 +446,35 @@ document.addEventListener("DOMContentLoaded", () => {
     function openCommunityModal(member=null) {
       communityState.selected = member;
       const own = !member;
-      byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "SAMPLE MEMBER PROFILE";
+      const modal = byId("communityModal");
+      const panel = modal.querySelector(".community-modal");
+      const fullProfile = byId("communityFullProfile");
+      byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "MSRP COMMUNITY PROFILE";
       byId("communityModalTitle").textContent = own ? "Edit your profile" : member.name;
-      byId("communityModalDescription").textContent = own ? "Customize how your placeholder profile appears." : member.bio+" Status: "+member.status+". This is sample profile content.";
+      byId("communityModalDescription").hidden = !own;
+      byId("communityModalDescription").textContent = own ? "Customize how your placeholder profile appears." : "";
       byId("communityProfileForm").hidden = !own;
+      fullProfile.hidden = own;
+      modal.classList.toggle("profile-open", !own);
+      panel.classList.toggle("community-modal-fullscreen", !own);
       if (own) {
         byId("communityDisplayName").value = savedProfile.name || "MSRP Member";
         byId("communityBio").value = savedProfile.bio || "Proud member of Missouri State Roleplay.";
         byId("communityAccent").value = savedProfile.accent || "cyan";
+      } else {
+        const following = communityState.following.has(member.id);
+        const liked = communityState.liked.has(member.id);
+        fullProfile.innerHTML = '<div class="community-full-banner accent-'+accentClass(member.accent)+'"><div class="community-full-topline"><span>MSRP MEMBER PROFILE</span><span class="community-online-indicator">● '+safeText(member.status)+'</span></div><div class="community-full-identity"><span class="community-avatar community-full-avatar">'+initials(member.name)+'</span><div class="community-full-name"><h2>'+safeText(member.name)+'</h2><span class="community-role-pill">'+safeText(member.role)+'</span><p>Member of Missouri State Roleplay</p></div><div class="community-full-actions"><button type="button" class="community-primary-button" data-full-follow="'+member.id+'">'+(following?'Following':'Follow')+'</button><button type="button" class="community-secondary-button" data-full-like="'+member.id+'">'+(liked?'♥ Liked':'♡ Like')+'</button></div></div></div><div class="community-full-content"><div class="community-full-stats"><div><strong>'+member.joined+'</strong><span>Profile ID</span></div><div><strong>'+member.likes+(liked?1:0)+'</strong><span>Likes</span></div><div><strong>'+communityState.following.size+'</strong><span>Following</span></div><div><strong>'+(member.active<60?member.active+'m':Math.floor(member.active/60)+'h')+'</strong><span>Last active</span></div></div><div class="community-full-columns"><div class="community-full-main-column"><section class="community-full-panel"><span class="community-eyebrow">ABOUT</span><p>'+safeText(member.bio)+'</p></section><section class="community-full-panel"><span class="community-eyebrow">SHOWCASE</span><p class="community-placeholder-copy">Nothing on show yet.</p></section><section class="community-full-panel"><span class="community-eyebrow">RECENT ACTIVITY</span><div class="community-activity-placeholder"><span class="community-activity-dot"></span><div><strong>Community profile viewed</strong><small>This is sample activity for the layout preview.</small></div></div></section></div><aside class="community-full-side-column"><section class="community-full-panel"><span class="community-eyebrow">MEMBER BADGES</span><div class="community-badge-list"><span>✦ Community Member</span><span>✦ MSRP Welcome</span><span>✦ Profile Preview</span></div></section><section class="community-full-panel"><span class="community-eyebrow">PROFILE DETAILS</span><div class="community-detail-row"><span>Rank</span><strong>'+safeText(member.role)+'</strong></div><div class="community-detail-row"><span>Status</span><strong>'+safeText(member.status)+'</strong></div><div class="community-detail-row"><span>Joined</span><strong>Sample data</strong></div></section></aside></div><p class="community-full-disclaimer">Placeholder profile — member information, badges, and activity are sample data until connected to the MSRP backend.</p></div>';
       }
-      byId("communityModal").hidden = false;
+      modal.hidden = false;
       byId("communityModalClose").focus();
     }
-    function closeCommunityModal() { byId("communityModal").hidden = true; }
+    function closeCommunityModal() {
+      const modal = byId("communityModal");
+      modal.hidden = true;
+      modal.classList.remove("profile-open");
+      modal.querySelector(".community-modal").classList.remove("community-modal-fullscreen");
+    }
     byId("communitySearch").addEventListener("input", (event) => { communityState.query=event.target.value; communityState.shown=6; renderCommunity(); });
     byId("communityFilters").addEventListener("click", (event) => {
       const button=event.target.closest("[data-community-filter]"); if(!button)return;
@@ -475,6 +491,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     byId("communityShowMore").addEventListener("click", () => { communityState.shown+=6; renderCommunity(); });
     byId("communityEditProfile").addEventListener("click", () => openCommunityModal());
+    byId("communityFullProfile").addEventListener("click", (event) => {
+      const follow = event.target.closest("[data-full-follow]");
+      const like = event.target.closest("[data-full-like]");
+      if (follow && communityState.selected) {
+        const id=Number(follow.dataset.fullFollow);
+        communityState.following.has(id) ? communityState.following.delete(id) : communityState.following.add(id);
+        const member=communityState.selected; renderCommunity(); openCommunityModal(member); return;
+      }
+      if (like && communityState.selected) {
+        const id=Number(like.dataset.fullLike);
+        communityState.liked.has(id) ? communityState.liked.delete(id) : communityState.liked.add(id);
+        const member=communityState.selected; renderCommunity(); openCommunityModal(member);
+      }
+    });
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
     byId("communityModal").addEventListener("click", (event) => { if(event.target===byId("communityModal"))closeCommunityModal(); });
