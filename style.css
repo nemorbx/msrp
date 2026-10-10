@@ -4037,3 +4037,35 @@ body:has(.dashboard-page.active) .member-main > [data-dashboard-overview][hidden
 .msrp-leader-row.bronze .msrp-leader-avatar{border-color:#d97706}
 .msrp-leaderboard-note{margin:0;padding:12px 18px;border-top:1px solid rgba(255,255,255,.07);font-size:9px;line-height:1.5;color:#788691}
 @media(max-width:600px){.msrp-leader-row{grid-template-columns:28px 32px minmax(70px,1fr) auto;gap:8px;padding:9px 10px;min-height:55px}.msrp-leader-rank{width:28px;height:28px}.msrp-leader-avatar{width:32px;height:32px}.msrp-leader-row>strong{font-size:11px}.msrp-leader-value{font-size:9px;padding:5px 7px}.msrp-leaderboard-header{padding:13px 12px}.msrp-leaderboard-tabs{padding:12px;gap:6px}.msrp-leader-tab{padding:7px 10px}}
+
+
+/* Match the reference dashboard sidebar: 240px wide by approximately 433px tall.
+   The sidebar is shared by Overview, Community Profiles, Leaderboard, and Inventory. */
+@media(min-width:851px){
+  body:has(.dashboard-page.active) .member-sidebar{
+    box-sizing:border-box!important;
+    width:240px!important;
+    min-width:240px!important;
+    max-width:240px!important;
+    height:433px!important;
+    min-height:433px!important;
+    max-height:433px!important;
+    padding:12px!important;
+    align-self:start!important;
+    overflow:hidden!important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body{
+    grid-template-columns:240px minmax(0,1fr)!important;
+    align-items:start!important;
+  }
+}
+@media(max-width:850px){
+  body:has(.dashboard-page.active) .member-sidebar{
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+}
