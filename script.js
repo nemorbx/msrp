@@ -314,6 +314,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  // Demo leaderboard controls: reorder the 50 placeholder rows by selected category.
+  const leaderTabs = [...document.querySelectorAll("[data-leaderboard-sort]")];
+  const leaderList = document.querySelector(".msrp-leaderboard-list");
+  const leaderLabel = document.querySelector("[data-leaderboard-label]");
+  function sortLeaderboard(metric) {
+    if (!leaderList) return;
+    const labels = { playtime: "Playtime", kills: "Most Kills", deaths: "Most Deaths" };
+    const rows = [...leaderList.querySelectorAll(".msrp-leader-row")];
+    rows.sort((a, b) => Number(b.dataset[metric]) - Number(a.dataset[metric]));
+    rows.forEach((row, index) => {
+      row.querySelector(".msrp-leader-rank").textContent = index === 0 ? "♛" : index === 1 ? "♜" : index === 2 ? "♜" : String(index + 1);
+      const value = row.querySelector("[data-value]");
+      if (metric === "playtime") {
+        const minutes = Number(row.dataset.playtime);
+        value.textContent = Math.floor(minutes / 60) + "h " + (minutes % 60) + "m";
+      } else value.textContent = row.dataset[metric];
+      leaderList.appendChild(row);
+    });
+    leaderTabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.leaderboardSort === metric));
+    if (leaderLabel) leaderLabel.textContent = labels[metric] || "Playtime";
+  }
+  leaderTabs.forEach((tab) => tab.addEventListener("click", () => sortLeaderboard(tab.dataset.leaderboardSort)));
+  sortLeaderboard("playtime");
+
   const logoutButtons = [$("dashboardLogout")];
   logoutButtons.forEach((button) => { if (button) button.onclick = logout; });
 
