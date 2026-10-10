@@ -389,4 +389,101 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginDash) loginDash.hidden = false;
     setDashboardView("overview");
   }
+
+  // Community Profiles: interactive front-end preview using clearly labelled sample data.
+  const communityRoot = $("dashboardCommunityView");
+  if (communityRoot) {
+    const sampleMembers = [
+      {id:1,name:"RiverCarter",role:"Member",bio:"Enjoying realistic roleplay around Missouri.",status:"On patrol",active:3,likes:28,joined:1,accent:"cyan",initials:"RC"},
+      {id:2,name:"MasonJett",role:"Staff",bio:"Helping keep the community welcoming and organized.",status:"Available",active:8,likes:42,joined:2,accent:"blue",initials:"MJ"},
+      {id:3,name:"TaylorStone",role:"Member",bio:"Fire and rescue roleplay enthusiast.",status:"In game",active:14,likes:19,joined:3,accent:"gold",initials:"TS"},
+      {id:4,name:"AlexWest",role:"Staff",bio:"Moderation team sample profile.",status:"Working",active:20,likes:37,joined:4,accent:"violet",initials:"AW"},
+      {id:5,name:"JordanLake",role:"Member",bio:"Here for good scenes and great teammates.",status:"Chilling",active:33,likes:16,joined:5,accent:"cyan",initials:"JL"},
+      {id:6,name:"KaiMorgan",role:"Member",bio:"Learning new departments and meeting people.",status:"Available",active:45,likes:12,joined:6,accent:"blue",initials:"KM"},
+      {id:7,name:"ParkerReed",role:"High Rank",bio:"Supporting training and department standards.",status:"On duty",active:62,likes:55,joined:7,accent:"gold",initials:"PR"},
+      {id:8,name:"JamieBrooks",role:"Member",bio:"I enjoy driving, dispatch, and teamwork.",status:"In game",active:90,likes:21,joined:8,accent:"violet",initials:"JB"},
+      {id:9,name:"CameronPrice",role:"Staff",bio:"Community support and member assistance.",status:"Available",active:130,likes:31,joined:9,accent:"blue",initials:"CP"},
+      {id:10,name:"DrewBennett",role:"Member",bio:"Building memorable roleplay moments.",status:"Away",active:190,likes:9,joined:10,accent:"cyan",initials:"DB"},
+      {id:11,name:"MorganEllis",role:"Senior High Rank",bio:"Helping the staff team improve every day.",status:"On duty",active:260,likes:64,joined:11,accent:"gold",initials:"ME"},
+      {id:12,name:"ReeseParker",role:"Member",bio:"New around here—say hello!",status:"Available",active:360,likes:7,joined:12,accent:"violet",initials:"RP"}
+    ];
+    const communityState = {filter:"active", query:"", shown:6, following:new Set(), liked:new Set(), selected:null};
+    const byId = (id) => $(id);
+    const safeText = (value) => String(value).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+    const initials = (name) => name.split(/(?=[A-Z])/).slice(0,2).map((part) => part[0]).join("").toUpperCase();
+    const accentClass = (accent) => ["cyan","blue","violet","gold"].includes(accent) ? accent : "cyan";
+    const profileStoreKey = "msrp_community_profile_preview";
+    let savedProfile = {};
+    try { savedProfile = JSON.parse(localStorage.getItem(profileStoreKey) || "{}"); } catch (_) { savedProfile = {}; }
+
+    function filteredMembers() {
+      const q = communityState.query.trim().toLowerCase();
+      let list = sampleMembers.filter((m) => !q || [m.name,m.role,m.bio,m.status].some((v) => v.toLowerCase().includes(q)));
+      if (communityState.filter === "friends") list = list.filter((m) => communityState.following.has(m.id));
+      if (communityState.filter === "staff") list = list.filter((m) => m.role.toLowerCase().includes("staff") || m.role.toLowerCase().includes("rank"));
+      if (communityState.filter === "liked") list.sort((a,b) => b.likes-a.likes);
+      if (communityState.filter === "newest") list.sort((a,b) => a.joined-b.joined);
+      if (communityState.filter === "az") list.sort((a,b) => a.name.localeCompare(b.name));
+      if (communityState.filter === "active") list.sort((a,b) => a.active-b.active);
+      return list;
+    }
+    function profileCard(m, suggested=false) {
+      const following = communityState.following.has(m.id);
+      const liked = communityState.liked.has(m.id);
+      if (suggested) return '<article class="community-suggested-card accent-'+accentClass(m.accent)+'"><button type="button" class="community-suggested-profile" data-community-open="'+m.id+'"><span class="community-avatar">'+initials(m.name)+'</span><strong>'+safeText(m.name)+'</strong><small>'+safeText(m.role)+'</small></button><button type="button" class="community-follow-button '+(following?'is-following':'')+'" data-community-follow="'+m.id+'">'+(following?'Following':'Follow')+'</button></article>';
+      return '<article class="community-profile-card accent-'+accentClass(m.accent)+'"><button type="button" class="community-card-open" data-community-open="'+m.id+'" aria-label="View '+safeText(m.name)+' profile"><span class="community-card-banner"></span><span class="community-avatar community-card-avatar">'+initials(m.name)+'</span><strong class="community-card-name">'+safeText(m.name)+'</strong><span class="community-role-pill">'+safeText(m.role)+'</span><span class="community-card-bio">'+safeText(m.bio)+'</span></button><div class="community-card-footer"><span>Active '+(m.active<60?m.active+'m':Math.floor(m.active/60)+'h')+' ago</span><button type="button" class="community-like-button '+(liked?'is-liked':'')+'" data-community-like="'+m.id+'" aria-label="Like '+safeText(m.name)+' profile">♥ <span>'+(m.likes+(liked?1:0))+'</span></button></div><button type="button" class="community-card-follow '+(following?'is-following':'')+'" data-community-follow="'+m.id+'">'+(following?'Following':'Follow')+'</button></article>';
+    }
+    function renderCommunity() {
+      const all = filteredMembers();
+      const visible = all.slice(0, communityState.shown);
+      byId("communityProfileGrid").innerHTML = visible.map((m) => profileCard(m)).join("");
+      byId("communitySuggested").innerHTML = sampleMembers.filter((m) => !communityState.following.has(m.id)).slice(0,7).map((m) => profileCard(m,true)).join("");
+      byId("communityResultCount").textContent = all.length + " sample profile" + (all.length===1?"":"s");
+      byId("communityEmpty").hidden = all.length>0;
+      byId("communityShowMore").hidden = communityState.shown>=all.length || all.length===0;
+      byId("communityShowMore").textContent = "Show more profiles ("+(all.length-communityState.shown)+")";
+    }
+    function openCommunityModal(member=null) {
+      communityState.selected = member;
+      const own = !member;
+      byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "SAMPLE MEMBER PROFILE";
+      byId("communityModalTitle").textContent = own ? "Edit your profile" : member.name;
+      byId("communityModalDescription").textContent = own ? "Customize how your placeholder profile appears." : member.bio+" Status: "+member.status+". This is sample profile content.";
+      byId("communityProfileForm").hidden = !own;
+      if (own) {
+        byId("communityDisplayName").value = savedProfile.name || "MSRP Member";
+        byId("communityBio").value = savedProfile.bio || "Proud member of Missouri State Roleplay.";
+        byId("communityAccent").value = savedProfile.accent || "cyan";
+      }
+      byId("communityModal").hidden = false;
+      byId("communityModalClose").focus();
+    }
+    function closeCommunityModal() { byId("communityModal").hidden = true; }
+    byId("communitySearch").addEventListener("input", (event) => { communityState.query=event.target.value; communityState.shown=6; renderCommunity(); });
+    byId("communityFilters").addEventListener("click", (event) => {
+      const button=event.target.closest("[data-community-filter]"); if(!button)return;
+      communityState.filter=button.dataset.communityFilter; communityState.shown=6;
+      byId("communityFilters").querySelectorAll("button").forEach((b)=>b.classList.toggle("active",b===button)); renderCommunity();
+    });
+    communityRoot.addEventListener("click", (event) => {
+      const follow=event.target.closest("[data-community-follow]");
+      const like=event.target.closest("[data-community-like]");
+      const open=event.target.closest("[data-community-open]");
+      if(follow){const id=Number(follow.dataset.communityFollow);communityState.following.has(id)?communityState.following.delete(id):communityState.following.add(id);renderCommunity();return;}
+      if(like){const id=Number(like.dataset.communityLike);communityState.liked.has(id)?communityState.liked.delete(id):communityState.liked.add(id);renderCommunity();return;}
+      if(open){const m=sampleMembers.find((item)=>item.id===Number(open.dataset.communityOpen));if(m)openCommunityModal(m);}
+    });
+    byId("communityShowMore").addEventListener("click", () => { communityState.shown+=6; renderCommunity(); });
+    byId("communityEditProfile").addEventListener("click", () => openCommunityModal());
+    byId("communityModalClose").addEventListener("click", closeCommunityModal);
+    byId("communityModalCancel").addEventListener("click", closeCommunityModal);
+    byId("communityModal").addEventListener("click", (event) => { if(event.target===byId("communityModal"))closeCommunityModal(); });
+    byId("communityProfileForm").addEventListener("submit", (event) => {
+      event.preventDefault(); savedProfile={name:byId("communityDisplayName").value.trim()||"MSRP Member",bio:byId("communityBio").value.trim(),accent:byId("communityAccent").value};
+      try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
+      closeCommunityModal();
+    });
+    renderCommunity();
+  }
+
 });
