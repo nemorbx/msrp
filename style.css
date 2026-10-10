@@ -3778,3 +3778,94 @@ body:has(.dashboard-page.active) .dashboard-statistics-content{
     margin:0 14px 14px!important;
   }
 }
+
+
+/* On Duty Now — compact reference-style roster with CSS-only placeholder avatars. */
+body:has(.dashboard-page.active) .dashboard-duty-panel{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-panel .dashboard-data-panel-header{
+  min-height:55.8px!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-panel .dashboard-data-panel-header>strong{
+  font-size:13.5px!important;
+  line-height:21px!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-panel .dashboard-count-pill{
+  font-size:10px!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-list{
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-row{
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-height:67px!important;
+  padding:10px 18px!important;
+  border-top:1px solid rgba(255,255,255,.075)!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-avatar{
+  box-sizing:border-box!important;
+  display:grid!important;
+  place-items:center!important;
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  flex:0 0 36px!important;
+  border-radius:50%!important;
+  border:2px solid rgba(255,255,255,.28)!important;
+  box-shadow:0 0 0 2px rgba(255,255,255,.035)!important;
+  color:#f4f8fb!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.2px!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-blue{background:linear-gradient(145deg,#247db4,#173d67)!important;border-color:#62baf1!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-green{background:linear-gradient(145deg,#4b9a78,#234b43)!important;border-color:#8bc7a5!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-gold{background:linear-gradient(145deg,#b38b45,#634525)!important;border-color:#e3bc72!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-rose{background:linear-gradient(145deg,#a65c77,#59354f)!important;border-color:#d99ab0!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-sand{background:linear-gradient(145deg,#b2a17c,#55594b)!important;border-color:#d9c9a2!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-violet{background:linear-gradient(145deg,#7667bb,#3d376f)!important;border-color:#a69ae8!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-cyan{background:linear-gradient(145deg,#398d9d,#214f67)!important;border-color:#83d2dc!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-orange{background:linear-gradient(145deg,#ba7441,#6b3d29)!important;border-color:#e9a36e!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-slate{background:linear-gradient(145deg,#657a8b,#303e50)!important;border-color:#a2b8c9!important}
+body:has(.dashboard-page.active) .dashboard-duty-avatar.avatar-lime{background:linear-gradient(145deg,#719744,#3d552d)!important;border-color:#a9d276!important}
+body:has(.dashboard-page.active) .dashboard-duty-copy{
+  display:grid!important;
+  gap:4px!important;
+  min-width:0!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-copy strong{
+  overflow:hidden!important;
+  color:#f2f6fa!important;
+  font-size:13.5px!important;
+  font-weight:700!important;
+  line-height:19px!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-copy span{
+  color:#91a5b9!important;
+  font-family:"JetBrains Mono",ui-monospace,monospace!important;
+  font-size:10.5px!important;
+  line-height:16px!important;
+}
+body:has(.dashboard-page.active) .dashboard-duty-demo-note{
+  margin:0!important;
+  padding:10px 18px 12px!important;
+  border-top:1px solid rgba(255,255,255,.07)!important;
+  color:#8191a2!important;
+  font-size:10px!important;
+  line-height:1.5!important;
+}
+@media(max-width:520px){
+  body:has(.dashboard-page.active) .dashboard-duty-row{padding:10px 13px!important;min-height:63px!important}
+  body:has(.dashboard-page.active) .dashboard-duty-panel .dashboard-data-panel-header{padding:0 13px!important}
+}
