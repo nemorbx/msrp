@@ -3606,3 +3606,37 @@ body:has(.dashboard-page.active) .member-stat-card.stat-vehicles{
 @media(max-width:500px){
   body:has(.dashboard-page.active) .member-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
+
+
+/* Keep all three member overview statistic cards on one row */
+body:has(.dashboard-page.active) .member-stat-grid.dashboard-view-overview{
+  display:grid!important;
+  width:100%!important;
+  max-width:100%!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+body:has(.dashboard-page.active) .member-stat-grid.dashboard-view-overview > .member-stat-card{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  grid-column:auto!important;
+  box-sizing:border-box!important;
+  min-height:109.59px!important;
+  padding:20px 22px!important;
+}
+@media(max-width:850px){
+  body:has(.dashboard-page.active) .member-stat-grid.dashboard-view-overview{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  body:has(.dashboard-page.active) .member-stat-grid.dashboard-view-overview > .member-stat-card{
+    padding:14px 12px!important;
+  }
+}
+@media(max-width:520px){
+  body:has(.dashboard-page.active) .member-stat-grid.dashboard-view-overview{
+    grid-template-columns:1fr!important;
+  }
+}
