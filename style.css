@@ -3232,22 +3232,40 @@ body:has(.dashboard-page.active) .account-actions .account-notification:hover{
 }
 
 
-/* Final account action alignment: remove duplicate separators and nested bell outline */
+/* Account controls: one outer rail, one inset notification button, one text-action separator */
 body:has(.dashboard-page.active) .account-actions{
   display:flex!important;
   align-items:center!important;
   gap:0!important;
+  box-sizing:border-box!important;
+  height:60px!important;
+  min-height:60px!important;
   padding:4px!important;
   border:1px solid rgba(245,248,251,.42)!important;
   border-radius:14px!important;
   background:rgba(255,255,255,.025)!important;
-  overflow:visible!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
 }
-body:has(.dashboard-page.active) .account-actions .account-divider{
-  display:none!important;
+body:has(.dashboard-page.active) .account-actions .account-action{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  height:50px!important;
+  min-height:50px!important;
+  margin:0!important;
+  padding:0 18px!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
 }
 body:has(.dashboard-page.active) .account-actions .account-notification{
-  box-sizing:border-box!important;
+  flex:0 0 50px!important;
   width:50px!important;
   min-width:50px!important;
   height:50px!important;
@@ -3257,23 +3275,16 @@ body:has(.dashboard-page.active) .account-actions .account-notification{
   border:1px solid rgba(245,248,251,.42)!important;
   border-radius:10px!important;
   background:rgba(255,255,255,.025)!important;
-  outline:none!important;
-  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .account-actions .account-divider{
+  display:none!important;
 }
 body:has(.dashboard-page.active) .account-actions .account-account-link{
-  height:50px!important;
-  min-height:50px!important;
   padding:0 18px!important;
-  border:0!important;
   border-right:1px solid rgba(245,248,251,.28)!important;
-  border-radius:0!important;
 }
 body:has(.dashboard-page.active) .account-actions .account-logout{
-  height:50px!important;
-  min-height:50px!important;
   padding:0 18px!important;
-  border:0!important;
-  border-radius:0 9px 9px 0!important;
 }
 body:has(.dashboard-page.active) .account-actions .account-action:not(.account-notification):hover{
   background:rgba(255,255,255,.04)!important;
@@ -3281,4 +3292,15 @@ body:has(.dashboard-page.active) .account-actions .account-action:not(.account-n
 body:has(.dashboard-page.active) .account-actions .account-notification:hover{
   background:rgba(255,255,255,.04)!important;
   border-color:rgba(245,248,251,.62)!important;
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .account-actions{height:54px!important;min-height:54px!important;padding:3px!important}
+  body:has(.dashboard-page.active) .account-actions .account-action{height:46px!important;min-height:46px!important;padding-left:10px!important;padding-right:10px!important;font-size:12px!important}
+  body:has(.dashboard-page.active) .account-actions .account-notification{flex-basis:46px!important;width:46px!important;min-width:46px!important;height:46px!important;min-height:46px!important}
+}
+@media(max-width:500px){
+  body:has(.dashboard-page.active) .account-actions{height:46px!important;min-height:46px!important;padding:3px!important}
+  body:has(.dashboard-page.active) .account-actions .account-action{height:38px!important;min-height:38px!important;padding:0 7px!important;font-size:10px!important;gap:5px!important}
+  body:has(.dashboard-page.active) .account-actions .account-notification{flex-basis:38px!important;width:38px!important;min-width:38px!important;height:38px!important;min-height:38px!important;margin-right:4px!important}
+  body:has(.dashboard-page.active) .account-actions .account-action svg{width:14px!important;height:14px!important;flex-basis:14px!important}
 }
