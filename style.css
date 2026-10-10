@@ -4121,3 +4121,69 @@ body:has(.dashboard-page.active) .member-main > [data-dashboard-overview][hidden
 .msrp-leaderboard-icon{font-size:0!important}
 .msrp-leaderboard-icon svg{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .msrp-leader-row.gold .msrp-leader-rank svg{fill:currentColor;stroke:currentColor}
+
+
+/* MSRP interaction motion: subtle hover, press, and view-entry feedback. */
+@keyframes msrp-view-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes msrp-sidebar-icon-enter {
+  from { opacity: .65; transform: translateY(3px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+body:has(.dashboard-page.active) .member-nav-item {
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+  transform-origin: center left;
+}
+body:has(.dashboard-page.active) .member-nav-item:hover {
+  transform: translateX(3px);
+  border-color: rgba(73,220,255,.3) !important;
+  box-shadow: 0 5px 16px rgba(0,0,0,.14);
+}
+body:has(.dashboard-page.active) .member-nav-item:active {
+  transform: translateX(1px) scale(.985);
+  transition-duration: .07s;
+}
+body:has(.dashboard-page.active) .member-nav-item .sidebar-nav-icon {
+  transition: transform .18s ease, background-color .18s ease;
+}
+body:has(.dashboard-page.active) .member-nav-item:hover .sidebar-nav-icon {
+  transform: scale(1.06);
+}
+body:has(.dashboard-page.active) .member-nav-item.active .sidebar-nav-icon {
+  animation: msrp-sidebar-icon-enter .24s ease both;
+}
+body:has(.dashboard-page.active) .member-main.msrp-view-enter {
+  animation: msrp-view-enter .26s ease both;
+}
+body:has(.dashboard-page.active) .member-main button,
+body:has(.dashboard-page.active) .member-main a,
+body:has(.dashboard-page.active) .account-actions .account-action,
+body:has(.dashboard-page.active) .sidebar-home-button {
+  transition: transform .16s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+body:has(.dashboard-page.active) .member-main button:hover,
+body:has(.dashboard-page.active) .member-main a:hover,
+body:has(.dashboard-page.active) .account-actions .account-action:hover,
+body:has(.dashboard-page.active) .sidebar-home-button:hover {
+  transform: translateY(-1px);
+}
+body:has(.dashboard-page.active) .member-main button:active,
+body:has(.dashboard-page.active) .member-main a:active,
+body:has(.dashboard-page.active) .account-actions .account-action:active,
+body:has(.dashboard-page.active) .sidebar-home-button:active {
+  transform: translateY(0) scale(.98);
+  transition-duration: .07s;
+}
+@media (prefers-reduced-motion: reduce) {
+  body:has(.dashboard-page.active) .member-nav-item,
+  body:has(.dashboard-page.active) .member-nav-item .sidebar-nav-icon,
+  body:has(.dashboard-page.active) .member-main button,
+  body:has(.dashboard-page.active) .member-main a,
+  body:has(.dashboard-page.active) .account-actions .account-action,
+  body:has(.dashboard-page.active) .sidebar-home-button {
+    transition: none !important;
+    animation: none !important;
+  }
+}
