@@ -428,6 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const initials = (name) => name.split(/(?=[A-Z])/).slice(0,2).map((part) => part[0]).join("").toUpperCase();
     const accentClass = (accent) => ["cyan","blue","violet","gold"].includes(accent) ? accent : "cyan";
     const profileStoreKey = "msrp_community_profile_preview";
+    const communityModalHome = { parent: null, next: null };
     let savedProfile = {};
     try { savedProfile = JSON.parse(localStorage.getItem(profileStoreKey) || "{}"); } catch (_) { savedProfile = {}; }
 
@@ -463,6 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const own = !member;
       if (own) member = {id:0,profileId:"MSRP-OWN",name:savedProfile.name || "nemorbx",role:"Staff",status:"Online",bio:savedProfile.bio || "Proud member of Missouri State Roleplay.",accent:savedProfile.accent || "cyan",likes:0,views:0,active:0,joined:"Sep 2026"};
       const modal = byId("communityModal");
+      if (!communityModalHome.parent) { communityModalHome.parent = modal.parentNode; communityModalHome.next = modal.nextSibling; }
+      if (modal.parentNode !== document.body) document.body.appendChild(modal);
       const panel = modal.querySelector(".community-modal");
       const fullProfile = byId("communityFullProfile");
       byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "MSRP COMMUNITY PROFILE";
@@ -493,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const modal = byId("communityModal");
       modal.hidden = true;
       modal.classList.remove("profile-open");
+      if (communityModalHome.parent && modal.parentNode === document.body) communityModalHome.parent.insertBefore(modal, communityModalHome.next && communityModalHome.next.parentNode === communityModalHome.parent ? communityModalHome.next : null);
       if (profileRouteId()) history.replaceState({msrpDashboardView:"community"}, "", "#dashboard");
       modal.querySelector(".community-modal").classList.remove("community-modal-fullscreen");
     }
