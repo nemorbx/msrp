@@ -3998,3 +3998,9 @@ body:has(.dashboard-page.active) .account-bar {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+
+
+/* Keep Overview-only content hidden on Community Profiles, Leaderboard, and Inventory. */
+body:has(.dashboard-page.active) .member-main > [data-dashboard-overview][hidden] {
+  display: none !important;
+}
