@@ -4316,3 +4316,27 @@ body:has(.dashboard-page.active) .sidebar-home-button:active {
 .community-inline-editor label:nth-child(2){grid-column:span 2}
 .community-inline-editor .community-modal-actions{grid-column:span 2;display:flex;justify-content:flex-end;gap:10px}
 @media(max-width:650px){.community-inline-editor{grid-template-columns:1fr;width:calc(100% - 24px);padding:14px!important}.community-inline-editor label:nth-child(2),.community-inline-editor .community-modal-actions{grid-column:span 1}}
+
+
+/* Profile overlay: true viewport-sized Discord-like member page. */
+.community-modal-backdrop.profile-open{position:fixed!important;inset:0!important;z-index:99999!important;width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important;padding:0!important;overflow:auto!important;display:block!important;background:#20242b!important}
+.community-modal-backdrop.profile-open[hidden]{display:none!important}
+.community-modal.community-modal-fullscreen{position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:100dvh!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;overflow:visible!important;box-shadow:none!important;background:#20242b!important}
+.community-modal-fullscreen #communityModalClose{position:fixed!important;top:18px!important;right:22px!important;z-index:100001!important}
+.community-full-profile{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+.community-profile-back-row{width:100%!important;max-width:none!important;height:48px!important;box-sizing:border-box!important;padding:0 22px!important;display:flex!important;align-items:center!important;gap:14px!important;background:#292e37!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+.community-full-banner{width:100%!important;box-sizing:border-box!important;border-radius:0!important;min-height:330px!important;padding:24px max(28px,calc((100vw - 1180px)/2)) 22px!important}
+.community-full-identity{padding-top:130px!important;margin-top:0!important;align-items:center!important;display:flex!important}
+.community-full-avatar{flex:0 0 auto!important}
+.community-full-name{flex:1 1 300px!important;min-width:220px!important}
+.community-full-mini-stats{display:flex!important;flex-wrap:wrap!important;gap:8px 14px!important}
+.community-full-mini-stats span{display:inline-flex!important;align-items:center!important;gap:5px!important}
+.community-full-mini-stats svg,.community-online-indicator svg,.community-full-actions svg,.community-back-everyone svg,.community-badge-list svg{width:14px!important;height:14px!important;display:inline-block!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important;stroke-linecap:round!important;stroke-linejoin:round!important;vertical-align:middle!important}
+.community-online-indicator svg{width:8px!important;height:8px!important;fill:#65e6a4!important;stroke:none!important}
+.community-full-actions{align-self:flex-end!important;display:flex!important;gap:8px!important}
+.community-full-actions button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important}
+.community-full-content{width:min(1180px,calc(100% - 48px))!important;max-width:1180px!important;margin:0 auto!important;padding:16px 0 42px!important}
+.community-full-stats{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.community-full-columns{grid-template-columns:minmax(0,1.55fr) minmax(290px,.9fr)!important}
+.community-full-panel{min-width:0!important}
+@media(max-width:760px){.community-full-banner{padding:18px 16px!important;min-height:330px!important}.community-full-identity{padding-top:130px!important;align-items:flex-start!important}.community-full-actions{flex:1 0 100%!important;align-self:flex-start!important}.community-full-content{width:calc(100% - 24px)!important}.community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.community-full-stats>div:last-child{grid-column:span 2}.community-full-columns{grid-template-columns:1fr!important}}
