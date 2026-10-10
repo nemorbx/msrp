@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const rank = row.querySelector(".msrp-leader-rank");
       if (index === 0) {
         rank.setAttribute("aria-label", "Rank 1");
-        rank.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l4 3 2-6 3 5 3-5 2 6 4-3-2 12H5L3 7Z"/><path d="M7 22h10"/></svg>';
+        rank.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l4 3 4-7 4 7 4-3-2 11H6L4 8Z"/><path d="M7 22h10M8 15h8"/></svg>';
       } else if (index === 1) {
         rank.setAttribute("aria-label", "Rank 2");
         rank.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1 5a4 4 0 0 1-8 0L7 4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 13v5M8 21h8M9 18h6"/></svg>';
