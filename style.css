@@ -4004,3 +4004,36 @@ body:has(.dashboard-page.active) .account-bar {
 body:has(.dashboard-page.active) .member-main > [data-dashboard-overview][hidden] {
   display: none !important;
 }
+
+
+/* MSRP leaderboard page — scoped to this page only; Overview styling is untouched. */
+.msrp-leaderboard-view.dashboard-view{padding:0;min-height:0;background:transparent;border:0;overflow:visible}
+.msrp-leaderboard-panel{width:100%;min-width:0;border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;background:linear-gradient(145deg,rgba(24,29,37,.97),rgba(13,17,23,.98));box-shadow:0 18px 42px rgba(0,0,0,.14)}
+.msrp-leaderboard-header{min-height:62px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.msrp-leaderboard-header>div{display:flex;align-items:center;gap:12px;min-width:0}
+.msrp-leaderboard-header h2{font-size:15px;font-weight:750;letter-spacing:-.25px;margin:0;color:#f5f8fb}
+.msrp-leaderboard-icon{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:rgba(46,168,255,.12);border:1px solid rgba(46,168,255,.22);color:#68c5ff;font-size:17px}
+.msrp-leaderboard-badge{font-size:10px;font-weight:700;color:#b9c5ce;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:7px 13px;border-radius:999px;white-space:nowrap}
+.msrp-leaderboard-tabs{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
+.msrp-leader-tab{appearance:none;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.025);color:#c3ccd3;border-radius:999px;padding:7px 14px;font:500 11.5px Geist,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.msrp-leader-tab:hover{border-color:rgba(245,172,36,.6)}
+.msrp-leader-tab.active{background:#f5a524;border-color:#f5a524;color:#1a1108}
+.msrp-leaderboard-list{width:100%}
+.msrp-leader-row{display:grid;grid-template-columns:31px 36px minmax(100px,1fr) auto;align-items:center;gap:12px;min-height:60px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.09);position:relative}
+.msrp-leader-row:last-child{border-bottom:0}
+.msrp-leader-rank{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.18);color:#c3cbd2;font-size:11px;font-weight:750}
+.msrp-leader-avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#35495b,#182531);border:2px solid rgba(255,255,255,.22);color:#f5f8fb;font-size:11px;font-weight:800;letter-spacing:.2px}
+.msrp-leader-row>strong{font-size:12px;font-weight:700;color:#f0f4f7;overflow-wrap:anywhere}
+.msrp-leader-value{font-size:10px;font-weight:750;white-space:nowrap;padding:6px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:#d8e0e5;background:rgba(255,255,255,.035)}
+.msrp-leader-row.gold{background:linear-gradient(90deg,rgba(250,204,21,.12),rgba(250,204,21,.025) 48%,transparent);box-shadow:inset 3px 0 #facc15}
+.msrp-leader-row.gold .msrp-leader-rank{background:#facc15;color:#4b3500;border-color:#facc15;font-size:15px}
+.msrp-leader-row.gold .msrp-leader-avatar{border-color:#facc15}
+.msrp-leader-row.gold .msrp-leader-value{color:#facc15;border-color:rgba(250,204,21,.55)}
+.msrp-leader-row.silver{background:linear-gradient(90deg,rgba(203,213,225,.09),transparent 55%);box-shadow:inset 3px 0 #cbd5e1}
+.msrp-leader-row.silver .msrp-leader-rank{background:#cbd5e1;color:#26313d;border-color:#cbd5e1;font-size:15px}
+.msrp-leader-row.silver .msrp-leader-avatar{border-color:#cbd5e1}
+.msrp-leader-row.bronze{background:linear-gradient(90deg,rgba(217,119,6,.11),transparent 55%);box-shadow:inset 3px 0 #d97706}
+.msrp-leader-row.bronze .msrp-leader-rank{background:#d97706;color:#2c1604;border-color:#d97706;font-size:15px}
+.msrp-leader-row.bronze .msrp-leader-avatar{border-color:#d97706}
+.msrp-leaderboard-note{margin:0;padding:12px 18px;border-top:1px solid rgba(255,255,255,.07);font-size:9px;line-height:1.5;color:#788691}
+@media(max-width:600px){.msrp-leader-row{grid-template-columns:28px 32px minmax(70px,1fr) auto;gap:8px;padding:9px 10px;min-height:55px}.msrp-leader-rank{width:28px;height:28px}.msrp-leader-avatar{width:32px;height:32px}.msrp-leader-row>strong{font-size:11px}.msrp-leader-value{font-size:9px;padding:5px 7px}.msrp-leaderboard-header{padding:13px 12px}.msrp-leaderboard-tabs{padding:12px;gap:6px}.msrp-leader-tab{padding:7px 10px}}
