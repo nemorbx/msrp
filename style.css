@@ -4770,3 +4770,34 @@ body:has(.community-modal-backdrop.profile-open) .community-full-topline,
 body:has(.community-modal-backdrop.profile-open) .community-full-identity{
   display:none!important;
 }
+
+
+/* Community profile: remove the rigid outer wrapper and stray 36px square control. */
+body:has(.community-modal-backdrop.profile-open) .community-full-profile,
+body:has(.community-modal-backdrop.profile-open) .community-profile-content,
+body:has(.community-modal-backdrop.profile-open) .community-full-layout,
+body:has(.community-modal-backdrop.profile-open) .community-profile-view{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner{
+  border-radius:22px!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner::before,
+body:has(.community-modal-backdrop.profile-open) .community-full-banner::after{
+  display:none!important;content:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner > svg,
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row > svg,
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row button:not(.community-back-everyone),
+body:has(.community-modal-backdrop.profile-open) .community-full-banner button[aria-label=""],
+body:has(.community-modal-backdrop.profile-open) .community-full-banner button:empty{
+  display:none!important;
+}
