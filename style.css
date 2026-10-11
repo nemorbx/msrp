@@ -5614,3 +5614,29 @@ body.msrp-profile-page-open .community-full-content{
  #communityModal:not([hidden]) #communityFullProfile .community-full-banner::before{height:180px!important}
  #communityModal:not([hidden]) #communityFullProfile .community-full-identity{margin-top:132px!important;height:auto!important;min-height:164px!important}
 }
+
+
+/* Fix profile content starting underneath the overlaid identity panel */
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+  margin-bottom:164px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-content{
+  display:block!important;
+  clear:both!important;
+  position:relative!important;
+  z-index:1!important;
+  margin-top:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats{
+  position:relative!important;
+  z-index:1!important;
+  margin-top:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+  z-index:2!important;
+}
+@media(max-width:760px){
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+    margin-bottom:190px!important;
+  }
+}
