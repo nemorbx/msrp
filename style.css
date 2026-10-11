@@ -5009,3 +5009,31 @@ body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
     margin-left:0!important;
   }
 }
+
+
+/* Keep the Everyone arrow immediately beside its label (no flex growth/offset). */
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  justify-content:flex-start!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-back-everyone{
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:max-content!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:7px!important;
+  padding:0!important;
+  margin:0!important;
+  text-indent:0!important;
+  transform:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-back-everyone svg{
+  display:block!important;
+  flex:0 0 12px!important;
+  width:12px!important;
+  height:12px!important;
+  margin:0!important;
+  position:static!important;
+}
