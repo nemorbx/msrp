@@ -5706,3 +5706,51 @@ body.msrp-profile-page-open .community-full-content{
   #communityModal:not([hidden]) #communityFullProfile .community-full-banner::before{border-radius:16px 16px 0 0!important}
   #communityModal:not([hidden]) #communityFullProfile .community-full-identity{margin-top:132px!important;border-radius:0 0 16px 16px!important}
 }
+
+
+/* Fix profile content flow: reserve the full height of the overlapping identity card */
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+  position:relative!important;
+  height:230px!important;min-height:230px!important;max-height:230px!important;
+  margin:0 0 82px!important;
+  overflow:visible!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+  top:auto!important;
+  bottom:-82px!important;
+  height:164px!important;min-height:164px!important;
+  z-index:4!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-content{
+  position:relative!important;
+  display:block!important;
+  clear:both!important;
+  z-index:1!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  translate:none!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats{
+  position:relative!important;
+  display:grid!important;
+  clear:both!important;
+  margin-top:0!important;
+  transform:none!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-columns{
+  position:relative!important;
+  display:grid!important;
+  clear:both!important;
+  margin-top:0!important;
+  transform:none!important;
+}
+@media(max-width:760px){
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+    height:180px!important;min-height:180px!important;max-height:180px!important;
+    margin-bottom:150px!important;
+  }
+  #communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+    top:auto!important;bottom:-150px!important;height:auto!important;min-height:164px!important;
+  }
+}
