@@ -4896,3 +4896,55 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-close{
 body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop{
   background:rgba(8,14,25,.72)!important;
 }
+
+
+/* Final override: the profile page itself must not sit inside a dark modal/backdrop. */
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open,
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open[hidden]{
+  position:relative!important;
+  inset:auto!important;
+  z-index:1!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-modal.community-modal-fullscreen{
+  position:relative!important;
+  inset:auto!important;
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .community-modal-backdrop.profile-open .community-modal-close,
+body:has(.community-modal-backdrop.profile-open) #communityModalClose{
+  display:none!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
