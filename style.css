@@ -4801,3 +4801,77 @@ body:has(.community-modal-backdrop.profile-open) .community-full-banner button[a
 body:has(.community-modal-backdrop.profile-open) .community-full-banner button:empty{
   display:none!important;
 }
+
+
+/* Community profile layout: breadcrumb and each content card are separate surfaces. */
+body:has(.community-modal-backdrop.profile-open) #communityFullProfile,
+body:has(.community-modal-backdrop.profile-open) .community-full-profile,
+body:has(.community-modal-backdrop.profile-open) .community-full-content,
+body:has(.community-modal-backdrop.profile-open) .community-full-columns,
+body:has(.community-modal-backdrop.profile-open) .community-full-main-column,
+body:has(.community-modal-backdrop.profile-open) .community-full-side-column{
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  display:flex!important;
+  width:100%!important;
+  height:36px!important;
+  min-height:36px!important;
+  margin:0 0 14px!important;
+  padding:0 12px!important;
+  background:rgba(255,255,255,.025)!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-radius:11px!important;
+  box-shadow:none!important;
+  outline:none!important;
+  box-sizing:border-box!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-back-everyone{
+  display:inline-flex!important;
+  width:auto!important;
+  height:100%!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  background:#2869E8!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:20px!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-content{
+  padding:14px 0 30px!important;
+  margin:0!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-stats{
+  margin:0 0 12px!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-columns{
+  gap:12px!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-panel,
+body:has(.community-modal-backdrop.profile-open) .community-full-stats>div{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+}
+/* Hide only the stray empty 36px corner control; keep functional profile actions. */
+body:has(.community-modal-backdrop.profile-open) .community-modal > button:empty,
+body:has(.community-modal-backdrop.profile-open) .community-modal > svg,
+body:has(.community-modal-backdrop.profile-open) #communityFullProfile > button:empty,
+body:has(.community-modal-backdrop.profile-open) #communityFullProfile > svg{
+  display:none!important;
+}
