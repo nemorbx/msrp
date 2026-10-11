@@ -4983,3 +4983,29 @@ body:has(.community-modal-backdrop.profile-open) .community-full-content{
     max-width:100%!important;
   }
 }
+
+
+/* Correct the breadcrumb's measured size: the profile wrapper's inner width is 888px,
+   so expand it to the reference's 920px and lock its height to 36px. */
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  display:flex!important;
+  flex:0 0 36px!important;
+  width:920px!important;
+  min-width:920px!important;
+  max-width:920px!important;
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  margin:0 0 12px -16px!important;
+  padding:0 12px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+@media(max-width:900px){
+  body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin-left:0!important;
+  }
+}
