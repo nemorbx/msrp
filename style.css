@@ -4674,3 +4674,13 @@ body:has(.community-modal-backdrop.profile-open) .community-full-panel{padding:1
  body:has(.community-modal-backdrop.profile-open) .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  body:has(.community-modal-backdrop.profile-open) .community-full-columns{grid-template-columns:1fr!important}
 }
+
+/* Profile detail alignment: keep the breadcrumb bar limited to its back button and match the reference overlap. */
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{display:flex!important;justify-content:flex-start!important;align-items:center!important;height:36px!important;min-height:36px!important;padding:0 12px!important;margin:0 0 12px!important;border-radius:11px!important;box-sizing:border-box!important}
+body:has(.community-modal-backdrop.profile-open) .community-profile-breadcrumb{display:none!important}
+body:has(.community-modal-backdrop.profile-open) .community-online-indicator{display:none!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner{min-height:230px!important;height:230px!important;padding:22px 24px!important;position:relative!important;overflow:visible!important;border-radius:20px!important;box-sizing:border-box!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-topline{display:flex!important;align-items:center!important;justify-content:flex-start!important;margin:0!important;min-height:16px!important;position:relative!important;z-index:2!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-identity{display:flex!important;align-items:flex-end!important;flex-wrap:nowrap!important;gap:16px!important;margin:150px 0 0!important;position:relative!important;z-index:3!important;min-width:0!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-avatar{width:96px!important;height:96px!important;min-width:96px!important;flex:0 0 96px!important;border-radius:50%!important;align-self:flex-end!important;object-fit:cover!important}
+@media(max-width:900px){body:has(.community-modal-backdrop.profile-open) .community-full-banner{height:auto!important;min-height:230px!important}body:has(.community-modal-backdrop.profile-open) .community-full-identity{margin-top:130px!important;flex-wrap:wrap!important;align-items:flex-start!important}}
