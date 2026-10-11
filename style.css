@@ -4875,3 +4875,24 @@ body:has(.community-modal-backdrop.profile-open) #communityFullProfile > button:
 body:has(.community-modal-backdrop.profile-open) #communityFullProfile > svg{
   display:none!important;
 }
+
+
+/* Profile view: remove the fullscreen dialog's dark backing card and the stray close square. */
+body:has(.community-modal-backdrop.profile-open) .community-modal{
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-modal-close{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop{
+  background:rgba(8,14,25,.72)!important;
+}
