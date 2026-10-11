@@ -4684,3 +4684,73 @@ body:has(.community-modal-backdrop.profile-open) .community-full-topline{display
 body:has(.community-modal-backdrop.profile-open) .community-full-identity{display:flex!important;align-items:flex-end!important;flex-wrap:nowrap!important;gap:16px!important;margin:150px 0 0!important;position:relative!important;z-index:3!important;min-width:0!important}
 body:has(.community-modal-backdrop.profile-open) .community-full-avatar{width:96px!important;height:96px!important;min-width:96px!important;flex:0 0 96px!important;border-radius:50%!important;align-self:flex-end!important;object-fit:cover!important}
 @media(max-width:900px){body:has(.community-modal-backdrop.profile-open) .community-full-banner{height:auto!important;min-height:230px!important}body:has(.community-modal-backdrop.profile-open) .community-full-identity{margin-top:130px!important;flex-wrap:wrap!important;align-items:flex-start!important}}
+
+/* Reference-match profile detail: solid banner, transparent wrapper, full action row. */
+body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profile-open{
+  background:rgba(4,9,16,.78)!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-modal{
+  background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;
+  border-radius:0!important;padding:0!important;max-width:1120px!important;width:min(1120px,calc(100vw - 40px))!important;
+}
+body:has(.community-modal-backdrop.profile-open) #communityFullProfile,
+body:has(.community-modal-backdrop.profile-open) .community-full-profile,
+body:has(.community-modal-backdrop.profile-open) .community-full-content{
+  background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  width:100%!important;height:36px!important;min-height:36px!important;margin:0 0 12px!important;padding:0 12px!important;
+  border:1px solid rgba(180,205,225,.22)!important;border-radius:12px!important;background:rgba(255,255,255,.025)!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-profile-breadcrumb,
+body:has(.community-modal-backdrop.profile-open) .community-online-indicator{display:none!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner{
+  display:block!important;position:relative!important;width:100%!important;height:230px!important;min-height:230px!important;
+  padding:22px 24px!important;margin:0!important;overflow:visible!important;box-sizing:border-box!important;
+  border:1px solid rgba(180,205,225,.22)!important;border-radius:20px!important;
+  background:#2869e8!important;background-image:none!important;box-shadow:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner[class*="accent-"]{
+  background:#2869e8!important;background-image:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-topline{
+  display:flex!important;position:absolute!important;top:22px!important;left:24px!important;right:24px!important;
+  margin:0!important;min-height:16px!important;z-index:2!important;justify-content:flex-start!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-identity{
+  position:absolute!important;left:24px!important;right:20px!important;bottom:22px!important;
+  display:flex!important;align-items:flex-end!important;flex-wrap:nowrap!important;gap:16px!important;
+  margin:0!important;padding:0!important;min-width:0!important;z-index:3!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-avatar{
+  width:96px!important;height:96px!important;min-width:96px!important;flex:0 0 96px!important;
+  margin:0!important;border-radius:50%!important;object-fit:cover!important;align-self:flex-end!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-name{
+  flex:1 1 auto!important;min-width:0!important;padding:0!important;margin:0!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-name h2{
+  margin:0 0 10px!important;font-size:30px!important;line-height:1.15!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-actions{
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;
+  flex:0 0 auto!important;margin:0!important;padding:0!important;align-self:flex-end!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-actions button{
+  display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:center!important;
+  border-radius:11px!important;min-height:42px!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-actions .community-primary-button{padding:0 22px!important;white-space:nowrap!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-actions .community-square-action{width:42px!important;min-width:42px!important;padding:0!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-content{width:100%!important;padding:0!important;margin:12px 0 0!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-stats{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;margin:0 0 12px!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-columns{display:grid!important;grid-template-columns:minmax(0,1.55fr) minmax(260px,.9fr)!important;gap:12px!important;align-items:start!important}
+body:has(.community-modal-backdrop.profile-open) .community-full-panel{border-radius:16px!important}
+@media(max-width:900px){
+ body:has(.community-modal-backdrop.profile-open) .community-modal{width:calc(100vw - 24px)!important}
+ body:has(.community-modal-backdrop.profile-open) .community-full-banner{height:auto!important;min-height:280px!important;padding:18px!important}
+ body:has(.community-modal-backdrop.profile-open) .community-full-identity{left:18px!important;right:18px!important;bottom:18px!important;flex-wrap:wrap!important}
+ body:has(.community-modal-backdrop.profile-open) .community-full-actions{flex:1 0 100%!important;justify-content:flex-start!important}
+ body:has(.community-modal-backdrop.profile-open) .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body:has(.community-modal-backdrop.profile-open) .community-full-columns{grid-template-columns:1fr!important}
+}
