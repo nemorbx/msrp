@@ -5037,3 +5037,68 @@ body:has(.community-modal-backdrop.profile-open) .community-back-everyone svg{
   margin:0!important;
   position:static!important;
 }
+
+
+/* LANCRP breadcrumb correction: the full 920x36 control is the bar; keep arrow adjacent to Everyone. */
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  display:flex!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  width:920px!important;
+  min-width:0!important;
+  max-width:920px!important;
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  margin:0 0 12px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-back-everyone{
+  display:flex!important;
+  flex:1 1 auto!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  padding:7px 12px!important;
+  margin:0!important;
+  border:1px solid rgba(190,205,221,.22)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.02)!important;
+  color:#b3c0cf!important;
+  line-height:20px!important;
+  font-size:12.5px!important;
+  font-weight:600!important;
+  text-indent:0!important;
+  text-align:left!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-back-everyone svg{
+  display:block!important;
+  flex:0 0 12px!important;
+  width:12px!important;
+  min-width:12px!important;
+  height:12px!important;
+  margin:0!important;
+  padding:0!important;
+  position:static!important;
+  transform:none!important;
+}
+@media(max-width:900px){
+  body:has(.community-modal-backdrop.profile-open) .community-profile-back-row,
+  body:has(.community-modal-backdrop.profile-open) .community-back-everyone{
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
