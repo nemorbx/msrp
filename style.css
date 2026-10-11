@@ -4754,3 +4754,19 @@ body:has(.community-modal-backdrop.profile-open) .community-full-panel{border-ra
  body:has(.community-modal-backdrop.profile-open) .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  body:has(.community-modal-backdrop.profile-open) .community-full-columns{grid-template-columns:1fr!important}
 }
+
+
+/* Step 1: clean banner only — no label, identity, avatar, or decorative dots. */
+body:has(.community-modal-backdrop.profile-open) .community-full-banner{
+  background:#2869e8!important;
+  background-color:#2869e8!important;
+  background-image:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner::before,
+body:has(.community-modal-backdrop.profile-open) .community-full-banner::after{
+  content:none!important;display:none!important;background-image:none!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-topline,
+body:has(.community-modal-backdrop.profile-open) .community-full-identity{
+  display:none!important;
+}
