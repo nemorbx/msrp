@@ -5640,3 +5640,23 @@ body.msrp-profile-page-open .community-full-content{
     margin-bottom:190px!important;
   }
 }
+
+
+/* Profile avatar: show the picture itself, with no decorative ring or frame */
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{
+  border:0!important;
+  outline:0!important;
+  outline-offset:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+}
