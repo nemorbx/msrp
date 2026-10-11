@@ -5013,3 +5013,190 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 #communityModal:not([hidden]) #communityFullProfile .community-profile-details{display:block!important}
 @media(max-width:900px){body:has(.community-modal-backdrop.profile-open) .dashboard-body{grid-template-columns:220px minmax(0,1fr)!important;gap:16px!important}#communityModal:not([hidden]) #communityFullProfile{width:100%!important}#communityModal:not([hidden]) #communityFullProfile .community-full-identity{gap:12px!important;padding:14px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-name h2{font-size:21px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-actions{gap:6px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-primary-button{padding:0 12px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action{width:34px!important;height:34px!important;min-width:34px!important}}
 @media(max-width:760px){body:has(.community-modal-backdrop.profile-open) .dashboard-body{grid-template-columns:1fr!important;gap:14px!important}body:has(.community-modal-backdrop.profile-open) .dashboard-body>.member-sidebar{position:relative!important;top:auto!important;width:100%!important;max-width:none!important}body:has(.community-modal-backdrop.profile-open) .dashboard-body>.member-main{grid-column:1!important;grid-row:2!important}#communityModal:not([hidden]) #communityFullProfile{width:100%!important;padding-bottom:18px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-banner{height:180px!important;min-height:180px!important;max-height:180px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-identity{height:auto!important;min-height:164px!important;margin-top:-48px!important;flex-wrap:wrap!important;align-items:flex-start!important;padding:14px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{width:78px!important;height:78px!important;flex-basis:78px!important;margin-top:-36px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-name{flex:1 1 calc(100% - 100px)!important;min-width:120px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-name h2{font-size:23px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats{gap:6px 10px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-actions{flex:1 0 100%!important;justify-content:flex-start!important;margin:8px 0 0!important}#communityModal:not([hidden]) #communityFullProfile .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}#communityModal:not([hidden]) #communityFullProfile .community-full-stats>div:last-child{grid-column:span 2!important}#communityModal:not([hidden]) #communityFullProfile .community-full-columns{grid-template-columns:1fr!important}#communityModal:not([hidden]) #communityFullProfile .community-item-card{width:calc(33.333% - 6px)!important;min-width:0!important}}
+
+
+/* LANCRP reference alignment — authoritative shared dashboard frame.
+   Keeps MSRP's existing markup and behavior; only normalizes layout and styling. */
+@media (min-width: 901px) {
+  body:has(.dashboard-page.active) .dashboard-page {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 24px 70px !important;
+  }
+  body:has(.dashboard-page.active) .member-dashboard,
+  body:has(.dashboard-page.active) .dashboard-page-title {
+    box-sizing: border-box !important;
+    width: min(1240px, calc(100vw - 48px)) !important;
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  body:has(.dashboard-page.active) .account-bar {
+    box-sizing: border-box !important;
+    position: sticky !important;
+    top: 14px !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 60px !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 8px 0 24px !important;
+    padding: 10px 14px 10px 16px !important;
+    flex: 0 0 auto !important;
+    gap: 14px !important;
+    border-radius: 14px !important;
+    background: rgba(13, 31, 48, .88) !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    box-shadow: 0 14px 32px -24px rgba(0,0,0,.6) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body {
+    display: grid !important;
+    grid-template-columns: 240px minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 32px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar {
+    box-sizing: border-box !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    position: sticky !important;
+    top: 100px !important;
+    width: 240px !important;
+    min-width: 240px !important;
+    max-width: 240px !important;
+    min-height: 0 !important;
+    align-self: start !important;
+    z-index: 5 !important;
+    border-radius: 14px !important;
+  }
+  body:has(.dashboard-page.active) .member-main {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  body:has(.dashboard-page.active) .member-welcome {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 150px !important;
+    max-height: none !important;
+    flex: 0 1 auto !important;
+    padding: 24px 28px !important;
+    border-radius: 14px !important;
+  }
+  body:has(.dashboard-page.active) .account-user-copy,
+  body:has(.dashboard-page.active) .account-user-line {
+    min-width: 0 !important;
+  }
+  body:has(.dashboard-page.active) .account-user-copy > span {
+    font-size: 10px !important;
+    letter-spacing: .12em !important;
+  }
+  body:has(.dashboard-page.active) .account-user-line strong {
+    font-size: 14px !important;
+  }
+  body:has(.dashboard-page.active) .account-user-line em {
+    font-size: 10.5px !important;
+  }
+  body:has(.dashboard-page.active) .account-action {
+    min-height: 36px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+    border-radius: 9px !important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item {
+    min-height: 48px !important;
+    gap: 11px !important;
+    padding: 8px 10px !important;
+    border-radius: 11px !important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item strong {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+  body:has(.dashboard-page.active) .member-nav-item small {
+    font-size: 10px !important;
+  }
+  body:has(.dashboard-page.active) .sidebar-nav-icon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    flex: 0 0 32px !important;
+    border-radius: 9px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body:has(.dashboard-page.active) .dashboard-page {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    padding: 0 16px 40px !important;
+  }
+  body:has(.dashboard-page.active) .member-dashboard,
+  body:has(.dashboard-page.active) .dashboard-page-title {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  body:has(.dashboard-page.active) .account-bar {
+    position: sticky !important;
+    top: 8px !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 60px !important;
+    max-height: none !important;
+    margin: 8px 0 16px !important;
+    padding: 10px 12px !important;
+    flex: 0 1 auto !important;
+    gap: 10px !important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  body:has(.dashboard-page.active) .member-main {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  body:has(.dashboard-page.active) .member-welcome {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 150px !important;
+    max-height: none !important;
+    flex: 0 1 auto !important;
+  }
+}
