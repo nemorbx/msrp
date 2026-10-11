@@ -5754,3 +5754,45 @@ body.msrp-profile-page-open .community-full-content{
     top:auto!important;bottom:-150px!important;height:auto!important;min-height:164px!important;
   }
 }
+
+
+/* LAST RULES: remove legacy banner pseudo-layers and use one controlled overlap */
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+  position:relative!important;display:block!important;isolation:isolate!important;
+  width:100%!important;height:230px!important;min-height:230px!important;max-height:230px!important;
+  margin:0 0 82px!important;padding:0!important;overflow:visible!important;
+  box-sizing:border-box!important;background:#2869e8!important;background-image:none!important;
+  border:1px solid rgba(255,255,255,.14)!important;border-radius:16px 16px 0 0!important;
+  box-shadow:none!important;transform:none!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner::before,
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner::after{
+  content:none!important;display:none!important;width:0!important;height:0!important;
+  background:none!important;box-shadow:none!important;border:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+  position:absolute!important;top:auto!important;bottom:-82px!important;left:-1px!important;right:-1px!important;
+  z-index:5!important;display:flex!important;align-items:center!important;flex-flow:row nowrap!important;
+  gap:16px!important;width:calc(100% + 2px)!important;height:164px!important;min-height:164px!important;
+  margin:0!important;padding:16px 20px!important;box-sizing:border-box!important;
+  background:#101820!important;border:1px solid rgba(170,190,210,.24)!important;
+  border-top:0!important;border-radius:0 0 16px 16px!important;box-shadow:none!important;
+  transform:none!important;translate:none!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-content{
+  position:relative!important;display:block!important;clear:both!important;
+  width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  transform:none!important;translate:none!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats{margin-top:0!important}
+@media(max-width:760px){
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+    height:180px!important;min-height:180px!important;max-height:180px!important;margin-bottom:150px!important;
+    border-radius:16px 16px 0 0!important;
+  }
+  #communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+    top:auto!important;bottom:-150px!important;height:auto!important;min-height:164px!important;
+    flex-wrap:wrap!important;padding:16px!important;border-radius:0 0 16px 16px!important;
+  }
+}
