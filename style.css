@@ -5909,3 +5909,25 @@ body.msrp-profile-page-open .community-full-content{
 #communityModal:not([hidden]) #communityFullProfile .community-staff-bio .community-eyebrow{color:#59d7ff!important}
 #communityModal:not([hidden]) #communityFullProfile .community-rarest-panel .community-item-row{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
 #communityModal:not([hidden]) #communityFullProfile .community-item-card{min-width:88px!important}
+
+
+/* Roblox panel and minimal colored achievement badges */
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-panel{padding:12px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-card{display:flex!important;align-items:center!important;gap:12px!important;min-height:66px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-icon{display:grid!important;place-items:center!important;flex:0 0 54px!important;width:54px!important;height:54px!important;border-radius:13px!important;background:#2b333d!important;color:#e8f0f7!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-icon svg{display:block!important;width:34px!important;height:34px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-copy{display:flex!important;flex-direction:column!important;gap:5px!important;min-width:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-copy .community-eyebrow{margin:0!important;color:#91dfff!important;font-size:10px!important;letter-spacing:.12em!important}
+#communityModal:not([hidden]) #communityFullProfile .community-roblox-copy strong{font-size:16px!important;font-weight:800!important;color:#f2f6fa!important;overflow-wrap:anywhere!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list{display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;gap:7px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge{display:inline-flex!important;align-items:center!important;gap:7px!important;min-height:30px!important;max-width:100%!important;padding:4px 10px 4px 5px!important;border-radius:999px!important;font-size:10px!important;font-weight:700!important;line-height:1.2!important;white-space:normal!important;box-sizing:border-box!important;background:rgba(255,255,255,.035)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-medal{display:grid!important;place-items:center!important;flex:0 0 22px!important;width:22px!important;height:22px!important;border-radius:50%!important;opacity:.95!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-medal svg{width:14px!important;height:16px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--gold{color:#f5d66e!important;border:1px solid rgba(245,214,110,.8)!important;background:rgba(245,190,50,.10)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--gold .community-medal{background:rgba(245,190,50,.22)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--silver{color:#b8a2ff!important;border:1px solid rgba(184,162,255,.8)!important;background:rgba(143,111,255,.10)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--silver .community-medal{background:rgba(143,111,255,.24)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--bronze,#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--blue{color:#83d5ff!important;border:1px solid rgba(83,188,245,.8)!important;background:rgba(55,155,220,.10)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--bronze .community-medal,#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--blue .community-medal{background:rgba(55,155,220,.22)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--green{color:#72e7ae!important;border:1px solid rgba(76,218,150,.8)!important;background:rgba(45,190,120,.10)!important}
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list .community-badge--green .community-medal{background:rgba(45,190,120,.22)!important}
