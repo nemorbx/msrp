@@ -5796,3 +5796,21 @@ body.msrp-profile-page-open .community-full-content{
     flex-wrap:wrap!important;padding:16px!important;border-radius:0 0 16px 16px!important;
   }
 }
+
+
+/* Avatar deliberately overlaps the lower edge of the banner */
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+  padding-left:20px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{
+  position:relative!important;
+  z-index:3!important;
+  align-self:center!important;
+  margin-top:-56px!important;
+  flex-shrink:0!important;
+}
+@media(max-width:760px){
+  #communityModal:not([hidden]) #communityFullProfile .community-full-avatar{
+    margin-top:-42px!important;
+  }
+}
