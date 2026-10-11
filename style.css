@@ -4948,3 +4948,38 @@ body:has(.community-modal-backdrop.profile-open) #communityModalClose{
   opacity:0!important;
   pointer-events:none!important;
 }
+
+
+/* Match the LANCRP reference measurements: 1192px dashboard shell and 920x36px breadcrumb. */
+body:has(.community-modal-backdrop.profile-open) .community-profile-back-row{
+  width:100%!important;
+  max-width:920px!important;
+  height:36px!important;
+  min-height:36px!important;
+  margin:0 0 12px!important;
+  padding:0 12px!important;
+  box-sizing:border-box!important;
+  align-self:flex-start!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-profile{
+  width:100%!important;
+  max-width:920px!important;
+  margin:0!important;
+  padding:0 0 28px!important;
+  box-sizing:border-box!important;
+}
+body:has(.community-modal-backdrop.profile-open) .community-full-banner,
+body:has(.community-modal-backdrop.profile-open) .community-full-content{
+  width:100%!important;
+  max-width:920px!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:900px){
+  body:has(.community-modal-backdrop.profile-open) .community-full-profile,
+  body:has(.community-modal-backdrop.profile-open) .community-profile-back-row,
+  body:has(.community-modal-backdrop.profile-open) .community-full-banner,
+  body:has(.community-modal-backdrop.profile-open) .community-full-content{
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
