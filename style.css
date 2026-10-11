@@ -5660,3 +5660,12 @@ body.msrp-profile-page-open .community-full-content{
   border-radius:50%!important;
   object-fit:cover!important;
 }
+
+
+/* Profile photo overlaps the banner edge, with distinct placeholder banner colors */
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{position:relative!important;z-index:3!important;overflow:hidden!important;border:4px solid #101820!important;box-shadow:0 0 0 2px #42e8ca!important;background:#26394a!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;border-radius:50%!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner.accent-cyan{background:#246de8!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner.accent-blue{background:#2869e8!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner.accent-gold{background:#c58d25!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner.accent-violet{background:#7048c9!important}
