@@ -5682,3 +5682,27 @@ body.msrp-profile-page-open .community-full-content{
 #communityModal:not([hidden]) #communityFullProfile .community-full-content{margin-top:0!important;padding-top:0!important}
 #communityModal:not([hidden]) #communityFullProfile .community-full-stats>div,#communityModal:not([hidden]) #communityFullProfile .community-full-panel{border-radius:16px!important}
 @media(max-width:760px){#communityModal:not([hidden]) #communityFullProfile .community-full-banner::before{height:180px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-identity{margin-top:132px!important;height:auto!important;min-height:164px!important;border-radius:16px!important}#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{width:88px!important;height:88px!important;flex-basis:88px!important}}
+
+
+/* Final banner seam and spacing correction: one continuous rounded hero */
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner{
+  margin-bottom:0!important;
+  border-radius:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner::before{
+  border-radius:16px 16px 0 0!important;
+  overflow:hidden!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{
+  margin-top:148px!important;
+  border-radius:0 0 16px 16px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-content{
+  margin-top:0!important;
+  padding-top:0!important;
+}
+@media(max-width:760px){
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner{margin-bottom:0!important}
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner::before{border-radius:16px 16px 0 0!important}
+  #communityModal:not([hidden]) #communityFullProfile .community-full-identity{margin-top:132px!important;border-radius:0 0 16px 16px!important}
+}
