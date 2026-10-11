@@ -5862,3 +5862,50 @@ body.msrp-profile-page-open .community-full-content{
     flex:1 0 100%!important;justify-content:flex-start!important;margin:8px 0 0!important;
   }
 }
+
+
+/* Metallic badge medallions inspired by the supplied profile reference */
+#communityModal:not([hidden]) #communityFullProfile .community-badge-list{
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-badge{
+  display:inline-flex!important;align-items:center!important;gap:6px!important;
+  min-height:31px!important;padding:4px 9px 4px 5px!important;box-sizing:border-box!important;
+  border:1px solid rgba(172,190,210,.25)!important;border-radius:999px!important;
+  background:rgba(12,18,25,.42)!important;color:#dce6ef!important;
+  font-size:10px!important;font-weight:700!important;line-height:1.2!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-medal{
+  display:inline-flex!important;flex:0 0 25px!important;width:25px!important;height:27px!important;
+  align-items:center!important;justify-content:center!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-medal svg{
+  display:block!important;width:25px!important;height:27px!important;overflow:visible!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-medal .medal-ribbon{fill:#8e9aa7;stroke:#d4dce4;stroke-width:.7}
+#communityModal:not([hidden]) #communityFullProfile .community-medal .medal-ring{fill:#7b8794;stroke:#e2e8ef;stroke-width:1.4}
+#communityModal:not([hidden]) #communityFullProfile .community-medal .medal-face{fill:#c3ccd5;stroke:#f4f7fa;stroke-width:.8}
+#communityModal:not([hidden]) #communityFullProfile .community-medal .medal-star{fill:#56616d;stroke:#f8fafc;stroke-width:.45}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--gold .medal-ribbon{fill:#a96614;stroke:#ffd778}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--gold .medal-ring{fill:#d99a27;stroke:#ffe7a3}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--gold .medal-face{fill:#ffdc76;stroke:#fff2bf}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--gold .medal-star{fill:#9a5b0c}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--silver .medal-ribbon{fill:#697b8c;stroke:#dce7f0}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--silver .medal-ring{fill:#aab8c6;stroke:#f4f7fa}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--silver .medal-face{fill:#e2e8ee;stroke:#fff}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--silver .medal-star{fill:#6e7d8b}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--bronze .medal-ribbon{fill:#7d452b;stroke:#e7b18b}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--bronze .medal-ring{fill:#ad6b43;stroke:#f0c7a4}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--bronze .medal-face{fill:#dfaa7d;stroke:#ffe1c2}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--bronze .medal-star{fill:#77452b}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--blue .medal-ribbon{fill:#1c668f;stroke:#9be2ff}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--blue .medal-ring{fill:#278bbd;stroke:#b7edff}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--blue .medal-face{fill:#86d8f7;stroke:#e5faff}
+#communityModal:not([hidden]) #communityFullProfile .community-medal--blue .medal-star{fill:#16587c}
+#communityModal:not([hidden]) #communityFullProfile .community-staff-bio{
+  border-color:rgba(57,202,255,.32)!important;
+  background:linear-gradient(145deg,rgba(31,54,68,.92),rgba(28,35,44,.98))!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-staff-bio .community-eyebrow{color:#59d7ff!important}
+#communityModal:not([hidden]) #communityFullProfile .community-rarest-panel .community-item-row{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-item-card{min-width:88px!important}
