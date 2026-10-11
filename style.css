@@ -5332,3 +5332,112 @@ body:has(.community-modal-backdrop.profile-open) #communityModalClose{display:no
  body:has(.community-modal-backdrop.profile-open) .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  body:has(.community-modal-backdrop.profile-open) .community-full-columns{grid-template-columns:1fr!important}
 }
+
+
+/* Profile layout rebuilt around the same hero/banner/body hierarchy as the reference */
+body.msrp-profile-page-open .community-full-hero{
+  display:block!important;
+  width:920px!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+body.msrp-profile-page-open .community-full-banner{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  height:230px!important;
+  min-height:230px!important;
+  max-height:230px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#2869e8!important;
+  background-image:none!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-bottom:0!important;
+  border-radius:16px 16px 0 0!important;
+  box-shadow:none!important;
+}
+body.msrp-profile-page-open .community-full-banner::before,
+body.msrp-profile-page-open .community-full-banner::after{
+  content:none!important;
+  display:none!important;
+}
+body.msrp-profile-page-open .community-full-identity{
+  display:flex!important;
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  min-height:164px!important;
+  height:auto!important;
+  margin:0 0 12px!important;
+  padding:20px 24px!important;
+  align-items:center!important;
+  flex-flow:row nowrap!important;
+  gap:16px!important;
+  box-sizing:border-box!important;
+  background:#101820!important;
+  border:1px solid rgba(170,190,210,.22)!important;
+  border-top:1px solid rgba(170,190,210,.12)!important;
+  border-radius:0 0 16px 16px!important;
+  box-shadow:none!important;
+}
+body.msrp-profile-page-open .community-full-identity .community-full-avatar{
+  flex:0 0 88px!important;
+  width:88px!important;
+  height:88px!important;
+}
+body.msrp-profile-page-open .community-full-actions{
+  flex:0 0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  margin:0 0 0 auto!important;
+}
+body.msrp-profile-page-open .community-full-actions .community-primary-button{
+  min-width:86px!important;
+  min-height:38px!important;
+  border-radius:10px!important;
+  background:#ffdf00!important;
+  color:#151515!important;
+}
+body.msrp-profile-page-open .community-full-actions .community-square-action{
+  width:38px!important;
+  height:38px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:10px!important;
+  background:#17212b!important;
+  color:#f5f8fa!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+}
+body.msrp-profile-page-open .community-full-actions .community-square-action svg{
+  width:19px!important;
+  height:19px!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:1.8!important;
+}
+body.msrp-profile-page-open .community-full-content{
+  width:920px!important;
+  max-width:100%!important;
+  margin:0!important;
+}
+@media(max-width:760px){
+  body.msrp-profile-page-open .community-full-banner{
+    height:180px!important;min-height:180px!important;max-height:180px!important;
+  }
+  body.msrp-profile-page-open .community-full-identity{
+    flex-wrap:wrap!important;padding:16px!important;
+  }
+  body.msrp-profile-page-open .community-full-actions{
+    flex:1 0 100%!important;justify-content:flex-start!important;margin:8px 0 0!important;
+  }
+}
