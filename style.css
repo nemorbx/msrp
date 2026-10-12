@@ -5283,3 +5283,112 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
  #communityModal:not([hidden]) #communityFullProfile .community-full-columns{grid-template-columns:1fr!important}
  #communityModal:not([hidden]) #communityFullProfile .community-full-side-column{display:flex!important}
 }
+
+
+/* Pixel-alignment pass based on the supplied 1649x928 LANCRP screenshot */
+@media (min-width: 901px) {
+  body:has(.dashboard-page.active) .member-dashboard {
+    width: min(100%, 1024px) !important;
+    max-width: 1024px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  body:has(.dashboard-page.active) .dashboard-page-title,
+  body:has(.dashboard-page.active) .account-bar {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  body:has(.dashboard-page.active) .dashboard-body {
+    grid-template-columns: 206px minmax(0, 1fr) !important;
+    column-gap: 27px !important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar {
+    width: 206px !important;
+    min-width: 206px !important;
+  }
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner {
+  height: 198px !important;
+  min-height: 198px !important;
+  max-height: 198px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar {
+  flex-basis: 96px !important;
+  width: 96px !important;
+  height: 96px !important;
+  margin-top: -66px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity {
+  min-height: 100px !important;
+  padding: 0 20px 16px !important;
+  gap: 16px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-name h2 {
+  font-size: 24px !important;
+  margin-bottom: 12px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions {
+  gap: 8px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-primary-button {
+  min-width: 102px !important;
+  height: 40px !important;
+  padding: 0 14px !important;
+  border-radius: 9px !important;
+  font-size: 13px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 9px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats {
+  gap: 9px !important;
+  margin-bottom: 13px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats > div {
+  min-height: 71px !important;
+  padding: 12px 13px !important;
+  border-radius: 13px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats strong {
+  font-size: 17px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats span {
+  font-size: 11px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-columns {
+  gap: 12px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel {
+  min-height: 76px !important;
+  padding: 16px !important;
+  border-radius: 14px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel > .community-eyebrow {
+  margin-bottom: 10px !important;
+  font-size: 11px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel > p {
+  font-size: 13px !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action[data-full-like] svg {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action[data-full-like] svg path {
+  d: path("M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z") !important;
+}
+@media(max-width:640px) {
+  #communityModal:not([hidden]) #communityFullProfile .community-full-banner {
+    height:170px !important; min-height:170px !important; max-height:170px !important;
+  }
+  #communityModal:not([hidden]) #communityFullProfile .community-full-avatar {
+    flex-basis:82px !important; width:82px !important; height:82px !important; margin-top:-48px !important;
+  }
+}
