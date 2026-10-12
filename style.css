@@ -5977,3 +5977,75 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .own
   background:rgba(35,89,170,.4)!important;
   border-color:#4d91f5!important;
 }
+
+
+/* Badge Management redesign: calmer hierarchy, consistent fields, rarity-colored star medallions. */
+.msrp-badge-admin{gap:12px!important;max-width:100%;min-width:0}
+.msrp-admin-heading{
+  padding:20px 22px!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#172332,#101720)!important;
+  align-items:center!important;
+}
+.msrp-admin-heading h2{font-size:clamp(23px,2.4vw,30px)!important;margin:5px 0 7px!important}
+.msrp-admin-heading p{max-width:650px!important;font-size:12px!important}
+.msrp-admin-form,.msrp-admin-list-panel{
+  padding:18px!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+  border-radius:13px!important;
+  background:#121b25!important;
+}
+.msrp-admin-form h3{margin:0 0 14px!important;font-size:15px!important}
+.msrp-admin-fields{gap:12px!important}
+.msrp-admin-fields label{gap:6px!important;font-size:11px!important}
+.msrp-admin-fields input,.msrp-admin-fields textarea,.msrp-admin-fields select{
+  min-height:42px!important;padding:10px 12px!important;border-radius:8px!important;
+  border-color:#344455!important;background:#0d151f!important;font-size:12px!important;
+}
+.msrp-admin-fields textarea{min-height:72px!important}
+.msrp-admin-form-actions{margin-top:14px!important}
+.msrp-admin-form-actions button,.msrp-admin-badge-actions button{min-height:38px!important;border-radius:8px!important}
+#badgeSaveButton{background:#2673d9!important;border-color:#438df1!important;color:#fff!important}
+#badgeSaveButton:hover{background:#3283ed!important}
+#badgeAdminMessage{padding:10px 12px!important;border-radius:8px!important;background:rgba(57,125,220,.12)!important;color:#a9ceff!important;line-height:1.5!important}
+.msrp-admin-list-panel>header{margin-bottom:12px!important}
+.msrp-admin-list{gap:8px!important}
+.msrp-admin-badge{
+  display:grid!important;
+  grid-template-columns:54px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:12px!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+  border-radius:12px!important;
+  background:#151f2a!important;
+}
+.msrp-admin-badge-icon{
+  display:grid!important;place-items:center!important;
+  width:50px!important;height:50px!important;min-width:50px!important;
+  border-radius:50%!important;
+  border:1px solid currentColor!important;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.035)!important;
+  background:#333b46!important;color:#d1d5db!important;
+}
+.msrp-admin-badge-icon .msrp-badge-star{display:block!important;width:24px!important;height:24px!important;color:currentColor!important}
+.msrp-admin-badge.rarity-common .msrp-admin-badge-icon{color:#d1d5db!important;background:#333b46!important;border-color:#747f8d!important}
+.msrp-admin-badge.rarity-uncommon .msrp-admin-badge-icon{color:#4ade80!important;background:#173d2b!important;border-color:#36a766!important}
+.msrp-admin-badge.rarity-rare .msrp-admin-badge-icon{color:#60a5fa!important;background:#172f55!important;border-color:#4387dc!important}
+.msrp-admin-badge.rarity-legendary .msrp-admin-badge-icon{color:#facc15!important;background:#493b16!important;border-color:#c7a62c!important}
+.msrp-admin-badge-copy{min-width:0!important}
+.msrp-admin-badge-copy>strong{font-size:13px!important;line-height:1.35!important}
+.msrp-admin-badge-copy p{margin:4px 0 7px!important}
+.msrp-rarity-pill{border-radius:999px!important;padding:4px 8px!important}
+.msrp-admin-badge-actions{justify-content:flex-end!important}
+.msrp-admin-notice{padding:0 2px!important;font-size:10px!important}
+@media(max-width:700px){
+  .msrp-admin-heading{padding:16px!important;align-items:flex-start!important;flex-direction:column!important}
+  .msrp-admin-form,.msrp-admin-list-panel{padding:13px!important}
+  .msrp-admin-fields{grid-template-columns:1fr!important}
+  .msrp-admin-wide{grid-column:auto!important}
+  .msrp-admin-badge{grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important}
+  .msrp-admin-badge-icon{width:46px!important;height:46px!important;min-width:46px!important}
+  .msrp-admin-badge-actions{grid-column:2;justify-content:flex-start!important}
+}
