@@ -6188,3 +6188,155 @@ html:has(.msrp-profile-page-open), body.msrp-profile-page-open { scroll-behavior
   background:rgba(3,8,14,.76)!important;backdrop-filter:blur(5px)!important;
 }
 #communityModal.msrp-editor-open[hidden]{display:none!important}
+
+
+/* Dedicated Edit Profile dialog.
+   This overlay is independent from the profile page, so the page stays in place behind it. */
+#communityEditorModal.msrp-editor-backdrop {
+  position:fixed!important; inset:0!important; z-index:20000!important;
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  width:100vw!important; height:100vh!important; height:100dvh!important;
+  margin:0!important; padding:18px!important; box-sizing:border-box!important;
+  overflow:auto!important; overscroll-behavior:contain!important;
+  background:rgba(3,8,14,.62)!important;
+  -webkit-backdrop-filter:blur(8px)!important; backdrop-filter:blur(8px)!important;
+}
+#communityEditorModal[hidden] { display:none!important; }
+#communityEditorModal #communityProfileForm.msrp-profile-editor {
+  display:flex!important; flex-direction:column!important; gap:0!important;
+  position:relative!important; inset:auto!important; top:auto!important; left:auto!important;
+  transform:none!important; flex:0 1 auto!important;
+  width:min(560px,100%)!important; max-width:560px!important; min-width:0!important;
+  height:auto!important; max-height:min(860px,calc(100dvh - 36px))!important;
+  margin:auto!important; padding:0!important; box-sizing:border-box!important;
+  overflow:hidden!important; color:#eef5fc!important;
+  background:#111c27!important; border:1px solid rgba(159,190,216,.28)!important;
+  border-radius:16px!important; box-shadow:0 28px 90px rgba(0,0,0,.62)!important;
+}
+#communityEditorModal #communityProfileForm[hidden] { display:none!important; }
+#communityEditorModal .msrp-editor-header {
+  display:flex!important; flex:0 0 auto!important; align-items:flex-start!important;
+  justify-content:space-between!important; gap:16px!important;
+  margin:0!important; padding:20px 22px 16px!important;
+  background:#111c27!important; border:0!important;
+  border-bottom:1px solid rgba(159,190,216,.16)!important;
+}
+#communityEditorModal .msrp-editor-header h2 {
+  margin:0 0 5px!important; color:#f5f9fd!important;
+  font:750 19px/1.25 Inter,Arial,sans-serif!important; letter-spacing:-.25px!important;
+}
+#communityEditorModal .msrp-editor-header p {
+  margin:0!important; color:#9fb1c1!important;
+  font:400 12px/1.5 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal #communityEditorClose {
+  display:grid!important; place-items:center!important; flex:0 0 32px!important;
+  width:32px!important; height:32px!important; margin:0!important; padding:0!important;
+  border:1px solid rgba(159,190,216,.2)!important; border-radius:9px!important;
+  background:#1b2a38!important; color:#dbe8f3!important;
+  font:400 23px/1 Arial,sans-serif!important; cursor:pointer!important;
+}
+#communityEditorModal .msrp-editor-scroll {
+  display:flex!important; flex:1 1 auto!important; flex-direction:column!important;
+  gap:18px!important; min-height:0!important; max-height:none!important;
+  padding:20px 22px!important; box-sizing:border-box!important;
+  overflow-y:auto!important; overscroll-behavior:contain!important;
+}
+#communityEditorModal .msrp-editor-scroll > label,
+#communityEditorModal .msrp-editor-two-fields > label,
+#communityEditorModal .msrp-custom-showcase-editor > label {
+  display:flex!important; flex-direction:column!important; gap:8px!important;
+  min-width:0!important; margin:0!important; padding:0!important;
+  color:#e6eff7!important; font:650 12px/1.4 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-editor-scroll label > span {
+  display:inline!important; color:#8fa5b8!important;
+  font:500 10px/1.4 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-editor-scroll label > span b { color:#c6d8e7!important; }
+#communityEditorModal .msrp-editor-scroll input,
+#communityEditorModal .msrp-editor-scroll textarea {
+  display:block!important; width:100%!important; min-width:0!important;
+  min-height:42px!important; margin:0!important; padding:11px 12px!important;
+  box-sizing:border-box!important; border:1px solid #304252!important;
+  border-radius:9px!important; outline:none!important; background:#0b141d!important;
+  color:#f2f7fb!important; font:500 12px/1.5 Inter,Arial,sans-serif!important;
+  box-shadow:none!important;
+}
+#communityEditorModal .msrp-editor-scroll input:focus,
+#communityEditorModal .msrp-editor-scroll textarea:focus {
+  border-color:#3988f7!important; box-shadow:0 0 0 3px rgba(57,136,247,.14)!important;
+}
+#communityEditorModal .msrp-editor-scroll input::placeholder,
+#communityEditorModal .msrp-editor-scroll textarea::placeholder { color:#63788a!important; }
+#communityEditorModal .msrp-editor-scroll textarea { min-height:100px!important; resize:vertical!important; }
+#communityEditorModal .msrp-editor-two-fields {
+  display:grid!important; grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr)!important;
+  gap:12px!important; min-width:0!important;
+}
+#communityEditorModal .msrp-editor-section {
+  display:block!important; min-width:0!important; margin:0!important; padding:0!important;
+}
+#communityEditorModal .msrp-editor-section-heading {
+  display:flex!important; align-items:center!important; justify-content:space-between!important;
+  gap:10px!important; margin:0 0 11px!important; padding:0!important;
+  color:#eaf3fa!important; font:750 12px/1.4 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-editor-section-heading > span {
+  color:#8fa5b8!important; font:500 10px/1.4 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-theme-options,
+#communityEditorModal .msrp-showcase-options {
+  display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+#communityEditorModal .msrp-theme-option,
+#communityEditorModal .msrp-showcase-option {
+  display:flex!important; flex-direction:column!important; align-items:flex-start!important;
+  gap:7px!important; min-width:0!important; margin:0!important; padding:12px!important;
+  border:1px solid #304252!important; border-radius:10px!important;
+  background:#0b141d!important; color:#eaf3fa!important; text-align:left!important;
+  cursor:pointer!important;
+}
+#communityEditorModal .msrp-theme-option.active,
+#communityEditorModal .msrp-showcase-option.selected {
+  border-color:#3988f7!important; background:#12243a!important;
+  box-shadow:inset 0 0 0 1px rgba(57,136,247,.25)!important;
+}
+#communityEditorModal .msrp-theme-option strong,
+#communityEditorModal .msrp-showcase-option strong {
+  color:#edf5fc!important; font:700 12px/1.35 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-theme-option small,
+#communityEditorModal .msrp-showcase-option small {
+  color:#8fa5b8!important; font:400 10px/1.4 Inter,Arial,sans-serif!important;
+}
+#communityEditorModal .msrp-theme-preview { display:block!important;width:100%!important;height:34px!important;border-radius:6px!important; }
+#communityEditorModal .msrp-editor-footer {
+  display:flex!important; flex:0 0 auto!important; justify-content:flex-end!important;
+  align-items:center!important; gap:10px!important; margin:0!important; padding:14px 22px!important;
+  border:0!important; border-top:1px solid rgba(159,190,216,.16)!important;
+  background:#111c27!important;
+}
+#communityEditorModal .msrp-editor-footer button {
+  display:inline-flex!important; align-items:center!important; justify-content:center!important;
+  min-height:40px!important; margin:0!important; padding:0 16px!important;
+  border-radius:9px!important; font:700 12px/1 Inter,Arial,sans-serif!important; cursor:pointer!important;
+}
+#communityEditorModal .msrp-editor-footer .community-secondary-button {
+  border:1px solid #344858!important; background:#172532!important; color:#dce8f2!important;
+}
+#communityEditorModal .msrp-editor-footer .community-primary-button {
+  border:1px solid #3988f7!important; background:#2878e8!important; color:#fff!important;
+}
+@media(max-width:600px) {
+  #communityEditorModal.msrp-editor-backdrop { align-items:center!important; padding:10px!important; }
+  #communityEditorModal #communityProfileForm.msrp-profile-editor {
+    width:100%!important; max-width:560px!important; max-height:calc(100dvh - 20px)!important;
+    border-radius:13px!important;
+  }
+  #communityEditorModal .msrp-editor-header { padding:16px!important; }
+  #communityEditorModal .msrp-editor-scroll { gap:15px!important; padding:16px!important; }
+  #communityEditorModal .msrp-editor-two-fields { grid-template-columns:1fr!important; }
+  #communityEditorModal .msrp-editor-footer { padding:12px 16px!important; }
+}
