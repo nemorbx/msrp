@@ -5669,3 +5669,43 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
     max-height: 168px !important;
   }
 }
+
+
+/* Custom member showcase card, separate from the badges collection. */
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-custom-showcase-card {
+  display: grid !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+  padding: 16px !important;
+  border: 1px solid rgba(73, 220, 255, .24) !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, rgba(53, 191, 241, .09), rgba(13, 20, 28, .55)) !important;
+  overflow-wrap: anywhere !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-custom-showcase-card > strong {
+  color: #f3f8fc !important;
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-custom-showcase-card > p {
+  color: #c1cfdb !important;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+  white-space: pre-wrap !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-custom-showcase-card > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  color: #49dcff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-custom-showcase-card > a:hover {
+  text-decoration: underline !important;
+}
+#communityModal.msrp-editor-open .msrp-custom-showcase-editor {
+  display: grid !important;
+  gap: 10px !important;
+}
