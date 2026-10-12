@@ -588,10 +588,10 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityStatus").value = savedProfile.status || "";
         byId("communityPronouns").value = savedProfile.pronouns || "";
         byId("communityBio").value = savedProfile.bio || "";
-        byId("communityShowcaseTitle").value = savedProfile.showcaseTitle || "";
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
+        syncShowcaseBadgePicker();
       }
       {
         const following = communityState.following.has(member.id);
@@ -757,6 +757,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.target === communityEditorModal) closeProfileEditor();
     });
     let profileEditorOriginalTheme = "default";
+    const showcaseBadgeIds = ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"];
+    function syncShowcaseBadgePicker() {
+      const selected = Array.isArray(savedProfile.showcase) ? savedProfile.showcase : [];
+      document.querySelectorAll("[data-showcase-badge]").forEach((button) => {
+        const active = selected.includes(button.dataset.showcaseBadge);
+        button.classList.toggle("selected", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      const count = byId("communityShowcaseCount");
+      if (count) count.textContent = String(selected.length);
+    }
     function openProfileEditor() {
       const form = byId("communityProfileForm");
       profileEditorOriginalTheme = savedProfile.theme || "default";
@@ -790,6 +801,18 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.remove("msrp-editor-visible");
     }
     byId("communityBio").addEventListener("input", () => byId("communityBioCount").textContent = String(byId("communityBio").value.length));
+    byId("communityBadgePicker").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-showcase-badge]");
+      if (!button) return;
+      const id = button.dataset.showcaseBadge;
+      const selected = Array.isArray(savedProfile.showcase) ? [...savedProfile.showcase] : [];
+      const index = selected.indexOf(id);
+      if (index >= 0) selected.splice(index, 1);
+      else if (selected.length < 6) selected.push(id);
+      else return;
+      savedProfile.showcase = selected;
+      syncShowcaseBadgePicker();
+    });
     byId("communityThemeOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-theme]");
       if (!button) return;
@@ -816,8 +839,8 @@ document.addEventListener("DOMContentLoaded", () => {
         status: byId("communityStatus").value.trim(),
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
-        showcaseTitle: byId("communityShowcaseTitle").value.trim().slice(0, 50),
-        theme: "default"
+        showcase: Array.isArray(savedProfile.showcase) ? savedProfile.showcase.slice(0, 6) : [],
+        theme: savedProfile.theme || "default"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
       closeProfileEditor(true);
