@@ -5283,3 +5283,50 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
  #communityModal:not([hidden]) #communityFullProfile .community-full-columns{grid-template-columns:1fr!important}
  #communityModal:not([hidden]) #communityFullProfile .community-full-side-column{display:flex!important}
 }
+
+
+/* Match LANCRP About + Showcase panel typography and vertical rhythm */
+#communityModal:not([hidden]) #communityFullProfile .community-full-main-column {
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-about-panel,
+#communityModal:not([hidden]) #communityFullProfile .community-showcase-panel {
+  box-sizing:border-box!important;
+  min-height:76px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:16px!important;
+  border-radius:14px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-about-panel > .community-eyebrow,
+#communityModal:not([hidden]) #communityFullProfile .community-showcase-panel > .community-eyebrow {
+  display:block!important;
+  margin:0 0 10px!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  letter-spacing:.5px!important;
+  font-weight:800!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-about-panel > p,
+#communityModal:not([hidden]) #communityFullProfile .community-showcase-panel > p {
+  margin:0!important;
+  font-size:13px!important;
+  line-height:1.5!important;
+  font-weight:400!important;
+  color:#b9c7d4!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-columns {
+  gap:12px!important;
+  align-items:start!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-side-column {
+  gap:12px!important;
+}
+@media(max-width:800px) {
+  #communityModal:not([hidden]) #communityFullProfile .community-full-main-column {
+    gap:12px!important;
+  }
+}
