@@ -6102,3 +6102,18 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .own
 body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-icon svg{
   width:22px!important;height:22px!important;stroke:currentColor!important;fill:none!important;
 }
+
+
+/* Pinned badge ordering controls inside the profile editor. */
+#communityModal.msrp-editor-open .msrp-pinned-options { display:grid!important; grid-template-columns:1fr!important; gap:7px!important; }
+#communityModal.msrp-editor-open .msrp-pinned-option-row { display:grid!important; grid-template-columns:minmax(0,1fr) 30px 30px auto!important; align-items:center!important; gap:6px!important; padding:7px!important; border:1px solid rgba(145,174,198,.2)!important; border-radius:9px!important; background:rgba(7,15,24,.42)!important; }
+#communityModal.msrp-editor-open .msrp-pinned-option-label { min-width:0!important; color:#e4eff8!important; font:600 12px/1.35 Inter,Arial,sans-serif!important; overflow-wrap:anywhere!important; }
+#communityModal.msrp-editor-open .msrp-pin-order,#communityModal.msrp-editor-open .msrp-pin-remove,#communityModal.msrp-editor-open .msrp-pinned-option-add { min-height:30px!important; padding:0 8px!important; border:1px solid #34495a!important; border-radius:7px!important; background:#1a2a38!important; color:#dceaf5!important; font:700 12px/1 Inter,Arial,sans-serif!important; }
+#communityModal.msrp-editor-open .msrp-pin-order:disabled,#communityModal.msrp-editor-open .msrp-pinned-option-add:disabled { opacity:.35!important; cursor:not-allowed!important; }
+#communityModal.msrp-editor-open .msrp-pin-remove { color:#ffb4b4!important; }
+#communityModal.msrp-editor-open .msrp-pinned-option-add { width:100%!important; text-align:left!important; padding:9px 11px!important; }
+#communityModal.msrp-editor-open .msrp-editor-header { align-items:center!important; background:linear-gradient(115deg,#172a3a,#111c27)!important; }
+#communityModal.msrp-editor-open .msrp-editor-header h2 { font-size:18px!important; letter-spacing:-.25px!important; }
+#communityModal.msrp-editor-open .msrp-editor-scroll { scrollbar-gutter:stable!important; }
+#communityModal.msrp-editor-open .msrp-editor-footer { position:sticky!important; bottom:0!important; }
+@media(max-width:600px){#communityModal.msrp-editor-open .msrp-pinned-option-row{grid-template-columns:minmax(0,1fr) 28px 28px auto!important;gap:4px!important;padding:6px!important}#communityModal.msrp-editor-open .msrp-pin-remove{padding:0 6px!important}}
