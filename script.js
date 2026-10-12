@@ -270,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     sessionStorage.setItem("msrp_discord_user", user.id);
+    sessionStorage.setItem("msrp_discord_avatar", avatar);
     sessionStorage.setItem("msrp_is_staff", String(isStaff));
     if (isStaff) sessionStorage.setItem("msrp_staff_rank", memberRank);
     else sessionStorage.removeItem("msrp_staff_rank");
@@ -612,7 +613,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <section class="msrp-ref-hero">
               <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}"></div>
               <div class="msrp-ref-identity">
-                <span class="community-avatar msrp-ref-avatar">${member.avatarUrl ? '<img src="' + safeText(member.avatarUrl) + '" alt="" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
+                <span class="community-avatar msrp-ref-avatar">${(own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl ? '<img src="' + safeText((own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl) + '" alt="Discord profile picture" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
                 <div class="msrp-ref-person">
                   <div class="msrp-ref-name-line">
                     <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
