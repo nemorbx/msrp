@@ -542,6 +542,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let savedProfile = {};
     let profileEditorOriginalBanner = "default";
     try { savedProfile = JSON.parse(localStorage.getItem(profileStoreKey) || "{}"); } catch (_) { savedProfile = {}; }
+    const profileBannerColors = {"navy":"#263b50","blue":"#2563eb","sky":"#0ea5e9","teal":"#0d9488","emerald":"#059669","forest":"#166534","purple":"#7c3aed","rose":"#e11d48","crimson":"#dc2626","amber":"#d97706"};
+    const profileBannerColor = (bannerId) => profileBannerColors[bannerId] || profileBannerColors.navy;
+    if (!profileBannerColors[savedProfile.banner]) savedProfile.banner = "navy";
 
     function filteredMembers() {
       const q = communityState.query.trim().toLowerCase();
@@ -831,7 +834,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openProfileEditor() {
       const form = byId("communityProfileForm");
       profileEditorOriginalTheme = savedProfile.theme || "default";
-      profileEditorOriginalBanner = savedProfile.banner || "default";
+      profileEditorOriginalBanner = savedProfile.banner || "navy";
       communityEditorModal.hidden = false;
       communityEditorModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("msrp-editor-visible");
