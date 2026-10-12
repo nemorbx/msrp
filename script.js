@@ -666,6 +666,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const selected = document.querySelectorAll("[data-showcase-badge].selected");
       if (!button.classList.contains("selected") && selected.length >= 6) return;
       button.classList.toggle("selected");
+      if (!button.classList.contains("selected")) savedProfile.pinned = (savedProfile.pinned || []).filter((id) => id !== button.dataset.showcaseBadge);
       renderPinnedBadgeOptions();
     });
     byId("communityPinnedOptions").addEventListener("click", (event) => {
