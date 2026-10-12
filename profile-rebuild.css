@@ -257,3 +257,11 @@
   grid-column:1/-1;margin:0;padding:20px;border:1px dashed #3a4b5c;
   border-radius:12px;color:#b6c6d5;text-align:center;font-size:13px;
 }
+
+/* Animated snowfall banner, with real falling particles. */
+.msrp-reference-profile .msrp-ref-banner.profile-theme-snowfall{position:relative!important;overflow:hidden!important;background:linear-gradient(180deg,#101a32 0%,#1b3553 52%,#527a99 100%)!important;animation:none!important}
+.msrp-reference-profile .msrp-snowfall-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.msrp-reference-profile .msrp-snowflake{position:absolute;top:-14px;left:var(--snow-x);width:var(--snow-size);height:var(--snow-size);border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 0 5px rgba(220,240,255,.48);animation:msrp-real-snowfall var(--snow-duration) linear var(--snow-delay) infinite;will-change:transform;pointer-events:none}
+@keyframes msrp-real-snowfall{0%{transform:translateY(-18px);opacity:0}8%{opacity:.9}92%{opacity:.9}100%{transform:translate3d(var(--snow-drift),250px,0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.msrp-reference-profile .msrp-snowflake{animation:none!important;display:none!important}}
+.msrp-reference-profile .msrp-ref-showcase,.msrp-reference-profile .msrp-ref-showcase-badges,.msrp-reference-profile .msrp-ref-badge-chips{display:none!important}
