@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
-  function setDashboardView(view) {
+  function setDashboardView(view, preserveProfileRoute = false) {
     const key = dashboardViews[view] ? view : "overview";
 
     Object.entries(dashboardViews).forEach(([name, elements]) => {
@@ -80,7 +80,19 @@ document.addEventListener("DOMContentLoaded", () => {
       mainPanel.classList.add("msrp-view-enter");
     }
 
-    if (location.hash !== "#dashboard") history.replaceState(null, "", "#dashboard");
+    if (!preserveProfileRoute && location.hash !== "#dashboard") history.replaceState(null, "", "#dashboard");
+    if (!preserveProfileRoute && key === "community") {
+      const profileView = $("dashboardCommunityView");
+      const profileModal = $("communityModal");
+      if (profileView) profileView.classList.remove("profile-page-open");
+      if (profileModal) {
+        profileModal.hidden = true;
+        profileModal.classList.remove("profile-open", "msrp-editor-open");
+        const profilePanel = profileModal.querySelector(".community-modal");
+        if (profilePanel) profilePanel.classList.remove("community-modal-fullscreen");
+      }
+      document.body.classList.remove("msrp-profile-page-open", "msrp-editor-visible");
+    }
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
@@ -288,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
       render(user, member);
       const openingProfile = profileRouteId();
       page("dashboard", !openingProfile);
-      setDashboardView(openingProfile ? "community" : "overview");
+      setDashboardView(openingProfile ? "community" : "overview", Boolean(openingProfile));
     } catch (failure) {
       console.error(failure);
       ["msrp_discord_token","msrp_discord_expires","msrp_oauth_state","msrp_is_staff","msrp_staff_rank","msrp_discord_user"]
@@ -562,6 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fullProfile.hidden = false;
       modal.classList.add("profile-open");
       panel.classList.add("community-modal-fullscreen");
+      byId("dashboardCommunityView").classList.add("profile-page-open");
       if (own) {
         byId("communityStatus").value = savedProfile.status || "";
         byId("communityPronouns").value = savedProfile.pronouns || "";
@@ -667,7 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       modal.hidden = false;
       document.body.classList.add("msrp-profile-page-open");
-      if (!own && updateRoute) {
+      if (updateRoute) {
         history.pushState({msrpProfileId: member.profileId}, "", "#profile-" + member.profileId);
       }
       byId("communityModalClose").focus();
@@ -675,8 +688,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeCommunityModal() {
       const modal = byId("communityModal");
       modal.hidden = true;
-      document.body.classList.remove("msrp-profile-page-open");
-      modal.classList.remove("profile-open");
+      document.body.classList.remove("msrp-profile-page-open", "msrp-editor-visible");
+      byId("dashboardCommunityView").classList.remove("profile-page-open");
+      modal.classList.remove("profile-open", "msrp-editor-open");
       
       if (profileRouteId()) history.replaceState({msrpDashboardView:"community"}, "", "#dashboard");
       modal.querySelector(".community-modal").classList.remove("community-modal-fullscreen");
@@ -810,7 +824,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const routedProfileId = profileRouteId();
     if (routedProfileId) {
       const routedMember = sampleMembers.find((member) => member.profileId === routedProfileId);
-      if (routedMember) openCommunityModal(routedMember, false);
+      if (routedProfileId === "MSRP-OWN") openCommunityModal(null, false);
+      else if (routedMember) openCommunityModal(routedMember, false);
       else {
         history.replaceState({msrpDashboardView:"community"}, "", "#dashboard");
         setDashboardView("community");
