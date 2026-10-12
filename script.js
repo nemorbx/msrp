@@ -584,7 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${own && savedProfile.status ? '<p class="msrp-ref-status">'+safeText(savedProfile.status)+'</p>' : ''}
                   ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
                   <div class="msrp-ref-badge-chips">
-                    ${(own && (savedProfile.pinned || []).length ? savedProfile.pinned : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
+                    ${(own ? (savedProfile.pinned || []) : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
                   </div>
                   <div class="msrp-ref-social-stats"><span>♡ ${member.likes + (liked ? 1 : 0)} likes</span><span>◉ ${member.views || 0} views</span><span>${communityState.following.size} following</span></div>
                 </div>
@@ -614,7 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${member.robloxUsername ? '<section class="msrp-ref-panel"><header><span>ROBLOX</span></header><div class="msrp-ref-roblox"><span>R</span><strong>'+safeText(member.robloxUsername)+'</strong></div></section>' : ''}
                 <section class="msrp-ref-panel msrp-ref-badges"><header><span>BADGES</span><span class="msrp-ref-muted">${own ? (savedProfile.showcase || []).length : 0} of 33</span></header>
                   <div class="msrp-ref-badge-grid">
-                    ${(own && (savedProfile.showcase || []).length ? savedProfile.showcase : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true">'+(id==="early-supporter"?"✦":id==="3-day-streak"?"ϟ":"●")+'</span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
+                    ${(own ? ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"] : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/></svg></span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
                   </div>
                 </section>
                 <section class="msrp-ref-panel"><header><span>COSMETICS</span></header><div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">◇</span><strong>Nothing here yet</strong><p>Collectibles will appear here.</p></div></section>
@@ -718,18 +718,40 @@ document.addEventListener("DOMContentLoaded", () => {
       byId("communityPinnedCount").textContent = (savedProfile.pinned || []).length + " / 3";
     }
     function renderPinnedBadgeOptions() {
-      const chosen = new Set(savedProfile.pinned || []);
+      const chosen = [...new Set(savedProfile.pinned || [])].slice(0,3);
       const container = byId("communityPinnedOptions");
-      container.innerHTML = "";
-      document.querySelectorAll("[data-showcase-badge].selected").forEach((button) => {
-        const id = button.dataset.showcaseBadge;
-        const pin = document.createElement("button");
-        pin.type = "button";
-        pin.className = "msrp-pinned-badge" + (chosen.has(id) ? " selected" : "");
-        pin.dataset.pinnedBadge = id;
-        pin.textContent = button.querySelector("strong").textContent;
-        container.appendChild(pin);
+      container.replaceChildren();
+      const selected = [...document.querySelectorAll("[data-showcase-badge].selected")];
+      chosen.filter((id) => selected.some((button) => button.dataset.showcaseBadge === id)).forEach((id,index) => {
+        const source = selected.find((button) => button.dataset.showcaseBadge === id);
+        const pin = document.createElement("div");
+        pin.className = "msrp-pinned-option-row";
+        const label = document.createElement("span");
+        label.className = "msrp-pinned-option-label";
+        label.textContent = (index + 1) + ". " + source.querySelector("strong").textContent;
+        const up = document.createElement("button");
+        up.type = "button"; up.className = "msrp-pin-order"; up.dataset.pinMove = "up"; up.dataset.pinnedBadge = id;
+        up.textContent = "↑"; up.setAttribute("aria-label", "Move " + label.textContent + " up"); up.disabled = index === 0;
+        const down = document.createElement("button");
+        down.type = "button"; down.className = "msrp-pin-order"; down.dataset.pinMove = "down"; down.dataset.pinnedBadge = id;
+        down.textContent = "↓"; down.setAttribute("aria-label", "Move " + label.textContent + " down"); down.disabled = index === chosen.length - 1;
+        const remove = document.createElement("button");
+        remove.type = "button"; remove.className = "msrp-pin-remove"; remove.dataset.pinnedBadge = id; remove.textContent = "Remove";
+        pin.append(label,up,down,remove); container.appendChild(pin);
       });
+      const available = selected.filter((button) => !chosen.includes(button.dataset.showcaseBadge));
+      available.forEach((button) => {
+        const add = document.createElement("button");
+        add.type = "button"; add.className = "msrp-pinned-option-add"; add.dataset.pinnedBadge = button.dataset.showcaseBadge;
+        add.textContent = "+ Pin " + button.querySelector("strong").textContent;
+        add.disabled = chosen.length >= 3;
+        container.appendChild(add);
+      });
+      if (!selected.length) {
+        const note = document.createElement("p"); note.className = "msrp-editor-help";
+        note.textContent = "Choose badges above first, then pin up to three here.";
+        container.appendChild(note);
+      }
       updateEditorCounts();
     }
     let profileEditorOriginalParent = null;
@@ -793,10 +815,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = event.target.closest("[data-pinned-badge]");
       if (!button) return;
       const id = button.dataset.pinnedBadge;
-      const pinned = new Set(savedProfile.pinned || []);
-      if (pinned.has(id)) pinned.delete(id);
-      else if (pinned.size < 3) pinned.add(id);
-      savedProfile.pinned = [...pinned];
+      const pinned = [...new Set(savedProfile.pinned || [])];
+      const move = button.dataset.pinMove;
+      if (move) {
+        const index = pinned.indexOf(id);
+        const next = index + (move === "up" ? -1 : 1);
+        if (index >= 0 && next >= 0 && next < pinned.length) [pinned[index], pinned[next]] = [pinned[next], pinned[index]];
+      } else if (pinned.includes(id)) {
+        savedProfile.pinned = pinned.filter((item) => item !== id);
+      } else if (pinned.length < 3) {
+        pinned.push(id);
+        savedProfile.pinned = pinned;
+      }
+      if (move) savedProfile.pinned = pinned;
       renderPinnedBadgeOptions();
     });
     byId("communityThemeOptions").addEventListener("click", (event) => {
