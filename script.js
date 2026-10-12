@@ -614,11 +614,12 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="msrp-ref-identity">
                 <span class="community-avatar msrp-ref-avatar">${member.avatarUrl ? '<img src="' + safeText(member.avatarUrl) + '" alt="" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
                 <div class="msrp-ref-person">
-                  <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
+                  <div class="msrp-ref-name-line">
+                    <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
+                    ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
+                  </div>
                   <div class="msrp-ref-handle">@${safeText((own ? (savedProfile.name || member.name) : member.name).toLowerCase().replace(/[^a-z0-9_]/g,""))}</div>
-                  ${own && savedProfile.status ? '<p class="msrp-ref-status">'+safeText(savedProfile.status)+'</p>' : ''}
-                  ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
-                  
+                  ${own && savedProfile.status ? '<p class="msrp-ref-status"><span class="msrp-ref-status-dot"></span>'+safeText(savedProfile.status)+'</p>' : ''}
                   <div class="msrp-ref-social-stats"><span>♡ ${member.likes + (liked ? 1 : 0)} likes</span><span>◉ ${member.views || 0} views</span><span>${communityState.following.size} following</span></div>
                 </div>
                 <div class="msrp-ref-actions">
