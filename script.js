@@ -623,6 +623,32 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>`;
 
       }
+      if (own) {
+        try {
+          const catalog = JSON.parse(localStorage.getItem("msrp_badge_catalog_preview") || "[]");
+          const grid = fullProfile.querySelector(".msrp-ref-badge-grid");
+          const chips = fullProfile.querySelector(".msrp-ref-badge-chips");
+          if (Array.isArray(catalog)) catalog.forEach((badge) => {
+            if (!badge || !badge.name) return;
+            if (grid) {
+              const card = document.createElement("div");
+              card.className = "msrp-ref-badge-item msrp-ref-custom-badge rarity-" + String(badge.rarity || "common");
+              const art = document.createElement("span"); art.className = "msrp-ref-badge-art"; art.textContent = badge.icon || "🏆";
+              const title = document.createElement("strong"); title.textContent = badge.name;
+              const rarity = document.createElement("small"); rarity.textContent = ({common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"})[badge.rarity] || "Common";
+              card.append(art,title,rarity); grid.prepend(card);
+            }
+            if (chips) {
+              const chip = document.createElement("span"); chip.className = "msrp-ref-chip msrp-ref-custom-chip rarity-" + String(badge.rarity || "common");
+              const dot = document.createElement("span"); dot.className = "msrp-ref-chip-dot";
+              const label = document.createElement("span"); label.textContent = badge.name;
+              chip.append(dot,label); chips.append(chip);
+            }
+          });
+          const count = fullProfile.querySelector(".msrp-ref-badges header .msrp-ref-muted");
+          if (count && Array.isArray(catalog) && catalog.length) count.textContent = catalog.length + " test badges";
+        } catch (error) { console.warn("Could not load test badges", error); }
+      }
       modal.hidden = false;
       document.body.classList.add("msrp-profile-page-open");
       if (!own && updateRoute) {
