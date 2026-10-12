@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               <div class="community-full-actions">
                 <button type="button" class="community-primary-button" ${own ? 'data-own-profile-edit' : 'data-full-follow="' + member.id + '"'}>${own ? 'Edit profile' : (following ? 'Following' : 'Follow')}</button>
-                <button type="button" class="community-secondary-button community-square-action" data-full-like="${member.id}" aria-label="Like profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0 7.6Z"/></svg></button>
+                <button type="button" class="community-secondary-button community-square-action" data-full-like="${member.id}" aria-label="Like profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>
                 <button type="button" class="community-secondary-button community-square-action" aria-label="Flag profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 1h13l-2.5 4L18 13H5"/></svg></button>
                 <button type="button" class="community-secondary-button community-square-action" data-profile-copy="${safeText(member.profileId)}" aria-label="Copy profile link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11 4.9M14 11a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.8-1.8"/></svg></button>
               </div>
