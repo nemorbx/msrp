@@ -749,6 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const member=communityState.selected; renderCommunity(); openCommunityModal(member);
       }
     });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !communityEditorModal.hidden) return; if (event.key === "Escape" && !byId("communityModal").hidden) { event.preventDefault(); closeCommunityModal(); } });
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
     byId("communityModal").addEventListener("click", (event) => {
