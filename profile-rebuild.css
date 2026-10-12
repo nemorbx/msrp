@@ -218,3 +218,36 @@
   background:radial-gradient(circle at 70% 35%,#70e4ec 0 3%,transparent 4%),radial-gradient(circle at 24% 68%,#52b6e4 0 4%,transparent 5%),linear-gradient(125deg,#06364f,#087b9d 55%,#53c7c4)!important;
   background-image:radial-gradient(circle at 70% 35%,#70e4ec 0 3%,transparent 4%),radial-gradient(circle at 24% 68%,#52b6e4 0 4%,transparent 5%),linear-gradient(125deg,#06364f,#087b9d 55%,#53c7c4)!important;
 }
+
+
+/* Snowfall banner: lightweight CSS-only animation, no image assets or JavaScript timers. */
+#communityEditorModal .theme-snowfall {
+  background-color:#14253b!important;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 1.2px,transparent 1.8px),
+    radial-gradient(circle,rgba(214,239,255,.9) 1.6px,transparent 2.2px),
+    radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1.7px),
+    linear-gradient(180deg,#101a32 0%,#234565 56%,#9fc8df 100%)!important;
+  background-size:35px 42px,57px 63px,23px 31px,100% 100%!important;
+  background-position:0 0,18px 10px,8px 4px,0 0!important;
+  animation:msrp-snow-preview 3.8s linear infinite!important;
+}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-snowfall {
+  background-color:#14253b!important;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 1.4px,transparent 2px),
+    radial-gradient(circle,rgba(214,239,255,.9) 1.8px,transparent 2.4px),
+    radial-gradient(circle,rgba(255,255,255,.82) 1px,transparent 1.8px),
+    linear-gradient(180deg,#101a32 0%,#234565 56%,#9fc8df 100%)!important;
+  background-size:45px 52px,73px 81px,29px 39px,100% 100%!important;
+  background-position:0 0,20px 12px,9px 5px,0 0!important;
+  animation:msrp-snow-preview 4.5s linear infinite!important;
+}
+@keyframes msrp-snow-preview {
+  from { background-position:0 -70px,20px -110px,9px -45px,0 0; }
+  to { background-position:0 120px,20px 165px,9px 105px,0 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #communityEditorModal .theme-snowfall,
+  .msrp-reference-profile .msrp-ref-banner.profile-theme-snowfall { animation:none!important; }
+}
