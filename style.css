@@ -5285,27 +5285,34 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 }
 
 
-/* Pixel-alignment pass based on the supplied 1649x928 LANCRP screenshot */
+
+
+/* Restored LANCRP reference sizing — keep the dashboard wide and spacing consistent */
 @media (min-width: 901px) {
-  body:has(.dashboard-page.active) .member-dashboard {
-    width: min(100%, 1024px) !important;
+  body:has(.dashboard-page.active) .dashboard-page {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  body:has(.dashboard-page.active) .member-dashboard,
+  body:has(.dashboard-page.active) .dashboard-page-title {
+    width: min(1024px, calc(100vw - 48px)) !important;
     max-width: 1024px !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
-  body:has(.dashboard-page.active) .dashboard-page-title,
-  body:has(.dashboard-page.active) .account-bar {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
   body:has(.dashboard-page.active) .dashboard-body {
     grid-template-columns: 206px minmax(0, 1fr) !important;
-    column-gap: 27px !important;
+    gap: 27px !important;
   }
   body:has(.dashboard-page.active) .member-sidebar {
     width: 206px !important;
     min-width: 206px !important;
+    max-width: 206px !important;
   }
+}
+#communityModal:not([hidden]) #communityFullProfile .community-profile-back-row {
+  width: 100% !important;
+  margin: 0 0 14px !important;
 }
 #communityModal:not([hidden]) #communityFullProfile .community-full-banner {
   height: 198px !important;
@@ -5363,7 +5370,10 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
   font-size: 11px !important;
 }
 #communityModal:not([hidden]) #communityFullProfile .community-full-columns {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, .95fr) !important;
   gap: 12px !important;
+  align-items: start !important;
 }
 #communityModal:not([hidden]) #communityFullProfile .community-full-panel {
   min-height: 76px !important;
@@ -5381,14 +5391,21 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
   fill: currentColor !important;
   stroke: none !important;
 }
-#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action[data-full-like] svg path {
-  d: path("M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z") !important;
+@media (max-width: 900px) {
+  #communityModal:not([hidden]) #communityFullProfile .community-full-columns {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
 }
-@media(max-width:640px) {
+@media (max-width: 640px) {
   #communityModal:not([hidden]) #communityFullProfile .community-full-banner {
-    height:170px !important; min-height:170px !important; max-height:170px !important;
+    height: 170px !important;
+    min-height: 170px !important;
+    max-height: 170px !important;
   }
   #communityModal:not([hidden]) #communityFullProfile .community-full-avatar {
-    flex-basis:82px !important; width:82px !important; height:82px !important; margin-top:-48px !important;
+    flex-basis: 82px !important;
+    width: 82px !important;
+    height: 82px !important;
+    margin-top: -48px !important;
   }
 }
