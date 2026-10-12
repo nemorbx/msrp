@@ -285,3 +285,123 @@
 .msrp-banner-option small{font-size:11px;color:#9aacc5}
 .msrp-reference-profile .msrp-ref-banner.profile-theme-default{background-image:none!important;animation:none!important}
 @media(max-width:520px){.msrp-banner-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.msrp-banner-option{padding:8px}}
+
+
+/* Community Profiles: remove the enclosing dashboard panel and keep every member card independent. */
+.dashboard-view.msrp-community-view{
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.msrp-community-view .community-profile-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:248px!important;
+  align-items:stretch!important;
+  gap:14px!important;
+  width:100%!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.msrp-community-view .community-profile-card{
+  display:flex!important;
+  flex-direction:column!important;
+  width:100%!important;
+  height:248px!important;
+  min-height:248px!important;
+  max-height:248px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(169,194,216,.28)!important;
+  border-radius:14px!important;
+  background:linear-gradient(155deg,rgba(255,255,255,.055),rgba(255,255,255,.018))!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.10)!important;
+}
+.msrp-community-view .community-card-open{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  width:100%!important;
+  padding:0 13px 10px!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+}
+.msrp-community-view .community-card-banner{
+  flex:0 0 64px!important;
+  height:64px!important;
+  min-height:64px!important;
+  margin:0 -13px!important;
+}
+.msrp-community-view .community-card-avatar{
+  flex:0 0 56px!important;
+  width:56px!important;
+  height:56px!important;
+  margin-top:-29px!important;
+  object-fit:cover!important;
+}
+.msrp-community-view .community-card-name{
+  margin-top:8px!important;
+  line-height:1.25!important;
+}
+.msrp-community-view .community-role-pill{margin-top:6px!important}
+.msrp-community-view .community-card-bio{
+  min-height:30px!important;
+  max-height:30px!important;
+  margin-top:7px!important;
+  overflow:hidden!important;
+}
+.msrp-community-view .community-card-footer{
+  flex:0 0 32px!important;
+  min-height:32px!important;
+  padding:7px 12px!important;
+  margin:0!important;
+}
+.msrp-community-view .community-card-follow{
+  flex:0 0 30px!important;
+  height:30px!important;
+  min-height:30px!important;
+  width:calc(100% - 24px)!important;
+  margin:0 12px 10px!important;
+  padding:5px 10px!important;
+}
+@media(max-width:1100px){
+  .msrp-community-view .community-profile-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-rows:248px!important;
+  }
+}
+@media(max-width:700px){
+  .msrp-community-view .community-profile-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-rows:232px!important;
+    gap:10px!important;
+  }
+  .msrp-community-view .community-profile-card{
+    height:232px!important;
+    min-height:232px!important;
+    max-height:232px!important;
+    border-radius:12px!important;
+  }
+  .msrp-community-view .community-card-banner{
+    flex-basis:52px!important;
+    height:52px!important;
+    min-height:52px!important;
+  }
+  .msrp-community-view .community-card-open{padding-right:10px!important;padding-left:10px!important}
+  .msrp-community-view .community-card-banner{margin-right:-10px!important;margin-left:-10px!important}
+}
+@media(max-width:420px){
+  .msrp-community-view .community-profile-grid{grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:248px!important}
+  .msrp-community-view .community-profile-card{height:248px!important;min-height:248px!important;max-height:248px!important}
+}
