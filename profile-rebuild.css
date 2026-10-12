@@ -195,3 +195,26 @@
  #communityEditorModal .msrp-badge-picker {grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #communityEditorModal .msrp-theme-options {grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
+
+
+/* The selected unlocked banner theme is applied to the actual public profile banner. */
+.msrp-reference-profile .msrp-ref-banner.profile-theme-default {
+  background:linear-gradient(180deg,#ff4b92 0%,#ff8a45 48%,#f7c34a 54%,#4e4b69 55%,#222d49 100%)!important;
+  background-image:linear-gradient(180deg,#ff4b92 0%,#ff8a45 48%,#f7c34a 54%,#4e4b69 55%,#222d49 100%)!important;
+}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-sunset {
+  background:linear-gradient(180deg,#ff76ad 0%,#ff4779 32%,#ff9a42 57%,#ffd15d 59%,#653d63 60%,#272b4b 100%)!important;
+  background-image:linear-gradient(180deg,#ff76ad 0%,#ff4779 32%,#ff9a42 57%,#ffd15d 59%,#653d63 60%,#272b4b 100%)!important;
+}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-midnight-city {
+  background:linear-gradient(180deg,#151c4b 0%,#385db2 55%,#ed6cae 58%,#22263f 65%,#151c2d 100%)!important;
+  background-image:linear-gradient(180deg,#151c4b 0%,#385db2 55%,#ed6cae 58%,#22263f 65%,#151c2d 100%)!important;
+}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-sakura {
+  background:radial-gradient(circle at 75% 30%,#ffd9eb 0 3%,transparent 4%),radial-gradient(circle at 22% 55%,#ffc6e4 0 4%,transparent 5%),linear-gradient(125deg,#6b467f,#cb7cac 55%,#f4c2d5)!important;
+  background-image:radial-gradient(circle at 75% 30%,#ffd9eb 0 3%,transparent 4%),radial-gradient(circle at 22% 55%,#ffc6e4 0 4%,transparent 5%),linear-gradient(125deg,#6b467f,#cb7cac 55%,#f4c2d5)!important;
+}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-deep-sea {
+  background:radial-gradient(circle at 70% 35%,#70e4ec 0 3%,transparent 4%),radial-gradient(circle at 24% 68%,#52b6e4 0 4%,transparent 5%),linear-gradient(125deg,#06364f,#087b9d 55%,#53c7c4)!important;
+  background-image:radial-gradient(circle at 70% 35%,#70e4ec 0 3%,transparent 4%),radial-gradient(circle at 24% 68%,#52b6e4 0 4%,transparent 5%),linear-gradient(125deg,#06364f,#087b9d 55%,#53c7c4)!important;
+}
