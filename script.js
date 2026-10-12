@@ -508,11 +508,14 @@ document.addEventListener("DOMContentLoaded", () => {
             </button>
           </div>
           <div class="community-full-hero">
-            <div class="community-full-banner accent-gold"></div>
+            <div class="community-full-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}"></div>
             <div class="community-full-identity">
               <span class="community-avatar community-full-avatar">${member.avatarUrl ? '<img src="' + safeText(member.avatarUrl) + '" alt="" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
               <div class="community-full-name">
-                <h2>${safeText(member.name)}</h2>
+                <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
+                ${own && savedProfile.status ? '<p class="community-profile-status">'+safeText(savedProfile.status)+'</p>' : ''}
+                ${own && savedProfile.pronouns ? '<span class="community-profile-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
+                ${own && (savedProfile.pinned || []).length ? '<div class="community-profile-pinned-badges">'+savedProfile.pinned.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-pinned-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 3.5-2 3.5 2-2-9"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : ''}
                 <div class="community-full-mini-stats">
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg> ${member.views || 0} views</span>
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></svg> ${member.likes + (liked ? 1 : 0)} likes</span>
@@ -543,7 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </section>
                 <section class="community-full-panel community-showcase-panel">
                   <span class="community-eyebrow">SHOWCASE</span>
-                  <p class="community-empty-state">Nothing on show yet.</p>
+                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 3.5-2 3.5 2-2-9"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">Nothing on show yet.</p>'}
                 </section>
               </div>
               <aside class="community-full-side-column">
@@ -678,7 +681,6 @@ document.addEventListener("DOMContentLoaded", () => {
     byId("communityThemeOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-theme]");
       if (!button) return;
-      if (button.dataset.profileTheme !== "default") return;
       document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
     });
     byId("communityEditorClose").addEventListener("click", closeProfileEditor);
