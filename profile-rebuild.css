@@ -61,3 +61,65 @@
 .msrp-reference-profile .msrp-ref-demo-note {margin:12px 2px 0;color:#8391a4;font-size:10px}
 @media(max-width:900px){.msrp-reference-profile .msrp-ref-identity{flex-wrap:wrap!important}.msrp-reference-profile .msrp-ref-actions{margin-left:0;padding-top:0}.msrp-reference-profile .msrp-ref-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.msrp-reference-profile .msrp-ref-columns{grid-template-columns:1fr}.msrp-reference-profile .msrp-ref-badge-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.msrp-reference-profile .msrp-ref-banner{height:155px}.msrp-reference-profile .msrp-ref-identity{gap:12px!important;padding:0 13px 16px!important}.msrp-reference-profile .msrp-ref-avatar{width:78px!important;height:78px!important;flex-basis:78px!important;margin-top:-35px!important}.msrp-reference-profile .msrp-ref-person{padding-top:8px}.msrp-reference-profile .msrp-ref-person h2{font-size:22px!important}.msrp-reference-profile .msrp-ref-actions{width:100%;flex-wrap:wrap}.msrp-reference-profile .msrp-ref-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.msrp-reference-profile .msrp-ref-stat:last-child{grid-column:span 2}.msrp-reference-profile .msrp-ref-panel{padding:13px}.msrp-reference-profile .msrp-ref-badge-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* Final reference-layout pass: profile sections remain independent, never wrapped in one giant card. */
+#communityModal:not([hidden]) #communityFullProfile {
+  width:100%!important; max-width:none!important; margin:0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .msrp-reference-profile {
+  width:100%!important; max-width:none!important; padding:0!important;
+  background:transparent!important; border:0!important; border-radius:0!important;
+  box-shadow:none!important; overflow:visible!important;
+}
+#communityModal:not([hidden]) #communityModalEyebrow,
+#communityModal:not([hidden]) #communityModalTitle,
+#communityModal:not([hidden]) #communityModalDescription { display:none!important; }
+.msrp-reference-profile .msrp-ref-back { width:100%!important; margin:0 0 16px!important; }
+.msrp-reference-profile .msrp-ref-back button {
+  display:flex!important; align-items:center!important; justify-content:flex-start!important;
+  width:100%!important; min-height:38px!important; padding:0 14px!important;
+  border:1px solid var(--ref-border)!important; border-radius:10px!important;
+  background:rgba(17,23,32,.72)!important; color:#d8e1ed!important;
+  text-align:left!important; font:600 12px/1.2 Inter,system-ui,sans-serif!important;
+}
+.msrp-reference-profile .msrp-ref-hero {
+  width:100%!important; margin:0!important; overflow:hidden!important;
+  border:1px solid var(--ref-border)!important; border-radius:15px!important;
+  background:var(--ref-panel)!important; box-shadow:none!important;
+}
+.msrp-reference-profile .msrp-ref-banner { display:block!important; width:100%!important; height:210px!important; }
+.msrp-reference-profile .msrp-ref-name-line {
+  display:flex!important; align-items:center!important; flex-wrap:wrap!important;
+  gap:9px!important; min-width:0!important;
+}
+.msrp-reference-profile .msrp-ref-name-line h2 { margin:0!important; }
+.msrp-reference-profile .msrp-ref-pronouns {
+  display:inline-flex!important; align-items:center!important; margin:0!important;
+  padding:3px 8px!important; border:1px solid rgba(159,190,216,.2)!important;
+  border-radius:6px!important; background:#222b37!important; color:#b8c5d5!important;
+  font-size:11px!important; line-height:1.2!important; white-space:nowrap!important;
+}
+.msrp-reference-profile .msrp-ref-status {
+  display:inline-flex!important; align-items:center!important; gap:7px!important;
+  width:max-content!important; max-width:100%!important; margin:9px 0 0!important;
+  padding:5px 10px!important; border:1px solid rgba(241,190,51,.28)!important;
+  border-radius:999px!important; background:rgba(241,190,51,.10)!important;
+  color:#f3d36d!important; font-size:11px!important; line-height:1.3!important;
+}
+.msrp-reference-profile .msrp-ref-status-dot {
+  width:7px!important; height:7px!important; flex:0 0 7px!important;
+  border-radius:50%!important; background:#f4c526!important;
+}
+.msrp-reference-profile .msrp-ref-stat-grid { width:100%!important; margin:12px 0!important; }
+.msrp-reference-profile .msrp-ref-columns { width:100%!important; margin:0!important; }
+.msrp-reference-profile .msrp-ref-main,
+.msrp-reference-profile .msrp-ref-side { min-width:0!important; }
+.msrp-reference-profile .msrp-ref-panel {
+  border-radius:13px!important; box-shadow:none!important;
+}
+@media(max-width:600px) {
+  .msrp-reference-profile .msrp-ref-banner { height:155px!important; }
+  .msrp-reference-profile .msrp-ref-identity { gap:12px!important; }
+  .msrp-reference-profile .msrp-ref-name-line h2 { font-size:22px!important; }
+}
