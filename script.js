@@ -570,12 +570,8 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityBio").value = savedProfile.bio || "";
         byId("communityShowcaseTitle").value = savedProfile.showcaseTitle || "";
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
-        const selectedShowcase = new Set(savedProfile.showcase || []);
-        document.querySelectorAll("[data-showcase-badge]").forEach((button) => button.classList.toggle("selected", selectedShowcase.has(button.dataset.showcaseBadge)));
-        try { const hidden = new Set(JSON.parse(localStorage.getItem("msrp_hidden_default_badges_preview") || "[]")); document.querySelectorAll("[data-showcase-badge]").forEach((button) => { button.hidden = hidden.has(button.dataset.showcaseBadge); }); } catch (_) {}
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
-        updateEditorCounts();
       }
       {
         const following = communityState.following.has(member.id);
@@ -733,21 +729,10 @@ document.addEventListener("DOMContentLoaded", () => {
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
     byId("communityModal").addEventListener("click", (event) => { if(event.target===byId("communityModal"))closeCommunityModal(); });
-    function updateEditorCounts() {
-      const chosen = [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge);
-      byId("communityShowcaseCount").textContent = chosen.length + " / 6 picked";
-    }
-    let profileEditorOriginalParent = null;
-    let profileEditorOriginalNextSibling = null;
     let profileEditorOriginalTheme = "default";
     function openProfileEditor() {
       const modal = byId("communityModal");
       const form = byId("communityProfileForm");
-      if (modal.parentElement !== document.body) {
-        profileEditorOriginalParent = modal.parentElement;
-        profileEditorOriginalNextSibling = modal.nextSibling;
-        document.body.appendChild(modal);
-      }
       profileEditorOriginalTheme = savedProfile.theme || "default";
       modal.hidden = false;
       modal.classList.add("profile-open", "msrp-editor-open");
@@ -778,21 +763,8 @@ document.addEventListener("DOMContentLoaded", () => {
       form.removeAttribute("aria-label");
       modal.classList.remove("msrp-editor-open");
       document.body.classList.remove("msrp-editor-visible");
-      if (profileEditorOriginalParent && modal.parentElement === document.body) {
-        profileEditorOriginalParent.insertBefore(modal, profileEditorOriginalNextSibling && profileEditorOriginalNextSibling.parentNode === profileEditorOriginalParent ? profileEditorOriginalNextSibling : null);
-      }
-      profileEditorOriginalParent = null;
-      profileEditorOriginalNextSibling = null;
     }
     byId("communityBio").addEventListener("input", () => byId("communityBioCount").textContent = String(byId("communityBio").value.length));
-    byId("communityShowcaseOptions").addEventListener("click", (event) => {
-      const button = event.target.closest("[data-showcase-badge]");
-      if (!button) return;
-      const selected = document.querySelectorAll("[data-showcase-badge].selected");
-      if (!button.classList.contains("selected") && selected.length >= 6) return;
-      button.classList.toggle("selected");
-      updateEditorCounts();
-    });
     byId("communityThemeOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-theme]");
       if (!button) return;
@@ -820,7 +792,6 @@ document.addEventListener("DOMContentLoaded", () => {
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
         showcaseTitle: byId("communityShowcaseTitle").value.trim().slice(0, 50),
-        showcase: [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge),
         theme: "default"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
