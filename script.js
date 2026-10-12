@@ -606,12 +606,13 @@ document.addEventListener("DOMContentLoaded", () => {
           {joined:"Sep 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""}
         ];
         const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
-        const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim());
+        const hasShowcase = false;
+        savedProfile.showcase = [];
       fullProfile.innerHTML = `
           <div class="msrp-reference-profile">
             <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
             <section class="msrp-ref-hero">
-              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}"></div>
+              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}">${(own && (savedProfile.theme || "default") === "snowfall") ? '<span class="msrp-snowfall-layer" aria-hidden="true"></span>' : ""}</div>
               <div class="msrp-ref-identity">
                 <span class="community-avatar msrp-ref-avatar">${(own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl ? '<img src="' + safeText((own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl) + '" alt="Discord profile picture" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
                 <div class="msrp-ref-person">
@@ -688,6 +689,22 @@ document.addEventListener("DOMContentLoaded", () => {
           const count = fullProfile.querySelector(".msrp-ref-badges header .msrp-ref-muted");
           if (count && Array.isArray(catalog) && catalog.length) count.textContent = catalog.length + " test badges";
         } catch (error) { console.warn("Could not load test badges", error); }
+      }
+      if (own && (savedProfile.theme || "default") === "snowfall") {
+        const layer = fullProfile.querySelector(".msrp-snowfall-layer");
+        if (layer) {
+          layer.replaceChildren();
+          for (let i = 0; i < 36; i++) {
+            const flake = document.createElement("i");
+            flake.className = "msrp-snowflake";
+            flake.style.setProperty("--snow-x", ((i * 37) % 100) + "%");
+            flake.style.setProperty("--snow-size", (2 + (i % 4)) + "px");
+            flake.style.setProperty("--snow-duration", (4 + (i % 7)) + "s");
+            flake.style.setProperty("--snow-delay", (-1 * (i % 8)) + "s");
+            flake.style.setProperty("--snow-drift", (((i % 5) - 2) * 12) + "px");
+            layer.appendChild(flake);
+          }
+        }
       }
       modal.hidden = false;
       document.body.classList.add("msrp-profile-page-open");
@@ -892,7 +909,7 @@ document.addEventListener("DOMContentLoaded", () => {
         status: byId("communityStatus").value.trim(),
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
-        showcase: Array.isArray(savedProfile.showcase) ? savedProfile.showcase.slice(0, 6) : [],
+        showcase: [],
         theme: savedProfile.theme || "default"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
