@@ -645,19 +645,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       updateEditorCounts();
     }
+    let profileEditorOriginalParent = null;
+    let profileEditorOriginalNextSibling = null;
     function openProfileEditor() {
+      const modal = byId("communityModal");
       const form = byId("communityProfileForm");
+      if (modal.parentElement !== document.body) {
+        profileEditorOriginalParent = modal.parentElement;
+        profileEditorOriginalNextSibling = modal.nextSibling;
+        document.body.appendChild(modal);
+      }
       form.hidden = false;
       form.classList.add("msrp-profile-editor");
-      byId("communityModal").classList.add("msrp-editor-open");
+      modal.classList.add("msrp-editor-open");
       document.body.classList.add("msrp-editor-visible");
       form.scrollTop = 0;
-      byId("communityBio").focus();
+      const scroll = form.querySelector(".msrp-editor-scroll");
+      if (scroll) scroll.scrollTop = 0;
+      requestAnimationFrame(() => byId("communityBio")?.focus({preventScroll:true}));
     }
     function closeProfileEditor() {
+      const modal = byId("communityModal");
       byId("communityProfileForm").hidden = true;
-      byId("communityModal").classList.remove("msrp-editor-open");
+      modal.classList.remove("msrp-editor-open");
       document.body.classList.remove("msrp-editor-visible");
+      if (profileEditorOriginalParent && modal.parentElement === document.body) {
+        profileEditorOriginalParent.insertBefore(modal, profileEditorOriginalNextSibling && profileEditorOriginalNextSibling.parentNode === profileEditorOriginalParent ? profileEditorOriginalNextSibling : null);
+      }
+      profileEditorOriginalParent = null;
+      profileEditorOriginalNextSibling = null;
     }
     byId("communityBio").addEventListener("input", () => byId("communityBioCount").textContent = String(byId("communityBio").value.length));
     byId("communityShowcaseOptions").addEventListener("click", (event) => {
