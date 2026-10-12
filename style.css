@@ -6138,3 +6138,13 @@ html:has(.msrp-profile-page-open), body.msrp-profile-page-open { scroll-behavior
 .msrp-profile-page-open *, .msrp-profile-page-open *::before, .msrp-profile-page-open *::after {
   animation:none!important; transition:none!important; scroll-behavior:auto!important;
 }
+
+
+/* Profile editor: pinning controls are intentionally removed; keep the dialog fixed without reparenting the page. */
+#communityModal.msrp-editor-open .msrp-pinned-options,
+#communityModal.msrp-editor-open .msrp-pinned-option-row,
+#communityModal.msrp-editor-open .msrp-pin-order,
+#communityModal.msrp-editor-open .msrp-pin-remove,
+#communityModal.msrp-editor-open .msrp-pinned-option-add { display:none!important; }
+#communityModal.msrp-editor-open #communityProfileForm.msrp-profile-editor { position:fixed!important; top:50%!important; left:50%!important; transform:translate(-50%,-50%)!important; }
+#communityModal.msrp-editor-open { position:fixed!important; inset:0!important; }
