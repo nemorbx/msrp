@@ -275,24 +275,13 @@
 .msrp-reference-profile .msrp-ref-badge-chips{display:flex!important}
 
 
-/* Free selectable profile banners */
+/* Ten solid-color profile banner choices. */
 .msrp-banner-picker-section .msrp-editor-section-heading span{font-size:12px;font-weight:600;color:#91a8c7}
 .msrp-banner-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.msrp-banner-option{display:flex;flex-direction:column;gap:7px;text-align:left;padding:9px;border:1px solid rgba(145,168,199,.22);border-radius:12px;background:rgba(11,21,36,.7);color:#eaf2ff;cursor:pointer;min-width:0}
+.msrp-banner-option{display:flex;flex-direction:column;gap:7px;text-align:left;padding:9px;border:1px solid rgba(145,168,199,.22);border-radius:12px;background:rgba(11,21,36,.7);color:#eaf2ff;cursor:pointer;min-width:0;transition:border-color .15s ease,box-shadow .15s ease}
 .msrp-banner-option.active{border-color:#5aa7ff;box-shadow:0 0 0 1px rgba(90,167,255,.3)}
-.msrp-banner-option-preview{display:block;width:100%;aspect-ratio:2.75/1;border-radius:7px;background-color:#263b50;background-position:center;background-size:cover}
-.msrp-banner-moonlit-preview{background-image:url('assets/moonlit-blossoms.png')}
+.msrp-banner-option-preview{display:block;width:100%;aspect-ratio:2.75/1;border-radius:7px;background-position:center;background-size:cover}
 .msrp-banner-option strong{font-size:13px}
 .msrp-banner-option small{font-size:11px;color:#9aacc5}
-.msrp-ref-banner-moonlit{background-image:url('assets/moonlit-blossoms.png')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
-
-/* Explicitly let the chosen image override the default theme's !important gradients. */
-.msrp-reference-profile .msrp-ref-banner.profile-theme-default.msrp-ref-banner-moonlit,
-.msrp-reference-profile .msrp-ref-banner.msrp-ref-banner-moonlit{
-  background-image:url('assets/moonlit-blossoms.png')!important;
-  background-size:100% 100%!important;
-  background-position:center!important;
-  background-repeat:no-repeat!important;
-  background-color:#111!important;
-}
-.msrp-banner-moonlit-preview{background-image:url('assets/moonlit-blossoms.png')!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;background-color:#111!important}
+.msrp-reference-profile .msrp-ref-banner.profile-theme-default{background-image:none!important;animation:none!important}
+@media(max-width:520px){.msrp-banner-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.msrp-banner-option{padding:8px}}
