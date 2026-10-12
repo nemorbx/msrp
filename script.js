@@ -819,7 +819,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
       savedProfile.theme = button.dataset.profileTheme;
       const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
-      if (banner) banner.className = "msrp-ref-banner profile-theme-" + button.dataset.profileTheme;
+      if (banner) {
+        banner.className = "msrp-ref-banner profile-theme-" + button.dataset.profileTheme;
+        banner.classList.toggle("profile-theme-animated", button.dataset.profileTheme === "snowfall");
+        banner.setAttribute("aria-label", button.dataset.profileTheme === "snowfall" ? "Animated snowfall banner" : "Profile banner");
+      }
     });
     byId("communityEditorClose").addEventListener("click", () => closeProfileEditor());
     document.addEventListener("keydown", (event) => {
