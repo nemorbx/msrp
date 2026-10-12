@@ -6158,3 +6158,33 @@ html:has(.msrp-profile-page-open), body.msrp-profile-page-open { scroll-behavior
 #communityModal.msrp-editor-open .msrp-pinned-option-add { display:none!important; }
 #communityModal.msrp-editor-open #communityProfileForm.msrp-profile-editor { position:fixed!important; top:50%!important; left:50%!important; transform:translate(-50%,-50%)!important; }
 #communityModal.msrp-editor-open { position:fixed!important; inset:0!important; }
+
+
+/* Profile viewing is a dashboard content page; only the editor is a modal overlay. */
+.msrp-community-view.profile-page-open > :not(#communityModal){display:none!important}
+.msrp-community-view.profile-page-open > #communityModal.profile-open:not(.msrp-editor-open){
+  position:static!important;inset:auto!important;z-index:auto!important;
+  display:block!important;width:100%!important;height:auto!important;
+  min-height:0!important;max-width:none!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:visible!important;
+  box-sizing:border-box!important;background:transparent!important;
+  backdrop-filter:none!important;
+}
+.msrp-community-view.profile-page-open > #communityModal.profile-open:not(.msrp-editor-open)[hidden]{display:none!important}
+.msrp-community-view.profile-page-open > #communityModal.profile-open:not(.msrp-editor-open) > .community-modal{
+  position:static!important;inset:auto!important;transform:none!important;
+  display:block!important;width:100%!important;max-width:none!important;min-width:0!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:visible!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;animation:none!important;
+}
+#communityModal.msrp-editor-open{
+  position:fixed!important;inset:0!important;z-index:10050!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100vw!important;height:100vh!important;height:100dvh!important;
+  max-width:none!important;max-height:none!important;margin:0!important;
+  padding:20px!important;box-sizing:border-box!important;overflow:auto!important;
+  background:rgba(3,8,14,.76)!important;backdrop-filter:blur(5px)!important;
+}
+#communityModal.msrp-editor-open[hidden]{display:none!important}
