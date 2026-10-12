@@ -5805,3 +5805,64 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 .msrp-ban-hammer-icon{width:30px;height:30px;display:block;flex:0 0 auto;color:#31d8d0}
 .msrp-admin-badge-icon .msrp-ban-hammer-icon{width:32px;height:32px}
 .msrp-ref-badge-art .msrp-ban-hammer-icon{width:25px;height:25px}
+
+
+/* Actual dashboard sidebar correction — compact vertical rhythm and no clipped account panel. */
+@media(min-width:901px){
+  body:has(.dashboard-page.active) .dashboard-body{
+    grid-template-columns:240px minmax(0,1fr)!important;
+    column-gap:16px!important;
+    align-items:start!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-self:start!important;
+    padding:12px!important;
+  }
+}
+body:has(.dashboard-page.active) .sidebar-dashboard-title{
+  min-height:0!important;
+  padding:0 4px 12px!important;
+  margin:0!important;
+}
+body:has(.dashboard-page.active) .sidebar-divider{
+  margin:0 0 8px!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-section{
+  gap:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-label-row{
+  min-height:30px!important;
+  height:30px!important;
+  margin:2px 0 5px!important;
+  padding:3px 10px!important;
+}
+body:has(.dashboard-page.active) .member-nav-item{
+  height:48px!important;
+  min-height:48px!important;
+  margin:2px 0!important;
+  padding:6px 9px!important;
+  gap:10px!important;
+}
+body:has(.dashboard-page.active) .member-sidebar-user{
+  margin-top:12px!important;
+  min-height:64px!important;
+  flex-shrink:0!important;
+}
+@media(max-width:900px){
+  body:has(.dashboard-page.active) .dashboard-body{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  body:has(.dashboard-page.active) .member-sidebar{
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+}
