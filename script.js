@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = $("badgeAdminList");
     if (!form || !list) return;
     const key = "msrp_badge_catalog_preview";
-    const addBadgeIcon = (target, value) => { if (value === "ban-hammer") { target.innerHTML = '<svg class="msrp-ban-hammer-icon" viewBox="0 0 48 48" role="img" aria-label="Turquoise ban hammer" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><path d="M12 36 29 19"/><path d="m8 31 9 9"/><path d="m21 8 7-4 16 16-4 7z"/><path d="m18 11 17 17"/><path d="M5 44h23"/></g><path d="m21 8 7-4 16 16-4 7z" fill="currentColor" opacity=".22"/></svg>'; } else { target.textContent = value || ""; } };
+    const addBadgeIcon = (target) => { target.innerHTML = '<svg class="msrp-badge-star" viewBox="0 0 24 24" role="img" aria-label="Badge star" xmlns="http://www.w3.org/2000/svg"><path d="m12 2.7 2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.26l-5.7 3 1.09-6.35-4.62-4.5 6.38-.93z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1.2"/></svg>'; };
     const rarity = {common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"};
     const ruleLabels = {manual:"Test badge · my profile",account:"Account linked",early:"Early supporter",streak:"Activity streak"};
     const read = () => { try { const data=JSON.parse(localStorage.getItem(key)||"[]"); return Array.isArray(data)?data:[]; } catch(e) { return []; } };
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textOnly = (tag,value) => { const el=document.createElement(tag); el.textContent=value||""; return el; };
     const showMessage = (value) => { const el=$("badgeAdminMessage"); el.textContent=value; el.hidden=false; };
     const persist = () => localStorage.setItem(key,JSON.stringify(badges));
-    const reset = () => { form.reset(); $("badgeEditId").value=""; $("badgeIcon").value="ban-hammer"; $("badgeFormTitle").textContent="Create a badge"; $("badgeSaveButton").textContent="Create badge"; $("badgeCancelEdit").hidden=true; };
+    const reset = () => { form.reset(); $("badgeEditId").value=""; $("badgeFormTitle").textContent="Create a badge"; $("badgeSaveButton").textContent="Create badge"; $("badgeCancelEdit").hidden=true; };
     const render = () => {
       $("badgeAdminCount").textContent=badges.length+(badges.length===1?" badge":" badges");
       $("badgeAdminTotal").textContent=badges.length+" total";
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!badges.length){ list.appendChild(textOnly("p","No badges yet. Create your first badge above.")); return; }
       badges.forEach((b)=>{
         const card=document.createElement("article"); card.className="msrp-admin-badge rarity-"+b.rarity;
-        const icon=document.createElement("div"); icon.className="msrp-admin-badge-icon"; addBadgeIcon(icon,b.icon);
+        const icon=document.createElement("div"); icon.className="msrp-admin-badge-icon"; addBadgeIcon(icon);
         const copy=document.createElement("div"); copy.className="msrp-admin-badge-copy";
         copy.appendChild(textOnly("strong",b.name)); copy.appendChild(textOnly("p",b.description||"No description added."));
         const meta=document.createElement("div"); meta.className="msrp-admin-badge-meta";
@@ -366,10 +366,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     form.addEventListener("submit",(event)=>{
       event.preventDefault();
-      if(!owner()){showMessage("This Discord account is not authorized to manage badges.");return;}
-      const id=$("badgeEditId").value, name=$("badgeName").value.trim(), icon=$("badgeIcon").value.trim(), description=$("badgeDescription").value.trim(), level=$("badgeRarity").value, rule=$("badgeRule").value;
-      if(!name||!icon||!rarity[level]) return;
-      const badge={id:id||(crypto.randomUUID?crypto.randomUUID():String(Date.now())),name,icon,description,rarity:level,rule,ruleLabel:ruleLabels[rule]||ruleLabels.manual};
+      if(!owner()){showMessage(!ownerId ? "Owner access is not configured yet. Add your Discord User ID to auth-config.js to enable badge management." : "This Discord account is not authorized to manage badges.");return;}
+      const id=$("badgeEditId").value, name=$("badgeName").value.trim(), description=$("badgeDescription").value.trim(), level=$("badgeRarity").value, rule=$("badgeRule").value;
+      if(!name||!rarity[level]) return;
+      const badge={id:id||(crypto.randomUUID?crypto.randomUUID():String(Date.now())),name,icon:"star",description,rarity:level,rule,ruleLabel:ruleLabels[rule]||ruleLabels.manual};
       badges=id?badges.map((b)=>b.id===id?badge:b):[badge,...badges];
       persist();render();reset();showMessage(id?"Badge updated.":"Badge created and added to your test badge collection.");
       window.dispatchEvent(new CustomEvent("msrp-badges-updated",{detail:badges}));
@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const edit=event.target.closest("[data-badge-edit]"), del=event.target.closest("[data-badge-delete]");
       if(edit&&owner()){
         const b=badges.find((item)=>item.id===edit.dataset.badgeEdit); if(!b)return;
-        $("badgeEditId").value=b.id;$("badgeName").value=b.name;$("badgeIcon").value=b.icon;$("badgeDescription").value=b.description||"";$("badgeRarity").value=b.rarity;$("badgeRule").value=b.rule||"manual";
+        $("badgeEditId").value=b.id;$("badgeName").value=b.name;$("badgeDescription").value=b.description||"";$("badgeRarity").value=b.rarity;$("badgeRule").value=b.rule||"manual";
         $("badgeFormTitle").textContent="Edit badge";$("badgeSaveButton").textContent="Save changes";$("badgeCancelEdit").hidden=false;
       }
       if(del&&owner()){
