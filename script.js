@@ -336,6 +336,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = $("badgeAdminList");
     if (!form || !list) return;
     const key = "msrp_badge_catalog_preview";
+    const hiddenKey = "msrp_hidden_default_badges_preview";
+    const defaultBadges = [
+      {id:"linked-up",name:"Linked Up",rarity:"common",description:"Discord account linked"},
+      {id:"3-day-streak",name:"3-Day Streak",rarity:"uncommon",description:"A three-day activity streak"},
+      {id:"window-shopper",name:"Window Shopper",rarity:"uncommon",description:"Browsed the community"},
+      {id:"news-reader",name:"News Reader",rarity:"common",description:"Keeps up with community news"},
+      {id:"first-ticket",name:"First Ticket",rarity:"common",description:"Opened a support ticket"},
+      {id:"early-supporter",name:"Early Supporter",rarity:"rare",description:"Supported the community early"}
+    ];
+    const hiddenDefaults = () => { try { const data=JSON.parse(localStorage.getItem(hiddenKey)||"[]"); return Array.isArray(data)?data:[]; } catch(e) { return []; } };
     const addBadgeIcon = (target) => { target.innerHTML = '<svg class="msrp-badge-star" viewBox="0 0 24 24" role="img" aria-label="Badge star" xmlns="http://www.w3.org/2000/svg"><path d="m12 2.7 2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.26l-5.7 3 1.09-6.35-4.62-4.5 6.38-.93z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1.2"/></svg>'; };
     const rarity = {common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"};
     const ruleLabels = {manual:"Test badge · my profile",account:"Account linked",early:"Early supporter",streak:"Activity streak"};
@@ -347,22 +357,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const persist = () => localStorage.setItem(key,JSON.stringify(badges));
     const reset = () => { form.reset(); $("badgeEditId").value=""; $("badgeFormTitle").textContent="Create a badge"; $("badgeSaveButton").textContent="Create badge"; $("badgeCancelEdit").hidden=true; };
     const render = () => {
-      $("badgeAdminCount").textContent=badges.length+(badges.length===1?" badge":" badges");
-      $("badgeAdminTotal").textContent=badges.length+" total";
+      const hidden = new Set(hiddenDefaults());
+      const visibleDefaults = defaultBadges.filter((b) => !hidden.has(b.id));
+      $("badgeAdminCount").textContent=(badges.length+visibleDefaults.length)+" badges";
+      $("badgeAdminTotal").textContent=(badges.length+visibleDefaults.length)+" total";
       list.replaceChildren();
-      if(!badges.length){ list.appendChild(textOnly("p","No badges yet. Create your first badge above.")); return; }
-      badges.forEach((b)=>{
-        const card=document.createElement("article"); card.className="msrp-admin-badge rarity-"+b.rarity;
+      [...badges.map((b)=>({...b,source:"custom"})),...visibleDefaults.map((b)=>({...b,source:"default"}))].forEach((b)=>{
+        const card=document.createElement("article"); card.className="msrp-admin-badge rarity-"+(b.rarity||"common");
         const icon=document.createElement("div"); icon.className="msrp-admin-badge-icon"; addBadgeIcon(icon);
         const copy=document.createElement("div"); copy.className="msrp-admin-badge-copy";
         copy.appendChild(textOnly("strong",b.name)); copy.appendChild(textOnly("p",b.description||"No description added."));
         const meta=document.createElement("div"); meta.className="msrp-admin-badge-meta";
-        const pill=textOnly("span",rarity[b.rarity]||"Common"); pill.className="msrp-rarity-pill"; meta.appendChild(pill); meta.appendChild(textOnly("span",b.ruleLabel||"Test badge")); copy.appendChild(meta);
+        const pill=textOnly("span",rarity[b.rarity]||"Common"); pill.className="msrp-rarity-pill"; meta.appendChild(pill); meta.appendChild(textOnly("span",b.source==="default"?"MSRP default badge":(b.ruleLabel||"Created by you"))); copy.appendChild(meta);
         const actions=document.createElement("div"); actions.className="msrp-admin-badge-actions";
-        const edit=textOnly("button","Edit"); edit.type="button"; edit.dataset.badgeEdit=b.id;
-        const del=textOnly("button","Delete"); del.type="button"; del.dataset.badgeDelete=b.id;
-        actions.append(edit,del); card.append(icon,copy,actions); list.appendChild(card);
+        if(b.source==="custom"){const edit=textOnly("button","Edit"); edit.type="button"; edit.dataset.badgeEdit=b.id; actions.append(edit);}
+        const del=textOnly("button","Delete"); del.type="button"; del.dataset.badgeDelete=b.id; del.dataset.badgeSource=b.source;
+        actions.append(del); card.append(icon,copy,actions); list.appendChild(card);
       });
+      if(!badges.length && !visibleDefaults.length) list.appendChild(textOnly("p","No badges remain. Create a new badge above."));
     };
     form.addEventListener("submit",(event)=>{
       event.preventDefault();
@@ -382,8 +394,19 @@ document.addEventListener("DOMContentLoaded", () => {
         $("badgeFormTitle").textContent="Edit badge";$("badgeSaveButton").textContent="Save changes";$("badgeCancelEdit").hidden=false;
       }
       if(del&&owner()){
-        const b=badges.find((item)=>item.id===del.dataset.badgeDelete);if(!b||!window.confirm("Delete badge "+b.name+"?"))return;
+        const id=del.dataset.badgeDelete;
+        if(del.dataset.badgeSource==="default"){
+          const badge=defaultBadges.find((item)=>item.id===id); if(!badge)return;
+          if(!window.confirm("Remove the default badge "+badge.name+" from MSRP?"))return;
+          const hidden=new Set(hiddenDefaults());hidden.add(id);localStorage.setItem(hiddenKey,JSON.stringify([...hidden]));
+          savedProfile.pinned=(savedProfile.pinned||[]).filter((item)=>item!==id);
+          render();showMessage("Default badge removed from this browser's MSRP preview.");
+          window.dispatchEvent(new CustomEvent("msrp-badges-updated",{detail:{removed:id}}));
+          return;
+        }
+        const b=badges.find((item)=>item.id===id);if(!b||!window.confirm("Delete badge "+b.name+"?"))return;
         badges=badges.filter((item)=>item.id!==b.id);persist();render();showMessage("Badge deleted.");
+        window.dispatchEvent(new CustomEvent("msrp-badges-updated",{detail:badges}));
       }
     });
     $("badgeCancelEdit").addEventListener("click",reset);
@@ -552,6 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityPrivateProfile").checked = Boolean(savedProfile.private);
         const selectedShowcase = new Set(savedProfile.showcase || []);
         document.querySelectorAll("[data-showcase-badge]").forEach((button) => button.classList.toggle("selected", selectedShowcase.has(button.dataset.showcaseBadge)));
+        try { const hidden = new Set(JSON.parse(localStorage.getItem("msrp_hidden_default_badges_preview") || "[]")); document.querySelectorAll("[data-showcase-badge]").forEach((button) => { button.hidden = hidden.has(button.dataset.showcaseBadge); }); } catch (_) {}
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
         renderPinnedBadgeOptions();
@@ -584,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${own && savedProfile.status ? '<p class="msrp-ref-status">'+safeText(savedProfile.status)+'</p>' : ''}
                   ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
                   <div class="msrp-ref-badge-chips">
-                    ${(own ? (savedProfile.pinned || []) : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
+                    ${(own ? (savedProfile.pinned || []) : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span data-default-badge="'+safeText(id)+'" class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
                   </div>
                   <div class="msrp-ref-social-stats"><span>♡ ${member.likes + (liked ? 1 : 0)} likes</span><span>◉ ${member.views || 0} views</span><span>${communityState.following.size} following</span></div>
                 </div>
@@ -614,7 +638,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${member.robloxUsername ? '<section class="msrp-ref-panel"><header><span>ROBLOX</span></header><div class="msrp-ref-roblox"><span>R</span><strong>'+safeText(member.robloxUsername)+'</strong></div></section>' : ''}
                 <section class="msrp-ref-panel msrp-ref-badges"><header><span>BADGES</span><span class="msrp-ref-muted">${own ? (savedProfile.showcase || []).length : 0} of 33</span></header>
                   <div class="msrp-ref-badge-grid">
-                    ${(own ? ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"] : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/></svg></span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
+                    ${(own ? ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"] : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div data-default-badge="'+safeText(id)+'" class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/></svg></span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
                   </div>
                 </section>
                 <section class="msrp-ref-panel"><header><span>COSMETICS</span></header><div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">◇</span><strong>Nothing here yet</strong><p>Collectibles will appear here.</p></div></section>
@@ -626,6 +650,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (own) {
         try {
+          const hiddenDefaults = JSON.parse(localStorage.getItem("msrp_hidden_default_badges_preview") || "[]");
+          const hiddenSet = new Set(Array.isArray(hiddenDefaults) ? hiddenDefaults : []);
+          fullProfile.querySelectorAll("[data-default-badge]").forEach((item) => { if (hiddenSet.has(item.dataset.defaultBadge)) item.remove(); });
+          fullProfile.querySelectorAll(".msrp-ref-badge-chips [data-default-badge]").forEach((item) => { if (hiddenSet.has(item.dataset.defaultBadge)) item.remove(); });
           const catalog = JSON.parse(localStorage.getItem("msrp_badge_catalog_preview") || "[]");
           const grid = fullProfile.querySelector(".msrp-ref-badge-grid");
           const chips = fullProfile.querySelector(".msrp-ref-badge-chips");
