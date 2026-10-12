@@ -504,7 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
           {joined:"Sep 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""}
         ];
         const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
-        const showcaseLink = own && /^https?:\\/\\//i.test(savedProfile.showcaseLink || "") ? savedProfile.showcaseLink : "";
+        const showcaseLink = own && /^https?:\/\//i.test(savedProfile.showcaseLink || "") ? savedProfile.showcaseLink : "";
       const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim() || (savedProfile.showcaseDescription || "").trim() || showcaseLink);
       fullProfile.innerHTML = `
           <div class="community-profile-back-row">
@@ -745,7 +745,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bio: byId("communityBio").value.trim(),
         showcaseTitle: byId("communityShowcaseTitle").value.trim().slice(0, 50),
         showcaseDescription: byId("communityShowcaseDescription").value.trim().slice(0, 180),
-        showcaseLink: /^https?:\\/\\//i.test(byId("communityShowcaseLink").value.trim()) ? byId("communityShowcaseLink").value.trim().slice(0, 300) : "",
+        showcaseLink: /^https?:\/\//i.test(byId("communityShowcaseLink").value.trim()) ? byId("communityShowcaseLink").value.trim().slice(0, 300) : "",
         showcase: [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge),
         theme: document.querySelector("[data-profile-theme].active")?.dataset.profileTheme || "default",
         private: byId("communityPrivateProfile").checked,
