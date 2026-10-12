@@ -655,18 +655,27 @@ document.addEventListener("DOMContentLoaded", () => {
         profileEditorOriginalNextSibling = modal.nextSibling;
         document.body.appendChild(modal);
       }
+      modal.hidden = false;
+      modal.classList.add("profile-open", "msrp-editor-open");
+      document.body.classList.add("msrp-profile-page-open", "msrp-editor-visible");
+      byId("communityFullProfile").hidden = false;
       form.hidden = false;
       form.classList.add("msrp-profile-editor");
-      modal.classList.add("msrp-editor-open");
-      document.body.classList.add("msrp-editor-visible");
-      form.scrollTop = 0;
+      form.setAttribute("aria-modal", "true");
+      form.setAttribute("role", "dialog");
+      form.setAttribute("aria-label", "Edit your profile");
       const scroll = form.querySelector(".msrp-editor-scroll");
       if (scroll) scroll.scrollTop = 0;
       requestAnimationFrame(() => byId("communityBio")?.focus({preventScroll:true}));
     }
     function closeProfileEditor() {
       const modal = byId("communityModal");
-      byId("communityProfileForm").hidden = true;
+      const form = byId("communityProfileForm");
+      form.hidden = true;
+      form.classList.remove("msrp-profile-editor");
+      form.removeAttribute("aria-modal");
+      form.removeAttribute("role");
+      form.removeAttribute("aria-label");
       modal.classList.remove("msrp-editor-open");
       document.body.classList.remove("msrp-editor-visible");
       if (profileEditorOriginalParent && modal.parentElement === document.body) {
