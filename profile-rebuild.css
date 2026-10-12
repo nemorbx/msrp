@@ -251,3 +251,9 @@
   #communityEditorModal .theme-snowfall,
   .msrp-reference-profile .msrp-ref-banner.profile-theme-snowfall { animation:none!important; }
 }
+
+
+#communityEditorModal .msrp-badge-picker-empty {
+  grid-column:1/-1;margin:0;padding:20px;border:1px dashed #3a4b5c;
+  border-radius:12px;color:#b6c6d5;text-align:center;font-size:13px;
+}
