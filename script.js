@@ -540,6 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileStoreKey = "msrp_community_profile_preview";
     const communityModalHome = { parent: null, next: null };
     let savedProfile = {};
+    let profileEditorOriginalBanner = "default";
     try { savedProfile = JSON.parse(localStorage.getItem(profileStoreKey) || "{}"); } catch (_) { savedProfile = {}; }
 
     function filteredMembers() {
@@ -592,6 +593,8 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
+        const selectedBanner = savedProfile.banner || "default";
+        document.querySelectorAll("[data-profile-banner]").forEach((button) => button.classList.toggle("active", button.dataset.profileBanner === selectedBanner));
         syncShowcaseBadgePicker();
       }
       {
@@ -614,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="msrp-reference-profile">
             <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
             <section class="msrp-ref-hero">
-              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}">${(own && (savedProfile.theme || "default") === "snowfall") ? '<span class="msrp-snowfall-layer" aria-hidden="true"></span>' : ""}</div>
+              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")} ${own && savedProfile.banner === "moonlit-blossoms" ? "msrp-ref-banner-moonlit" : ""}" ${own && savedProfile.banner === "moonlit-blossoms" ? 'style="background-image:url(\'assets/moonlit-blossoms.jpg\')"' : ""}>${(own && (savedProfile.theme || "default") === "snowfall") ? '<span class="msrp-snowfall-layer" aria-hidden="true"></span>' : ""}</div>
               <div class="msrp-ref-identity">
                 <span class="community-avatar msrp-ref-avatar">${(own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl ? '<img src="' + safeText((own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl) + '" alt="Discord profile picture" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
                 <div class="msrp-ref-person">
@@ -823,6 +826,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openProfileEditor() {
       const form = byId("communityProfileForm");
       profileEditorOriginalTheme = savedProfile.theme || "default";
+      profileEditorOriginalBanner = savedProfile.banner || "default";
       communityEditorModal.hidden = false;
       communityEditorModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("msrp-editor-visible");
@@ -838,9 +842,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeProfileEditor(keepChanges = false) {
       const form = byId("communityProfileForm");
       if (!keepChanges) {
-        savedProfile.theme = profileEditorOriginalTheme || "default";
+         savedProfile.theme = profileEditorOriginalTheme || "default";
+        savedProfile.banner = profileEditorOriginalBanner || "default";
         const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
-        if (banner) banner.className = "msrp-ref-banner profile-theme-" + savedProfile.theme;
+        if (banner) {
+          banner.className = "msrp-ref-banner profile-theme-" + savedProfile.theme + (savedProfile.banner === "moonlit-blossoms" ? " msrp-ref-banner-moonlit" : "");
+          banner.style.backgroundImage = savedProfile.banner === "moonlit-blossoms" ? "url('assets/moonlit-blossoms.jpg')" : "";
+        }
+        document.querySelectorAll("[data-profile-banner]").forEach((item) => item.classList.toggle("active", item.dataset.profileBanner === savedProfile.banner));
         document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item.dataset.profileTheme === savedProfile.theme));
       }
       form.hidden = true;
@@ -865,6 +874,18 @@ document.addEventListener("DOMContentLoaded", () => {
       else return;
       savedProfile.showcase = selected;
       syncShowcaseBadgePicker();
+    });
+    byId("communityBannerOptions").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-profile-banner]");
+      if (!button) return;
+      savedProfile.banner = button.dataset.profileBanner;
+      document.querySelectorAll("[data-profile-banner]").forEach((item) => item.classList.toggle("active", item === button));
+      const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
+      if (banner) {
+        banner.classList.toggle("msrp-ref-banner-moonlit", savedProfile.banner === "moonlit-blossoms");
+        banner.style.backgroundImage = savedProfile.banner === "moonlit-blossoms" ? "url('assets/moonlit-blossoms.jpg')" : "";
+        banner.setAttribute("aria-label", savedProfile.banner === "moonlit-blossoms" ? "Moonlit Blossoms profile banner" : "Default profile banner");
+      }
     });
     byId("communityThemeOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-theme]");
@@ -897,7 +918,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
         showcase: Array.isArray(savedProfile.showcase) ? savedProfile.showcase.slice(0, 6) : [],
-        theme: savedProfile.theme || "default"
+        theme: savedProfile.theme || "default",
+        banner: savedProfile.banner || "default"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
       closeProfileEditor(true);
