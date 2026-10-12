@@ -5866,3 +5866,38 @@ body:has(.dashboard-page.active) .member-sidebar-user{
     overflow:visible!important;
   }
 }
+
+
+/* Badge icon field: visible custom turquoise SVG preview beside its identifier. */
+.msrp-icon-field{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-width:0!important;
+  padding:7px 10px!important;
+  border:1px solid #344453!important;
+  border-radius:10px!important;
+  background:#0b121a!important;
+}
+.msrp-icon-field-preview{
+  width:42px!important;
+  height:42px!important;
+  flex:0 0 42px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:rgba(49,216,208,.1)!important;
+  border:1px solid rgba(49,216,208,.28)!important;
+}
+.msrp-icon-field-preview .msrp-ban-hammer-icon{
+  width:29px!important;
+  height:29px!important;
+  color:#31d8d0!important;
+}
+.msrp-admin-fields .msrp-icon-field input{
+  border:0!important;
+  background:transparent!important;
+  padding:9px 4px!important;
+  min-width:0!important;
+}
+.msrp-icon-help{font-size:10px!important;color:#31d8d0!important;font-weight:600!important}
