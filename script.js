@@ -508,6 +508,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Community Profiles: interactive front-end preview using clearly labelled sample data.
   const communityRoot = $("dashboardCommunityView");
   if (communityRoot) {
+    // Keep profile viewing and profile editing as two independent UI layers.
+    const communityEditorModal = document.createElement("div");
+    communityEditorModal.id = "communityEditorModal";
+    communityEditorModal.className = "msrp-editor-backdrop";
+    communityEditorModal.hidden = true;
+    communityEditorModal.setAttribute("aria-hidden", "true");
+    document.body.appendChild(communityEditorModal);
+    const communityProfileForm = $("communityProfileForm");
+    communityEditorModal.appendChild(communityProfileForm);
     const sampleMembers = [
       {id:1,profileId:"MSRP-000101",name:"RiverCarter",role:"Member",bio:"Enjoying realistic roleplay around Missouri.",status:"On patrol",active:3,likes:28,joined:1,accent:"cyan",initials:"RC"},
 {id:2,profileId:"MSRP-000102",name:"MasonJett",role:"Staff",bio:"Helping keep the community welcoming and organized.",status:"Available",active:8,likes:42,joined:2,accent:"blue",initials:"MJ"},
@@ -741,25 +750,18 @@ document.addEventListener("DOMContentLoaded", () => {
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
     byId("communityModal").addEventListener("click", (event) => {
-      const modal = byId("communityModal");
-      const form = byId("communityProfileForm");
-      if (!form.hidden && modal.classList.contains("msrp-editor-open")) {
-        if (event.target === modal || event.target === byId("communityFullProfile")) {
-          closeProfileEditor();
-        }
-        return;
-      }
-      if (event.target === modal) closeCommunityModal();
+      if (event.target === byId("communityModal")) closeCommunityModal();
+    });
+    communityEditorModal.addEventListener("click", (event) => {
+      if (event.target === communityEditorModal) closeProfileEditor();
     });
     let profileEditorOriginalTheme = "default";
     function openProfileEditor() {
-      const modal = byId("communityModal");
       const form = byId("communityProfileForm");
       profileEditorOriginalTheme = savedProfile.theme || "default";
-      modal.hidden = false;
-      modal.classList.add("profile-open", "msrp-editor-open");
-      document.body.classList.add("msrp-profile-page-open", "msrp-editor-visible");
-      byId("communityFullProfile").hidden = false;
+      communityEditorModal.hidden = false;
+      communityEditorModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("msrp-editor-visible");
       form.hidden = false;
       form.classList.add("msrp-profile-editor");
       form.setAttribute("aria-modal", "true");
@@ -770,12 +772,11 @@ document.addEventListener("DOMContentLoaded", () => {
       
     }
     function closeProfileEditor(keepChanges = false) {
-      const modal = byId("communityModal");
       const form = byId("communityProfileForm");
       if (!keepChanges) {
         savedProfile.theme = profileEditorOriginalTheme || "default";
-        const banner = byId("communityFullProfile")?.querySelector(".community-full-banner");
-        if (banner) banner.className = "community-full-banner profile-theme-" + savedProfile.theme;
+        const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
+        if (banner) banner.className = "msrp-ref-banner profile-theme-" + savedProfile.theme;
         document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item.dataset.profileTheme === savedProfile.theme));
       }
       form.hidden = true;
@@ -783,7 +784,8 @@ document.addEventListener("DOMContentLoaded", () => {
       form.removeAttribute("aria-modal");
       form.removeAttribute("role");
       form.removeAttribute("aria-label");
-      modal.classList.remove("msrp-editor-open");
+      communityEditorModal.hidden = true;
+      communityEditorModal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("msrp-editor-visible");
     }
     byId("communityBio").addEventListener("input", () => byId("communityBioCount").textContent = String(byId("communityBio").value.length));
@@ -792,8 +794,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!button) return;
       document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
       savedProfile.theme = button.dataset.profileTheme;
-      const banner = byId("communityFullProfile")?.querySelector(".community-full-banner");
-      if (banner) banner.className = "community-full-banner profile-theme-" + button.dataset.profileTheme;
+      const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
+      if (banner) banner.className = "msrp-ref-banner profile-theme-" + button.dataset.profileTheme;
     });
     byId("communityEditorClose").addEventListener("click", () => closeProfileEditor());
     document.addEventListener("keydown", (event) => {
