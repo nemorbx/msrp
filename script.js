@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
                 ${own && savedProfile.status ? '<p class="community-profile-status">'+safeText(savedProfile.status)+'</p>' : ''}
                 ${own && savedProfile.pronouns ? '<span class="community-profile-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
-                ${own && (savedProfile.pinned || []).length ? '<div class="community-profile-pinned-badges">'+savedProfile.pinned.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-pinned-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 3.5-2 3.5 2-2-9"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : ''}
+                ${own && (savedProfile.pinned || []).length ? '<div class="community-profile-pinned-badges">'+savedProfile.pinned.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-pinned-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 6 6l8 3M24 12l2-6-8 3" fill="currentColor"/><circle cx="16" cy="17" r="10" fill="none" stroke="currentColor"/><ellipse cx="11.5" cy="15" rx="2.5" ry="3.3" fill="currentColor"/><ellipse cx="20.5" cy="15" rx="2.5" ry="3.3" fill="currentColor"/><path d="M14 19q2 2 4 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : ''}
                 <div class="community-full-mini-stats">
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg> ${member.views || 0} views</span>
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></svg> ${member.likes + (liked ? 1 : 0)} likes</span>
@@ -553,7 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${member.robloxUsername ? '<section class="community-full-panel community-roblox-panel"><div class="community-roblox-card"><span class="community-roblox-icon" aria-hidden="true">R</span><div class="community-roblox-copy"><span class="community-eyebrow">ROBLOX</span><strong>' + safeText(member.robloxUsername) + '</strong></div></div></section>' : ''}
                 <section class="community-full-panel community-badges-panel">
                   <div class="community-badge-heading"><span class="community-eyebrow">BADGES</span><span>${own ? (savedProfile.showcase || []).length : 0} of 33</span></div>
-                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 15 6 19 6 19 10 21 13 18 16 18 20 14 20 11 22 8 19 4 19 4 15 2 12 5 9 5 5 9 5Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">No badges yet.</p>'}
+                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 6 6l8 3M24 12l2-6-8 3" fill="currentColor"/><circle cx="16" cy="17" r="10" fill="none" stroke="currentColor"/><ellipse cx="11.5" cy="15" rx="2.5" ry="3.3" fill="currentColor"/><ellipse cx="20.5" cy="15" rx="2.5" ry="3.3" fill="currentColor"/><path d="M14 19q2 2 4 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">No badges yet.</p>'}
                 </section>
                 <section class="community-full-panel community-cosmetics-panel">
                   <span class="community-eyebrow">COSMETICS</span>
@@ -684,10 +684,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!button) return;
       document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
       savedProfile.theme = button.dataset.profileTheme;
+      try { localStorage.setItem(profileStoreKey, JSON.stringify(savedProfile)); } catch (_) {}
       const banner = byId("communityFullProfile")?.querySelector(".community-full-banner");
-      if (banner) {
-        banner.className = "community-full-banner profile-theme-" + button.dataset.profileTheme;
-      }
+      if (banner) banner.className = "community-full-banner profile-theme-" + button.dataset.profileTheme;
     });
     byId("communityEditorClose").addEventListener("click", closeProfileEditor);
     byId("communityModalCancel").addEventListener("click", () => {
