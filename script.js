@@ -480,6 +480,9 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityStatus").value = savedProfile.status || "";
         byId("communityPronouns").value = savedProfile.pronouns || "";
         byId("communityBio").value = savedProfile.bio || "";
+        byId("communityShowcaseTitle").value = savedProfile.showcaseTitle || "";
+        byId("communityShowcaseDescription").value = savedProfile.showcaseDescription || "";
+        byId("communityShowcaseLink").value = savedProfile.showcaseLink || "";
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
         byId("communityPrivateProfile").checked = Boolean(savedProfile.private);
         const selectedShowcase = new Set(savedProfile.showcase || []);
@@ -501,7 +504,9 @@ document.addEventListener("DOMContentLoaded", () => {
           {joined:"Sep 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""}
         ];
         const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
-        fullProfile.innerHTML = `
+        const showcaseLink = own && /^https?:\\/\\//i.test(savedProfile.showcaseLink || "") ? savedProfile.showcaseLink : "";
+      const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim() || (savedProfile.showcaseDescription || "").trim() || showcaseLink);
+      fullProfile.innerHTML = `
           <div class="community-profile-back-row">
             <button type="button" class="community-back-everyone" data-profile-back>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span>Everyone</span>
@@ -546,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </section>
                 <section class="community-full-panel community-showcase-panel">
                   <span class="community-eyebrow">SHOWCASE</span>
-                  <p class="community-empty-state">Nothing on show yet.</p>
+                  ${hasShowcase ? '<article class="community-custom-showcase-card"><strong>'+safeText(savedProfile.showcaseTitle || "Featured showcase")+"</strong>"+(savedProfile.showcaseDescription ? '<p>'+safeText(savedProfile.showcaseDescription)+"</p>" : "")+(showcaseLink ? '<a href="'+safeText(showcaseLink)+'" target="_blank" rel="noopener noreferrer">Open showcase ↗</a>' : "")+"</article>" : '<p class="community-empty-state">Nothing on show yet.</p>'}
                 </section>
               </div>
               <aside class="community-full-side-column">
@@ -738,6 +743,9 @@ document.addEventListener("DOMContentLoaded", () => {
         status: byId("communityStatus").value.trim(),
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
+        showcaseTitle: byId("communityShowcaseTitle").value.trim().slice(0, 50),
+        showcaseDescription: byId("communityShowcaseDescription").value.trim().slice(0, 180),
+        showcaseLink: /^https?:\\/\\//i.test(byId("communityShowcaseLink").value.trim()) ? byId("communityShowcaseLink").value.trim().slice(0, 300) : "",
         showcase: [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge),
         theme: document.querySelector("[data-profile-theme].active")?.dataset.profileTheme || "default",
         private: byId("communityPrivateProfile").checked,
