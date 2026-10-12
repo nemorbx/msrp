@@ -5645,3 +5645,27 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
   #communityModal.msrp-editor-open .msrp-pinned-options,
   #communityModal.msrp-editor-open .msrp-theme-options { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
+
+
+/* Match the LANCRP profile hero proportions: wide banner with avatar overlapping its lower edge. */
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-full-banner {
+  height: 230px !important;
+  min-height: 230px !important;
+  max-height: 230px !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-full-identity {
+  margin-top: -56px !important;
+}
+#communityModal:not(.msrp-editor-open) #communityFullProfile .community-full-avatar {
+  position: relative !important;
+  z-index: 6 !important;
+}
+@media (max-width: 760px) {
+  #communityModal:not(.msrp-editor-open) #communityFullProfile .community-full-banner {
+    height: 168px !important;
+    min-height: 168px !important;
+    max-height: 168px !important;
+  }
+}
