@@ -5749,3 +5749,14 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 .msrp-admin-badge-actions{display:flex;gap:6px;flex-wrap:wrap}
 .msrp-admin-notice{margin:0;color:#75879a;font-size:10px;line-height:1.6}
 @media(max-width:650px){.msrp-admin-heading{padding:18px;flex-direction:column}.msrp-admin-form,.msrp-admin-list-panel{padding:14px}.msrp-admin-fields{grid-template-columns:1fr}.msrp-admin-wide{grid-column:auto}.msrp-admin-badge{align-items:flex-start;flex-wrap:wrap}.msrp-admin-badge-copy{flex-basis:calc(100% - 65px)}.msrp-admin-badge-actions{width:100%;padding-left:61px}}
+
+
+/* Rarity colors on owner-created test badges in the profile */
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-common .msrp-ref-badge-art{color:#d1d5db;background:#333b46;border-color:#59616d}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-uncommon .msrp-ref-badge-art{color:#4ade80;background:#173d2b;border-color:#2e8050}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-rare .msrp-ref-badge-art{color:#60a5fa;background:#172f55;border-color:#3465a0}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-legendary .msrp-ref-badge-art{color:#facc15;background:#493b16;border-color:#92751e}
+.msrp-reference-profile .msrp-ref-custom-chip.rarity-common{background:#303740;border-color:#59616d;color:#d1d5db}
+.msrp-reference-profile .msrp-ref-custom-chip.rarity-uncommon{background:#173d2b;border-color:#2e8050;color:#4ade80}
+.msrp-reference-profile .msrp-ref-custom-chip.rarity-rare{background:#172f55;border-color:#3465a0;color:#60a5fa}
+.msrp-reference-profile .msrp-ref-custom-chip.rarity-legendary{background:#493b16;border-color:#92751e;color:#facc15}
