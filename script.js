@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (updateHash) history.replaceState(null, "", "#" + target);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   function setDashboardView(view) {
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (location.hash !== "#dashboard") history.replaceState(null, "", "#dashboard");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   nav.forEach((item) => {
@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const badge=defaultBadges.find((item)=>item.id===id); if(!badge)return;
           if(!window.confirm("Remove the default badge "+badge.name+" from MSRP?"))return;
           const hidden=new Set(hiddenDefaults());hidden.add(id);localStorage.setItem(hiddenKey,JSON.stringify([...hidden]));
-          savedProfile.pinned=(savedProfile.pinned||[]).filter((item)=>item!==id);
+
           render();showMessage("Default badge removed from this browser's MSRP preview.");
           window.dispatchEvent(new CustomEvent("msrp-badges-updated",{detail:{removed:id}}));
           return;
@@ -569,16 +569,12 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityPronouns").value = savedProfile.pronouns || "";
         byId("communityBio").value = savedProfile.bio || "";
         byId("communityShowcaseTitle").value = savedProfile.showcaseTitle || "";
-        byId("communityShowcaseDescription").value = savedProfile.showcaseDescription || "";
-        byId("communityShowcaseLink").value = savedProfile.showcaseLink || "";
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
-        byId("communityPrivateProfile").checked = Boolean(savedProfile.private);
         const selectedShowcase = new Set(savedProfile.showcase || []);
         document.querySelectorAll("[data-showcase-badge]").forEach((button) => button.classList.toggle("selected", selectedShowcase.has(button.dataset.showcaseBadge)));
         try { const hidden = new Set(JSON.parse(localStorage.getItem("msrp_hidden_default_badges_preview") || "[]")); document.querySelectorAll("[data-showcase-badge]").forEach((button) => { button.hidden = hidden.has(button.dataset.showcaseBadge); }); } catch (_) {}
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
-        renderPinnedBadgeOptions();
         updateEditorCounts();
       }
       {
@@ -607,9 +603,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="msrp-ref-handle">@${safeText((own ? (savedProfile.name || member.name) : member.name).toLowerCase().replace(/[^a-z0-9_]/g,""))}</div>
                   ${own && savedProfile.status ? '<p class="msrp-ref-status">'+safeText(savedProfile.status)+'</p>' : ''}
                   ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
-                  <div class="msrp-ref-badge-chips">
-                    ${(own ? (savedProfile.pinned || []) : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span data-default-badge="'+safeText(id)+'" class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
-                  </div>
+                  
                   <div class="msrp-ref-social-stats"><span>♡ ${member.likes + (liked ? 1 : 0)} likes</span><span>◉ ${member.views || 0} views</span><span>${communityState.following.size} following</span></div>
                 </div>
                 <div class="msrp-ref-actions">
@@ -743,44 +737,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateEditorCounts() {
       const chosen = [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge);
       byId("communityShowcaseCount").textContent = chosen.length + " / 6 picked";
-      byId("communityPinnedCount").textContent = (savedProfile.pinned || []).length + " / 3";
-    }
-    function renderPinnedBadgeOptions() {
-      const chosen = [...new Set(savedProfile.pinned || [])].slice(0,3);
-      const container = byId("communityPinnedOptions");
-      container.replaceChildren();
-      const selected = [...document.querySelectorAll("[data-showcase-badge].selected")].filter((button) => !button.hidden);
-      chosen.filter((id) => selected.some((button) => button.dataset.showcaseBadge === id)).forEach((id,index) => {
-        const source = selected.find((button) => button.dataset.showcaseBadge === id);
-        const pin = document.createElement("div");
-        pin.className = "msrp-pinned-option-row";
-        const label = document.createElement("span");
-        label.className = "msrp-pinned-option-label";
-        label.textContent = (index + 1) + ". " + source.querySelector("strong").textContent;
-        const up = document.createElement("button");
-        up.type = "button"; up.className = "msrp-pin-order"; up.dataset.pinMove = "up"; up.dataset.pinnedBadge = id;
-        up.textContent = "↑"; up.setAttribute("aria-label", "Move " + label.textContent + " up"); up.disabled = index === 0;
-        const down = document.createElement("button");
-        down.type = "button"; down.className = "msrp-pin-order"; down.dataset.pinMove = "down"; down.dataset.pinnedBadge = id;
-        down.textContent = "↓"; down.setAttribute("aria-label", "Move " + label.textContent + " down"); down.disabled = index === chosen.length - 1;
-        const remove = document.createElement("button");
-        remove.type = "button"; remove.className = "msrp-pin-remove"; remove.dataset.pinnedBadge = id; remove.textContent = "Remove";
-        pin.append(label,up,down,remove); container.appendChild(pin);
-      });
-      const available = selected.filter((button) => !chosen.includes(button.dataset.showcaseBadge));
-      available.forEach((button) => {
-        const add = document.createElement("button");
-        add.type = "button"; add.className = "msrp-pinned-option-add"; add.dataset.pinnedBadge = button.dataset.showcaseBadge;
-        add.textContent = "+ Pin " + button.querySelector("strong").textContent;
-        add.disabled = chosen.length >= 3;
-        container.appendChild(add);
-      });
-      if (!selected.length) {
-        const note = document.createElement("p"); note.className = "msrp-editor-help";
-        note.textContent = "Choose badges above first, then pin up to three here.";
-        container.appendChild(note);
-      }
-      updateEditorCounts();
     }
     let profileEditorOriginalParent = null;
     let profileEditorOriginalNextSibling = null;
@@ -805,7 +761,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.setAttribute("aria-label", "Edit your profile");
       const scroll = form.querySelector(".msrp-editor-scroll");
       if (scroll) scroll.scrollTop = 0;
-      requestAnimationFrame(() => byId("communityBio")?.focus({preventScroll:true}));
+      
     }
     function closeProfileEditor(keepChanges = false) {
       const modal = byId("communityModal");
@@ -836,27 +792,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const selected = document.querySelectorAll("[data-showcase-badge].selected");
       if (!button.classList.contains("selected") && selected.length >= 6) return;
       button.classList.toggle("selected");
-      if (!button.classList.contains("selected")) savedProfile.pinned = (savedProfile.pinned || []).filter((id) => id !== button.dataset.showcaseBadge);
-      renderPinnedBadgeOptions();
-    });
-    byId("communityPinnedOptions").addEventListener("click", (event) => {
-      const button = event.target.closest("[data-pinned-badge]");
-      if (!button) return;
-      const id = button.dataset.pinnedBadge;
-      const pinned = [...new Set(savedProfile.pinned || [])];
-      const move = button.dataset.pinMove;
-      if (move) {
-        const index = pinned.indexOf(id);
-        const next = index + (move === "up" ? -1 : 1);
-        if (index >= 0 && next >= 0 && next < pinned.length) [pinned[index], pinned[next]] = [pinned[next], pinned[index]];
-      } else if (pinned.includes(id)) {
-        savedProfile.pinned = pinned.filter((item) => item !== id);
-      } else if (pinned.length < 3) {
-        pinned.push(id);
-        savedProfile.pinned = pinned;
-      }
-      if (move) savedProfile.pinned = pinned;
-      renderPinnedBadgeOptions();
+      updateEditorCounts();
     });
     byId("communityThemeOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-theme]");
@@ -885,12 +821,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
         showcaseTitle: byId("communityShowcaseTitle").value.trim().slice(0, 50),
-        showcaseDescription: byId("communityShowcaseDescription").value.trim().slice(0, 180),
-        showcaseLink: /^https?:\/\//i.test(byId("communityShowcaseLink").value.trim()) ? byId("communityShowcaseLink").value.trim().slice(0, 300) : "",
         showcase: [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge),
-        theme: document.querySelector("[data-profile-theme].active")?.dataset.profileTheme || "default",
-        private: byId("communityPrivateProfile").checked,
-        pinned: savedProfile.pinned || []
+        theme: "default"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
       closeProfileEditor(true);
