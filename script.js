@@ -728,7 +728,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
-    byId("communityModal").addEventListener("click", (event) => { if(event.target===byId("communityModal"))closeCommunityModal(); });
+    byId("communityModal").addEventListener("click", (event) => {
+      const modal = byId("communityModal");
+      const form = byId("communityProfileForm");
+      if (!form.hidden && modal.classList.contains("msrp-editor-open")) {
+        if (event.target === modal || event.target === byId("communityFullProfile")) {
+          closeProfileEditor();
+        }
+        return;
+      }
+      if (event.target === modal) closeCommunityModal();
+    });
     let profileEditorOriginalTheme = "default";
     function openProfileEditor() {
       const modal = byId("communityModal");
