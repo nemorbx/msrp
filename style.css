@@ -5200,3 +5200,61 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
     flex: 0 1 auto !important;
   }
 }
+
+
+/* MSRP COMMUNITY PROFILE — reference-matched final layout */
+#communityModal:not([hidden]) #communityFullProfile .community-profile-back-row{margin:0 0 14px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-back-everyone{display:flex!important;align-items:center!important;gap:9px!important;width:100%!important;min-height:48px!important;padding:0 16px!important;color:#edf4fb!important;text-align:left!important;background:#151e26!important;border:1px solid #43515e!important;border-radius:12px!important;font-size:14px!important;font-weight:750!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-hero{display:block!important;width:100%!important;margin:0 0 16px!important;padding:0!important;overflow:visible!important;background:transparent!important;border:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner{display:block!important;position:relative!important;height:240px!important;min-height:240px!important;max-height:240px!important;margin:0!important;padding:0!important;border:1px solid #a5a9a9!important;border-bottom:0!important;border-radius:19px 19px 0 0!important;background:linear-gradient(115deg,#ffd34f 0%,#bd861c 55%,#59451b 100%)!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner:before,#communityModal:not([hidden]) #communityFullProfile .community-full-banner:after{display:none!important;content:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity{position:relative!important;z-index:2!important;display:flex!important;align-items:center!important;flex-flow:row nowrap!important;gap:20px!important;width:100%!important;min-height:154px!important;height:auto!important;margin:-1px 0 0!important;padding:0 24px 18px!important;box-sizing:border-box!important;background:linear-gradient(180deg,#20272f 0%,#111820 100%)!important;border:1px solid #53606a!important;border-top:0!important;border-radius:0 0 19px 19px!important;overflow:visible!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar{position:relative!important;z-index:4!important;display:grid!important;place-items:center!important;flex:0 0 130px!important;width:130px!important;height:130px!important;margin:-82px 0 0!important;padding:0!important;box-sizing:border-box!important;border:4px solid #111820!important;outline:0!important;border-radius:50%!important;background:#26394a!important;color:#eaf4fb!important;font-size:30px!important;font-weight:800!important;overflow:hidden!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;border-radius:50%!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-name{position:relative!important;z-index:3!important;flex:1 1 auto!important;min-width:0!important;padding:0!important;margin-top:8px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-name h2{display:block!important;margin:0 0 14px!important;color:#f5f8fb!important;font-size:29px!important;line-height:1.15!important;font-weight:800!important;letter-spacing:-.5px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-role-row{display:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:8px 17px!important;margin:0!important;color:#d9e5ef!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats span{display:inline-flex!important;align-items:center!important;gap:5px!important;color:#dce7f1!important;font-size:13px!important;line-height:1.35!important;font-weight:650!important;white-space:nowrap!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats svg{display:inline-block!important;width:16px!important;height:16px!important;fill:none!important;stroke:#54baff!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:0 0 auto!important;gap:10px!important;margin:0 0 0 auto!important;padding:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-primary-button{min-width:152px!important;height:58px!important;padding:0 22px!important;border:0!important;border-radius:13px!important;background:#ffd54a!important;color:#171a1d!important;font-size:15px!important;font-weight:800!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action{display:grid!important;place-items:center!important;width:58px!important;height:58px!important;min-width:58px!important;margin:0!important;padding:0!important;border:1px solid #4b5965!important;border-radius:13px!important;background:#202a33!important;color:#f2f6fa!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action svg{display:block!important;width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action[data-full-like] svg{fill:#f2f6fa!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-content{display:block!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;width:100%!important;margin:0 0 16px!important;padding:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats>div{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:7px!important;min-width:0!important;min-height:92px!important;padding:14px 18px!important;box-sizing:border-box!important;background:#101820!important;border:1px solid #46545f!important;border-radius:16px!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats strong{color:#f3f7fa!important;font-size:22px!important;line-height:1.15!important;font-weight:800!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats strong small{font-size:12px!important;color:#91a6b9!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-stats span{font-size:13px!important;color:#54baff!important;line-height:1.3!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-columns{display:block!important;width:100%!important;margin:0!important;padding:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-main-column{display:block!important;width:100%!important;margin:0!important;padding:0!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-side-column{display:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel{display:block!important;width:100%!important;min-width:0!important;min-height:110px!important;margin:0!important;padding:20px 22px!important;box-sizing:border-box!important;background:#101820!important;border:1px solid #46545f!important;border-radius:17px!important;box-shadow:none!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel>.community-eyebrow{display:block!important;margin:0 0 14px!important;color:#54baff!important;font-size:13px!important;letter-spacing:.2px!important;font-weight:800!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-panel>p{margin:0!important;color:#c6d5e2!important;font-size:16px!important;line-height:1.5!important}
+#communityModal:not([hidden]) #communityFullProfile .community-full-disclaimer{display:none!important}
+@media(max-width:1100px){
+ #communityModal:not([hidden]) #communityFullProfile .community-full-identity{flex-wrap:wrap!important;gap:14px!important;padding:0 18px 18px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-avatar{flex-basis:104px!important;width:104px!important;height:104px!important;margin-top:-62px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-name h2{font-size:24px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-actions{width:100%!important;justify-content:flex-start!important;margin:0!important;flex-wrap:wrap!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:640px){
+ #communityModal:not([hidden]) #communityFullProfile .community-full-banner{height:170px!important;min-height:170px!important;max-height:170px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-identity{gap:12px!important;padding:0 13px 16px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-avatar{flex-basis:82px!important;width:82px!important;height:82px!important;margin-top:-48px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-name{margin-top:6px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-name h2{font-size:21px!important;margin-bottom:10px!important;overflow-wrap:anywhere!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats{gap:7px 11px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats span{font-size:11px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-actions{gap:7px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-primary-button{min-width:110px!important;height:44px!important;padding:0 13px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-actions .community-square-action{width:44px!important;height:44px!important;min-width:44px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-stats>div{min-height:76px!important;padding:11px 12px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-stats strong{font-size:18px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-panel{padding:16px!important}
+}
