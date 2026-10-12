@@ -4926,8 +4926,23 @@ body:has(.dashboard-page.active) .member-main button:active, body:has(.dashboard
 /* Roblox panel and minimal colored achievement badges */
 
 /* MSRP Community Profile — authoritative layout */
-.community-modal-backdrop.profile-open{position:static!important;inset:auto!important;display:block!important;width:100%!important;height:auto!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;background:transparent!important;backdrop-filter:none!important}
+/* Community profile viewer is a real overlay; it must never become part of the dashboard layout. */
+.community-modal-backdrop.profile-open{
+  position:fixed!important;inset:0!important;z-index:9999!important;
+  display:block!important;width:100vw!important;height:100vh!important;height:100dvh!important;
+  max-width:none!important;max-height:none!important;margin:0!important;
+  padding:20px!important;box-sizing:border-box!important;overflow:auto!important;
+  background:rgba(3,8,14,.76)!important;backdrop-filter:blur(5px)!important;
+}
 .community-modal-backdrop.profile-open[hidden]{display:none!important}
+.community-modal-backdrop.profile-open .community-modal.community-modal-fullscreen{
+  position:relative!important;inset:auto!important;display:block!important;
+  width:min(920px,100%)!important;max-width:920px!important;min-width:0!important;
+  height:auto!important;max-height:none!important;min-height:0!important;
+  margin:0 auto!important;padding:0!important;overflow:visible!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  box-shadow:none!important;animation:none!important;transform:none!important;
+}
 .community-modal.community-modal-fullscreen{position:static!important;inset:auto!important;transform:none!important;display:block!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;animation:none!important}
 #communityModal:not([hidden]) .community-modal-close{display:none!important}
 #communityFullProfile[hidden]{display:none!important}
