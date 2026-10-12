@@ -607,6 +607,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
         const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
         const hasShowcase = own && Array.isArray(savedProfile.showcase) && savedProfile.showcase.length > 0;
+        const currentBadgeCatalog = own ? getOwnedShowcaseBadges() : [];
+        const totalCreatedBadges = currentBadgeCatalog.length;
+        const badgesObtained = own ? (Array.isArray(savedProfile.showcase) ? savedProfile.showcase.length : 0) : 0;
       fullProfile.innerHTML = `
           <div class="msrp-reference-profile">
             <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
@@ -634,7 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <section class="msrp-ref-stat-grid">
               <div class="msrp-ref-stat"><strong>${preview.joined}</strong><span>Joined</span></div>
               <div class="msrp-ref-stat"><strong>${preview.streak}</strong><span>Login streak</span></div>
-              <div class="msrp-ref-stat"><strong>${own ? (savedProfile.showcase || []).length : 0}<small> / 33</small></strong><span>Badges</span></div>
+              <div class="msrp-ref-stat"><strong>${badgesObtained}<small> / ${totalCreatedBadges}</small></strong><span>Badges</span></div>
               <div class="msrp-ref-stat"><strong>${preview.cosmetics}</strong><span>Cosmetics</span></div>
               <div class="msrp-ref-stat"><strong>${preview.last}</strong><span>Last seen</span></div>
             </section>
@@ -647,7 +650,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               <aside class="msrp-ref-side">
                 ${member.robloxUsername ? '<section class="msrp-ref-panel"><header><span>ROBLOX</span></header><div class="msrp-ref-roblox"><span>R</span><strong>'+safeText(member.robloxUsername)+'</strong></div></section>' : ''}
-                <section class="msrp-ref-panel msrp-ref-badges"><header><span>BADGES</span><span class="msrp-ref-muted">${own ? (savedProfile.showcase || []).length : 0} of 33</span></header>
+                <section class="msrp-ref-panel msrp-ref-badges"><header><span>BADGES</span><span class="msrp-ref-muted">${badgesObtained} of ${totalCreatedBadges}</span></header>
                   <div class="msrp-ref-badge-grid">
                     ${(own ? ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"] : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div data-default-badge="'+safeText(id)+'" class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/></svg></span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
                   </div>
