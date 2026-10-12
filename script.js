@@ -593,8 +593,13 @@ document.addEventListener("DOMContentLoaded", () => {
         byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
         const selectedTheme = savedProfile.theme || "default";
         document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
-        const selectedBanner = savedProfile.banner || "default";
-        document.querySelectorAll("[data-profile-banner]").forEach((button) => button.classList.toggle("active", button.dataset.profileBanner === selectedBanner));
+        const selectedBanner = profileBannerColors[savedProfile.banner] ? savedProfile.banner : "navy";
+        savedProfile.banner = selectedBanner;
+        document.querySelectorAll("[data-profile-banner]").forEach((button) => {
+          const active = button.dataset.profileBanner === selectedBanner;
+          button.classList.toggle("active", active);
+          button.setAttribute("aria-pressed", String(active));
+        });
         syncShowcaseBadgePicker();
       }
       {
@@ -617,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="msrp-reference-profile">
             <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
             <section class="msrp-ref-hero">
-              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")} ${own && savedProfile.banner === "moonlit-blossoms" ? "msrp-ref-banner-moonlit" : ""}" ${own && savedProfile.banner === "moonlit-blossoms" ? 'style="background-image:url(\'assets/moonlit-blossoms.png\')"' : ""}>${(own && (savedProfile.theme || "default") === "snowfall") ? '<span class="msrp-snowfall-layer" aria-hidden="true"></span>' : ""}</div>
+              <div class="msrp-ref-banner profile-theme-default" style="background-color:${own ? profileBannerColor(savedProfile.banner) : profileBannerColors.navy}!important;background-image:none!important" aria-label="Profile banner"></div>
               <div class="msrp-ref-identity">
                 <span class="community-avatar msrp-ref-avatar">${(own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl ? '<img src="' + safeText((own && sessionStorage.getItem("msrp_discord_avatar")) || member.avatarUrl) + '" alt="Discord profile picture" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
                 <div class="msrp-ref-person">
@@ -846,8 +851,9 @@ document.addEventListener("DOMContentLoaded", () => {
         savedProfile.banner = profileEditorOriginalBanner || "default";
         const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
         if (banner) {
-          banner.className = "msrp-ref-banner profile-theme-" + savedProfile.theme + (savedProfile.banner === "moonlit-blossoms" ? " msrp-ref-banner-moonlit" : "");
-          if (savedProfile.banner === "moonlit-blossoms") banner.style.setProperty("background-image", "url('assets/moonlit-blossoms.png')", "important"); else banner.style.setProperty("background-image", "none", "important");
+          banner.className = "msrp-ref-banner profile-theme-default";
+          banner.style.setProperty("background-color", profileBannerColor(savedProfile.banner), "important");
+          banner.style.setProperty("background-image", "none", "important");
         }
         document.querySelectorAll("[data-profile-banner]").forEach((item) => item.classList.toggle("active", item.dataset.profileBanner === savedProfile.banner));
         document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item.dataset.profileTheme === savedProfile.theme));
@@ -878,26 +884,18 @@ document.addEventListener("DOMContentLoaded", () => {
     byId("communityBannerOptions").addEventListener("click", (event) => {
       const button = event.target.closest("[data-profile-banner]");
       if (!button) return;
-      savedProfile.banner = button.dataset.profileBanner;
-      document.querySelectorAll("[data-profile-banner]").forEach((item) => item.classList.toggle("active", item === button));
+      savedProfile.banner = profileBannerColors[button.dataset.profileBanner] ? button.dataset.profileBanner : "navy";
+      document.querySelectorAll("[data-profile-banner]").forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
       const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
       if (banner) {
-        banner.classList.toggle("msrp-ref-banner-moonlit", savedProfile.banner === "moonlit-blossoms");
-        if (savedProfile.banner === "moonlit-blossoms") banner.style.setProperty("background-image", "url('assets/moonlit-blossoms.png')", "important"); else banner.style.setProperty("background-image", "none", "important");
-        banner.setAttribute("aria-label", savedProfile.banner === "moonlit-blossoms" ? "Moonlit Blossoms profile banner" : "Default profile banner");
-      }
-    });
-    byId("communityThemeOptions").addEventListener("click", (event) => {
-      const button = event.target.closest("[data-profile-theme]");
-      if (!button) return;
-      document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
-      savedProfile.theme = button.dataset.profileTheme;
-      const banner = byId("communityFullProfile")?.querySelector(".msrp-ref-banner");
-      if (banner) {
-        banner.className = "msrp-ref-banner profile-theme-" + button.dataset.profileTheme + (savedProfile.banner === "moonlit-blossoms" ? " msrp-ref-banner-moonlit" : "");
-        if (savedProfile.banner === "moonlit-blossoms") banner.style.setProperty("background-image", "url('assets/moonlit-blossoms.png')", "important"); else banner.style.setProperty("background-image", "none", "important");
-        banner.classList.toggle("profile-theme-animated", button.dataset.profileTheme === "snowfall");
-        banner.setAttribute("aria-label", button.dataset.profileTheme === "snowfall" ? "Animated snowfall banner" : "Profile banner");
+        banner.className = "msrp-ref-banner profile-theme-default";
+        banner.style.setProperty("background-color", profileBannerColor(savedProfile.banner), "important");
+        banner.style.setProperty("background-image", "none", "important");
+        banner.setAttribute("aria-label", button.querySelector("strong")?.textContent + " profile banner");
       }
     });
     byId("communityEditorClose").addEventListener("click", () => closeProfileEditor());
@@ -919,8 +917,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pronouns: byId("communityPronouns").value.trim(),
         bio: byId("communityBio").value.trim(),
         showcase: Array.isArray(savedProfile.showcase) ? savedProfile.showcase.slice(0, 6) : [],
-        theme: savedProfile.theme || "default",
-        banner: savedProfile.banner || "default"
+        theme: "default",
+        banner: profileBannerColors[savedProfile.banner] ? savedProfile.banner : "navy"
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
       closeProfileEditor(true);
