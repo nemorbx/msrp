@@ -6049,3 +6049,19 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .own
   .msrp-admin-badge-icon{width:46px!important;height:46px!important;min-width:46px!important}
   .msrp-admin-badge-actions{grid-column:2;justify-content:flex-start!important}
 }
+
+
+/* Profile badge default: a circular star medallion colored by rarity. */
+.msrp-reference-profile .msrp-ref-custom-badge .msrp-ref-badge-art{
+  display:grid!important;place-items:center!important;
+  width:42px!important;height:42px!important;min-width:42px!important;
+  border-radius:50%!important;border:1px solid currentColor!important;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.035)!important;
+}
+.msrp-reference-profile .msrp-ref-custom-badge .msrp-ref-badge-art .msrp-badge-star{
+  width:21px!important;height:21px!important;color:currentColor!important;
+}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-common .msrp-ref-badge-art{color:#d1d5db!important;background:#333b46!important;border-color:#747f8d!important}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-uncommon .msrp-ref-badge-art{color:#4ade80!important;background:#173d2b!important;border-color:#36a766!important}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-rare .msrp-ref-badge-art{color:#60a5fa!important;background:#172f55!important;border-color:#4387dc!important}
+.msrp-reference-profile .msrp-ref-custom-badge.rarity-legendary .msrp-ref-badge-art{color:#facc15!important;background:#493b16!important;border-color:#c7a62c!important}
