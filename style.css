@@ -6121,3 +6121,12 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-
 
 /* Hidden default badges stay hidden even under the editor's high-specificity card styles. */
 #communityModal.msrp-editor-open [data-showcase-badge][hidden]{display:none!important}
+
+
+/* Profile editor backdrop: blur and dim the page behind the centered editor,
+   matching the supplied reference instead of adding outlines to controls. */
+#communityModal.msrp-editor-open {
+  background: rgba(3, 8, 14, .68) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+}
