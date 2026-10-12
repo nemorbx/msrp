@@ -533,9 +533,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span class="community-eyebrow">ABOUT</span>
                   <p>${safeText(own ? (savedProfile.bio || 'Nothing here yet.') : (preview.about || 'Nothing here yet.'))}</p>
                 </section>
-                <section class="community-full-panel community-collectibles-panel">
-                  <span class="community-eyebrow">COLLECTIBLES</span>
-                  <p class="community-empty-state">Nothing here yet.</p>
+                <section class="community-full-panel community-showcase-panel">
+                  <span class="community-eyebrow">SHOWCASE</span>
+                  <p class="community-empty-state">Nothing on show yet.</p>
                 </section>
               </div>
               <aside class="community-full-side-column">
