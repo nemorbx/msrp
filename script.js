@@ -507,66 +507,57 @@ document.addEventListener("DOMContentLoaded", () => {
         const showcaseLink = own && /^https?:\/\//i.test(savedProfile.showcaseLink || "") ? savedProfile.showcaseLink : "";
       const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim() || (savedProfile.showcaseDescription || "").trim() || showcaseLink);
       fullProfile.innerHTML = `
-          <div class="community-profile-back-row">
-            <button type="button" class="community-back-everyone" data-profile-back>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span>Everyone</span>
-            </button>
-          </div>
-          <div class="community-full-hero">
-            <div class="community-full-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}"></div>
-            <div class="community-full-identity">
-              <span class="community-avatar community-full-avatar">${member.avatarUrl ? '<img src="' + safeText(member.avatarUrl) + '" alt="" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
-              <div class="community-full-name">
-                <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
-                ${own && savedProfile.status ? '<p class="community-profile-status">'+safeText(savedProfile.status)+'</p>' : ''}
-                ${own && savedProfile.pronouns ? '<span class="community-profile-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
-                ${own && (savedProfile.pinned || []).length ? '<div class="community-profile-pinned-badges">'+savedProfile.pinned.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-pinned-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/><path d="M10.7 17q1.3 1.1 2.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : ''}
-                <div class="community-full-mini-stats">
-                  <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg> ${member.views || 0} views</span>
-                  <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></svg> ${member.likes + (liked ? 1 : 0)} likes</span>
-                  <span>${communityState.following.size} followers</span><span>${communityState.following.size} following</span><span>0 friends</span>
+          <div class="msrp-reference-profile">
+            <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
+            <section class="msrp-ref-hero">
+              <div class="msrp-ref-banner profile-theme-${safeText(own ? (savedProfile.theme || "default") : "default")}"></div>
+              <div class="msrp-ref-identity">
+                <span class="community-avatar msrp-ref-avatar">${member.avatarUrl ? '<img src="' + safeText(member.avatarUrl) + '" alt="" loading="eager" onerror="this.remove();this.parentElement.textContent=initials(member.name)">' : initials(member.name)}</span>
+                <div class="msrp-ref-person">
+                  <h2>${safeText(own ? (savedProfile.name || member.name) : member.name)}</h2>
+                  <div class="msrp-ref-handle">@${safeText((own ? (savedProfile.name || member.name) : member.name).toLowerCase().replace(/[^a-z0-9_]/g,""))}</div>
+                  ${own && savedProfile.status ? '<p class="msrp-ref-status">'+safeText(savedProfile.status)+'</p>' : ''}
+                  ${own && savedProfile.pronouns ? '<span class="msrp-ref-pronouns">'+safeText(savedProfile.pronouns)+'</span>' : ''}
+                  <div class="msrp-ref-badge-chips">
+                    ${(own && (savedProfile.pinned || []).length ? savedProfile.pinned : ["linked-up","early-supporter","3-day-streak"]).slice(0,3).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};return '<span class="msrp-ref-chip msrp-ref-chip-'+safeText(id)+'"><span class="msrp-ref-chip-dot"></span>'+safeText(labels[id]||id)+'</span>';}).join('')}
+                  </div>
+                  <div class="msrp-ref-social-stats"><span>♡ ${member.likes + (liked ? 1 : 0)} likes</span><span>◉ ${member.views || 0} views</span><span>${communityState.following.size} following</span></div>
+                </div>
+                <div class="msrp-ref-actions">
+                  <button type="button" class="msrp-ref-primary" ${own ? 'data-own-profile-edit' : 'data-full-follow="' + member.id + '"'}>${own ? 'Edit profile' : (following ? 'Following' : 'Follow')}</button>
+                  <button type="button" class="msrp-ref-icon-button" data-full-like="${member.id}" aria-label="Like profile" title="Like">♡</button>
+                  <button type="button" class="msrp-ref-icon-button" aria-label="Report profile" title="Report">⚑</button>
+                  <button type="button" class="msrp-ref-icon-button" data-profile-copy="${safeText(member.profileId)}" aria-label="Copy profile link" title="Copy profile link">↗</button>
                 </div>
               </div>
-              <div class="community-full-actions">
-                <button type="button" class="community-primary-button" ${own ? 'data-own-profile-edit' : 'data-full-follow="' + member.id + '"'}>${own ? 'Edit profile' : (following ? 'Following' : 'Follow')}</button>
-                <button type="button" class="community-secondary-button community-square-action" data-full-like="${member.id}" aria-label="Like profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>
-                <button type="button" class="community-secondary-button community-square-action" aria-label="Flag profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 1h13l-2.5 4L18 13H5"/></svg></button>
-                <button type="button" class="community-secondary-button community-square-action" data-profile-copy="${safeText(member.profileId)}" aria-label="Copy profile link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11 4.9M14 11a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.8-1.8"/></svg></button>
-              </div>
-            </div>
-          </div>
-          <div class="community-full-content">
-            <div class="community-full-stats">
-              <div><strong>${preview.joined}</strong><span>Joined</span></div>
-              <div><strong>${preview.streak}</strong><span>Login streak</span></div>
-              <div><strong>0 <small>/ 33</small></strong><span>Badges</span></div>
-              <div><strong>0</strong><span>Cosmetics</span></div>
-              <div><strong>${preview.last}</strong><span>Last seen</span></div>
-            </div>
-            <div class="community-full-columns">
-              <div class="community-full-main-column">
-                <section class="community-full-panel community-about-panel">
-                  <span class="community-eyebrow">ABOUT</span>
-                  <p>${safeText(own ? (savedProfile.bio || 'Nothing here yet.') : (preview.about || 'Nothing here yet.'))}</p>
-                </section>
-                <section class="community-full-panel community-showcase-panel">
-                  <span class="community-eyebrow">SHOWCASE</span>
-                  ${hasShowcase ? '<article class="community-custom-showcase-card"><strong>'+safeText(savedProfile.showcaseTitle || "Featured showcase")+"</strong>"+(savedProfile.showcaseDescription ? '<p>'+safeText(savedProfile.showcaseDescription)+"</p>" : "")+(showcaseLink ? '<a href="'+safeText(showcaseLink)+'" target="_blank" rel="noopener noreferrer">Open showcase ↗</a>' : "")+"</article>" : '<p class="community-empty-state">Nothing on show yet.</p>'}
+            </section>
+            <section class="msrp-ref-stat-grid">
+              <div class="msrp-ref-stat"><strong>${preview.joined}</strong><span>Joined</span></div>
+              <div class="msrp-ref-stat"><strong>${preview.streak}</strong><span>Login streak</span></div>
+              <div class="msrp-ref-stat"><strong>${own ? (savedProfile.showcase || []).length : 0}<small> / 33</small></strong><span>Badges</span></div>
+              <div class="msrp-ref-stat"><strong>${preview.cosmetics}</strong><span>Cosmetics</span></div>
+              <div class="msrp-ref-stat"><strong>${preview.last}</strong><span>Last seen</span></div>
+            </section>
+            <div class="msrp-ref-columns">
+              <div class="msrp-ref-main">
+                <section class="msrp-ref-panel"><header><span>ABOUT</span></header><p>${safeText(own ? (savedProfile.bio || "Nothing here yet.") : (preview.about || "Nothing here yet."))}</p></section>
+                <section class="msrp-ref-panel msrp-ref-showcase"><header><span>SHOWCASE</span><span class="msrp-ref-muted">Featured</span></header>
+                  ${hasShowcase ? '<article class="msrp-ref-showcase-card"><strong>'+safeText(savedProfile.showcaseTitle || "Featured showcase")+'</strong>'+(savedProfile.showcaseDescription ? '<p>'+safeText(savedProfile.showcaseDescription)+'</p>' : '')+(showcaseLink ? '<a href="'+safeText(showcaseLink)+'" target="_blank" rel="noopener noreferrer">Open showcase ↗</a>' : '')+'</article>' : '<div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">✧</span><strong>Nothing on show yet</strong><p>Featured profile items will appear here.</p></div>'}
                 </section>
               </div>
-              <aside class="community-full-side-column">
-                ${member.robloxUsername ? '<section class="community-full-panel community-roblox-panel"><div class="community-roblox-card"><span class="community-roblox-icon" aria-hidden="true">R</span><div class="community-roblox-copy"><span class="community-eyebrow">ROBLOX</span><strong>' + safeText(member.robloxUsername) + '</strong></div></div></section>' : ''}
-                <section class="community-full-panel community-badges-panel">
-                  <div class="community-badge-heading"><span class="community-eyebrow">BADGES</span><span>${own ? (savedProfile.showcase || []).length : 0} of 33</span></div>
-                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="6.5" r="3.2" fill="currentColor"/><circle cx="17" cy="6.5" r="3.2" fill="currentColor"/><circle cx="12" cy="13" r="8.2" fill="currentColor" opacity=".18"/><circle cx="12" cy="13" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="8.8" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><ellipse cx="15.2" cy="12" rx="2.2" ry="2.8" fill="currentColor"/><circle cx="9.3" cy="11.8" r=".65" fill="#fff"/><circle cx="14.7" cy="11.8" r=".65" fill="#fff"/><ellipse cx="12" cy="15.2" rx="1.7" ry="1.25" fill="currentColor"/><path d="M10.7 17q1.3 1.1 2.6 0" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">No badges yet.</p>'}
+              <aside class="msrp-ref-side">
+                ${member.robloxUsername ? '<section class="msrp-ref-panel"><header><span>ROBLOX</span></header><div class="msrp-ref-roblox"><span>R</span><strong>'+safeText(member.robloxUsername)+'</strong></div></section>' : ''}
+                <section class="msrp-ref-panel msrp-ref-badges"><header><span>BADGES</span><span class="msrp-ref-muted">${own ? (savedProfile.showcase || []).length : 0} of 33</span></header>
+                  <div class="msrp-ref-badge-grid">
+                    ${(own && (savedProfile.showcase || []).length ? savedProfile.showcase : ["linked-up","early-supporter","3-day-streak"]).map(id=>{const labels={"linked-up":"Linked Up","early-supporter":"Early Supporter","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket"};const label=labels[id]||id;return '<div class="msrp-ref-badge-item msrp-ref-badge-'+safeText(id)+'"><span class="msrp-ref-badge-art" aria-hidden="true">'+(id==="early-supporter"?"✦":id==="3-day-streak"?"ϟ":"●")+'</span><strong>'+safeText(label)+'</strong><small>Community badge</small></div>';}).join('')}
+                  </div>
                 </section>
-                <section class="community-full-panel community-cosmetics-panel">
-                  <span class="community-eyebrow">COSMETICS</span>
-                  <p class="community-empty-state">Nothing here yet.</p>
-                </section>
+                <section class="msrp-ref-panel"><header><span>COSMETICS</span></header><div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">◇</span><strong>Nothing here yet</strong><p>Collectibles will appear here.</p></div></section>
               </aside>
             </div>
+            <p class="msrp-ref-demo-note">Some profile statistics and badges are preview data until MSRP is connected to its live data source.</p>
           </div>`;
+
       }
       modal.hidden = false;
       document.body.classList.add("msrp-profile-page-open");
