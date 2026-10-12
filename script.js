@@ -546,14 +546,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </section>
                 <section class="community-full-panel community-showcase-panel">
                   <span class="community-eyebrow">SHOWCASE</span>
-                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 3.5-2 3.5 2-2-9"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">Nothing on show yet.</p>'}
+                  <p class="community-empty-state">Nothing on show yet.</p>
                 </section>
               </div>
               <aside class="community-full-side-column">
                 ${member.robloxUsername ? '<section class="community-full-panel community-roblox-panel"><div class="community-roblox-card"><span class="community-roblox-icon" aria-hidden="true">R</span><div class="community-roblox-copy"><span class="community-eyebrow">ROBLOX</span><strong>' + safeText(member.robloxUsername) + '</strong></div></div></section>' : ''}
                 <section class="community-full-panel community-badges-panel">
-                  <div class="community-badge-heading"><span class="community-eyebrow">BADGES</span><span>0 of 33</span></div>
-                  <p class="community-empty-state">No badges yet.</p>
+                  <div class="community-badge-heading"><span class="community-eyebrow">BADGES</span><span>${own ? (savedProfile.showcase || []).length : 0} of 33</span></div>
+                  ${own && (savedProfile.showcase || []).length ? '<div class="community-profile-showcase-list">'+savedProfile.showcase.map(id=>{const names={"linked-up":"Linked Up","3-day-streak":"3-Day Streak","window-shopper":"Window Shopper","news-reader":"News Reader","first-ticket":"First Ticket","early-supporter":"Early Supporter"};return '<span class="community-profile-showcase-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 15 6 19 6 19 10 21 13 18 16 18 20 14 20 11 22 8 19 4 19 4 15 2 12 5 9 5 5 9 5Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>'+safeText(names[id]||id)+'</span>';}).join('')+'</div>' : '<p class="community-empty-state">No badges yet.</p>'}
                 </section>
                 <section class="community-full-panel community-cosmetics-panel">
                   <span class="community-eyebrow">COSMETICS</span>
@@ -683,6 +683,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = event.target.closest("[data-profile-theme]");
       if (!button) return;
       document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
+      savedProfile.theme = button.dataset.profileTheme;
+      const banner = byId("communityFullProfile")?.querySelector(".community-full-banner");
+      if (banner) {
+        banner.className = "community-full-banner profile-theme-" + button.dataset.profileTheme;
+      }
     });
     byId("communityEditorClose").addEventListener("click", closeProfileEditor);
     byId("communityModalCancel").addEventListener("click", () => {
@@ -703,7 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
       closeProfileEditor();
-      closeCommunityModal();
+      openCommunityModal(null, false);
     });
     renderCommunity();
     const routedProfileId = profileRouteId();
