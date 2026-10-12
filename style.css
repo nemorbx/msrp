@@ -6130,3 +6130,11 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-
   -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(8px) !important;
 }
+
+
+/* Keep the profile editor visually still: no transitions or entrance motion. */
+html:has(.msrp-profile-page-open), body.msrp-profile-page-open { scroll-behavior:auto!important; }
+.msrp-editor-open *, .msrp-editor-open *::before, .msrp-editor-open *::after,
+.msrp-profile-page-open *, .msrp-profile-page-open *::before, .msrp-profile-page-open *::after {
+  animation:none!important; transition:none!important; scroll-behavior:auto!important;
+}
