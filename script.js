@@ -757,15 +757,62 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.target === communityEditorModal) closeProfileEditor();
     });
     let profileEditorOriginalTheme = "default";
-    const showcaseBadgeIds = ["linked-up","3-day-streak","window-shopper","news-reader","first-ticket","early-supporter"];
+    const defaultBadgeCatalog = [
+      {id:"linked-up",name:"Linked Up",rarity:"Common",art:"♙",tone:"blue"},
+      {id:"3-day-streak",name:"3-Day Streak",rarity:"Uncommon",art:"♙",tone:"green"},
+      {id:"window-shopper",name:"Window Shopper",rarity:"Uncommon",art:"♙",tone:"green"},
+      {id:"news-reader",name:"News Reader",rarity:"Common",art:"♙",tone:"purple"},
+      {id:"first-ticket",name:"First Ticket",rarity:"Common",art:"♙",tone:"blue"},
+      {id:"early-supporter",name:"Early Supporter",rarity:"Rare",art:"♙",tone:"gold"}
+    ];
+    function getOwnedShowcaseBadges() {
+      let hidden = [], custom = [];
+      try { hidden = JSON.parse(localStorage.getItem("msrp_hidden_default_badges_preview") || "[]"); } catch (_) {}
+      try { custom = JSON.parse(localStorage.getItem("msrp_badge_catalog_preview") || "[]"); } catch (_) {}
+      const hiddenSet = new Set(Array.isArray(hidden) ? hidden : []);
+      const defaults = defaultBadgeCatalog.filter((badge) => !hiddenSet.has(badge.id));
+      const customBadges = (Array.isArray(custom) ? custom : []).filter((badge) => badge && badge.name).map((badge) => ({
+        id: "custom:" + String(badge.id || badge.name).toLowerCase().replace(/[^a-z0-9]+/g,"-"),
+        name: String(badge.name),
+        rarity: ({common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"})[String(badge.rarity || "common").toLowerCase()] || "Common",
+        tone: "purple",
+        custom: true
+      }));
+      return [...defaults, ...customBadges];
+    }
     function syncShowcaseBadgePicker() {
-      const selected = Array.isArray(savedProfile.showcase) ? savedProfile.showcase : [];
-      document.querySelectorAll("[data-showcase-badge]").forEach((button) => {
-        const active = selected.includes(button.dataset.showcaseBadge);
-        button.classList.toggle("selected", active);
-        button.setAttribute("aria-pressed", String(active));
-      });
+      const picker = byId("communityBadgePicker");
       const count = byId("communityShowcaseCount");
+      const owned = getOwnedShowcaseBadges();
+      const ownedIds = new Set(owned.map((badge) => badge.id));
+      const selected = (Array.isArray(savedProfile.showcase) ? savedProfile.showcase : []).filter((id) => ownedIds.has(id)).slice(0,6);
+      savedProfile.showcase = selected;
+      if (picker) {
+        picker.innerHTML = "";
+        if (!owned.length) {
+          const empty = document.createElement("p");
+          empty.className = "msrp-badge-picker-empty";
+          empty.textContent = "You don't own any badges to showcase yet.";
+          picker.appendChild(empty);
+        } else {
+          owned.forEach((badge) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "msrp-badge-pick" + (selected.includes(badge.id) ? " selected" : "");
+            button.dataset.showcaseBadge = badge.id;
+            button.setAttribute("aria-pressed", String(selected.includes(badge.id)));
+            const art = document.createElement("span");
+            art.className = "msrp-pick-badge-art badge-" + (badge.tone || "blue");
+            art.textContent = badge.art || "✦";
+            const name = document.createElement("strong");
+            name.textContent = badge.name;
+            const rarity = document.createElement("small");
+            rarity.textContent = badge.rarity + " Badge";
+            button.append(art,name,rarity);
+            picker.appendChild(button);
+          });
+        }
+      }
       if (count) count.textContent = String(selected.length);
     }
     function openProfileEditor() {
@@ -805,6 +852,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const button = event.target.closest("[data-showcase-badge]");
       if (!button) return;
       const id = button.dataset.showcaseBadge;
+      if (!getOwnedShowcaseBadges().some((badge) => badge.id === id)) return;
       const selected = Array.isArray(savedProfile.showcase) ? [...savedProfile.showcase] : [];
       const index = selected.indexOf(id);
       if (index >= 0) selected.splice(index, 1);
