@@ -634,7 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (grid) {
               const card = document.createElement("div");
               card.className = "msrp-ref-badge-item msrp-ref-custom-badge rarity-" + String(badge.rarity || "common");
-              const art = document.createElement("span"); art.className = "msrp-ref-badge-art"; addBadgeIcon(art,badge.icon || "ban-hammer");
+              const art = document.createElement("span"); art.className = "msrp-ref-badge-art"; art.innerHTML = '<svg class="msrp-badge-star" viewBox="0 0 24 24" role="img" aria-label="Badge star" xmlns="http://www.w3.org/2000/svg"><path d="m12 2.7 2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.26l-5.7 3 1.09-6.35-4.62-4.5 6.38-.93z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1.2"/></svg>';
               const title = document.createElement("strong"); title.textContent = badge.name;
               const rarity = document.createElement("small"); rarity.textContent = ({common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"})[badge.rarity] || "Common";
               card.append(art,title,rarity); grid.prepend(card);
