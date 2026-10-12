@@ -6117,3 +6117,7 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-
 #communityModal.msrp-editor-open .msrp-editor-scroll { scrollbar-gutter:stable!important; }
 #communityModal.msrp-editor-open .msrp-editor-footer { position:sticky!important; bottom:0!important; }
 @media(max-width:600px){#communityModal.msrp-editor-open .msrp-pinned-option-row{grid-template-columns:minmax(0,1fr) 28px 28px auto!important;gap:4px!important;padding:6px!important}#communityModal.msrp-editor-open .msrp-pin-remove{padding:0 6px!important}}
+
+
+/* Hidden default badges stay hidden even under the editor's high-specificity card styles. */
+#communityModal.msrp-editor-open [data-showcase-badge][hidden]{display:none!important}
