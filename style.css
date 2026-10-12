@@ -5503,3 +5503,27 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 .msrp-theme-option[data-profile-theme="synthwave"] .msrp-theme-preview { background:linear-gradient(180deg,#231536 0 45%,#f45da7 46% 49%,#161023 50% 56%,#f45da7 57% 59%,#161023 60%)!important; }
 .msrp-theme-option[data-profile-theme="blood-moon"] .msrp-theme-preview { background:radial-gradient(circle at 65% 42%,#e54b4b 0 16%,transparent 17%),linear-gradient(135deg,#351019,#100a14)!important; }
 .msrp-theme-option[data-profile-theme="royal-gold"] .msrp-theme-preview { background:radial-gradient(circle at 75% 25%,#ffe28a 0 2px,transparent 4px),linear-gradient(135deg,#86601b,#271b0b)!important; }
+
+
+/* Reliable editor overlay: modal is temporarily moved directly under body by script.js */
+body.msrp-editor-visible { overflow:hidden!important; }
+body.msrp-editor-visible #communityModal.msrp-editor-open {
+ position:fixed!important; inset:0!important; width:100vw!important; height:100vh!important; height:100dvh!important;
+ display:flex!important; align-items:center!important; justify-content:center!important;
+ margin:0!important; padding:18px!important; box-sizing:border-box!important; overflow:hidden!important;
+ z-index:2147483647!important; background:rgba(0,0,0,.64)!important; backdrop-filter:blur(4px)!important;
+}
+body.msrp-editor-visible #communityModal.msrp-editor-open .community-modal {
+ position:relative!important; inset:auto!important; transform:none!important; margin:0!important;
+ width:min(550px,calc(100vw - 36px))!important; max-height:calc(100dvh - 36px)!important;
+ overflow:hidden!important; flex:none!important;
+}
+body.msrp-editor-visible #communityModal.msrp-editor-open .msrp-profile-editor {
+ display:flex!important; flex-direction:column!important; position:relative!important; inset:auto!important;
+ left:auto!important; top:auto!important; transform:none!important; width:100%!important; max-height:calc(100dvh - 38px)!important;
+ overflow:hidden!important; box-sizing:border-box!important;
+}
+body.msrp-editor-visible #communityModal.msrp-editor-open .msrp-editor-scroll {
+ min-height:0!important; overflow-y:auto!important; max-height:calc(100dvh - 150px)!important;
+}
+.msrp-showcase-option .msrp-showcase-medal svg { width:34px!important;height:34px!important; }
