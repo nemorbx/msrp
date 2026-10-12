@@ -5150,3 +5150,56 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
  #communityModal:not([hidden]) #communityFullProfile .community-full-avatar {flex-basis:82px!important;width:82px!important;height:82px!important}
  #communityModal:not([hidden]) #communityFullProfile .community-full-name {flex:1 1 calc(100% - 100px)!important;padding-top:8px!important}
 }
+
+
+/* FINAL profile hero correction: banner ends above a separate identity card, with the avatar overlapping the seam. */
+#communityModal:not([hidden]) #communityFullProfile .community-full-hero {
+  display:block!important; position:relative!important; overflow:visible!important;
+  background:transparent!important; border:0!important; border-radius:14px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-banner {
+  display:block!important; position:relative!important; height:230px!important;
+  min-height:230px!important; max-height:230px!important; margin:0!important;
+  background-size:cover!important; background-position:center!important;
+  border-radius:14px 14px 0 0!important; overflow:hidden!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-identity {
+  display:flex!important; position:relative!important; align-items:flex-start!important;
+  flex-flow:row nowrap!important; gap:16px!important; width:100%!important;
+  height:auto!important; min-height:166px!important; margin:0!important;
+  padding:18px 18px 18px 132px!important; box-sizing:border-box!important;
+  background:#20272f!important; border:1px solid rgba(170,190,210,.24)!important;
+  border-top:0!important; border-radius:0 0 14px 14px!important;
+  overflow:visible!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-avatar {
+  display:grid!important; position:absolute!important; left:20px!important; top:-54px!important;
+  z-index:8!important; width:104px!important; height:104px!important;
+  min-width:104px!important; flex:0 0 104px!important; margin:0!important;
+  border:4px solid #20272f!important; outline:3px solid #35bfff!important;
+  outline-offset:1px!important; border-radius:50%!important; overflow:hidden!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-name {
+  display:block!important; flex:1 1 auto!important; min-width:0!important;
+  padding:0!important; margin:0!important; align-self:flex-start!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-name h2 {
+  margin:0 0 7px!important; font-size:23px!important; line-height:1.2!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-profile-pinned-badges {
+  display:flex!important; flex-wrap:wrap!important; gap:7px!important; margin:8px 0!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-mini-stats {
+  display:flex!important; flex-wrap:wrap!important; gap:6px 12px!important; margin-top:8px!important;
+}
+#communityModal:not([hidden]) #communityFullProfile .community-full-actions {
+  display:flex!important; flex:0 0 auto!important; align-self:flex-start!important;
+  gap:8px!important; margin:0 0 0 auto!important; padding:0!important;
+}
+@media(max-width:760px) {
+ #communityModal:not([hidden]) #communityFullProfile .community-full-banner {height:170px!important;min-height:170px!important;max-height:170px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-identity {flex-wrap:wrap!important;padding:58px 14px 16px!important;gap:12px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-avatar {width:84px!important;height:84px!important;min-width:84px!important;top:-44px!important;left:14px!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-name {flex:1 1 100%!important}
+ #communityModal:not([hidden]) #communityFullProfile .community-full-actions {flex:1 1 100%!important;margin:8px 0 0!important;justify-content:flex-start!important}
+}
