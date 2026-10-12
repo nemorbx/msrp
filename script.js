@@ -336,6 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = $("badgeAdminList");
     if (!form || !list) return;
     const key = "msrp_badge_catalog_preview";
+    const addBadgeIcon = (target, value) => { if (value === "ban-hammer") { target.innerHTML = '<svg class="msrp-ban-hammer-icon" viewBox="0 0 48 48" role="img" aria-label="Turquoise ban hammer" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><path d="M12 36 29 19"/><path d="m8 31 9 9"/><path d="m21 8 7-4 16 16-4 7z"/><path d="m18 11 17 17"/><path d="M5 44h23"/></g><path d="m21 8 7-4 16 16-4 7z" fill="currentColor" opacity=".22"/></svg>'; } else { target.textContent = value || ""; } };
     const rarity = {common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"};
     const ruleLabels = {manual:"Test badge · my profile",account:"Account linked",early:"Early supporter",streak:"Activity streak"};
     const read = () => { try { const data=JSON.parse(localStorage.getItem(key)||"[]"); return Array.isArray(data)?data:[]; } catch(e) { return []; } };
@@ -344,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textOnly = (tag,value) => { const el=document.createElement(tag); el.textContent=value||""; return el; };
     const showMessage = (value) => { const el=$("badgeAdminMessage"); el.textContent=value; el.hidden=false; };
     const persist = () => localStorage.setItem(key,JSON.stringify(badges));
-    const reset = () => { form.reset(); $("badgeEditId").value=""; $("badgeIcon").value="🏆"; $("badgeFormTitle").textContent="Create a badge"; $("badgeSaveButton").textContent="Create badge"; $("badgeCancelEdit").hidden=true; };
+    const reset = () => { form.reset(); $("badgeEditId").value=""; $("badgeIcon").value="ban-hammer"; $("badgeFormTitle").textContent="Create a badge"; $("badgeSaveButton").textContent="Create badge"; $("badgeCancelEdit").hidden=true; };
     const render = () => {
       $("badgeAdminCount").textContent=badges.length+(badges.length===1?" badge":" badges");
       $("badgeAdminTotal").textContent=badges.length+" total";
@@ -352,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!badges.length){ list.appendChild(textOnly("p","No badges yet. Create your first badge above.")); return; }
       badges.forEach((b)=>{
         const card=document.createElement("article"); card.className="msrp-admin-badge rarity-"+b.rarity;
-        const icon=textOnly("div",b.icon); icon.className="msrp-admin-badge-icon";
+        const icon=document.createElement("div"); icon.className="msrp-admin-badge-icon"; addBadgeIcon(icon,b.icon);
         const copy=document.createElement("div"); copy.className="msrp-admin-badge-copy";
         copy.appendChild(textOnly("strong",b.name)); copy.appendChild(textOnly("p",b.description||"No description added."));
         const meta=document.createElement("div"); meta.className="msrp-admin-badge-meta";
@@ -633,7 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (grid) {
               const card = document.createElement("div");
               card.className = "msrp-ref-badge-item msrp-ref-custom-badge rarity-" + String(badge.rarity || "common");
-              const art = document.createElement("span"); art.className = "msrp-ref-badge-art"; art.textContent = badge.icon || "🏆";
+              const art = document.createElement("span"); art.className = "msrp-ref-badge-art"; addBadgeIcon(art,badge.icon || "ban-hammer");
               const title = document.createElement("strong"); title.textContent = badge.name;
               const rarity = document.createElement("small"); rarity.textContent = ({common:"Common",uncommon:"Uncommon",rare:"Rare",legendary:"Legendary"})[badge.rarity] || "Common";
               card.append(art,title,rarity); grid.prepend(card);
