@@ -5760,3 +5760,48 @@ body:has(.community-modal-backdrop.profile-open) .community-modal-backdrop.profi
 .msrp-reference-profile .msrp-ref-custom-chip.rarity-uncommon{background:#173d2b;border-color:#2e8050;color:#4ade80}
 .msrp-reference-profile .msrp-ref-custom-chip.rarity-rare{background:#172f55;border-color:#3465a0;color:#60a5fa}
 .msrp-reference-profile .msrp-ref-custom-chip.rarity-legendary{background:#493b16;border-color:#92751e;color:#facc15}
+
+
+/* Badge admin layout correction: tighten spacing and prevent the sidebar/nav from clipping. */
+.dashboard-body{
+  grid-template-columns:240px minmax(0,1fr)!important;
+  gap:12px!important;
+  align-items:start!important;
+}
+.member-sidebar{
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:12px!important;
+}
+.member-nav-item{
+  min-height:44px!important;
+  margin:0 0 4px!important;
+  gap:10px!important;
+  padding:0 10px!important;
+  flex-shrink:0!important;
+}
+.sidebar-user{margin-top:12px!important;flex-shrink:0!important}
+.member-main{min-width:0!important;width:100%!important}
+.dashboard-view{min-width:0!important;max-width:100%!important;overflow:hidden}
+.msrp-badge-admin{gap:12px!important;padding:16px!important}
+.msrp-admin-heading{padding:18px!important}
+.msrp-admin-form,.msrp-admin-list-panel{padding:15px!important}
+.msrp-admin-fields{gap:10px!important}
+@media(max-width:900px){
+  .dashboard-body{grid-template-columns:1fr!important;gap:12px!important}
+  .member-sidebar{min-height:0!important}
+  .msrp-badge-admin{padding:12px!important;gap:10px!important}
+  .msrp-admin-heading{padding:15px!important}
+}
+@media(max-width:560px){
+  .member-nav-item{min-height:46px!important}
+  .msrp-badge-admin{padding:10px!important}
+  .msrp-admin-form,.msrp-admin-list-panel{padding:12px!important}
+}
+
+/* Custom turquoise ban-hammer SVG badge icon (not a Unicode emoji). */
+.msrp-ban-hammer-icon{width:30px;height:30px;display:block;flex:0 0 auto;color:#31d8d0}
+.msrp-admin-badge-icon .msrp-ban-hammer-icon{width:32px;height:32px}
+.msrp-ref-badge-art .msrp-ban-hammer-icon{width:25px;height:25px}
