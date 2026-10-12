@@ -6065,3 +6065,40 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .own
 .msrp-reference-profile .msrp-ref-custom-badge.rarity-uncommon .msrp-ref-badge-art{color:#4ade80!important;background:#173d2b!important;border-color:#36a766!important}
 .msrp-reference-profile .msrp-ref-custom-badge.rarity-rare .msrp-ref-badge-art{color:#60a5fa!important;background:#172f55!important;border-color:#4387dc!important}
 .msrp-reference-profile .msrp-ref-custom-badge.rarity-legendary .msrp-ref-badge-art{color:#facc15!important;background:#493b16!important;border-color:#c7a62c!important}
+
+
+/* Administrator nav: match the plain, unselected Inventory-style button.
+   Only the selected state receives the dashboard's active outline. */
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item{
+  border:1px solid transparent!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-icon{
+  border:1px solid rgba(69,130,225,.38)!important;
+  outline:none!important;
+  box-shadow:none!important;
+  border-radius:12px!important;
+  background:rgba(27,74,145,.22)!important;
+  color:#72aaff!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item:hover{
+  border-color:transparent!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:rgba(31,77,147,.10)!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active{
+  border-color:transparent!important;
+  outline:none!important;
+  box-shadow:none!important;
+  background:rgba(31,77,147,.16)!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .ownership-icon{
+  border-color:#4d91f5!important;
+  background:rgba(35,89,170,.35)!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-icon svg{
+  width:22px!important;height:22px!important;stroke:currentColor!important;fill:none!important;
+}
