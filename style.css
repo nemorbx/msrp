@@ -5940,3 +5940,40 @@ body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .own
   background:rgba(35,89,170,.4)!important;
   border-color:#4d91f5!important;
 }
+
+
+/* Administrator button: keep dark blue fill, remove the permanent outline. */
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item{
+  border-color:transparent!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#d9e7ff!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item .ownership-icon{
+  color:#72aaff!important;
+  background:rgba(27,74,145,.25)!important;
+  border:1px solid rgba(69,130,225,.35)!important;
+  box-shadow:none!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item:hover{
+  background:rgba(31,77,147,.16)!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  color:#f2f7ff!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item:hover .ownership-icon{
+  color:#9bc4ff!important;
+  background:rgba(35,89,170,.4)!important;
+  border-color:rgba(77,145,245,.65)!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active{
+  color:#f2f7ff!important;
+  background:rgba(31,77,147,.28)!important;
+  border-color:rgba(72,133,232,.8)!important;
+  box-shadow:inset 3px 0 0 #4b91ff!important;
+}
+body:has(.dashboard-page.active) .member-nav-item.ownership-nav-item.active .ownership-icon{
+  color:#9bc4ff!important;
+  background:rgba(35,89,170,.4)!important;
+  border-color:#4d91f5!important;
+}
