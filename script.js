@@ -589,8 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
           {joined:"Sep 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""}
         ];
         const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
-        const showcaseLink = own && /^https?:\/\//i.test(savedProfile.showcaseLink || "") ? savedProfile.showcaseLink : "";
-      const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim() || (savedProfile.showcaseDescription || "").trim() || showcaseLink);
+        const hasShowcase = own && Boolean((savedProfile.showcaseTitle || "").trim());
       fullProfile.innerHTML = `
           <div class="msrp-reference-profile">
             <div class="msrp-ref-back"><button type="button" data-profile-back><span aria-hidden="true">←</span> Everyone</button></div>
@@ -625,7 +624,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="msrp-ref-main">
                 <section class="msrp-ref-panel"><header><span>ABOUT</span></header><p>${safeText(own ? (savedProfile.bio || "Nothing here yet.") : (preview.about || "Nothing here yet."))}</p></section>
                 <section class="msrp-ref-panel msrp-ref-showcase"><header><span>SHOWCASE</span><span class="msrp-ref-muted">Featured</span></header>
-                  ${hasShowcase ? '<article class="msrp-ref-showcase-card"><strong>'+safeText(savedProfile.showcaseTitle || "Featured showcase")+'</strong>'+(savedProfile.showcaseDescription ? '<p>'+safeText(savedProfile.showcaseDescription)+'</p>' : '')+(showcaseLink ? '<a href="'+safeText(showcaseLink)+'" target="_blank" rel="noopener noreferrer">Open showcase ↗</a>' : '')+'</article>' : '<div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">✧</span><strong>Nothing on show yet</strong><p>Featured profile items will appear here.</p></div>'}
+                  ${hasShowcase ? '<article class="msrp-ref-showcase-card"><strong>'+safeText(savedProfile.showcaseTitle || "Featured showcase")+'</strong>'+'</article>' : '<div class="msrp-ref-empty"><span class="msrp-ref-empty-icon">✧</span><strong>Nothing on show yet</strong><p>Featured profile items will appear here.</p></div>'}
                 </section>
               </div>
               <aside class="msrp-ref-side">
