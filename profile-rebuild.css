@@ -273,3 +273,15 @@
 #communityEditorModal .msrp-badge-picker-section{display:block!important}
 .msrp-reference-profile .msrp-ref-showcase,.msrp-reference-profile .msrp-ref-showcase-badges{display:block!important}
 .msrp-reference-profile .msrp-ref-badge-chips{display:flex!important}
+
+
+/* Free selectable profile banners */
+.msrp-banner-picker-section .msrp-editor-section-heading span{font-size:12px;font-weight:600;color:#91a8c7}
+.msrp-banner-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.msrp-banner-option{display:flex;flex-direction:column;gap:7px;text-align:left;padding:9px;border:1px solid rgba(145,168,199,.22);border-radius:12px;background:rgba(11,21,36,.7);color:#eaf2ff;cursor:pointer;min-width:0}
+.msrp-banner-option.active{border-color:#5aa7ff;box-shadow:0 0 0 1px rgba(90,167,255,.3)}
+.msrp-banner-option-preview{display:block;width:100%;aspect-ratio:2.75/1;border-radius:7px;background-color:#263b50;background-position:center;background-size:cover}
+.msrp-banner-moonlit-preview{background-image:url('assets/moonlit-blossoms.jpg')}
+.msrp-banner-option strong{font-size:13px}
+.msrp-banner-option small{font-size:11px;color:#9aacc5}
+.msrp-ref-banner-moonlit{background-image:url('assets/moonlit-blossoms.jpg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
