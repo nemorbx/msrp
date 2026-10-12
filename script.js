@@ -477,9 +477,17 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.add("profile-open");
       panel.classList.add("community-modal-fullscreen");
       if (own) {
-        byId("communityDisplayName").value = savedProfile.name || "MSRP Member";
-        byId("communityBio").value = savedProfile.bio || "Proud member of Missouri State Roleplay.";
-        byId("communityAccent").value = savedProfile.accent || "cyan";
+        byId("communityStatus").value = savedProfile.status || "";
+        byId("communityPronouns").value = savedProfile.pronouns || "";
+        byId("communityBio").value = savedProfile.bio || "";
+        byId("communityBioCount").textContent = String((savedProfile.bio || "").length);
+        byId("communityPrivateProfile").checked = Boolean(savedProfile.private);
+        const selectedShowcase = new Set(savedProfile.showcase || []);
+        document.querySelectorAll("[data-showcase-badge]").forEach((button) => button.classList.toggle("selected", selectedShowcase.has(button.dataset.showcaseBadge)));
+        const selectedTheme = savedProfile.theme || "default";
+        document.querySelectorAll("[data-profile-theme]").forEach((button) => button.classList.toggle("active", button.dataset.profileTheme === selectedTheme));
+        renderPinnedBadgeOptions();
+        updateEditorCounts();
       }
       {
         const following = communityState.following.has(member.id);
@@ -588,10 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const back = event.target.closest("[data-profile-back]");
       const editOwn = event.target.closest("[data-own-profile-edit]");
       if (editOwn) {
-        const form = byId("communityProfileForm");
-        form.hidden = false;
-        form.classList.toggle("community-inline-editor");
-        form.scrollIntoView({behavior:"smooth",block:"center"});
+        openProfileEditor();
         return;
       }
       const copy = event.target.closest("[data-profile-copy]");
@@ -617,9 +622,84 @@ document.addEventListener("DOMContentLoaded", () => {
     byId("communityModalClose").addEventListener("click", closeCommunityModal);
     byId("communityModalCancel").addEventListener("click", closeCommunityModal);
     byId("communityModal").addEventListener("click", (event) => { if(event.target===byId("communityModal"))closeCommunityModal(); });
+    function updateEditorCounts() {
+      const chosen = [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge);
+      byId("communityShowcaseCount").textContent = chosen.length + " / 6 picked";
+      byId("communityPinnedCount").textContent = (savedProfile.pinned || []).length + " / 3";
+    }
+    function renderPinnedBadgeOptions() {
+      const chosen = new Set(savedProfile.pinned || []);
+      const container = byId("communityPinnedOptions");
+      container.innerHTML = "";
+      document.querySelectorAll("[data-showcase-badge].selected").forEach((button) => {
+        const id = button.dataset.showcaseBadge;
+        const pin = document.createElement("button");
+        pin.type = "button";
+        pin.className = "msrp-pinned-badge" + (chosen.has(id) ? " selected" : "");
+        pin.dataset.pinnedBadge = id;
+        pin.textContent = button.querySelector("strong").textContent;
+        container.appendChild(pin);
+      });
+      updateEditorCounts();
+    }
+    function openProfileEditor() {
+      const form = byId("communityProfileForm");
+      form.hidden = false;
+      form.classList.add("msrp-profile-editor");
+      byId("communityModal").classList.add("msrp-editor-open");
+      document.body.classList.add("msrp-editor-visible");
+      form.scrollTop = 0;
+      byId("communityBio").focus();
+    }
+    function closeProfileEditor() {
+      byId("communityProfileForm").hidden = true;
+      byId("communityModal").classList.remove("msrp-editor-open");
+      document.body.classList.remove("msrp-editor-visible");
+    }
+    byId("communityBio").addEventListener("input", () => byId("communityBioCount").textContent = String(byId("communityBio").value.length));
+    byId("communityShowcaseOptions").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-showcase-badge]");
+      if (!button) return;
+      const selected = document.querySelectorAll("[data-showcase-badge].selected");
+      if (!button.classList.contains("selected") && selected.length >= 6) return;
+      button.classList.toggle("selected");
+      renderPinnedBadgeOptions();
+    });
+    byId("communityPinnedOptions").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-pinned-badge]");
+      if (!button) return;
+      const id = button.dataset.pinnedBadge;
+      const pinned = new Set(savedProfile.pinned || []);
+      if (pinned.has(id)) pinned.delete(id);
+      else if (pinned.size < 3) pinned.add(id);
+      savedProfile.pinned = [...pinned];
+      renderPinnedBadgeOptions();
+    });
+    byId("communityThemeOptions").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-profile-theme]");
+      if (!button) return;
+      if (button.dataset.profileTheme !== "default") return;
+      document.querySelectorAll("[data-profile-theme]").forEach((item) => item.classList.toggle("active", item === button));
+    });
+    byId("communityEditorClose").addEventListener("click", closeProfileEditor);
+    byId("communityModalCancel").addEventListener("click", () => {
+      if (!byId("communityProfileForm").hidden) closeProfileEditor();
+      else closeCommunityModal();
+    });
     byId("communityProfileForm").addEventListener("submit", (event) => {
-      event.preventDefault(); savedProfile={name:byId("communityDisplayName").value.trim()||"MSRP Member",bio:byId("communityBio").value.trim(),accent:byId("communityAccent").value};
+      event.preventDefault();
+      savedProfile = {
+        ...savedProfile,
+        status: byId("communityStatus").value.trim(),
+        pronouns: byId("communityPronouns").value.trim(),
+        bio: byId("communityBio").value.trim(),
+        showcase: [...document.querySelectorAll("[data-showcase-badge].selected")].map((button) => button.dataset.showcaseBadge),
+        theme: document.querySelector("[data-profile-theme].active")?.dataset.profileTheme || "default",
+        private: byId("communityPrivateProfile").checked,
+        pinned: savedProfile.pinned || []
+      };
       try { localStorage.setItem(profileStoreKey,JSON.stringify(savedProfile)); } catch (_) {}
+      closeProfileEditor();
       closeCommunityModal();
     });
     renderCommunity();
