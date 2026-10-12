@@ -468,8 +468,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (dashboardMain && modal.parentElement !== dashboardMain) dashboardMain.appendChild(modal);
       const panel = modal.querySelector(".community-modal");
       const fullProfile = byId("communityFullProfile");
-      byId("communityModalEyebrow").textContent = own ? "YOUR PROFILE PREVIEW" : "MSRP COMMUNITY PROFILE";
-      byId("communityModalTitle").textContent = member.name;
+      byId("communityModalEyebrow").hidden = true;
+      byId("communityModalTitle").hidden = true;
       byId("communityModalDescription").hidden = true;
       byId("communityModalDescription").textContent = "";
       byId("communityProfileForm").hidden = true;
@@ -483,12 +483,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       {
         const following = communityState.following.has(member.id);
-        const liked = communityState.liked.has(member.id); const previewSet=[{joined:"Jan 2025",streak:"4 days",best:12,badges:14,cosmetics:5,last:"now",about:"Enjoying realistic roleplay around Missouri and meeting new people.",showcase:"Favorite patrol vehicle and department uniform."},{joined:"Mar 2025",streak:"2 days",best:9,badges:8,cosmetics:3,last:"12m ago",about:"Helping keep the community welcoming and organized.",showcase:"Staff uniform, patrol SUV, and favorite roleplay moments."},{joined:"Oct 2024",streak:"1 day",best:6,badges:21,cosmetics:7,last:"3h ago",about:"Fire and rescue roleplay enthusiast. Always happy to help on scene.",showcase:"Fire department gear and rescue truck."},{joined:"Jul 2025",streak:"6 days",best:18,badges:5,cosmetics:1,last:"1d ago",about:"I enjoy driving, dispatch, and teamwork.",showcase:"Dispatch setup and favorite vehicle."},{joined:"Feb 2026",streak:"3 days",best:8,badges:11,cosmetics:4,last:"27m ago",about:"Here for good scenes, great teammates, and memorable calls.",showcase:"A few favorite patrol moments and custom outfits."},{joined:"Sep 2026",streak:"1 day",best:6,badges:8,cosmetics:3,last:"now",about:"Learning new departments and meeting people.",showcase:"Nothing on show yet."}]; const preview=own?previewSet[1]:previewSet[(member.id-1)%previewSet.length];
+        const liked = communityState.liked.has(member.id);
+        const previewSet = [
+          {joined:"Jan 2025",streak:"4 days",badges:0,cosmetics:0,last:"now",about:""},
+          {joined:"Mar 2025",streak:"2 days",badges:0,cosmetics:0,last:"12m ago",about:""},
+          {joined:"Oct 2024",streak:"1 day",badges:0,cosmetics:0,last:"3h ago",about:""},
+          {joined:"Jul 2025",streak:"6 days",badges:0,cosmetics:0,last:"1d ago",about:""},
+          {joined:"Feb 2026",streak:"3 days",badges:0,cosmetics:0,last:"27m ago",about:""},
+          {joined:"Sep 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""}
+        ];
+        const preview = own ? {joined:"Oct 2026",streak:"1 day",badges:0,cosmetics:0,last:"now",about:""} : previewSet[(Math.max(1,member.id)-1)%previewSet.length];
         fullProfile.innerHTML = `
           <div class="community-profile-back-row">
             <button type="button" class="community-back-everyone" data-profile-back>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-              <span>Everyone</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span>Everyone</span>
             </button>
           </div>
           <div class="community-full-hero">
@@ -500,14 +508,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="community-full-mini-stats">
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg> ${member.views || 0} views</span>
                   <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></svg> ${member.likes + (liked ? 1 : 0)} likes</span>
-                  <span>${communityState.following.size} followers</span>
-                  <span>${communityState.following.size} following</span>
-                  <span>0 friends</span>
+                  <span>${communityState.following.size} followers</span><span>${communityState.following.size} following</span><span>0 friends</span>
                 </div>
               </div>
               <div class="community-full-actions">
                 <button type="button" class="community-primary-button" ${own ? 'data-own-profile-edit' : 'data-full-follow="' + member.id + '"'}>${own ? 'Edit profile' : (following ? 'Following' : 'Follow')}</button>
-                <button type="button" class="community-secondary-button community-square-action" data-full-like="${member.id}" aria-label="Like profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></svg></button>
+                <button type="button" class="community-secondary-button community-square-action" data-full-like="${member.id}" aria-label="Like profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.6a5.4 5.4 0 0 0 0 7.6Z"/></svg></button>
                 <button type="button" class="community-secondary-button community-square-action" aria-label="Flag profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 1h13l-2.5 4L18 13H5"/></svg></button>
                 <button type="button" class="community-secondary-button community-square-action" data-profile-copy="${safeText(member.profileId)}" aria-label="Copy profile link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11 4.9M14 11a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.8-1.8"/></svg></button>
               </div>
@@ -517,8 +523,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="community-full-stats">
               <div><strong>${preview.joined}</strong><span>Joined</span></div>
               <div><strong>${preview.streak}</strong><span>Login streak</span></div>
-              <div><strong>${preview.badges} <small>/ 33</small></strong><span>Badges</span></div>
-              <div><strong>${preview.cosmetics}</strong><span>Cosmetics</span></div>
+              <div><strong>0 <small>/ 33</small></strong><span>Badges</span></div>
+              <div><strong>0</strong><span>Cosmetics</span></div>
               <div><strong>${preview.last}</strong><span>Last seen</span></div>
             </div>
             <div class="community-full-columns">
@@ -527,7 +533,22 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span class="community-eyebrow">ABOUT</span>
                   <p>${safeText(own ? (savedProfile.bio || 'Nothing here yet.') : (preview.about || 'Nothing here yet.'))}</p>
                 </section>
+                <section class="community-full-panel community-collectibles-panel">
+                  <span class="community-eyebrow">COLLECTIBLES</span>
+                  <p class="community-empty-state">Nothing here yet.</p>
+                </section>
               </div>
+              <aside class="community-full-side-column">
+                ${member.robloxUsername ? '<section class="community-full-panel community-roblox-panel"><div class="community-roblox-card"><span class="community-roblox-icon" aria-hidden="true">R</span><div class="community-roblox-copy"><span class="community-eyebrow">ROBLOX</span><strong>' + safeText(member.robloxUsername) + '</strong></div></div></section>' : ''}
+                <section class="community-full-panel community-badges-panel">
+                  <div class="community-badge-heading"><span class="community-eyebrow">BADGES</span><span>0 of 33</span></div>
+                  <p class="community-empty-state">No badges yet.</p>
+                </section>
+                <section class="community-full-panel community-cosmetics-panel">
+                  <span class="community-eyebrow">COSMETICS</span>
+                  <p class="community-empty-state">Nothing here yet.</p>
+                </section>
+              </aside>
             </div>
           </div>`;
       }
