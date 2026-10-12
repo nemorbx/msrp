@@ -158,6 +158,10 @@
                 <span class="sidebar-nav-icon inventory-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5h14v11H5z"></path><path d="M8.5 8.5V6a3.5 3.5 0 0 1 7 0v2.5"></path></svg></span>
                 <div><strong>Inventory</strong><small>Store purchases</small></div>
               </a>
+              <a class="member-nav-item" href="#dashboard" data-dashboard-view="admin" id="badgeAdminNav" hidden>
+                <span class="sidebar-nav-icon inventory-icon">⚙</span>
+                <div><strong>Admin</strong><small>Manage badges</small></div>
+              </a>
             </div>
             <div class="member-sidebar-user">
               <img id="sidebarAvatar" src="" alt="">
@@ -372,6 +376,24 @@
             </section>
 
             <section class="dashboard-view" id="dashboardInventoryView" hidden>
+            </section>
+            <section class="dashboard-view msrp-badge-admin" id="dashboardAdminView" hidden>
+              <header class="msrp-admin-heading"><div><span class="msrp-admin-kicker">OWNER TOOLS</span><h2>Badge Management</h2><p>Create, edit, rank, and delete badges. New badges are added to your test collection.</p></div><span id="badgeAdminCount">0 badges</span></header>
+              <form id="badgeAdminForm" class="msrp-admin-form">
+                <input type="hidden" id="badgeEditId">
+                <h3 id="badgeFormTitle">Create a badge</h3>
+                <div class="msrp-admin-fields">
+                  <label>Badge name<input id="badgeName" maxlength="50" required placeholder="Badge name"></label>
+                  <label>Icon / emoji<input id="badgeIcon" maxlength="8" required value="🏆"></label>
+                  <label class="msrp-admin-wide">Description<textarea id="badgeDescription" maxlength="220" rows="2" placeholder="What is this badge for?"></textarea></label>
+                  <label>Rarity<select id="badgeRarity"><option value="common">Common</option><option value="uncommon">Uncommon</option><option value="rare">Rare</option><option value="legendary">Legendary</option></select></label>
+                  <label>Assignment rule<select id="badgeRule"><option value="manual">Test badge — my profile</option><option value="account">Account linked</option><option value="early">Early supporter</option><option value="streak">Activity streak</option></select></label>
+                </div>
+                <div class="msrp-admin-form-actions"><button type="submit" id="badgeSaveButton">Create badge</button><button type="button" id="badgeCancelEdit" hidden>Cancel edit</button></div>
+                <p id="badgeAdminMessage" role="status" hidden></p>
+              </form>
+              <section class="msrp-admin-list-panel"><header><strong>All badges</strong><span id="badgeAdminTotal">0 total</span></header><div id="badgeAdminList" class="msrp-admin-list"><p>No badges yet. Create your first badge above.</p></div></section>
+              <p class="msrp-admin-notice">Preview mode: badge data is stored in this browser until a shared backend is connected.</p>
             </section>
           </section>
         </div>
