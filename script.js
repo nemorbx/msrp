@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const chosen = [...new Set(savedProfile.pinned || [])].slice(0,3);
       const container = byId("communityPinnedOptions");
       container.replaceChildren();
-      const selected = [...document.querySelectorAll("[data-showcase-badge].selected")];
+      const selected = [...document.querySelectorAll("[data-showcase-badge].selected")].filter((button) => !button.hidden);
       chosen.filter((id) => selected.some((button) => button.dataset.showcaseBadge === id)).forEach((id,index) => {
         const source = selected.find((button) => button.dataset.showcaseBadge === id);
         const pin = document.createElement("div");
